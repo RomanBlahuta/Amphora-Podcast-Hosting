@@ -11,6 +11,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {metaReducers, reducers, routerFeatureKey} from './store/app.store';
+import {HttpClientModule} from '@angular/common/http';
 
 export const EFFECTS = [];
 
@@ -19,6 +20,7 @@ export const EFFECTS = [];
   entryComponents: [],
   imports: [
       BrowserModule,
+      HttpClientModule,
       IonicModule.forRoot(),
       AppRoutingModule,
       EffectsModule.forRoot(EFFECTS),
