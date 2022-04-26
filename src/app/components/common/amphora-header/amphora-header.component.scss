@@ -1,0 +1,12 @@
+.header {
+    &__ornament-container {
+        white-space: nowrap;
+        overflow-y: hidden;
+        background-color: black;
+        /* This fixed height is only for demo, your use cases might not need it */
+        height: 25px;
+        --svg: url("../../../../assets/icon/header-ornament.svg");
+        -webkit-mask-image: var(--svg);
+        mask-image: var(--svg);
+    }
+}

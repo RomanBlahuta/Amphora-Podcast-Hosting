@@ -9,12 +9,12 @@ import {RouterService} from './utils/router.service';
 })
 export class AppInitService {
 
-    constructor(private store$: Store,
-                private localStorageService: LocalStorageService,
-                private routerService: RouterService,
-                private _iconsService: IconsService,
-    ) {
-    }
+    constructor(
+        private store$: Store,
+        private localStorageService: LocalStorageService,
+        private routerService: RouterService,
+        private _iconsService: IconsService,
+    ) {}
 
     public initApp(): void {
         //

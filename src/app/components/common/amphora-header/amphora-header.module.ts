@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {AmphoraHeaderComponent} from './amphora-header.component';
 import {MatIconModule} from '@angular/material/icon';
 import {AmphoraButtonModule} from '../amphora-button/amphora-button.module';
+import {AmphoraIconModule} from '../amphora-icon/amphora-icon.module';
 
 @NgModule({
     exports: [
@@ -12,7 +13,8 @@ import {AmphoraButtonModule} from '../amphora-button/amphora-button.module';
     ],
     imports: [
         MatIconModule,
-        AmphoraButtonModule
+        AmphoraButtonModule,
+        AmphoraIconModule
     ]
 })
 export class AmphoraHeaderModule {
