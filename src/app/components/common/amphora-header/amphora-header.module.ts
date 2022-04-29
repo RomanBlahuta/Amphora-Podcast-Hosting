@@ -3,6 +3,7 @@ import {AmphoraHeaderComponent} from './amphora-header.component';
 import {MatIconModule} from '@angular/material/icon';
 import {AmphoraButtonModule} from '../amphora-button/amphora-button.module';
 import {AmphoraIconModule} from '../amphora-icon/amphora-icon.module';
+import {AmphoraHeaderOrnamentModule} from '../../ornaments/amphora-header-ornament/amphora-header-ornament.module';
 
 @NgModule({
     exports: [
@@ -14,7 +15,8 @@ import {AmphoraIconModule} from '../amphora-icon/amphora-icon.module';
     imports: [
         MatIconModule,
         AmphoraButtonModule,
-        AmphoraIconModule
+        AmphoraIconModule,
+        AmphoraHeaderOrnamentModule
     ]
 })
 export class AmphoraHeaderModule {

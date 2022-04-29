@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AmphoraButtonModel} from './amphora-button.model';
 
 @Component({
   selector: 'amphora-button',
@@ -6,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./amphora-button.component.scss'],
 })
 export class AmphoraButtonComponent implements OnInit {
+    @Input()
+    public model: AmphoraButtonModel;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {}
+    public ngOnInit(): void {}
+
+    public onClick() {
+        if (this.model.optional.onClick) {
+            this.model.optional.onClick();
+        }
+    }
 
 }

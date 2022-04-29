@@ -10,7 +10,7 @@ export class AmphoraIconModel {
     public icon: IconsEnum;
     public optional: IOptional;
 
-    constructor(icon: IconsEnum, optional: IOptional) {
+    constructor(icon: IconsEnum, optional?: IOptional) {
         this.icon = icon;
         this.optional = {
             size: {
@@ -20,8 +20,6 @@ export class AmphoraIconModel {
                 heightUnit: optional?.size.heightUnit || UnitsOfMeasurementEnum.PX,
             },
         };
-
-        console.log(this.icon, this.optional);
     }
 
     public static create(icon: IconsEnum, optional?: IOptional): AmphoraIconModel {

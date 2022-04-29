@@ -1,3 +1,6 @@
-<p>
-  amphora-button works!
-</p>
+<button
+    [class]="['button', model.optional.buttonType]"
+    matRipple
+    (click)="onClick()">
+    <span [class]="['button__label', model.optional.buttonType + '-label']">{{ model.label }}</span>
+</button>
