@@ -10,6 +10,7 @@ export class AmphoraButtonModel {
     public optional: IOptional;
 
     constructor(label: string, optional?: IOptional) {
+        this.label = label;
         this.optional = {
             buttonType: optional?.buttonType || ButtonTypesEnum.PRIMARY,
             onClick: optional.onClick || undefined,

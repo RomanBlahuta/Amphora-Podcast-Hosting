@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AmphoraSectionOrnamentModel} from './amphora-section-ornament.model';
+import {DirectionsEnum} from '../../../shared/enums/directions.enum';
 
 @Component({
   selector: 'amphora-section-ornament',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./amphora-section-ornament.component.scss'],
 })
 export class AmphoraSectionOrnamentComponent implements OnInit {
+    @Input()
+    public model: AmphoraSectionOrnamentModel;
+    public DirectionsEnum = DirectionsEnum;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {}
+    public ngOnInit(): void {}
 
 }

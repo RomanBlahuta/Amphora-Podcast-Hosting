@@ -4,6 +4,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {AmphoraButtonModule} from '../amphora-button/amphora-button.module';
 import {AmphoraIconModule} from '../amphora-icon/amphora-icon.module';
 import {AmphoraHeaderOrnamentModule} from '../../ornaments/amphora-header-ornament/amphora-header-ornament.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     exports: [
@@ -16,7 +17,8 @@ import {AmphoraHeaderOrnamentModule} from '../../ornaments/amphora-header-orname
         MatIconModule,
         AmphoraButtonModule,
         AmphoraIconModule,
-        AmphoraHeaderOrnamentModule
+        AmphoraHeaderOrnamentModule,
+        CommonModule,
     ]
 })
 export class AmphoraHeaderModule {

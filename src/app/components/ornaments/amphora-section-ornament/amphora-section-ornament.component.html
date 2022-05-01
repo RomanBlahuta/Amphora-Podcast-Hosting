@@ -1,3 +1,2 @@
-<p>
-  section-ornament works!
-</p>
+<div class="section-ornament-container section-ornament-container-left" *ngIf="model.direction === DirectionsEnum.LEFT"></div>
+<div class="section-ornament-container section-ornament-container-right" *ngIf="model.direction === DirectionsEnum.RIGHT"></div>

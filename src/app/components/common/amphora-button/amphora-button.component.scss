@@ -1,19 +1,31 @@
-.button {
-    &__white {
-        &-label {
+@import "src/global";
 
+.button {
+    min-width: 96px;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px 1px $color-drop-shadow;
+
+    &__white {
+        background-color: $color-white;
+        &-label {
+            color: $color-black;
         }
     }
 
     &__primary {
+        background-color: $color-primary;
         &-label {
-
+            color: $color-white;
         }
     }
 
     &__dark {
+        background-color: $color-black;
         &-label {
-
+            color: $color-white;
         }
     }
 }

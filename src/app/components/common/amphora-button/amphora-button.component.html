@@ -1,6 +1,5 @@
 <button
     [class]="['button', model.optional.buttonType]"
-    matRipple
     (click)="onClick()">
-    <span [class]="['button__label', model.optional.buttonType + '-label']">{{ model.label }}</span>
+    <span [class]="['button__label', model.optional.buttonType + '-label', 'font-button-label']">{{ model.label }}</span>
 </button>

@@ -1,0 +1,18 @@
+.section-ornament-container {
+    white-space: nowrap;
+    overflow-y: hidden;
+    background-color: black;
+    height: 50px;
+
+    &-left {
+        --svg: url("../../../../assets/icon/section-ornament-left.svg");
+        -webkit-mask-image: var(--svg);
+        mask-image: var(--svg);
+    }
+
+    &-right {
+        --svg: url("../../../../assets/icon/section-ornament-right.svg");
+        -webkit-mask-image: var(--svg);
+        mask-image: var(--svg);
+    }
+}

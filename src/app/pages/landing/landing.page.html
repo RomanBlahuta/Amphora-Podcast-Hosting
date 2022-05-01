@@ -1,7 +1,13 @@
 <div class="landing">
-    <amphora-header></amphora-header>
-    <div class="landing__section-about">about</div>
-    <div class="landing__section-features">features</div>
-    <div class="landing__section-streaming">streaming</div>
+    <amphora-header [model]="headerModel"></amphora-header>
+    <amphora-section [model]="aboutSectionModel">
+        <div class="landing__section-about">about</div>
+    </amphora-section>
+    <amphora-section [model]="featuresSectionModel">
+        <div class="landing__section-about">features</div>
+    </amphora-section>
+    <amphora-section [model]="streamingSectionModel">
+        <div class="landing__section-about">streaming</div>
+    </amphora-section>
     <amphora-footer></amphora-footer>
 </div>

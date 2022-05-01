@@ -7,6 +7,7 @@ import { LandingPage } from './landing.page';
 import { LandingPageRoutingModule } from './landing-routing.module';
 import {AmphoraHeaderModule} from '../../components/common/amphora-header/amphora-header.module';
 import {AmphoraFooterModule} from '../../components/common/amphora-footer/amphora-footer.module';
+import {AmphoraSectionModule} from '../../components/common/amphora-section/amphora-section.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {AmphoraFooterModule} from '../../components/common/amphora-footer/amphor
         IonicModule,
         LandingPageRoutingModule,
         AmphoraHeaderModule,
-        AmphoraFooterModule
+        AmphoraFooterModule,
+        AmphoraSectionModule
     ],
   declarations: [LandingPage]
 })
