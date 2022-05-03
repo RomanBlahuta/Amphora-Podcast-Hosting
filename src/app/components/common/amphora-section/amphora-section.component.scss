@@ -1,0 +1,13 @@
+@import "src/global";
+
+.section {
+    color: $color-black;
+
+    &__primary {
+        background-color: $color-primary;
+    }
+
+    &__white {
+        background-color: $color-white;
+    }
+}

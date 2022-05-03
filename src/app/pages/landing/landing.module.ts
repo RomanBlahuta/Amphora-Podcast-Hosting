@@ -8,6 +8,8 @@ import { LandingPageRoutingModule } from './landing-routing.module';
 import {AmphoraHeaderModule} from '../../components/common/amphora-header/amphora-header.module';
 import {AmphoraFooterModule} from '../../components/common/amphora-footer/amphora-footer.module';
 import {AmphoraSectionModule} from '../../components/common/amphora-section/amphora-section.module';
+import {AmphoraIconModule} from '../../components/common/amphora-icon/amphora-icon.module';
+import {AmphoraSliderModule} from '../../components/common/amphora-slider/amphora-slider.module';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {AmphoraSectionModule} from '../../components/common/amphora-section/amph
         LandingPageRoutingModule,
         AmphoraHeaderModule,
         AmphoraFooterModule,
-        AmphoraSectionModule
+        AmphoraSectionModule,
+        AmphoraIconModule,
+        AmphoraSliderModule
     ],
   declarations: [LandingPage]
 })

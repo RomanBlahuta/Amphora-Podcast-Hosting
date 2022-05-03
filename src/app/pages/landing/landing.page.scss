@@ -1,2 +1,33 @@
+@import "src/global";
+
+.hdr {
+    position: fixed;
+}
+
 .landing {
+    overflow-y: scroll;
+    &__section {
+        &-about {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 176px 64px 50px 128px;
+
+            &-text {
+                width: 554px;
+            }
+
+            &-image {
+                margin-left: 118px;
+            }
+        }
+
+        &-features {
+            padding: 64px 32px;
+        }
+
+        &-streaming {
+
+        }
+    }
 }

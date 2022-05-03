@@ -1,4 +1,4 @@
-<div [class]="['section']">
+<div [class]="['section', model.optional.sectionType]">
     <amphora-section-ornament [model]="ornamentLeftModel" *ngIf="model.optional.ornaments"></amphora-section-ornament>
     <ng-content></ng-content>
     <amphora-section-ornament [model]="ornamentRightModel" *ngIf="model.optional.ornaments"></amphora-section-ornament>

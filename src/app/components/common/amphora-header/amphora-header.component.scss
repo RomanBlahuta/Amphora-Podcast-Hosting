@@ -1,4 +1,8 @@
+@import "src/global";
+
 .header {
+    width: 100%;
+    background-color: $color-white;
 
     &__content {
         display: flex;

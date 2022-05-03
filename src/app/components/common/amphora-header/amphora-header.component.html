@@ -4,7 +4,7 @@
 
         <div class="header__buttons-container">
             <amphora-button [model]="signInBtnModel" *ngIf="model.headerType === HeaderTypesEnum.AUTH || model.headerType === HeaderTypesEnum.SIGN_IN"></amphora-button>
-            <div class="header__buttons-spacer"></div>
+            <div class="header__buttons-spacer" *ngIf="model.headerType === HeaderTypesEnum.AUTH"></div>
             <amphora-button [model]="signUpBtnModel" *ngIf="model.headerType === HeaderTypesEnum.AUTH || model.headerType === HeaderTypesEnum.SIGN_UP"></amphora-button>
         </div>
     </div>
