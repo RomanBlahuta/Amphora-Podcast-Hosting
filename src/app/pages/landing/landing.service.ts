@@ -5,7 +5,7 @@ import {AmphoraSectionModel} from '../../components/common/amphora-section/ampho
 import {SectionTypesEnum} from '../../shared/enums/section-types.enum';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../shared/enums/icons.enum';
-import {ISize} from '../../shared/interfaces/size';
+import {ISize} from '../../shared/interfaces/size.interface';
 
 @Injectable({
     providedIn: 'root',

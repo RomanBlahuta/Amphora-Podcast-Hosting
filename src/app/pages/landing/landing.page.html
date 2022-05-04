@@ -28,12 +28,13 @@
 
             <div class="landing__section-streaming">
                 <amphora-slider>
-                    <ion-slide *ngFor="let i of [1, 2, 3]">
-                        <h1>HELLO</h1>
+                    <ion-slide *ngFor="let i of [1, 2, 3, 4]">
+                        <h1>{{ 'HELLO #' + i }}</h1>
                     </ion-slide>
                 </amphora-slider>
             </div>
             <div class="spacer-ver-128px"></div>
+            <div class="spacer-ver-212px"></div>
         </amphora-section>
     </amphora-page>
 </ion-content>

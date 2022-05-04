@@ -1,4 +1,4 @@
-import {ISize} from '../../../shared/interfaces/size';
+import {ISize} from '../../../shared/interfaces/size.interface';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
 

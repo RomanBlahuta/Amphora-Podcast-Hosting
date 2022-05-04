@@ -1,5 +1,6 @@
 .page {
     position: relative;
+    min-height: 100%;
 
     &__header {
         position: fixed;
@@ -7,6 +8,9 @@
     }
 
     &__footer {
+        position: absolute;
+        bottom: 0;
         width: 100%;
+        overflow: hidden;
     }
 }
