@@ -16,4 +16,5 @@ export enum IconsEnum {
     POCKET_CASTS = 'pocket-casts',
     GOOGLE_PODCASTS = 'google-podcasts',
     SPOTIFY = 'spotify',
+    CIRCLES = 'circles',
 }

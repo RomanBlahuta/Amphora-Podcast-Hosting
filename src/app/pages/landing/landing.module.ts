@@ -10,6 +10,7 @@ import {AmphoraFooterModule} from '../../components/common/amphora-footer/amphor
 import {AmphoraSectionModule} from '../../components/common/amphora-section/amphora-section.module';
 import {AmphoraIconModule} from '../../components/common/amphora-icon/amphora-icon.module';
 import {AmphoraSliderModule} from '../../components/common/amphora-slider/amphora-slider.module';
+import {AmphoraPageModule} from '../../components/common/amphora-page/amphora-page.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {AmphoraSliderModule} from '../../components/common/amphora-slider/amphor
         AmphoraFooterModule,
         AmphoraSectionModule,
         AmphoraIconModule,
-        AmphoraSliderModule
+        AmphoraSliderModule,
+        AmphoraPageModule
     ],
   declarations: [LandingPage]
 })

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IconsEnum} from '../../../shared/enums/icons.enum';
 
 @Component({
   selector: 'amphora-slider',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./amphora-slider.component.scss'],
 })
 export class AmphoraSliderComponent implements OnInit {
+    @Input()
+    public IconsEnum = IconsEnum;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {}
+    public ngOnInit(): void {}
 
 }

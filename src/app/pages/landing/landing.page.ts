@@ -3,6 +3,7 @@ import {LandingService} from './landing.service';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
 import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
+import {STREAMING_BANNER_ICONS} from '../../shared/utils/constants';
 
 @Component({
   selector: 'amphora-landing',
@@ -15,6 +16,7 @@ export class LandingPage implements OnInit{
     public featuresSectionModel: AmphoraSectionModel;
     public streamingSectionModel: AmphoraSectionModel;
     public discussionImgModel: AmphoraIconModel;
+    public streamingBannerIconModels: AmphoraIconModel[];
 
     constructor(private landingService: LandingService) {}
 
@@ -24,5 +26,6 @@ export class LandingPage implements OnInit{
         this.featuresSectionModel = this.landingService.createOrnamentedSection();
         this.streamingSectionModel = this.landingService.createRegularSection();
         this.discussionImgModel = this.landingService.createDiscussionImage();
+        this.streamingBannerIconModels = this.landingService.createStreamingBannerIcons(STREAMING_BANNER_ICONS);
     }
 }

@@ -1,0 +1,22 @@
+@import "src/global";
+
+.slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__button {
+        background-color: transparent;
+        color: $color-black;
+    }
+}
+
+mat-icon {
+    height: 48px;
+    width: 48px;
+    font-size: 48px;
+}
+
+ion-slides {
+    display: block !important;
+}

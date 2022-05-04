@@ -1,10 +1,7 @@
-<!--<ion-content scroll-y="true">-->
-    <div class="landing">
-        <div class="hdr" [ngStyle]="{width:  width.offsetWidth + 'px'}">
-            <amphora-header [model]="headerModel"></amphora-header>
-        </div>
+<ion-content class="landing">
+    <amphora-page [headerModel]="headerModel">
         <amphora-section [model]="aboutSectionModel">
-            <div class="landing__section-about" #width>
+            <div class="landing__section-about">
                 <div class="landing__section-about-text">
                     <h1 class="font-section-title">Lorem ipsum dolor <br/> sir amet!</h1>
                     <p class="font-section-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -22,8 +19,21 @@
             </div>
         </amphora-section>
         <amphora-section [model]="streamingSectionModel">
-            <div class="landing__section-streaming">streaming</div>
+            <div class="landing__section-streaming">
+                <h1 class="font-section-title">Lorem ipsum dolor</h1>
+            </div>
+                <div class="landing__section-streaming-banner">
+                    <amphora-icon *ngFor="let model of streamingBannerIconModels" [model]="model"></amphora-icon>
+                </div>
+
+            <div class="landing__section-streaming">
+                <amphora-slider>
+                    <ion-slide *ngFor="let i of [1, 2, 3]">
+                        <h1>HELLO</h1>
+                    </ion-slide>
+                </amphora-slider>
+            </div>
+            <div class="spacer-ver-128px"></div>
         </amphora-section>
-        <amphora-footer></amphora-footer>
-    </div>
-<!--</ion-content>-->
+    </amphora-page>
+</ion-content>

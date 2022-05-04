@@ -1,0 +1,28 @@
+@import "src/global";
+
+.footer {
+    background-color: $color-black;
+    padding: 16px;
+    color: $color-white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__section {
+        &-title {
+            @extend .font-footer-title;
+        }
+
+        &-column {
+            margin-right: 8px;
+            &-item {
+                @extend .font-footer-text;
+            }
+            &s-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

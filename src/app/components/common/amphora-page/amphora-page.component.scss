@@ -1,0 +1,12 @@
+.page {
+    position: relative;
+
+    &__header {
+        position: fixed;
+        z-index: 10000;
+    }
+
+    &__footer {
+        width: 100%;
+    }
+}

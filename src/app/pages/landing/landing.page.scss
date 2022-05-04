@@ -1,20 +1,15 @@
 @import "src/global";
 
-.hdr {
-    position: fixed;
-}
-
 .landing {
-    overflow-y: scroll;
     &__section {
         &-about {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 176px 64px 50px 128px;
+            padding: 176px 64px 50px 64px;
 
             &-text {
-                width: 554px;
+                max-width: 720px;
             }
 
             &-image {
@@ -27,7 +22,15 @@
         }
 
         &-streaming {
+            padding: 32px 64px;
 
+            &-banner {
+                padding: 24px 64px;
+                background-color: $color-accent;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
         }
     }
 }
