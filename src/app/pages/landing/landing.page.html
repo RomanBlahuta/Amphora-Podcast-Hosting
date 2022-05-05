@@ -15,7 +15,11 @@
         </amphora-section>
         <amphora-section [model]="featuresSectionModel">
             <div class="landing__section-features">
-                <amphora-slider></amphora-slider>
+                <amphora-slider [model]="featuresSliderModel">
+                    <ion-slide *ngFor="let i of [1, 2, 3, 4]">
+                        <h1>{{ 'HELLO #' + i }}</h1>
+                    </ion-slide>
+                </amphora-slider>
             </div>
         </amphora-section>
         <amphora-section [model]="streamingSectionModel">
@@ -27,7 +31,7 @@
                 </div>
 
             <div class="landing__section-streaming">
-                <amphora-slider>
+                <amphora-slider [model]="podcastsSliderModel">
                     <ion-slide *ngFor="let i of [1, 2, 3, 4]">
                         <h1>{{ 'HELLO #' + i }}</h1>
                     </ion-slide>

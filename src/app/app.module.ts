@@ -10,7 +10,7 @@ import {StoreModule} from '@ngrx/store';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {metaReducers, reducers, routerFeatureKey} from './store/app.store';
+import {metaReducers, appReducers, routerFeatureKey} from './store/app.store';
 import {HttpClientModule} from '@angular/common/http';
 
 export const EFFECTS = [];
@@ -24,7 +24,7 @@ export const EFFECTS = [];
       IonicModule.forRoot(),
       AppRoutingModule,
       EffectsModule.forRoot(EFFECTS),
-      StoreModule.forRoot(reducers, {metaReducers}),
+      StoreModule.forRoot(appReducers, {metaReducers}),
       StoreRouterConnectingModule.forRoot({stateKey: routerFeatureKey}),
       !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],

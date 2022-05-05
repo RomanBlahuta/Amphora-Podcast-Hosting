@@ -1,19 +1,19 @@
 import {ActionReducer, ActionReducerMap, INIT, MetaReducer} from '@ngrx/store';
 import {routerReducer, RouterReducerState} from '@ngrx/router-store';
 import {environment} from '../../environments/environment';
-
-// TODO
+import {AppActions} from './app/app.actions';
+import {fromLanding} from './landing/landing.reducer';
 
 export const routerFeatureKey = 'router';
 
 export interface State {
   [routerFeatureKey]: RouterReducerState;
-  // [fromLoader.loaderFeatureKey]: fromLoader.IState;
+  [fromLanding.landingFeatureKey]: fromLanding.IState;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export const appReducers: ActionReducerMap<State> = {
   [routerFeatureKey]: routerReducer,
-  // [fromLoader.loaderFeatureKey]: fromLoader.reducer,
+  [fromLanding.landingFeatureKey]: fromLanding.reducer,
 };
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -21,11 +21,11 @@ export function restoreState(reducer: ActionReducer<State>): ActionReducer<State
   return (state, action) => {
     const currentActionType = action.type;
     const actionsNeedRestoreState = [
-      // UserActions.clearAllState,
+      AppActions.clearState,
     ];
 
     if (actionsNeedRestoreState.find(item => item.type === currentActionType)) {
-      return reducer(undefined, {type: INIT});
+      return reducer(null, {type: INIT});
     }
     return reducer(state, action);
   };

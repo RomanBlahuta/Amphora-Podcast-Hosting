@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
-import {ISliderOptions} from '../../../shared/interfaces/slider-options.interface';
+import {AmphoraSliderModel} from './amphora-slider.model';
+import {IonSlides} from '@ionic/angular';
 
 @Component({
   selector: 'amphora-slider',
@@ -9,24 +10,33 @@ import {ISliderOptions} from '../../../shared/interfaces/slider-options.interfac
 })
 export class AmphoraSliderComponent implements OnInit {
     @Input()
-    public options: ISliderOptions = {
-        // allowTouchMove: false,
-        loop: true,
-        slidesPerView: 2,
-    };
+    public model: AmphoraSliderModel;
+
+    @ViewChild('slider', {static: true})
+    private slider: IonSlides;
 
     public IconsEnum = IconsEnum;
+    public currentSlide: number;
 
     constructor() { }
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        this.model.slideController.subscribe((slide) => {
+            this.currentSlide = slide;
+            this.slider.slideTo(this.currentSlide);
+        });
+    }
 
     public onClickPrevious(): void {
-        //
+        if (this.model.optional.onClickPrevious) {
+            this.model.optional.onClickPrevious(this.currentSlide);
+        }
     }
 
     public onClickNext(): void {
-        //
+        if (this.model.optional.onClickNext) {
+            this.model.optional.onClickNext(this.currentSlide);
+        }
     }
 
 }

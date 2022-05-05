@@ -1,11 +1,11 @@
 <div class="slider">
-    <button class="slider__button" mat-icon-button>
+    <button class="slider__button" mat-icon-button (click)="onClickPrevious()">
         <mat-icon [svgIcon]="IconsEnum.LAMBDA_LEFT"></mat-icon>
     </button>
-    <ion-slides [options]="options">
+    <ion-slides [options]="model.optional.options" #slider>
         <ng-content></ng-content>
     </ion-slides>
-    <button class="slider__button" mat-icon-button>
+    <button class="slider__button" mat-icon-button (click)="onClickNext()">
         <mat-icon [svgIcon]="IconsEnum.LAMBDA_RIGHT"></mat-icon>
     </button>
 </div>
