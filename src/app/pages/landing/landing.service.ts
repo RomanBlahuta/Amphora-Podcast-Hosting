@@ -8,7 +8,7 @@ import {IconsEnum} from '../../shared/enums/icons.enum';
 import {ISize} from '../../shared/interfaces/size.interface';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
 import {Store} from '@ngrx/store';
-import {LandingSelectors} from '../../store/landing/landing.selectors';
+// import {LandingSelectors} from '../../store/landing/landing.selectors';
 import {LandingActions} from '../../store/landing/landing.actions';
 
 @Injectable({
@@ -42,10 +42,11 @@ export class LandingService {
     }
 
     public createFeaturesSlider(): AmphoraSliderModel {
-        return AmphoraSliderModel.create(this.store$.select(LandingSelectors.selectFeaturesSlide), {
+        // this.store$.select(LandingSelectors.selectFeaturesSlide)
+        return AmphoraSliderModel.create(null, {
             options: {
                 allowTouchMove: false,
-                loop: false,
+                loop: true,
                 slidesPerView: 1,
             },
             onClickPrevious: (currentSlide: number) => this.store$.dispatch(LandingActions.changeFeatureSlide({slide: currentSlide - 1})),
@@ -54,10 +55,11 @@ export class LandingService {
     }
 
     public createPodcastsSlider(): AmphoraSliderModel {
-        return AmphoraSliderModel.create(this.store$.select(LandingSelectors.selectPodcastsSlide), {
+        // this.store$.select(LandingSelectors.selectPodcastsSlide)
+        return AmphoraSliderModel.create(null, {
             options: {
                 allowTouchMove: false,
-                loop: false,
+                loop: true,
                 slidesPerView: 2,
             },
             onClickPrevious: (currentSlide: number) => this.store$.dispatch(LandingActions.changePodcastSlide({slide: currentSlide - 1})),

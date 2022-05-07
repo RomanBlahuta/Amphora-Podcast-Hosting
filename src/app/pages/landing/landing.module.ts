@@ -11,6 +11,7 @@ import {AmphoraSectionModule} from '../../components/common/amphora-section/amph
 import {AmphoraIconModule} from '../../components/common/amphora-icon/amphora-icon.module';
 import {AmphoraSliderModule} from '../../components/common/amphora-slider/amphora-slider.module';
 import {AmphoraPageModule} from '../../components/common/amphora-page/amphora-page.module';
+import {AmphoraShowCardModule} from '../../components/cards/amphora-show-card/amphora-show-card.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {AmphoraPageModule} from '../../components/common/amphora-page/amphora-pa
         AmphoraSectionModule,
         AmphoraIconModule,
         AmphoraSliderModule,
-        AmphoraPageModule
+        AmphoraPageModule,
+        AmphoraShowCardModule
     ],
   declarations: [LandingPage]
 })

@@ -21,21 +21,29 @@ export class AmphoraSliderComponent implements OnInit {
     constructor() { }
 
     public ngOnInit(): void {
-        this.model.slideController.subscribe((slide) => {
-            this.currentSlide = slide;
-            this.slider.slideTo(this.currentSlide);
-        });
+        if (this.model.slideController) {
+            this.model.slideController.subscribe((slide) => {
+                this.currentSlide = slide;
+                this.slider.slideTo(this.currentSlide);
+            });
+        }
     }
 
     public onClickPrevious(): void {
         if (this.model.optional.onClickPrevious) {
             this.model.optional.onClickPrevious(this.currentSlide);
         }
+        if (!this.model.slideController) {
+            this.slider.slidePrev();
+        }
     }
 
     public onClickNext(): void {
         if (this.model.optional.onClickNext) {
             this.model.optional.onClickNext(this.currentSlide);
+        }
+        if (!this.model.slideController) {
+            this.slider.slideNext();
         }
     }
 

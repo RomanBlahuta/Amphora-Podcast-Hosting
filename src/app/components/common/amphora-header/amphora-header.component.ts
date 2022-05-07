@@ -5,6 +5,8 @@ import {AmphoraButtonModel} from '../amphora-button/amphora-button.model';
 import {ButtonTypesEnum} from '../../../shared/enums/button-types.enum';
 import {AmphoraHeaderModel} from './amphora-header.model';
 import {HeaderTypesEnum} from '../../../shared/enums/header-types.enum';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
   selector: 'amphora-header',
@@ -21,7 +23,7 @@ export class AmphoraHeaderComponent implements OnInit {
     public signInBtnModel: AmphoraButtonModel;
     public signUpBtnModel: AmphoraButtonModel;
 
-    constructor() { }
+    constructor( private navCtrl: NavController) { }
 
     public ngOnInit(): void {
         this.createModels();
@@ -38,10 +40,16 @@ export class AmphoraHeaderComponent implements OnInit {
     }
 
     private createSignInButton(): AmphoraButtonModel {
-        return AmphoraButtonModel.create('Sign In', {onClick: () => console.log('Sign In'), buttonType: ButtonTypesEnum.WHITE});
+        return AmphoraButtonModel.create('Sign In', {
+            onClick: () => this.navCtrl.navigateRoot(RoutesEnum.SIGN_IN),
+            buttonType: ButtonTypesEnum.WHITE
+        });
     }
 
     private createSignUpButton(): AmphoraButtonModel {
-        return AmphoraButtonModel.create('Sign Up', {onClick: () => console.log('Sign Up'), buttonType: ButtonTypesEnum.PRIMARY});
+        return AmphoraButtonModel.create('Sign Up', {
+            onClick: () => this.navCtrl.navigateRoot(RoutesEnum.SIGN_UP),
+            buttonType: ButtonTypesEnum.PRIMARY
+        });
     }
 }

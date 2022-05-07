@@ -14,9 +14,11 @@ export namespace fromLanding {
     export const initialState: IState = {
         featuresSlider: {
             currentSlide: 0,
+            totalSlides: 0,
         },
         podcastsSlider: {
             currentSlide: 0,
+            totalSlides: 0,
         },
         topShows: [],
     };
@@ -28,7 +30,7 @@ export namespace fromLanding {
             ...state,
             featuresSlider: {
                 ...state.featuresSlider,
-                currentSlide: slide,
+                currentSlide: slide % state.featuresSlider.totalSlides,
             }
         })),
 
@@ -36,7 +38,7 @@ export namespace fromLanding {
             ...state,
             podcastsSlider: {
                 ...state.podcastsSlider,
-                currentSlide: slide,
+                currentSlide: slide % state.podcastsSlider.totalSlides,
             }
         })),
     );

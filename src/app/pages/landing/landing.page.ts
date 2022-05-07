@@ -5,6 +5,7 @@ import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {STREAMING_BANNER_ICONS} from '../../shared/utils/constants';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
+import {IconsEnum} from '../../shared/enums/icons.enum';
 
 @Component({
   selector: 'amphora-landing',
@@ -21,6 +22,8 @@ export class LandingPage implements OnInit{
     public featuresSliderModel: AmphoraSliderModel;
     public podcastsSliderModel: AmphoraSliderModel;
 
+    public sliderIconModel: AmphoraIconModel;
+
     constructor(private landingService: LandingService) {}
 
     public ngOnInit(): void {
@@ -36,5 +39,7 @@ export class LandingPage implements OnInit{
         this.streamingBannerIconModels = this.landingService.createStreamingBannerIcons(STREAMING_BANNER_ICONS);
         this.featuresSliderModel = this.landingService.createFeaturesSlider();
         this.podcastsSliderModel = this.landingService.createPodcastsSlider();
+
+        this.sliderIconModel = AmphoraIconModel.create(IconsEnum.PANDORAS_BOX, {size: {width: 256, height: 256}});
     }
 }

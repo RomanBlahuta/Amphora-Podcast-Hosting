@@ -3,21 +3,29 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {RoutesEnum} from './shared/enums/routes.enum';
 
 const routes: Routes = [
+    {
+      path: RoutesEnum.LANDING,
+      loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule)
+    },
+    {
+      path: '',
+      redirectTo: RoutesEnum.LANDING,
+      pathMatch: 'full'
+    },
+    {
+      path: 'sign-in',
+      loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
+    },
   {
-    path: RoutesEnum.LANDING,
-    loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule)
-  },
-  {
-    path: '',
-    redirectTo: RoutesEnum.LANDING,
-    pathMatch: 'full'
+    path: 'sign-up',
+    loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+    imports: [
+      RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    ],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

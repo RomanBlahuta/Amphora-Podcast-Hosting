@@ -17,7 +17,32 @@
             <div class="landing__section-features">
                 <amphora-slider [model]="featuresSliderModel">
                     <ion-slide *ngFor="let i of [1, 2, 3, 4]">
-                        <h1>{{ 'HELLO #' + i }}</h1>
+                        <div class="landing__section-features-slide">
+                            <div class="landing__section-features-slide-icon">
+                                <amphora-icon [model]="sliderIconModel"></amphora-icon>
+                            </div>
+                            <div class="landing__section-features-slide-data">
+                                <h1 class="landing__section-features-slide-data-title">Lorem ipsum dolor sir<br/>amet!</h1>
+                                <div class="landing__section-features-slide-data-columns">
+                                    <div class="landing__section-features-slide-data-column landing__section-features-slide-data-column-initial">
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                    </div>
+                                    <div class="landing__section-features-slide-data-column">
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </ion-slide>
                 </amphora-slider>
             </div>
@@ -33,7 +58,7 @@
             <div class="landing__section-streaming">
                 <amphora-slider [model]="podcastsSliderModel">
                     <ion-slide *ngFor="let i of [1, 2, 3, 4]">
-                        <h1>{{ 'HELLO #' + i }}</h1>
+                        <amphora-show-card></amphora-show-card>
                     </ion-slide>
                 </amphora-slider>
             </div>

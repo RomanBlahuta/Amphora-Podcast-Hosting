@@ -19,6 +19,49 @@
 
         &-features {
             padding: 64px 32px;
+
+            &-slide {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &-icon {
+                    margin-right: 168px;
+                }
+
+                &-data {
+                    text-align: start;
+
+                    &-title {
+                        @extend .font-section-title;
+                    }
+
+                    &-paragraph {
+                        padding: 0;
+                        margin: 32px 0;
+
+                        @extend .font-section-paragraph;
+                    }
+
+                    &-column {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        align-items: center;
+                        width: 282px;
+
+                        &-initial {
+                            margin-right: 64px;
+                        }
+
+                        &s {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: start;
+                        }
+                    }
+                }
+            }
         }
 
         &-streaming {
