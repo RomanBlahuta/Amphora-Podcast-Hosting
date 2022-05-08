@@ -12,6 +12,7 @@ import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {metaReducers, appReducers, routerFeatureKey} from './store/app.store';
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const EFFECTS = [];
 
@@ -27,6 +28,7 @@ export const EFFECTS = [];
       StoreModule.forRoot(appReducers, {metaReducers}),
       StoreRouterConnectingModule.forRoot({stateKey: routerFeatureKey}),
       !environment.production ? StoreDevtoolsModule.instrument() : [],
+      BrowserAnimationsModule,
   ],
   providers: [
       {
