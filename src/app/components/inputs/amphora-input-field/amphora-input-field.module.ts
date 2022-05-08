@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {AmphoraInputFieldComponent} from './amphora-input-field.component';
 import {AmphoraIconModule} from '../../common/amphora-icon/amphora-icon.module';
+import {MatButtonModule} from '@angular/material/button';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     exports: [
@@ -10,7 +12,9 @@ import {AmphoraIconModule} from '../../common/amphora-icon/amphora-icon.module';
         AmphoraInputFieldComponent,
     ],
     imports: [
-        AmphoraIconModule
+        CommonModule,
+        AmphoraIconModule,
+        MatButtonModule,
     ]
 })
 export class AmphoraInputFieldModule {

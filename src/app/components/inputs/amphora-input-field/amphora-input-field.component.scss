@@ -14,7 +14,7 @@ $input-border-radius: 12px;
     font-size: 20px;
 
     &::placeholder {
-        color: $color-primary;
+        color: $color-primary-dark;
     }
 
     &__border {
@@ -30,5 +30,9 @@ $input-border-radius: 12px;
         display: inline-block;
         right: 16px;
         top: calc((56px - 30px)/2);
+
+        &-button {
+            background: transparent;
+        }
     }
 }

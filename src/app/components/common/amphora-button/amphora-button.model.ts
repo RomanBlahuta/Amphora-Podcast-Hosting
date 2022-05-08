@@ -1,4 +1,4 @@
-import {ButtonTypesEnum} from '../../../shared/enums/button-types.enum';
+import {ButtonTypesEnum} from '../../../shared/enums/component-types/button-types.enum';
 
 export interface IOptional {
     buttonType?: ButtonTypesEnum;

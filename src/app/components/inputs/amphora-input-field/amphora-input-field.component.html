@@ -1,6 +1,9 @@
 <div class="input__border">
-    <input class="input" placeholder="Input..." />
-    <div class="input__icon">
-        <amphora-icon [model]="visibilityIconModel"></amphora-icon>
+    <input #input
+           [type]="model.optional.inputType"
+           class="input"
+           [placeholder]="model.optional.placeholder" (input)="onInput($event)" />
+    <div class="input__icon" *ngIf="model.optional.inputType === InputFieldTypesEnum.PASSWORD">
+        <button (click)="toggleVisibility()" class="input__icon-button" mat-icon-button><amphora-icon [model]="visibilityIconModel"></amphora-icon></button>
     </div>
 </div>

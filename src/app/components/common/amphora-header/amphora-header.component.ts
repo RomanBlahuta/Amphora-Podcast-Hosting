@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AmphoraIconModel} from '../amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraButtonModel} from '../amphora-button/amphora-button.model';
-import {ButtonTypesEnum} from '../../../shared/enums/button-types.enum';
+import {ButtonTypesEnum} from '../../../shared/enums/component-types/button-types.enum';
 import {AmphoraHeaderModel} from './amphora-header.model';
-import {HeaderTypesEnum} from '../../../shared/enums/header-types.enum';
+import {HeaderTypesEnum} from '../../../shared/enums/component-types/header-types.enum';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
 

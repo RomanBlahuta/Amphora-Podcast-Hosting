@@ -18,4 +18,5 @@ export enum IconsEnum {
     SPOTIFY = 'spotify',
     CIRCLES = 'circles',
     VISIBLE = 'visible',
+    INVISIBLE = 'invisible',
 }

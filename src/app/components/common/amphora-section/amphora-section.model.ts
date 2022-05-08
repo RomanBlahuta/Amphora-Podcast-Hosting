@@ -1,4 +1,4 @@
-import {SectionTypesEnum} from '../../../shared/enums/section-types.enum';
+import {SectionTypesEnum} from '../../../shared/enums/component-types/section-types.enum';
 
 export interface IOptional {
     sectionType?: SectionTypesEnum;

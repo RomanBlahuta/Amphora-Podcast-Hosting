@@ -3,17 +3,20 @@ import {routerReducer, RouterReducerState} from '@ngrx/router-store';
 import {environment} from '../../environments/environment';
 import {AppActions} from './app/app.actions';
 import {fromLanding} from './landing/landing.reducer';
+import {fromSignIn} from './sign-in/sign-in.reducer';
 
 export const routerFeatureKey = 'router';
 
 export interface State {
-  [routerFeatureKey]: RouterReducerState;
-  [fromLanding.landingFeatureKey]: fromLanding.IState;
+    [routerFeatureKey]: RouterReducerState;
+    [fromLanding.landingFeatureKey]: fromLanding.IState;
+    [fromSignIn.signInFeatureKey]: fromSignIn.IState;
 }
 
 export const appReducers: ActionReducerMap<State> = {
-  [routerFeatureKey]: routerReducer,
-  [fromLanding.landingFeatureKey]: fromLanding.reducer,
+    [routerFeatureKey]: routerReducer,
+    [fromLanding.landingFeatureKey]: fromLanding.reducer,
+    [fromSignIn.signInFeatureKey]: fromSignIn.reducer,
 };
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
