@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 export interface IOptional {
     onClickPrevious?: (currentSlide: number) => void;
     onClickNext?: (currentSlide: number) => void;
-    options: ISliderOptions;
+    options?: ISliderOptions;
 }
 
 export class AmphoraSliderModel {

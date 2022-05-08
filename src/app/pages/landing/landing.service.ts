@@ -9,7 +9,6 @@ import {ISize} from '../../shared/interfaces/size.interface';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
 import {Store} from '@ngrx/store';
 // import {LandingSelectors} from '../../store/landing/landing.selectors';
-import {LandingActions} from '../../store/landing/landing.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -49,8 +48,6 @@ export class LandingService {
                 loop: true,
                 slidesPerView: 1,
             },
-            onClickPrevious: (currentSlide: number) => this.store$.dispatch(LandingActions.changeFeatureSlide({slide: currentSlide - 1})),
-            onClickNext: (currentSlide: number) => this.store$.dispatch(LandingActions.changeFeatureSlide({slide: currentSlide + 1})),
         });
     }
 
@@ -62,8 +59,6 @@ export class LandingService {
                 loop: true,
                 slidesPerView: 2,
             },
-            onClickPrevious: (currentSlide: number) => this.store$.dispatch(LandingActions.changePodcastSlide({slide: currentSlide - 1})),
-            onClickNext: (currentSlide: number) => this.store$.dispatch(LandingActions.changePodcastSlide({slide: currentSlide + 1})),
         });
     }
 

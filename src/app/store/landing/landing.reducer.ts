@@ -1,45 +1,22 @@
 import {createReducer, on} from '@ngrx/store';
 import {LandingActions} from './landing.actions';
-import {ISliderState} from '../../shared/interfaces/slider-state.interface';
 
 export namespace fromLanding {
     export const landingFeatureKey = 'landing';
 
     export interface IState {
-        featuresSlider: ISliderState;
-        podcastsSlider: ISliderState;
-        topShows: any[];
+        podcasts: any[];
     }
 
     export const initialState: IState = {
-        featuresSlider: {
-            currentSlide: 0,
-            totalSlides: 0,
-        },
-        podcastsSlider: {
-            currentSlide: 0,
-            totalSlides: 0,
-        },
-        topShows: [],
+        podcasts: [],
     };
 
     export const reducer = createReducer(
         initialState,
 
-        on(LandingActions.changeFeatureSlide, (state, {slide}) => ({
-            ...state,
-            featuresSlider: {
-                ...state.featuresSlider,
-                currentSlide: slide % state.featuresSlider.totalSlides,
-            }
-        })),
-
-        on(LandingActions.changePodcastSlide, (state, {slide}) => ({
-            ...state,
-            podcastsSlider: {
-                ...state.podcastsSlider,
-                currentSlide: slide % state.podcastsSlider.totalSlides,
-            }
-        })),
+        on(LandingActions.loadPodcasts, (state) => state),
+        on(LandingActions.loadPodcastsSuccess, (state, {podcasts}) => state),
+        on(LandingActions.loadPodcastsFailure, (state) => state),
     );
 }

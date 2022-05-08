@@ -1,13 +1,16 @@
 import {createAction, props} from '@ngrx/store';
 
 export namespace LandingActions {
-    export const changeFeatureSlide = createAction(
-        '[Landing] Change Feature Slide',
-        props<{ slide: number }>(),
+    export const loadPodcasts = createAction(
+        '[Landing] Load Podcasts',
     );
 
-    export const changePodcastSlide = createAction(
-        '[Landing] Change Podcast Slide',
-        props<{ slide: number }>(),
+    export const loadPodcastsSuccess = createAction(
+        '[Landing] Load Podcasts Success',
+          props<{ podcasts: any }>(),
+    );
+
+    export const loadPodcastsFailure = createAction(
+        '[Landing] Load Podcasts Failure',
     );
 }
