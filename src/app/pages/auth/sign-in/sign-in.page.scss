@@ -1,0 +1,21 @@
+@import "src/global";
+
+.sign-in {
+    &__section {
+        padding: 48px 0;
+        text-align: center;
+
+        &-title {
+
+            &-heading {
+                margin-bottom: 8px;
+            }
+        }
+
+        &-form {
+        }
+
+        &-submit {
+        }
+    }
+}

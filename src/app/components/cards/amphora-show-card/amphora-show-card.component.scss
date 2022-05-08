@@ -27,8 +27,7 @@
 
         &-more {
             @extend .font-section-paragraph;
-            color: $color-primary;
-            text-decoration: underline;
+            @extend .font-link;
         }
     }
 }

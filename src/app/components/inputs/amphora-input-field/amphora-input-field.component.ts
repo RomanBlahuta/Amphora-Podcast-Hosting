@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AmphoraIconModel} from '../../common/amphora-icon/amphora-icon.model';
+import {IconsEnum} from '../../../shared/enums/icons.enum';
 
 @Component({
   selector: 'amphora-input-field',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AmphoraInputFieldComponent implements OnInit {
 
-  constructor() { }
+    public visibilityIconModel: AmphoraIconModel;
 
-  ngOnInit() {}
+    constructor() { }
+
+    public ngOnInit(): void {
+        this.visibilityIconModel = AmphoraIconModel.create(IconsEnum.VISIBLE, {size: {width:32, height: 32}});
+    }
 
 }

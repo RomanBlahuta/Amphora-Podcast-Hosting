@@ -1,3 +1,5 @@
+@import "colors";
+
 .font-button-label {
     // font: normal normal bold 16px/24px Roboto;
     font-weight: bold;
@@ -38,4 +40,13 @@
     font-weight: bold;
     font-size: 24px;
     line-height: 36px;
+}
+
+.font-logo-span {
+    color: $color-primary;
+}
+
+.font-link {
+    color: $color-primary;
+    text-decoration: underline;
 }

@@ -1,0 +1,25 @@
+<ion-content class="sign-in">
+    <amphora-page [headerModel]="headerModel">
+        <amphora-section [model]="titleSectionModel">
+            <div class="sign-in__section sign-in__section-title">
+                <h1 class="font-section-title sign-in__section-title-heading">Sign In</h1>
+                <h2 class="font-section-paragraph">Create your free account and <br/>
+                    start your podcast journey with <strong>am<span class="font-logo-span">pho</span>ra</strong>!</h2>
+            </div>
+        </amphora-section>
+        <amphora-section [model]="formSectionModel">
+            <div class="sign-in__section sign-in__section-form">
+                <amphora-input-field></amphora-input-field>
+                <div class="spacer-ver-32px"></div>
+                <amphora-input-field></amphora-input-field>
+            </div>
+        </amphora-section>
+        <amphora-section [model]="submitSectionModel">
+            <div class="sign-in__section sign-in__section-submit">
+                <amphora-button [model]="submitButtonModel"></amphora-button>
+                <div class="spacer-ver-36px"></div>
+                <a class="font-section-paragraph font-link">Forgot your password?</a>
+            </div>
+        </amphora-section>
+    </amphora-page>
+</ion-content>

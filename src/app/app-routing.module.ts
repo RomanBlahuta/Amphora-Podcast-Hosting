@@ -14,11 +14,23 @@ const routes: Routes = [
     },
     {
       path: 'sign-in',
-      loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
+      loadChildren: () => import('./pages/auth/sign-in/sign-in.module').then(m => m.SignInPageModule)
+    },
+    {
+      path: 'sign-up',
+      loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpPageModule)
     },
   {
-    path: 'sign-up',
-    loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    path: 'not-found',
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./pages/auth/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'verification',
+    loadChildren: () => import('./pages/auth/verification/verification.module').then(m => m.VerificationPageModule)
   },
 ];
 
