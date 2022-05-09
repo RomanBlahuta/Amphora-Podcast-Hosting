@@ -24,5 +24,7 @@ export namespace fromSignIn {
         })),
 
         on(SignInActions.submit, (state) => state),
+
+        on(SignInActions.clear, (state) => initialState),
     );
 }

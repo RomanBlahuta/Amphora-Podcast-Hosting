@@ -10,4 +10,8 @@ export namespace SignInActions {
     export const submit = createAction(
         '[Sign In] Submit',
     );
+
+    export const clear = createAction(
+        '[Sign In] Clear',
+    );
 }

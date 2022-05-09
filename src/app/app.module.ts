@@ -12,9 +12,12 @@ import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {metaReducers, appReducers, routerFeatureKey} from './store/app.store';
 import {HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SignInEffects} from './store/sign-in/sign-in.effects';
 
-export const EFFECTS = [];
+export const EFFECTS = [
+    SignInEffects,
+];
 
 @NgModule({
   declarations: [AppComponent],

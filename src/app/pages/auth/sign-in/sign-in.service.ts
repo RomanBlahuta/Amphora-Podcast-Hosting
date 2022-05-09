@@ -9,6 +9,7 @@ import {ButtonTypesEnum} from '../../../shared/enums/component-types/button-type
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {SignInSelectors} from '../../../store/sign-in/sign-in.selectors';
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
+import {SignInActions} from '../../../store/sign-in/sign-in.actions';
 
 
 @Injectable({
@@ -36,7 +37,7 @@ export class SignInService {
     public createSubmitButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Sign In', {
             buttonType: ButtonTypesEnum.WHITE,
-            onClick: () => console.log('Signed In!'),
+            onClick: () => this.store$.dispatch(SignInActions.submit()),
         });
     }
 

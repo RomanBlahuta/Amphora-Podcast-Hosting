@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angul
 import {AmphoraIconModel} from '../../common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraInputFieldModel} from './amphora-input-field.model';
-import {take} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
 import {BehaviorSubject, Subject} from 'rxjs';
 
@@ -43,7 +43,7 @@ export class AmphoraInputFieldComponent implements OnInit, OnDestroy {
 
         if (this.model.value$) {
             this.model.value$.pipe(
-                take(1),
+                takeUntil(this.unsubscribe$),
             ).subscribe((value) => {
                 this.inputElementRef.nativeElement.value = value;
             });
