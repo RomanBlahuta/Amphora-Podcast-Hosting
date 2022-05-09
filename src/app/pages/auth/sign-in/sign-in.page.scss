@@ -13,6 +13,14 @@
         }
 
         &-form {
+            margin: 0 auto;
+            width: 480px;
+            text-align: start;
+
+            &-error {
+                margin-left: 18px;
+                margin-top: 8px;
+            }
         }
 
         &-submit {

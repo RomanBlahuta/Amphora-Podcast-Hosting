@@ -8,10 +8,14 @@
             </div>
         </amphora-section>
         <amphora-section [model]="formSectionModel">
-            <div class="sign-in__section sign-in__section-form">
-                <amphora-input-field [model]="emailInputModel"></amphora-input-field>
-                <div class="spacer-ver-32px"></div>
-                <amphora-input-field [model]="passwordInputModel"></amphora-input-field>
+            <div class="sign-in__section">
+                <div class="sign-in__section-form">
+                    <amphora-input-field [model]="emailInputModel"></amphora-input-field>
+                    <p class="sign-in__section-form-error font-input-error" *ngIf="!emailInputModel.valid">Please enter a valid email</p>
+                    <div class="spacer-ver-32px"></div>
+                    <amphora-input-field [model]="passwordInputModel"></amphora-input-field>
+                    <p class="sign-in__section-form-error font-input-error" *ngIf="!passwordInputModel.valid">Password is too short</p>
+                </div>
             </div>
         </amphora-section>
         <amphora-section [model]="submitSectionModel">

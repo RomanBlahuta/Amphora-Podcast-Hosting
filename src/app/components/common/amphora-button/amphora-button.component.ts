@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AmphoraButtonModel} from './amphora-button.model';
+import {ButtonTypesEnum} from '../../../shared/enums/component-types/button-types.enum';
+import {ColorsAlphaEnum} from '../../../shared/enums/colors.enum';
 
 @Component({
   selector: 'amphora-button',
@@ -9,6 +11,8 @@ import {AmphoraButtonModel} from './amphora-button.model';
 export class AmphoraButtonComponent implements OnInit {
     @Input()
     public model: AmphoraButtonModel;
+    public ButtonTypesEnum = ButtonTypesEnum;
+    public ColorsTransparentEnum = ColorsAlphaEnum;
 
     constructor() { }
 

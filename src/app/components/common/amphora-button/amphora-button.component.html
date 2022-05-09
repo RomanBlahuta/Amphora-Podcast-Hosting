@@ -1,4 +1,7 @@
-<button matRipple
+<button
+    matRipple
+    [matRippleColor]="(model.optional.buttonType === ButtonTypesEnum.PRIMARY) ?
+        ColorsTransparentEnum.WHITE_50 : ColorsTransparentEnum.PRIMARY_50"
     [class]="['button', model.optional.buttonType]"
     (click)="onClick()">
     <span [class]="['button__label', model.optional.buttonType + '-label', 'font-button-label']">{{ model.label }}</span>

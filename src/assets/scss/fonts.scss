@@ -42,6 +42,14 @@
     line-height: 36px;
 }
 
+.font-input-error {
+    // font: normal normal normal 16px/24px Roboto;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: $color-accent;
+}
+
 .font-logo-span {
     color: $color-primary;
 }
@@ -49,4 +57,13 @@
 .font-link {
     color: $color-primary;
     text-decoration: underline;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active {
+        color: $color-accent;
+    }
 }
+
