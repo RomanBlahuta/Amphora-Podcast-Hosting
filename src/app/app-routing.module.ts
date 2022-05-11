@@ -4,34 +4,38 @@ import {RoutesEnum} from './shared/enums/routes.enum';
 
 const routes: Routes = [
     {
-      path: RoutesEnum.LANDING,
-      loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule)
+        path: '',
+        redirectTo: RoutesEnum.LANDING,
+        pathMatch: 'full',
     },
     {
-      path: '',
-      redirectTo: RoutesEnum.LANDING,
-      pathMatch: 'full'
+        path: RoutesEnum.LANDING,
+        loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule),
     },
     {
-      path: 'sign-in',
-      loadChildren: () => import('./pages/auth/sign-in/sign-in.module').then(m => m.SignInPageModule)
+        path: 'sign-in',
+        loadChildren: () => import('./pages/auth/sign-in/sign-in.module').then(m => m.SignInPageModule),
     },
     {
-      path: 'sign-up',
-      loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpPageModule)
+        path: 'sign-up',
+        loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpPageModule),
     },
-  {
-    path: 'not-found',
-    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
-  },
-  {
-    path: 'reset-password',
-    loadChildren: () => import('./pages/auth/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
-  },
-  {
-    path: 'verification',
-    loadChildren: () => import('./pages/auth/verification/verification.module').then(m => m.VerificationPageModule)
-  },
+    {
+        path: 'not-found',
+        loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule),
+    },
+    {
+        path: 'reset-password',
+        loadChildren: () => import('./pages/auth/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule),
+    },
+    {
+        path: 'verification',
+        loadChildren: () => import('./pages/auth/verification/verification.module').then(m => m.VerificationPageModule),
+    },
+    {
+        path: '**',
+        loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule),
+    }
 ];
 
 @NgModule({

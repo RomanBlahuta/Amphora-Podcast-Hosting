@@ -14,9 +14,13 @@ import {metaReducers, appReducers, routerFeatureKey} from './store/app.store';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignInEffects} from './store/sign-in/sign-in.effects';
+import {SignUpEffects} from './store/sign-up/sign-up.effects';
+import {ResetPasswordEffects} from './store/reset-password/reset-password.effects';
 
 export const EFFECTS = [
     SignInEffects,
+    SignUpEffects,
+    ResetPasswordEffects,
 ];
 
 @NgModule({

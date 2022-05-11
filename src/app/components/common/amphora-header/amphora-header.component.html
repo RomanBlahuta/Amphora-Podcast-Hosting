@@ -1,6 +1,7 @@
 <div class="header">
     <div class="header__content">
-        <amphora-icon [model]="logoModel"></amphora-icon>
+
+        <amphora-icon class="header__logo" routerLink="/landing" [model]="logoModel"></amphora-icon>
 
         <div class="header__buttons-container">
             <amphora-button [model]="signInBtnModel" *ngIf="model.headerType === HeaderTypesEnum.AUTH || model.headerType === HeaderTypesEnum.SIGN_IN"></amphora-button>

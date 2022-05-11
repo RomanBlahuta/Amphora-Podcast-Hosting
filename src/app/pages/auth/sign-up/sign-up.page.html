@@ -1,9 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>sign-up</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content class="sign-up">
+    <amphora-page [headerModel]="headerModel">
+        <amphora-section [model]="titleSectionModel">
+            <div class="sign-up__section sign-up__section-title">
+                <h1 class="font-section-title sign-up__section-title-heading">Sign Up</h1>
+                <h2 class="font-section-paragraph">Create your free account and <br/>
+                    start your podcast journey with <strong>am<span class="font-logo-span">pho</span>ra</strong>!</h2>
+            </div>
+        </amphora-section>
+        <amphora-section [model]="formSectionModel">
+            <div class="sign-up__section">
+                <div class="sign-up__section-form">
+                    <amphora-input-field [model]="usernameInputModel"></amphora-input-field>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="!usernameInputModel.valid">Please enter a user name</p>
+                    <div class="spacer-ver-32px"></div>
+                    <amphora-input-field [model]="emailInputModel"></amphora-input-field>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="!emailInputModel.valid">Please enter a valid email</p>
+                    <div class="spacer-ver-32px"></div>
+                    <amphora-input-field [model]="passwordInputModel"></amphora-input-field>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="!passwordInputModel.valid">Password is too short</p>
+                    <div class="spacer-ver-32px"></div>
+                    <amphora-input-field [model]="repeatPasswordInputModel"></amphora-input-field>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="!repeatPasswordInputModel.valid">Password is too short</p>
+                </div>
+            </div>
+        </amphora-section>
+        <amphora-section [model]="submitSectionModel">
+            <div class="sign-up__section sign-up__section-submit">
+                <amphora-button [model]="submitButtonModel"></amphora-button>
+                <div class="spacer-ver-36px"></div>
+                <p class="font-section-paragraph">Have some Questions?</p>
+                <a class="font-section-paragraph font-link">Visit our FAQ page!</a>
+            </div>
+        </amphora-section>
+    </amphora-page>
 </ion-content>

@@ -5,6 +5,8 @@ import {AmphoraButtonModule} from '../amphora-button/amphora-button.module';
 import {AmphoraIconModule} from '../amphora-icon/amphora-icon.module';
 import {AmphoraHeaderOrnamentModule} from '../../ornaments/amphora-header-ornament/amphora-header-ornament.module';
 import {CommonModule} from '@angular/common';
+import {IonicModule} from '@ionic/angular';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     exports: [
@@ -19,6 +21,8 @@ import {CommonModule} from '@angular/common';
         AmphoraIconModule,
         AmphoraHeaderOrnamentModule,
         CommonModule,
+        IonicModule,
+        RouterModule,
     ]
 })
 export class AmphoraHeaderModule {

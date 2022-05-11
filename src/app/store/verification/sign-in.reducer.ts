@@ -3,7 +3,7 @@ import {SignInActions} from './sign-in.actions';
 import {SignInFormEnum} from '../../shared/enums/forms/auth-forms.enum';
 
 export namespace fromSignIn {
-    export const signInFeatureKey = 'signIn';
+    export const signInFeatureKey = 'verification';
 
     export interface IState {
         [SignInFormEnum.EMAIL]: string;

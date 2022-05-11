@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {SignInService} from './sign-in.service';
 import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {AmphoraSectionModel} from '../../../components/common/amphora-section/amphora-section.model';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {FormBuilder, Validators} from '@angular/forms';
-import {SignInFormEnum} from '../../../shared/enums/forms/sign-in-form.enum';
+import {SignInFormEnum} from '../../../shared/enums/forms/auth-forms.enum';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {Store} from '@ngrx/store';
 import {SignInActions} from '../../../store/sign-in/sign-in.actions';
 import {SignInSelectors} from '../../../store/sign-in/sign-in.selectors';
 import {take} from 'rxjs/operators';
+import {AuthService} from '../auth.service';
+import {AuthEnum} from '../../../shared/enums/auth.enum';
 
 @Component({
   selector: 'amphora-sign-in',
@@ -30,23 +31,32 @@ export class SignInPage implements OnInit {
     public emailInputModel: AmphoraInputFieldModel;
     public passwordInputModel: AmphoraInputFieldModel;
 
-    constructor(private signInService: SignInService,
+    constructor(private authService: AuthService,
                 private formBuilder: FormBuilder,
                 private store$: Store) { }
 
     public ngOnInit(): void {
+        this.authService.setPageType(AuthEnum.SIGN_IN);
         this.createModels();
         this.initForm();
     }
 
     private createModels(): void {
-        this.headerModel = this.signInService.createHeader();
-        this.titleSectionModel = this.signInService.createRegularSection();
-        this.formSectionModel = this.signInService.createOrnamentedSection();
-        this.submitSectionModel = this.signInService.createRegularSection();
-        this.submitButtonModel = this.signInService.createSubmitButton();
-        this.emailInputModel = this.signInService.createEmailInputField(this.onInput(SignInFormEnum.EMAIL).bind(this));
-        this.passwordInputModel = this.signInService.createPasswordInputField(this.onInput(SignInFormEnum.PASSWORD).bind(this));
+        this.headerModel = this.authService.createHeader();
+        this.titleSectionModel = this.authService.createRegularSection();
+        this.formSectionModel = this.authService.createOrnamentedSection();
+        this.submitSectionModel = this.authService.createRegularSection();
+        this.submitButtonModel = this.authService.createSubmitButton();
+        this.emailInputModel = this.authService.createEmailInputField(
+            this.store$.select(SignInSelectors.selectEmail),
+            'Email',
+            this.onInput(SignInFormEnum.EMAIL).bind(this)
+        );
+        this.passwordInputModel = this.authService.createPasswordInputField(
+            this.store$.select(SignInSelectors.selectPassword),
+            'Password',
+            this.onInput(SignInFormEnum.PASSWORD).bind(this)
+        );
     }
 
     private initForm(): void {
