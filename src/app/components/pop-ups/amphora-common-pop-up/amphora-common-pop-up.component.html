@@ -1,3 +1,10 @@
-<p>
-  amphora-common-pop-up works!
-</p>
+<div class="pop-up__overlay" *ngIf="model.optional.popUpType === (currentPopUp$ | async)">
+    <div class="pop-up">
+        <h1 class="font-section-title">{{ model.title }}</h1>
+        <div class="pop-up__divider"></div>
+        <ng-content></ng-content>
+        <div class="pop-up__buttons">
+            <amphora-button *ngFor="let buttonModel of model.optional.buttons" [model]="buttonModel"></amphora-button>
+        </div>
+    </div>
+</div>

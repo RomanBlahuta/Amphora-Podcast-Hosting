@@ -6,13 +6,8 @@ export const selectLandingState = createFeatureSelector<fromLanding.IState>(
 );
 
 export namespace LandingSelectors {
-    export const selectFeaturesSlide = createSelector(
+    export const selectPodcasts = createSelector(
         selectLandingState,
-        (state) => state.featuresSlider.currentSlide,
-    );
-
-    export const selectPodcastsSlide = createSelector(
-        selectLandingState,
-        (state) => state.podcastsSlider.currentSlide,
+        (state) => state.podcasts,
     );
 }

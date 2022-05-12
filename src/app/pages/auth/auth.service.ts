@@ -13,6 +13,7 @@ import {AuthEnum} from '../../shared/enums/auth.enum';
 import {SignUpActions} from '../../store/sign-up/sign-up.actions';
 import {Observable} from 'rxjs';
 import {ResetPasswordActions} from '../../store/reset-password/reset-password.actions';
+import {VerificationActions} from '../../store/verification/verification.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -71,7 +72,7 @@ export class AuthService {
             case AuthEnum.VERIFICATION:
                 return AmphoraButtonModel.create('Submit', {
                     buttonType: ButtonTypesEnum.PRIMARY,
-                    onClick: () => console.log('Verification Code'), // this.store$.dispatch(SignInActions.submit()),
+                    onClick: () => this.store$.dispatch(VerificationActions.submit()),
                 });
         }
     }
@@ -95,6 +96,16 @@ export class AuthService {
             inputType: InputFieldTypesEnum.TEXT,
             onInputListener: onInput,
             placeholder,
+        });
+    }
+
+    public createVerificationCodeInputField(
+        valueController: Observable<string>,
+        onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
+        return AmphoraInputFieldModel.create(valueController, {
+            inputType: InputFieldTypesEnum.CODE,
+            onInputListener: onInput,
+            placeholder: 'Verification code',
         });
     }
 

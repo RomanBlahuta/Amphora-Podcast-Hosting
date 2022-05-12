@@ -11,6 +11,7 @@ import {SignInSelectors} from '../../../store/sign-in/sign-in.selectors';
 import {take} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
 import {AuthEnum} from '../../../shared/enums/auth.enum';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
   selector: 'amphora-sign-in',
@@ -30,6 +31,8 @@ export class SignInPage implements OnInit {
     public submitButtonModel: AmphoraButtonModel;
     public emailInputModel: AmphoraInputFieldModel;
     public passwordInputModel: AmphoraInputFieldModel;
+
+    public RoutesEnum = RoutesEnum;
 
     constructor(private authService: AuthService,
                 private formBuilder: FormBuilder,

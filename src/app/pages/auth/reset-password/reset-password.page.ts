@@ -18,7 +18,7 @@ import {ResetPasswordActions} from '../../../store/reset-password/reset-password
   styleUrls: ['./reset-password.page.scss'],
 })
 export class ResetPasswordPage implements OnInit {
-    public signInForm = this.formBuilder.group({
+    public resetPasswordForm = this.formBuilder.group({
         [ResetPasswordFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
         [ResetPasswordFormEnum.NEW_PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
     });
@@ -63,16 +63,16 @@ export class ResetPasswordPage implements OnInit {
         this.store$.select(ResetPasswordSelectors.selectForm).pipe(
             take(1),
         ).subscribe((formValue) => {
-            this.signInForm.patchValue(formValue);
+            this.resetPasswordForm.patchValue(formValue);
         });
     }
 
     private onInput(field: ResetPasswordFormEnum): (value: string, model: AmphoraInputFieldModel) => void {
         return (value: string, model: AmphoraInputFieldModel) => {
-            this.signInForm.controls[field].setValue(value);
-            model.valid = this.signInForm.controls[field].valid;
+            this.resetPasswordForm.controls[field].setValue(value);
+            model.valid = this.resetPasswordForm.controls[field].valid;
 
-            this.store$.dispatch(ResetPasswordActions.input({value: this.signInForm.controls[field].value, field}));
+            this.store$.dispatch(ResetPasswordActions.input({value: this.resetPasswordForm.controls[field].value, field}));
         };
     }
 }

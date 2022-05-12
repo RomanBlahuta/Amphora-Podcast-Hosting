@@ -13,6 +13,12 @@ $input-border-radius: 12px;
     padding: 0 64px 0 16px;
     font-size: 20px;
 
+    &__code {
+        width: 400px;
+        height: 128px;
+        font-size: 40px;
+    }
+
     &::placeholder {
         color: $color-primary-dark;
     }

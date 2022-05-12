@@ -18,7 +18,7 @@ import {SignUpActions} from '../../../store/sign-up/sign-up.actions';
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit {
-    public signInForm = this.formBuilder.group({
+    public signUpForm = this.formBuilder.group({
         [SignUpFormEnum.USERNAME]: ['', [Validators.required]],
         [SignUpFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
         [SignUpFormEnum.PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
@@ -81,16 +81,16 @@ export class SignUpPage implements OnInit {
         this.store$.select(SignUpSelectors.selectForm).pipe(
             take(1),
         ).subscribe((formValue) => {
-            this.signInForm.patchValue(formValue);
+            this.signUpForm.patchValue(formValue);
         });
     }
 
     private onInput(field: SignUpFormEnum): (value: string, model: AmphoraInputFieldModel) => void {
         return (value: string, model: AmphoraInputFieldModel) => {
-            this.signInForm.controls[field].setValue(value);
-            model.valid = this.signInForm.controls[field].valid;
+            this.signUpForm.controls[field].setValue(value);
+            model.valid = this.signUpForm.controls[field].valid;
 
-            this.store$.dispatch(SignUpActions.input({value: this.signInForm.controls[field].value, field}));
+            this.store$.dispatch(SignUpActions.input({value: this.signUpForm.controls[field].value, field}));
         };
     }
 

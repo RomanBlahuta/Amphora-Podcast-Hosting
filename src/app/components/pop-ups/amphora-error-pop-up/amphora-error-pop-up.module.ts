@@ -1,19 +1,21 @@
 import {NgModule} from '@angular/core';
-import {AmphoraCommonPopUpComponent} from './amphora-common-pop-up.component';
+import {IonicModule} from '@ionic/angular';
+import {AmphoraErrorPopUpComponent} from './amphora-error-pop-up.component';
 import {AmphoraButtonModule} from '../../common/amphora-button/amphora-button.module';
 import {CommonModule} from '@angular/common';
 
 @NgModule({
     exports: [
-        AmphoraCommonPopUpComponent,
+        AmphoraErrorPopUpComponent,
     ],
     declarations: [
-        AmphoraCommonPopUpComponent,
+        AmphoraErrorPopUpComponent,
     ],
     imports: [
+        IonicModule,
         CommonModule,
         AmphoraButtonModule
-    ],
+    ]
 })
-export class AmphoraCommonPopUpModule {
+export class AmphoraErrorPopUpModule {
 }

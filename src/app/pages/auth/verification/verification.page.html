@@ -1,9 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>verification</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="verification">
+    <amphora-page [headerModel]="headerModel">
+        <amphora-section [model]="titleSectionModel">
+            <div class="verification__section verification__section-title">
+                <h1 class="font-section-title verification__section-title-heading">Verification Code</h1>
+                <h2 class="font-section-paragraph">Enter the received code to <br/>
+                    continue your podcast journey with <strong>am<span class="font-logo-span">pho</span>ra</strong>!</h2>
+            </div>
+        </amphora-section>
+        <amphora-section [model]="formSectionModel">
+            <div class="verification__section">
+                <div class="verification__section-form">
+                    <amphora-input-field [model]="verificationCodeInputModel"></amphora-input-field>
+                    <p class="verification__section-form-error font-input-error" *ngIf="!verificationCodeInputModel.valid">Please enter a code</p>
+                </div>
+            </div>
+        </amphora-section>
+        <amphora-section [model]="submitSectionModel">
+            <div class="verification__section verification__section-submit">
+                <amphora-button [model]="submitButtonModel"></amphora-button>
+            </div>
+        </amphora-section>
+    </amphora-page>
 
-<ion-content>
-
+    <amphora-common-pop-up [model]="successPopUpModel">
+        <p class="font-section-paragraph">
+            You have successfully reset your password!<br/>
+            All you have to do now is Sign In and continue your podcast journey with <br/>
+            <strong>am<span class="font-logo-span">pho</span>ra</strong>!
+        </p>
+    </amphora-common-pop-up>
 </ion-content>

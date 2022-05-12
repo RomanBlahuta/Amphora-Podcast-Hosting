@@ -1,7 +1,7 @@
 <div class="input__border">
     <input #input
            [type]="(visibility$ | async).fieldType"
-           class="input"
+           [class]="['input', 'input__' + model.optional.inputType]"
            [placeholder]="model.optional.placeholder" (input)="onInput($event)" />
     <div class="input__icon" *ngIf="model.optional.inputType === InputFieldTypesEnum.PASSWORD">
         <button (click)="toggleVisibility()" class="input__icon-button" mat-icon-button>

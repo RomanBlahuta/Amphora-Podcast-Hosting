@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -16,32 +16,41 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignInEffects} from './store/sign-in/sign-in.effects';
 import {SignUpEffects} from './store/sign-up/sign-up.effects';
 import {ResetPasswordEffects} from './store/reset-password/reset-password.effects';
+import {VerificationEffects} from './store/verification/verification.effects';
+import {GlobalErrorHandler} from './services/error-handlers/global.error-handler';
+import {AmphoraErrorPopUpModule} from './components/pop-ups/amphora-error-pop-up/amphora-error-pop-up.module';
 
 export const EFFECTS = [
     SignInEffects,
     SignUpEffects,
     ResetPasswordEffects,
+    VerificationEffects,
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+    declarations: [AppComponent],
   entryComponents: [],
-  imports: [
-      BrowserModule,
-      HttpClientModule,
-      IonicModule.forRoot(),
-      AppRoutingModule,
-      EffectsModule.forRoot(EFFECTS),
-      StoreModule.forRoot(appReducers, {metaReducers}),
-      StoreRouterConnectingModule.forRoot({stateKey: routerFeatureKey}),
-      !environment.production ? StoreDevtoolsModule.instrument() : [],
-      BrowserAnimationsModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        EffectsModule.forRoot(EFFECTS),
+        StoreModule.forRoot(appReducers, {metaReducers}),
+        StoreRouterConnectingModule.forRoot({stateKey: routerFeatureKey}),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        BrowserAnimationsModule,
+        AmphoraErrorPopUpModule,
+    ],
   providers: [
       {
           provide: RouteReuseStrategy,
           useClass: IonicRouteStrategy
-      }
+      },
+      {
+          provide: ErrorHandler,
+          useClass: GlobalErrorHandler,
+      },
   ],
   bootstrap: [AppComponent],
 })

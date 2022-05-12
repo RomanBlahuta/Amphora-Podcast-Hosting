@@ -1,0 +1,42 @@
+@import "src/global";
+
+.pop-up {
+    width: 768px;
+    border-radius: 16px;
+    padding: 64px 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: $color-white;
+
+    &__divider {
+        background-color: $color-black;
+        border-radius: 16px;
+        height: 4px;
+        width: 100%;
+        margin: 32px 0;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 64px;
+    }
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 11;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(4, 7, 7, 0.7);
+        backdrop-filter: blur(8px);
+    }
+}
