@@ -8,6 +8,10 @@
             align-items: center;
             padding: 64px 64px 50px 64px;
 
+            &-title {
+                margin-bottom: 12px;
+            }
+
             &-text {
                 max-width: 720px;
             }
