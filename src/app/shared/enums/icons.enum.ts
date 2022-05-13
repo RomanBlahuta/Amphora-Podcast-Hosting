@@ -19,4 +19,6 @@ export enum IconsEnum {
     CIRCLES = 'circles',
     VISIBLE = 'visible',
     INVISIBLE = 'invisible',
+    LABYRINTH = 'labyrinth',
+    LABYRINTH_WITH_MINOTAUR = 'labyrinth-with-minotaur',
 }

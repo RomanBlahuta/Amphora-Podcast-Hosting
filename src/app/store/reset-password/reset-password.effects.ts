@@ -5,7 +5,8 @@ import {ResetPasswordActions} from './reset-password.actions';
 import {tap, withLatestFrom} from 'rxjs/operators';
 import {ResetPasswordSelectors} from './reset-password.selectors';
 import {NavController} from '@ionic/angular';
-import {RoutesEnum} from '../../shared/enums/routes.enum';
+import {PopUpService} from '../../services/utils/pop-up.service';
+import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.enum';
 
 @Injectable()
 export class ResetPasswordEffects {
@@ -16,11 +17,12 @@ export class ResetPasswordEffects {
         tap(([_, creds]) => {
             console.log('Submit: ', creds);
             this.store$.dispatch(ResetPasswordActions.clear());
-            this.navController.navigateRoot(RoutesEnum.VERIFICATION);
+            this.popUpService.showPopUp(PopUpTypesEnum.CHECK_EMAIL);
         })
     ), {dispatch: false});
 
     constructor(private actions$: Actions,
                 private store$: Store,
-                private navController: NavController) { }
+                private navController: NavController,
+                private popUpService: PopUpService) { }
 }

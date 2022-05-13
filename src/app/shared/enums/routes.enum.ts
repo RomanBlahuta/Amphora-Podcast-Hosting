@@ -4,4 +4,5 @@ export enum RoutesEnum {
     SIGN_UP = 'sign-up',
     RESET_PASSWORD = 'reset-password',
     VERIFICATION = 'verification',
+    NOT_FOUND = 'not-found',
 }

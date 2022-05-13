@@ -12,6 +12,11 @@
     flex-wrap: wrap;
     background-color: $color-white;
 
+    &__error {
+        color: $color-accent;
+        font-weight: bold;
+    }
+
     &__divider {
         background-color: $color-black;
         border-radius: 16px;
@@ -25,6 +30,10 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 64px;
+
+        &-wrapper {
+            margin: 0 16px;
+        }
     }
 
     &__overlay {

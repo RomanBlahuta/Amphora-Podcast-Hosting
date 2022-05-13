@@ -1,9 +1,12 @@
-<div class="pop-up__overlay" *ngIf="showErrorPopUp$ | async">
+<div class="pop-up__overlay" *ngIf="showErrorPopUp$ | async" [@fadeInOutAnimation]>
     <div class="pop-up">
         <h1 class="font-section-title">Oops!</h1>
         <div class="pop-up__divider"></div>
         <p class="font-section-paragraph">
-            An error has occurred.<br/>
+            An error has occurred.
+            <br/><br/>
+            <span class="pop-up__error">{{ errorMessage$ | async }}</span>
+            <br/><br/>
             Make sure you followed all of the instructions and entered correct data.<br/><br/>
             Please conact our support team via email: <strong>amphora@test.com</strong>
         </p>

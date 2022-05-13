@@ -29,7 +29,7 @@ export const EFFECTS = [
 
 @NgModule({
     declarations: [AppComponent],
-  entryComponents: [],
+    entryComponents: [],
     imports: [
         BrowserModule,
         HttpClientModule,
@@ -42,16 +42,16 @@ export const EFFECTS = [
         BrowserAnimationsModule,
         AmphoraErrorPopUpModule,
     ],
-  providers: [
-      {
-          provide: RouteReuseStrategy,
-          useClass: IonicRouteStrategy
-      },
-      {
-          provide: ErrorHandler,
-          useClass: GlobalErrorHandler,
-      },
-  ],
-  bootstrap: [AppComponent],
+    providers: [
+        {
+            provide: RouteReuseStrategy,
+            useClass: IonicRouteStrategy
+        },
+        {
+            provide: ErrorHandler,
+            useClass: GlobalErrorHandler,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

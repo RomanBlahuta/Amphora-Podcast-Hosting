@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>not-found</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content class="not-found">
+    <amphora-page [headerModel]="headerModel">
+        <div class="not-found__content">
+            <amphora-icon [model]="minotaurMazeIconModel"></amphora-icon>
+            <div class="spacer-ver-32px"></div>
+            <p class="font-card-title">
+                Oh no! You got lost in the labyrinth<br/>
+                of Internet and encountered the Minotaur!<br/>
+                Quickly, go back before it eats you!
+            </p>
+            <div class="spacer-ver-32px"></div>
+            <amphora-button [model]="goBackButtonModel"></amphora-button>
+        </div>
+    </amphora-page>
 </ion-content>

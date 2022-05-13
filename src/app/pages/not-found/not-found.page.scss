@@ -1,0 +1,14 @@
+@import "src/global";
+
+.not-found {
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        flex-wrap: wrap;
+        margin-top: 117px;
+        min-height: calc(100vh - 440px);
+    }
+}

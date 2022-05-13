@@ -21,8 +21,8 @@ export class PopUpService {
         this.store$.dispatch(PopUpActions.hidePopUp());
     }
 
-    public showErrorPopUp(): void {
-        this.store$.dispatch(PopUpActions.showErrorPopUp());
+    public showErrorPopUp(errorMessage: string): void {
+        this.store$.dispatch(PopUpActions.showErrorPopUp({ errorMessage }));
     }
 
     public hideErrorPopUp(): void {
@@ -38,6 +38,22 @@ export class PopUpService {
                 }),
             ],
             popUpType: PopUpTypesEnum.SUCCESS,
+        });
+    }
+
+    public createCheckYourEmailPopUp(onButtonClicks: {resendOnClick: () => void; okOnClick: () => void}): AmphoraCommonPopUpModel {
+        return AmphoraCommonPopUpModel.create('Check Your Email!', {
+            buttons: [
+                AmphoraButtonModel.create('Resend letter', {
+                    buttonType: ButtonTypesEnum.PRIMARY,
+                    onClick: onButtonClicks.resendOnClick,
+                }),
+                AmphoraButtonModel.create('OK', {
+                    buttonType: ButtonTypesEnum.WHITE,
+                    onClick: onButtonClicks.okOnClick,
+                }),
+            ],
+            popUpType: PopUpTypesEnum.CHECK_EMAIL,
         });
     }
 }

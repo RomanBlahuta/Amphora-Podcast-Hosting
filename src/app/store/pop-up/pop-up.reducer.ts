@@ -7,24 +7,28 @@ export namespace fromPopUp {
 
     export interface IState {
         error: boolean;
+        errorMessage: string;
         common: PopUpTypesEnum;
     }
 
     export const initialState: IState = {
         error: false,
+        errorMessage: null,
         common: null,
     };
 
     export const reducer = createReducer(
         initialState,
 
-        on(PopUpActions.showErrorPopUp, (state) => ({
+        on(PopUpActions.showErrorPopUp, (state, {errorMessage}) => ({
             ...state,
             error: true,
+            errorMessage,
         })),
         on(PopUpActions.hideErrorPopUp, (state) => ({
             ...state,
             error: false,
+            errorMessage: null,
         })),
         on(PopUpActions.showPopUp, (state, {popUpType}) => ({
             ...state,

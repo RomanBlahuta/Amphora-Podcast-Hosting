@@ -4,6 +4,7 @@ import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.en
 export namespace PopUpActions {
     export const showErrorPopUp = createAction(
         '[Pop Up] Show Error Pop Up',
+        props<{errorMessage: string}>(),
     );
 
     export const hideErrorPopUp = createAction(

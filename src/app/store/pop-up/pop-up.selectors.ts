@@ -15,5 +15,10 @@ export namespace PopUpSelectors {
         selectPopUpState,
         (state) => state.common,
     );
+
+    export const selectErrorMessage = createSelector(
+        selectPopUpState,
+        (state) => state.errorMessage,
+    );
 }
 

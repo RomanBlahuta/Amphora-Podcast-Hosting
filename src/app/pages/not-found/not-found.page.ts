@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import {NotFoundService} from './not-found.service';
+import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
+import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
+import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 
 @Component({
-  selector: 'amphora-not-found',
-  templateUrl: './not-found.page.html',
-  styleUrls: ['./not-found.page.scss'],
+    selector: 'amphora-not-found',
+    templateUrl: './not-found.page.html',
+    styleUrls: ['./not-found.page.scss'],
 })
 export class NotFoundPage implements OnInit {
+    public headerModel: AmphoraHeaderModel;
+    public goBackButtonModel: AmphoraButtonModel;
+    public minotaurMazeIconModel: AmphoraIconModel;
 
-  constructor() { }
+    constructor(private notFoundService: NotFoundService) { }
 
-  ngOnInit() {
-  }
+    public ngOnInit(): void {
+        this.createModels();
+    }
 
+    private createModels(): void {
+        this.headerModel = this.notFoundService.createHeader();
+        this.minotaurMazeIconModel = this.notFoundService.createMinotaurMazeIcon();
+        this.goBackButtonModel = this.notFoundService.createBackButton();
+    }
 }

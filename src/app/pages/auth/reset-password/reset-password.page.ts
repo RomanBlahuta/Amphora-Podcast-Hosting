@@ -11,6 +11,10 @@ import {AuthEnum} from '../../../shared/enums/auth.enum';
 import {take} from 'rxjs/operators';
 import {ResetPasswordSelectors} from '../../../store/reset-password/reset-password.selectors';
 import {ResetPasswordActions} from '../../../store/reset-password/reset-password.actions';
+import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
+import {PopUpService} from '../../../services/utils/pop-up.service';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
   selector: 'amphora-reset-password',
@@ -30,9 +34,12 @@ export class ResetPasswordPage implements OnInit {
     public submitButtonModel: AmphoraButtonModel;
     public emailInputModel: AmphoraInputFieldModel;
     public passwordInputModel: AmphoraInputFieldModel;
+    public checkYourEmailPopUpModel: AmphoraCommonPopUpModel;
 
     constructor(private authService: AuthService,
                 private formBuilder: FormBuilder,
+                private popUpService: PopUpService,
+                private navController: NavController,
                 private store$: Store) { }
 
     public ngOnInit(): void {
@@ -47,11 +54,17 @@ export class ResetPasswordPage implements OnInit {
         this.formSectionModel = this.authService.createOrnamentedSection();
         this.submitSectionModel = this.authService.createRegularSection();
         this.submitButtonModel = this.authService.createSubmitButton();
+        this.checkYourEmailPopUpModel = this.popUpService.createCheckYourEmailPopUp({
+            resendOnClick: this.onCheckYourEmailPopUpResendLetterClick.bind(this),
+            okOnClick: this.onCheckYourEmailPopUpOKClick.bind(this),
+        });
+
         this.emailInputModel = this.authService.createEmailInputField(
             this.store$.select(ResetPasswordSelectors.selectEmail),
             'Email',
             this.onInput(ResetPasswordFormEnum.EMAIL).bind(this)
         );
+
         this.passwordInputModel = this.authService.createPasswordInputField(
             this.store$.select(ResetPasswordSelectors.selectNewPassword),
             'New Password',
@@ -74,5 +87,14 @@ export class ResetPasswordPage implements OnInit {
 
             this.store$.dispatch(ResetPasswordActions.input({value: this.resetPasswordForm.controls[field].value, field}));
         };
+    }
+
+    private onCheckYourEmailPopUpResendLetterClick(): void {
+        console.log('Resending the email letter...');
+    }
+
+    private onCheckYourEmailPopUpOKClick(): void {
+        this.popUpService.hidePopUp();
+        this.navController.navigateRoot(RoutesEnum.VERIFICATION);
     }
 }

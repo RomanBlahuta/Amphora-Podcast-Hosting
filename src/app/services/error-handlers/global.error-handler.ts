@@ -11,15 +11,12 @@ export class GlobalErrorHandler implements ErrorHandler {
     handleError(error: any) {
         const popUpService = this.injector.get(PopUpService);
 
-        error = error.rejection;
-
         this.zone.run(() =>
             popUpService.showErrorPopUp(
-                // error?.message || 'Undefined client error',
-                // error?.status
+                error?.message || 'Undefined client error',
             )
         );
 
-        console.log('ERROR');
+        console.error(error.message);
     }
 }
