@@ -33,13 +33,13 @@ const routes: Routes = [
         loadChildren: () => import('./pages/auth/verification/verification.module').then(m => m.VerificationPageModule),
     },
     {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    },
+    {
         path: '**',
         loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule),
     },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  }
 ];
 
 @NgModule({

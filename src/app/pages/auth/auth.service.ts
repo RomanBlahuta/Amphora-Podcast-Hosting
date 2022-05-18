@@ -3,7 +3,7 @@ import {Store} from '@ngrx/store';
 import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
-import {SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
+import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {ButtonTypesEnum} from '../../shared/enums/component-types/button-types.enum';
 import {SignInActions} from '../../store/sign-in/sign-in.actions';
@@ -47,7 +47,7 @@ export class AuthService {
 
     public createOrnamentedSection(): AmphoraSectionModel {
         return AmphoraSectionModel.create({
-            ornaments: true,
+            ornaments: SectionOrnamentTypesEnum.ORNAMENTED,
             sectionType: SectionTypesEnum.PRIMARY,
         });
     }

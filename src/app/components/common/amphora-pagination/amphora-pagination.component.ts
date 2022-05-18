@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AmphoraPaginationModel} from './amphora-pagination.model';
 
 @Component({
-  selector: 'amphora-pagination',
-  templateUrl: './amphora-pagination.component.html',
-  styleUrls: ['./amphora-pagination.component.scss'],
+    selector: 'amphora-pagination',
+    templateUrl: './amphora-pagination.component.html',
+    styleUrls: ['./amphora-pagination.component.scss'],
 })
 export class AmphoraPaginationComponent implements OnInit {
 
-  constructor() { }
+    @Input()
+    public model: AmphoraPaginationModel;
 
-  ngOnInit() {}
+    constructor() { }
+
+    public ngOnInit(): void {}
 
 }

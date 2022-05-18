@@ -1,8 +1,8 @@
-import {SectionTypesEnum} from '../../../shared/enums/component-types/section-types.enum';
+import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../../shared/enums/component-types/section-types.enum';
 
 export interface IOptional {
     sectionType?: SectionTypesEnum;
-    ornaments?: boolean;
+    ornaments?: SectionOrnamentTypesEnum;
 }
 
 export class AmphoraSectionModel {
@@ -11,7 +11,7 @@ export class AmphoraSectionModel {
     constructor(optional?: IOptional) {
         this.optional = {
             sectionType: optional?.sectionType || SectionTypesEnum.WHITE,
-            ornaments: optional?.ornaments || false,
+            ornaments: optional?.ornaments || SectionOrnamentTypesEnum.COMMON,
         };
     }
 

@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
-import {SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
+import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../shared/enums/icons.enum';
 import {ISize} from '../../shared/interfaces/size.interface';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
 import {Store} from '@ngrx/store';
+
 // import {LandingSelectors} from '../../store/landing/landing.selectors';
 
 @Injectable({
@@ -27,7 +28,7 @@ export class LandingService {
 
     public createOrnamentedSection() {
         return AmphoraSectionModel.create({
-            ornaments: true,
+            ornaments: SectionOrnamentTypesEnum.ORNAMENTED,
             sectionType: SectionTypesEnum.PRIMARY,
         });
     }

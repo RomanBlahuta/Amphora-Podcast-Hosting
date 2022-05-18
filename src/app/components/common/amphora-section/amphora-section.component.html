@@ -1,5 +1,11 @@
 <div [class]="['section', model.optional.sectionType]">
-    <amphora-section-ornament [model]="ornamentLeftModel" *ngIf="model.optional.ornaments"></amphora-section-ornament>
+    <amphora-section-ornament
+        [model]="ornamentLeftModel"
+        *ngIf="model.optional.ornaments === SectionOrnamentTypesEnum.ORNAMENTED || model.optional.ornaments === SectionOrnamentTypesEnum.ORNAMENTED_TOP"
+    ></amphora-section-ornament>
     <ng-content></ng-content>
-    <amphora-section-ornament [model]="ornamentRightModel" *ngIf="model.optional.ornaments"></amphora-section-ornament>
+    <amphora-section-ornament
+        [model]="ornamentRightModel"
+        *ngIf="model.optional.ornaments === SectionOrnamentTypesEnum.ORNAMENTED || model.optional.ornaments === SectionOrnamentTypesEnum.ORNAMENTED_BOTTOM"
+    ></amphora-section-ornament>
 </div>

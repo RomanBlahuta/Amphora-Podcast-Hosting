@@ -19,12 +19,14 @@ import {ResetPasswordEffects} from './store/reset-password/reset-password.effect
 import {VerificationEffects} from './store/verification/verification.effects';
 import {GlobalErrorHandler} from './services/error-handlers/global.error-handler';
 import {AmphoraErrorPopUpModule} from './components/pop-ups/amphora-error-pop-up/amphora-error-pop-up.module';
+import {DashboardEffects} from './store/dashboard/dashboard.effects';
 
 export const EFFECTS = [
     SignInEffects,
     SignUpEffects,
     ResetPasswordEffects,
     VerificationEffects,
+    DashboardEffects,
 ];
 
 @NgModule({

@@ -22,6 +22,7 @@ export class AmphoraHeaderComponent implements OnInit {
     public logoModel: AmphoraIconModel;
     public signInBtnModel: AmphoraButtonModel;
     public signUpBtnModel: AmphoraButtonModel;
+    public logOutBtnModel: AmphoraButtonModel;
 
     constructor( private navCtrl: NavController) { }
 
@@ -33,6 +34,7 @@ export class AmphoraHeaderComponent implements OnInit {
         this.logoModel = this.createLogo();
         this.signUpBtnModel = this.createSignUpButton();
         this.signInBtnModel = this.createSignInButton();
+        this.logOutBtnModel = this.createLogOutButton();
     }
 
     private createLogo(): AmphoraIconModel {
@@ -42,6 +44,13 @@ export class AmphoraHeaderComponent implements OnInit {
     private createSignInButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Sign In', {
             onClick: () => this.navCtrl.navigateRoot(RoutesEnum.SIGN_IN),
+            buttonType: ButtonTypesEnum.WHITE
+        });
+    }
+
+    private createLogOutButton(): AmphoraButtonModel {
+        return AmphoraButtonModel.create('Log Out', {
+            onClick: () => this.navCtrl.navigateRoot(RoutesEnum.LANDING),
             buttonType: ButtonTypesEnum.WHITE
         });
     }

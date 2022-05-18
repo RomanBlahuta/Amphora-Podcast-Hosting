@@ -1,37 +1,38 @@
 <ion-content class="dashboard">
-    <amphora-page [headerModel]="">
+    <amphora-page [headerModel]="headerModel">
         <h1 class="dashboard__heading font-section-title">Dashboard</h1>
 
-        <amphora-section [model]="">
+        <amphora-section [model]="profileSectionModel">
             <div class="dashboard__section-profile">
-                <amphora-icon [model]=""></amphora-icon>
+                <amphora-icon [model]="profilePictureModel"></amphora-icon>
 
                 <div class="dashboard__section-profile-data">
-                    <h2 class=""></h2>
-                    <h3 class=""></h3>
-                    <amphora-button [model]=""></amphora-button>
+                    <h2 class="font-card-title">Leonidas of Sparta</h2>
+                    <h3 class="font-profile-description">testing@test.com</h3>
+                    <amphora-button [model]="editButtonModel"></amphora-button>
                 </div>
             </div>
         </amphora-section>
 
-        <amphora-section [model]="">
+        <amphora-section [model]="listSectionModel">
             <div class="dashboard__section-shows">
                 <div class="dashboard__section-shows-heading">
                     <div class="dashboard__section-shows-title-button">
-                        <h1 class=""></h1>
-                        <amphora-button [model]=""></amphora-button>
+                        <h1 class="font-section-subtitle">My Shows</h1>
+                        <amphora-button [model]="newShowButtonModel"></amphora-button>
                     </div>
 
-                    <amphora-search-field></amphora-search-field>
+                    <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
                 </div>
 
                 <div class="dashboard__section-shows-list">
-                    <!-- TODO: ngFor preview-card -->
-                    <amphora-show-preview-card></amphora-show-preview-card>
+                    <div class="dashboard__section-shows-list-item" *ngFor="let model of showPreviewModels">
+                        <amphora-show-preview-card [model]="model"></amphora-show-preview-card>
+                    </div>
                 </div>
 
                 <div class="dashboard__section-shows-pagination">
-                    <amphora-pagination></amphora-pagination>
+                    <amphora-pagination [model]="paginationModel"></amphora-pagination>
                 </div>
             </div>
         </amphora-section>
