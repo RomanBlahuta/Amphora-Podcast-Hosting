@@ -1,22 +1,46 @@
 .dashboard {
     &__heading {
-
+        margin: 32px;
     }
 
     &__section {
         &-profile {
-            &-data {
+            padding: 24px 0 24px 32px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
 
+            &-data {
+                margin-left: 16px;
+
+                &-email {
+                    margin-bottom: 16px;
+                }
+
+                &-username {
+                    margin-bottom: 8px;
+                }
             }
         }
 
         &-shows {
-            &-heading {
+            padding: 64px;
 
+            &-title {
+                display: inline-block;
+                margin-right: 32px;
+            }
+
+            &-heading {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
             &-title-button {
 
+                display: flex;
+                align-items: center;
             }
 
             &-list {

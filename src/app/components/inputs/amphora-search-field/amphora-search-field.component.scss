@@ -1,0 +1,40 @@
+@import "src/global";
+
+$input-border-radius: 16px;
+
+.input {
+    background-color: $color-black;
+    caret-color: $color-primary;
+    color: $color-primary;
+    border: none;
+    border-radius: $input-border-radius - 2;
+    height: 32px;
+    width: 244px;
+    padding: 0 16px 0 48px;
+    font-size: 16px;
+
+    &::placeholder {
+        color: $color-primary-dark;
+    }
+
+    &__border {
+        display: inline-block;
+        padding: 1px;
+        border: 2px solid $color-black;
+        border-radius: $input-border-radius;
+        position: relative;
+    }
+
+    &__icon {
+        position: absolute;
+        display: inline-block;
+        left: 16px;
+        top: calc((32px - 16px)/2);
+
+        &-button {
+            background: transparent;
+            height: 16px;
+            width: 16px;
+        }
+    }
+}

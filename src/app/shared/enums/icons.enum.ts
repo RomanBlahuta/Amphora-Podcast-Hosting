@@ -22,4 +22,5 @@ export enum IconsEnum {
     LABYRINTH = 'labyrinth',
     LABYRINTH_WITH_MINOTAUR = 'labyrinth-with-minotaur',
     PROFILE_PICTURE = 'profile-picture',
+    SEARCH = 'search',
 }

@@ -1,3 +1,11 @@
-<p>
-  amphora-search-field works!
-</p>
+<div class="input__border">
+    <input #input
+           type="text"
+           [class]="['input']"
+           [placeholder]="model.optional.placeholder" (input)="onInput($event)" />
+    <div class="input__icon">
+        <button class="input__icon-button" mat-icon-button>
+            <amphora-icon [model]="searchIconModel"></amphora-icon>
+        </button>
+    </div>
+</div>
