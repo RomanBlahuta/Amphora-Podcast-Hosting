@@ -6,7 +6,7 @@ import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../shared/enums/com
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../shared/enums/icons.enum';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
-import {ButtonTypesEnum} from '../../shared/enums/component-types/button-types.enum';
+import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.enum';
 import {Store} from '@ngrx/store';
 import {AmphoraSearchFieldModel} from '../../components/inputs/amphora-search-field/amphora-search-field.model';
 import {AmphoraPaginationModel} from '../../components/common/amphora-pagination/amphora-pagination.model';
@@ -44,14 +44,14 @@ export class DashboardService {
 
     public createEditButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Edit', {
-            buttonType: ButtonTypesEnum.DARK,
+            buttonColor: ButtonColorsEnum.DARK,
             onClick: () => console.log('Edit Profile'),
         });
     }
 
     public createNewShowButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('New', {
-            buttonType: ButtonTypesEnum.DARK,
+            buttonColor: ButtonColorsEnum.DARK,
             onClick: () => console.log('Create New Show'),
         });
     }

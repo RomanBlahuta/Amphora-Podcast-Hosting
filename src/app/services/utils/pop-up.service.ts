@@ -4,7 +4,7 @@ import {PopUpActions} from '../../store/pop-up/pop-up.actions';
 import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.enum';
 import {AmphoraCommonPopUpModel} from '../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
-import {ButtonTypesEnum} from '../../shared/enums/component-types/button-types.enum';
+import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -33,7 +33,7 @@ export class PopUpService {
         return AmphoraCommonPopUpModel.create('Success!', {
             buttons: [
                 AmphoraButtonModel.create('OK', {
-                    buttonType: ButtonTypesEnum.WHITE,
+                    buttonColor: ButtonColorsEnum.WHITE,
                     onClick: onButtonClick,
                 }),
             ],
@@ -45,11 +45,11 @@ export class PopUpService {
         return AmphoraCommonPopUpModel.create('Check Your Email!', {
             buttons: [
                 AmphoraButtonModel.create('Resend letter', {
-                    buttonType: ButtonTypesEnum.PRIMARY,
+                    buttonColor: ButtonColorsEnum.PRIMARY,
                     onClick: onButtonClicks.resendOnClick,
                 }),
                 AmphoraButtonModel.create('OK', {
-                    buttonType: ButtonTypesEnum.WHITE,
+                    buttonColor: ButtonColorsEnum.WHITE,
                     onClick: onButtonClicks.okOnClick,
                 }),
             ],

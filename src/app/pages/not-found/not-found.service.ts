@@ -3,7 +3,7 @@ import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-ico
 import {IconsEnum} from '../../shared/enums/icons.enum';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {NavController} from '@ionic/angular';
-import {ButtonTypesEnum} from '../../shared/enums/component-types/button-types.enum';
+import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.enum';
 import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {RoutesEnum} from '../../shared/enums/routes.enum';
@@ -30,7 +30,7 @@ export class NotFoundService {
 
     public createBackButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Go back', {
-            buttonType: ButtonTypesEnum.PRIMARY,
+            buttonColor: ButtonColorsEnum.PRIMARY,
             // todo: navigate to sign-in or dashboard depending on auth value
             onClick: () => this.navController.navigateRoot(RoutesEnum.LANDING),
         });

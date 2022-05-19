@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {AmphoraButtonComponent} from './amphora-button.component';
 import {MatRippleModule} from '@angular/material/core';
+import {CommonModule} from '@angular/common';
+import {AmphoraIconModule} from '../amphora-icon/amphora-icon.module';
 
 @NgModule({
     exports: [
@@ -10,7 +12,9 @@ import {MatRippleModule} from '@angular/material/core';
         AmphoraButtonComponent,
     ],
     imports: [
-        MatRippleModule
+        CommonModule,
+        MatRippleModule,
+        AmphoraIconModule
     ]
 })
 export class AmphoraButtonModule {

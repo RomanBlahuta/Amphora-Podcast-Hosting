@@ -1,8 +1,13 @@
 <button
     matRipple
-    [matRippleColor]="(model.optional.buttonType === ButtonTypesEnum.PRIMARY) ?
+    [matRippleColor]="(model.optional.buttonColor === ButtonColorsEnum.PRIMARY) ?
         ColorsTransparentEnum.WHITE_50 : ColorsTransparentEnum.PRIMARY_50"
-    [class]="['button', model.optional.buttonType]"
-    (click)="onClick()">
-    <span [class]="['button__label', model.optional.buttonType + '-label', 'font-button-label']">{{ model.label }}</span>
+    [class]="['button', model.optional.buttonColor + model.optional.buttonType]"
+    (click)="onClick()"
+    [ngStyle]="{
+        minWidth: model.optional.size ? (model.optional.size.width + model.optional.size.widthUnit) : '',
+        height: model.optional.size ? (model.optional.size.height + model.optional.size.heightUnit) : ''
+    }">
+    <span *ngIf="model.label.length > 0" [class]="['button__label', model.optional.buttonColor + model.optional.buttonType + '-label', 'font-button-label']">{{ model.label }}</span>
+    <amphora-icon *ngIf="model.optional.iconModel" [model]="model.optional.iconModel"></amphora-icon>
 </button>

@@ -1,31 +1,70 @@
-@import "src/global";
+@import "../../../../global";
 
 .button {
-    min-width: 96px;
-    height: 40px;
     padding: 0 16px;
     border-radius: 8px;
     text-align: center;
-    box-shadow: 0 2px 4px 1px $color-drop-shadow;
 
     &__white {
-        background-color: $color-white;
-        &-label {
-            color: $color-black;
+        &-outlined {
+            background-color: transparent;
+            border: solid 3px $color-white;
+            border-radius: 8px;
+
+            &-label {
+                color: $color-white;
+            }
+        }
+
+        &-filled {
+            box-shadow: 0 2px 4px 1px $color-drop-shadow;
+            background-color: $color-white;
+
+            &-label {
+                color: $color-black;
+            }
         }
     }
 
     &__primary {
-        background-color: $color-primary;
-        &-label {
-            color: $color-white;
+        &-outlined {
+            background-color: transparent;
+            border: solid 3px $color-primary;
+            border-radius: 8px;
+
+            &-label {
+                color: $color-primary;
+            }
+        }
+
+        &-filled {
+            box-shadow: 0 2px 4px 1px $color-drop-shadow;
+            background-color: $color-primary;
+
+            &-label {
+                color: $color-white;
+            }
         }
     }
 
     &__dark {
-        background-color: $color-black;
-        &-label {
-            color: $color-white;
+        &-outlined {
+            background-color: transparent;
+            border: solid 3px $color-black;
+            border-radius: 8px;
+
+            &-label {
+                color: $color-black;
+            }
+        }
+
+        &-filled {
+            box-shadow: 0 2px 4px 1px $color-drop-shadow;
+            background-color: $color-black;
+
+            &-label {
+                color: $color-white;
+            }
         }
     }
 }
