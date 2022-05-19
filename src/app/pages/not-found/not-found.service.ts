@@ -33,6 +33,10 @@ export class NotFoundService {
             buttonColor: ButtonColorsEnum.PRIMARY,
             // todo: navigate to sign-in or dashboard depending on auth value
             onClick: () => this.navController.navigateRoot(RoutesEnum.LANDING),
+            size: {
+                width: 138,
+                height: 40,
+            }
         });
     }
 }

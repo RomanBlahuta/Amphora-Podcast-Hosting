@@ -47,6 +47,10 @@ export class PopUpService {
                 AmphoraButtonModel.create('Resend letter', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
                     onClick: onButtonClicks.resendOnClick,
+                    size: {
+                        width: 126,
+                        height: 40,
+                    }
                 }),
                 AmphoraButtonModel.create('OK', {
                     buttonColor: ButtonColorsEnum.WHITE,

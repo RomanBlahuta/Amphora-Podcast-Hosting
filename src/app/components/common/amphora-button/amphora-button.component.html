@@ -4,6 +4,7 @@
         ColorsTransparentEnum.WHITE_50 : ColorsTransparentEnum.PRIMARY_50"
     [class]="['button', model.optional.buttonColor + model.optional.buttonType]"
     (click)="onClick()"
+    [disabled]="(model.optional.disabled$ | async) || false"
     [ngStyle]="{
         minWidth: model.optional.size ? (model.optional.size.width + model.optional.size.widthUnit) : '',
         height: model.optional.size ? (model.optional.size.height + model.optional.size.heightUnit) : ''

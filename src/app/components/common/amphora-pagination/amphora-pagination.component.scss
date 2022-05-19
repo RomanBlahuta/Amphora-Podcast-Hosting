@@ -1,0 +1,9 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__button-container {
+        display: inline-block;
+        margin: 0 8px;
+    }
+}

@@ -9,13 +9,16 @@ export namespace fromDashboard {
         shows: any[];
         currentPage: number;
         totalPages: number;
+        displayedIndexes: number[];
     }
 
+    // todo: empty and fill after request, move min to reducer
     export const initialState: IState = {
         shows: [],
         searchValue: '',
-        currentPage: 1,
-        totalPages: 1,
+        currentPage: 2,
+        totalPages: 5,
+        displayedIndexes: [...Array(Math.min(5, 5)).keys()],
     };
 
     export const reducer = createReducer(

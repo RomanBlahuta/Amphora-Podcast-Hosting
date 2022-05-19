@@ -1,3 +1,13 @@
-<p>
-  amphora-pagination works!
-</p>
+<div class="pagination">
+    <div class="pagination__button-container">
+        <amphora-button [model]="backButtonModel"></amphora-button>
+    </div>
+    <ng-container  *ngIf="numberedButtonModels">
+        <div class="pagination__button-container" *ngFor="let model of (numberedButtonModels | async)">
+            <amphora-button [model]="model"></amphora-button>
+        </div>
+    </ng-container>
+    <div class="pagination__button-container">
+        <amphora-button [model]="forwardButtonModel"></amphora-button>
+    </div>
+</div>

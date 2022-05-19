@@ -10,6 +10,7 @@ import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.
 import {Store} from '@ngrx/store';
 import {AmphoraSearchFieldModel} from '../../components/inputs/amphora-search-field/amphora-search-field.model';
 import {AmphoraPaginationModel} from '../../components/common/amphora-pagination/amphora-pagination.model';
+import {DashboardSelectors} from '../../store/dashboard/dashboard.selectors';
 
 @Injectable({
     providedIn: 'root',
@@ -64,6 +65,9 @@ export class DashboardService {
     }
 
     public createPagination(): AmphoraPaginationModel {
-        return AmphoraPaginationModel.create(0, null);
+        return AmphoraPaginationModel.create(
+            this.store$.select(DashboardSelectors.selectTotalPages),
+            this.store$.select(DashboardSelectors.selectCurrentPage),
+            this.store$.select(DashboardSelectors.selectDisplayedIndexes));
     }
 }
