@@ -37,6 +37,9 @@ export class AmphoraShowPreviewCardComponent implements OnInit {
         this.seeMoreButtonModel = AmphoraButtonModel.create('See More', {
             buttonType: ButtonTypesEnum.OUTLINED,
             buttonColor: ButtonColorsEnum.WHITE,
+            size: {
+                width: 128,
+            },
             onClick: () => {
                 if (this.model.optional.onButtonClick) {
                     this.model.optional.onButtonClick();
