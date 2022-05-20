@@ -25,6 +25,7 @@
 
         &-shows {
             padding: 64px;
+            text-align: center;
 
             &-title {
                 display: inline-block;
@@ -44,13 +45,21 @@
             }
 
             &-list {
-                &-item {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
 
+                &-item {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 32px 0;
                 }
             }
 
             &-pagination {
-
+                margin-top: 64px;
             }
         }
     }

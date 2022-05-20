@@ -1,3 +1,21 @@
-<p>
-  amphora-show-preview-card works!
-</p>
+<div class="show-preview-card" (mouseenter)="changeShowOverlay(true)" (mouseleave)="changeShowOverlay(false)">
+    <div class="show-preview-card__img-container">
+        <img src="../../../../assets/img/podcast-mock-thumbnail.png" alt="Could not load image" class="show-preview-card__img">
+        <div class="show-preview-card__img-overlay" *ngIf="showOverlay" [@fadeInOutAnimation]>
+            <amphora-button [model]="seeMoreButtonModel"></amphora-button>
+        </div>
+    </div>
+    <div class="show-preview-card__data">
+        <h1 class="show-preview-card__data-title">{{ model.title }}</h1>
+        <div class="show-preview-card__data-streaming">
+            <div class="show-preview-card__data-streaming-icon-container" *ngFor="let iconModel of streamingIntegrationIconModels">
+                <amphora-icon [model]="iconModel"></amphora-icon>
+            </div>
+        </div>
+        <p class="show-preview-card__data-description">
+            <strong>Episodes</strong>: {{ model.optional.episodes }}<br/>
+            <strong>Series</strong>: {{ model.optional.series }}<br/>
+            <strong>Total Watch Time</strong>: {{ model.optional.totalWatchTime }}<br/>
+        </p>
+    </div>
+</div>
