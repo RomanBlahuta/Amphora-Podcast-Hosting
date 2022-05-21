@@ -11,6 +11,7 @@ import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
 import {ShowActions} from '../../../store/show/show.actions';
+import {AmphoraEpisodeCardModel} from '../../../components/cards/amphora-episode-card/amphora-episode-card.model';
 
 @Injectable({
     providedIn: 'root',
@@ -127,6 +128,34 @@ export class ShowService {
                     width: 64,
                     height: 64,
                 }
+            }),
+        ];
+    }
+
+    public createEpisodeCards(): AmphoraEpisodeCardModel[] {
+        return [
+            AmphoraEpisodeCardModel.create('Lorem dolor ipsum sir amet', {
+                id: 0,
+                season: 10,
+                episode: 100,
+                watchTime: '1h 32m 50s',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ' +
+                    'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
+                    'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum ' +
+                    'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia ' +
+                    'deserunt mollit anim id est laborum...',
+            }),
+
+            AmphoraEpisodeCardModel.create('Lorem dolor ipsum sir', {
+                id: 1,
+                season: 1,
+                episode: 12,
+                watchTime: '1h 2m 15s',
+                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ' +
+                    'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
+                    'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum ' +
+                    'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia ' +
+                    'deserunt mollit anim id est laborum...',
             }),
         ];
     }

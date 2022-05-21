@@ -7,6 +7,7 @@ import {AmphoraPaginationModel} from '../../../components/common/amphora-paginat
 import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-icon.model';
 import {ActivatedRoute} from '@angular/router';
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
+import {AmphoraEpisodeCardModel} from '../../../components/cards/amphora-episode-card/amphora-episode-card.model';
 
 @Component({
     selector: 'amphora-show',
@@ -20,6 +21,7 @@ export class ShowPage implements OnInit {
     public paginationModel: AmphoraPaginationModel;
     public streamingIconModels: AmphoraIconModel[];
     public seriesModels: AmphoraSeriesTagModel[];
+    public episodeCardModels: AmphoraEpisodeCardModel[];
 
     constructor(private showService: ShowService,
                 private route: ActivatedRoute) { }
@@ -39,5 +41,6 @@ export class ShowPage implements OnInit {
         this.paginationModel = this.showService.createPagination();
         this.streamingIconModels = this.showService.createStreamingIcons();
         this.seriesModels = this.showService.createSeriesTags();
+        this.episodeCardModels = this.showService.createEpisodeCards();
     }
 }

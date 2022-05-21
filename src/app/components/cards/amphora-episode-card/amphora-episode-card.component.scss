@@ -1,0 +1,74 @@
+@import "src/global";
+
+$card-height: 400px;
+
+.episode-card {
+    box-shadow: 0 2px 8px 2px $color-drop-shadow;
+    border-radius: 16px;
+    display: flex;
+    min-height: $card-height;
+    width: 100%;
+    background-color: $color-white;
+    text-overflow: ellipsis;
+
+    &__img {
+        height: 100%;
+        width: 100%;
+        border-radius: 16px 0 0 16px;
+
+        &-container {
+            position: relative;
+            display: inline-block;
+            width: $card-height !important;
+            height: $card-height;
+        }
+
+        &-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            background-color: rgba(4, 7, 7, 0.7);
+            backdrop-filter: blur(8px);
+            height: 100%;
+            width: 100%;
+            border-radius: 16px 0 0 16px;
+
+            &-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 8px 0;
+            }
+        }
+    }
+
+    &__data {
+        text-align: start;
+        padding: 8px 16px;
+        width: calc(100% - 400px);
+
+        &-heading {
+        }
+
+        &-title {
+            @extend .font-card-title;
+            display: inline-block;
+            margin-left: 16px;
+            margin-bottom: 16px;
+        }
+
+        &-description {
+            margin-top: 16px;
+            @extend .font-section-paragraph;
+            text-overflow: ellipsis;
+            padding: 0;
+        }
+    }
+}

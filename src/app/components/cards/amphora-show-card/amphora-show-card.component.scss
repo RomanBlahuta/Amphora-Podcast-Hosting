@@ -10,6 +10,10 @@
     width: 512px;
     background-color: $color-white;
 
+    &__img {
+        border-radius: 16px 0 0 16px;
+    }
+
     &__data {
         text-align: start;
         padding: 8px 16px;

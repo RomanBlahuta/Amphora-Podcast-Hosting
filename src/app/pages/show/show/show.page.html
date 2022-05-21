@@ -31,7 +31,9 @@
                     <div class="show__content-show-img-container">
                         <img src="../../../../assets/img/podcast-mock-thumbnail.png" alt="Could not load image" class="show__content-show-img">
                     </div>
-                    <amphora-button [model]="btnModel" *ngFor="let btnModel of buttonModels"></amphora-button>
+                    <div class="show__content-show-btn" *ngFor="let btnModel of buttonModels">
+                        <amphora-button [model]="btnModel"></amphora-button>
+                    </div>
                 </div>
             </div>
             <div class="show__content-episodes">
@@ -41,8 +43,8 @@
                     <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
                 </div>
                 <div class="show__content-episodes-list">
-                    <div class="show__content-episodes-list-item" *ngFor="let episodeModel of [1, 2, 3]">
-                        <amphora-episode-card></amphora-episode-card>
+                    <div class="show__content-episodes-list-item" *ngFor="let episodeModel of episodeCardModels">
+                        <amphora-episode-card [model]="episodeModel"></amphora-episode-card>
                     </div>
                 </div>
                 <div class="show__content-episodes-pagination">

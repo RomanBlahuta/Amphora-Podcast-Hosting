@@ -7,16 +7,19 @@ $card-height: 300px;
     border-radius: 16px;
     display: inline-flex;
     height: $card-height;
-    width: 840px;
+    width: calc(50vw - 64px - 32px);
     background-color: $color-white;
     text-overflow: ellipsis;
 
     &__img {
-        height: $card-height;
-        width: $card-height;
+        height: 100%;
+        width: 100%;
+        border-radius: 16px 0 0 16px;
 
         &-container {
             position: relative;
+            width: $card-height;
+            height: $card-height;
         }
 
         &-overlay {
@@ -29,8 +32,8 @@ $card-height: 300px;
             align-items: center;
             background-color: rgba(4, 7, 7, 0.7);
             backdrop-filter: blur(8px);
-            height: $card-height;
-            width: $card-height;
+            height: 100%;
+            width: 100%;
             border-radius: 16px 0 0 16px;
         }
     }
