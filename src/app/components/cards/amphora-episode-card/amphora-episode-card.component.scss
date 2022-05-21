@@ -65,6 +65,12 @@ $card-height: 400px;
         }
 
         &-description {
+            max-height: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &-props {
             margin-top: 16px;
             @extend .font-section-paragraph;
             text-overflow: ellipsis;

@@ -13,16 +13,16 @@
             <h1 class="episode-card__data-title">{{ model.title }}</h1>
         </div>
 
-        <p class="font-section-paragraph">{{ model.optional.description }}</p>
+        <p class="episode-card__data-description font-section-paragraph">{{ model.optional.description }}</p>
 
-        <p class="episode-card__data-description">
+        <p class="episode-card__data-props">
             <strong>Season</strong>: {{ model.optional.season }}<br/>
             <strong>Episode</strong>: {{ model.optional.episode }}<br/>
             <strong>Watch Time</strong>: {{ model.optional.watchTime }}<br/>
         </p>
 
         <div class="episode-card__data-audio">
-            <
+            <amphora-audio-player [model]="audioPlayerModel"></amphora-audio-player>
         </div>
     </div>
 </div>

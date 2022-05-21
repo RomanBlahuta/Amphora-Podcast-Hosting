@@ -1,0 +1,87 @@
+@import "src/global";
+
+.audio-player {
+    &__range {
+        margin-top: 64px;
+    }
+}
+
+// WEBKIT
+
+input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: $color-black;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: $color-primary;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: $color-primary;
+}
+
+// MOZILLA
+
+input[type=range]{
+    /* fix for FF unable to apply focus style bug  */
+    border: 1px solid white;
+
+    /*required for proper track sizing in FF*/
+    width: 100%;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    background: $color-black;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: $color-primary;
+}
+
+input[type=range]::-moz-range-progress {
+    background-color: $color-primary;
+    height: 5px;
+    border-radius: 3px;
+}
+
+input[type=range]::-ms-fill-lower {
+    background-color: $color-primary;
+}
+input[type=range]::-ms-fill-upper {
+    background-color: $color-primary;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+input[type=range]:focus::-moz-range-track {
+    background: $color-primary;
+}

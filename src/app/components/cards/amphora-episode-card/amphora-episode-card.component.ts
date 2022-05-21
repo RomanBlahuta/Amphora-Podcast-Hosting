@@ -4,6 +4,7 @@ import {AmphoraButtonModel} from '../../common/amphora-button/amphora-button.mod
 import {AmphoraSeriesTagModel} from '../../common/amphora-series-tag/amphora-series-tag.model';
 import {ButtonColorsEnum, ButtonTypesEnum} from '../../../shared/enums/component-types/button-types.enum';
 import {fadeInOutAnimation} from '../../../shared/animations/fade-in-out.animation';
+import {AmphoraAudioPlayerModel} from '../../common/amphora-audio-player/amphora-audio-player.model';
 
 @Component({
     selector: 'amphora-episode-card',
@@ -17,10 +18,13 @@ export class AmphoraEpisodeCardComponent implements OnInit {
     public overlayButtonModels: AmphoraButtonModel[];
     public seriesModel: AmphoraSeriesTagModel;
     public showOverlay = false;
+    public audioPlayerModel: AmphoraAudioPlayerModel;
 
     constructor() { }
 
     public ngOnInit(): void {
+        this.audioPlayerModel = AmphoraAudioPlayerModel.create('https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg');
+
         this.overlayButtonModels = [
             AmphoraButtonModel.create('Edit', {
                 buttonType: ButtonTypesEnum.OUTLINED,

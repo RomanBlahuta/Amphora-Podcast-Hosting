@@ -1,3 +1,12 @@
-<p>
-  amphora-audio-player works!
-</p>
+<div class="audio-player">
+    <amphora-button [model]="playButtonModel"></amphora-button>
+    <amphora-button [model]="pauseButtonModel"></amphora-button>
+
+    <input #player
+           class="audio-player__range"
+           (input)="setTime(+player.value, +player.max)"
+           max="100"
+           [max]="audio.duration"
+           [value]="audio.currentTime"
+           type="range">
+</div>
