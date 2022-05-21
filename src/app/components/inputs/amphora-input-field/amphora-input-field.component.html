@@ -2,7 +2,11 @@
     <input #input
            [type]="(visibility$ | async).fieldType"
            [class]="['input', 'input__' + model.optional.inputType]"
-           [placeholder]="model.optional.placeholder" (input)="onInput($event)" />
+           [placeholder]="model.optional.placeholder" (input)="onInput($event)"
+           [ngStyle]="{
+               width: model.optional.size.width + model.optional.size.widthUnit,
+               height: model.optional.size.height + model.optional.size.heightUnit
+           }">
     <div class="input__icon" *ngIf="model.optional.inputType === InputFieldTypesEnum.PASSWORD">
         <button (click)="toggleVisibility()" class="input__icon-button" mat-icon-button>
             <amphora-icon [model]="(visibility$ | async).icon"></amphora-icon>

@@ -53,7 +53,7 @@ export class SignInPage implements OnInit {
         this.emailInputModel = this.authService.createEmailInputField(
             this.store$.select(SignInSelectors.selectEmail),
             'Email',
-            this.onInput(SignInFormEnum.EMAIL).bind(this)
+            this.onInput(SignInFormEnum.EMAIL).bind(this),
         );
         this.passwordInputModel = this.authService.createPasswordInputField(
             this.store$.select(SignInSelectors.selectPassword),
