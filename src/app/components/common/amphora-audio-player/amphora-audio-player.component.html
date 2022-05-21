@@ -1,6 +1,6 @@
 <div class="audio-player">
-    <amphora-button [model]="playButtonModel"></amphora-button>
-    <amphora-button [model]="pauseButtonModel"></amphora-button>
+    <amphora-button *ngIf="!isPlaying" [model]="playButtonModel"></amphora-button>
+    <amphora-button *ngIf="isPlaying" [model]="pauseButtonModel"></amphora-button>
 
     <input #player
            class="audio-player__range"

@@ -2,7 +2,7 @@
     matRipple
     [matRippleColor]="(model.optional.buttonColor === ButtonColorsEnum.PRIMARY) ?
         ColorsTransparentEnum.WHITE_50 : ColorsTransparentEnum.PRIMARY_50"
-    [class]="['button', model.optional.buttonColor + model.optional.buttonType]"
+    [class]="['button', model.optional.buttonColor + model.optional.buttonType, (model.optional.circle) ? 'button__circle' : 'button']"
     (click)="onClick()"
     [disabled]="(model.optional.disabled$ | async) || false"
     [ngStyle]="{

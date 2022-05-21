@@ -23,4 +23,6 @@ export enum IconsEnum {
     LABYRINTH_WITH_MINOTAUR = 'labyrinth-with-minotaur',
     PROFILE_PICTURE = 'profile-picture',
     SEARCH = 'search',
+    PLAY = 'play',
+    PAUSE = 'pause',
 }

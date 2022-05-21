@@ -2,6 +2,8 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {AmphoraButtonModel} from '../amphora-button/amphora-button.model';
 import {AmphoraAudioPlayerModel} from './amphora-audio-player.model';
 import {ButtonTypesEnum} from '../../../shared/enums/component-types/button-types.enum';
+import {IconsEnum} from '../../../shared/enums/icons.enum';
+import {AmphoraIconModel} from '../amphora-icon/amphora-icon.model';
 
 @Component({
     selector: 'amphora-audio-player',
@@ -18,18 +20,41 @@ export class AmphoraAudioPlayerComponent implements OnInit {
     public playButtonModel: AmphoraButtonModel;
     public pauseButtonModel: AmphoraButtonModel;
 
-    // public isPlaying = true;
+    public isPlaying = false;
     public audio: HTMLAudioElement;
     constructor() { }
 
     public async ngOnInit(): Promise<void> {
-        this.playButtonModel = AmphoraButtonModel.create('Play', {
+        this.playButtonModel = AmphoraButtonModel.create('', {
             onClick: this.play.bind(this),
+            buttonType: ButtonTypesEnum.OUTLINED,
+            size: {
+                width: 48,
+                height: 48,
+            },
+            circle: true,
+            iconModel: AmphoraIconModel.create(IconsEnum.PLAY, {
+                size: {
+                    width: 24,
+                    height: 24,
+                }
+            }),
         });
 
-        this.pauseButtonModel = AmphoraButtonModel.create('Pause', {
+        this.pauseButtonModel = AmphoraButtonModel.create('', {
             onClick: this.pause.bind(this),
             buttonType: ButtonTypesEnum.OUTLINED,
+            size: {
+                width: 48,
+                height: 48,
+            },
+            circle: true,
+            iconModel: AmphoraIconModel.create(IconsEnum.PAUSE, {
+                size: {
+                    width: 12,
+                    height: 24,
+                }
+            }),
         });
 
         await this.initAudio();
@@ -42,10 +67,12 @@ export class AmphoraAudioPlayerComponent implements OnInit {
 
     public async play(): Promise<void> {
         await this.audio.play();
+        this.isPlaying = true;
     }
 
     public pause(): void {
         this.audio.pause();
+        this.isPlaying = false;
     }
 
     private async initAudio(): Promise<void> {
@@ -54,7 +81,7 @@ export class AmphoraAudioPlayerComponent implements OnInit {
             this.reRenderTrack(this.audio.currentTime, this.audio.duration);
         };
         // this.audio.onloadeddata = _ => this.isLoading = false;
-        // this.audio.onended = _ => this.isPlaying = false;
+        this.audio.onended = _ => this.isPlaying = false;
         this.audio.onerror = async _ => {
             if (this.audio) {
                 this.audio.pause();

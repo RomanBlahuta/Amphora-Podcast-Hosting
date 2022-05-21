@@ -11,6 +11,7 @@ export interface IOptional {
     onClick?: () => void;
     iconModel?: AmphoraIconModel;
     disabled$?: Observable<boolean>;
+    circle?: boolean;
 }
 
 export class AmphoraButtonModel {
@@ -29,6 +30,7 @@ export class AmphoraButtonModel {
                 heightUnit: UnitsOfMeasurementEnum.PX,
                 ...optional?.size
             },
+            circle: optional?.circle || false,
             onClick: optional?.onClick || undefined,
             iconModel: optional?.iconModel || undefined,
             disabled$: optional?.disabled$ || undefined,
