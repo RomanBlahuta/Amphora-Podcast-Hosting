@@ -13,7 +13,7 @@ export namespace DashboardSelectors {
 
     export const selectTotalPages = createSelector(
         selectDashboardState,
-        (state) => state.totalPages,
+        (state) => state.pagination.totalPages,
     );
 
     export const selectFilteredShowsForView = createSelector(
@@ -23,11 +23,11 @@ export namespace DashboardSelectors {
 
     export const selectCurrentPage = createSelector(
         selectDashboardState,
-        (state) => state.currentPage,
+        (state) => state.pagination.currentPage,
     );
 
     export const selectDisplayedIndexes = createSelector(
         selectDashboardState,
-        (state) => state.displayedIndexes,
+        (state) => state.pagination.displayedIndexes,
     );
 }

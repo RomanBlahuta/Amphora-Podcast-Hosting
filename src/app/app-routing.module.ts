@@ -37,6 +37,14 @@ const routes: Routes = [
         loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
     },
     {
+        path: 'show/:id',
+        loadChildren: () => import('./pages/show/show/show.module').then(m => m.ShowPageModule)
+    },
+    {
+        path: 'show/:mode/:id',
+        loadChildren: () => import('./pages/show/show-create-edit/show-create-edit.module').then( m => m.ShowCreateEditPageModule)
+    },
+    {
         path: '**',
         loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule),
     },

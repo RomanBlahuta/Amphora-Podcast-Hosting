@@ -1,3 +1,4 @@
-<p>
-  amphora-series-tag works!
-</p>
+<div [class]="['series', (active$ | async) ? 'series__active' : 'series__inactive']"
+     (click)="onClick()">
+    <span class="series__label">{{ model.label }}</span>
+</div>

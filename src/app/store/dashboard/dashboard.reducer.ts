@@ -1,5 +1,6 @@
 import {createReducer, on} from '@ngrx/store';
 import {DashboardActions} from './dashboard.actions';
+import {IPaginationState} from '../../shared/interfaces/state/pagination-state.interface';
 
 export namespace fromDashboard {
     export const dashboardFeatureKey = 'dashboard';
@@ -7,18 +8,18 @@ export namespace fromDashboard {
     export interface IState {
         searchValue: string;
         shows: any[];
-        currentPage: number;
-        totalPages: number;
-        displayedIndexes: number[];
+        pagination: IPaginationState;
     }
 
     // todo: empty and fill after request, move min to reducer
     export const initialState: IState = {
         shows: [],
         searchValue: '',
-        currentPage: 2,
-        totalPages: 5,
-        displayedIndexes: [...Array(Math.min(5, 5)).keys()],
+        pagination: {
+            currentPage: 2,
+            totalPages: 5,
+            displayedIndexes: [...Array(Math.min(5, 5)).keys()],
+        }
     };
 
     export const reducer = createReducer(
@@ -36,7 +37,10 @@ export namespace fromDashboard {
         })),
         on(DashboardActions.changePage, (state, {index}) => ({
             ...state,
-            currentPage: index,
+            pagination: {
+                ...state.pagination,
+                currentPage: index,
+            },
         })),
     );
 }

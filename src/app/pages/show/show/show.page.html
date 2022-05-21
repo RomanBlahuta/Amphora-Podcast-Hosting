@@ -1,0 +1,54 @@
+<ion-content class="show">
+    <amphora-page [headerModel]="headerModel">
+        <div class="show__content">
+            <div class="show__content-show">
+                <div class="show__content-show-data">
+                    <h1 class="show__content-show-data-heading font-section-title">Lorem dolor ipsum sir amet</h1>
+                    <div class="show__content-show-data-streaming">
+                        <div class="show__content-show-data-streaming-item" *ngFor="let iconModel of streamingIconModels">
+                            <amphora-icon [model]="iconModel"></amphora-icon>
+                        </div>
+                    </div>
+                    <p class="show__content-show-data-description font-section-paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.
+                        <br/><br/>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur.
+                    </p>
+                    <div class="show__content-show-data-series">
+                        <div class="show__content-show-data-series-container" *ngFor="let seriesModel of seriesModels">
+                            <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
+                        </div>
+                    </div>
+                </div>
+                <div class="show__content-show-img-btns">
+                    <div class="show__content-show-img-container">
+                        <img src="../../../../assets/img/podcast-mock-thumbnail.png" alt="Could not load image" class="show__content-show-img">
+                    </div>
+                    <amphora-button [model]="btnModel" *ngFor="let btnModel of buttonModels"></amphora-button>
+                </div>
+            </div>
+            <div class="show__content-episodes">
+                <div class="show__content-episodes-heading">
+                    <h1 class="show__content-episodes-title font-section-subtitle">My Shows</h1>
+
+                    <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
+                </div>
+                <div class="show__content-episodes-list">
+                    <div class="show__content-episodes-list-item" *ngFor="let episodeModel of [1, 2, 3]">
+                        <amphora-episode-card></amphora-episode-card>
+                    </div>
+                </div>
+                <div class="show__content-episodes-pagination">
+                    <amphora-pagination [model]="paginationModel"></amphora-pagination>
+                </div>
+            </div>
+        </div>
+    </amphora-page>
+</ion-content>

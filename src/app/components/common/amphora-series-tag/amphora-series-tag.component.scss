@@ -1,0 +1,30 @@
+@import "src/global";
+
+.series {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: solid 1px $color-primary;
+
+    &__active {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+
+    &__inactive {
+        color: $color-primary;
+    }
+
+    &__label {
+        @extend .font-section-paragraph;
+        font-weight: bold;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        cursor: pointer;
+    }
+}
