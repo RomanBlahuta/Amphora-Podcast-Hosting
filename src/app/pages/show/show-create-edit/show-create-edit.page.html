@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>show-create-edit</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content class="show-create-edit">
+    <amphora-page [headerModel]="headerModel">
+        <div class="show-create-edit__content">
+            <div class="show-create-edit__content-show">
+                <div class="show-create-edit__content-show-data">
+                    <amphora-input-field [model]="titleInputModel"></amphora-input-field>
+                    streaming btn
+                    <amphora-text-area [model]="descriptionTextAreaModel"></amphora-text-area>
+                    <div class="show-create-edit__content-show-data-series">
+                        <amphora-input-field [model]="createSeriesInputModel"></amphora-input-field>
+                        <amphora-button [model]="addSeriesButtonModel"></amphora-button>
+                        <div class="show-create-edit__content-show-data-series-list">
+                            <div class="show-create-edit__content-show-data-series-container" *ngFor="let seriesModel of seriesModels">
+                                <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-create-edit__content-show-img-btns">
+                    <div class="show-create-edit__content-show-img-container">
+                        <amphora-upload-image></amphora-upload-image>
+                    </div>
+                    <div class="show-create-edit__content-show-btn" *ngFor="let btnModel of buttonModels">
+                        <amphora-button [model]="btnModel"></amphora-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </amphora-page>
 </ion-content>

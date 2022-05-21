@@ -1,0 +1,25 @@
+@import "src/global";
+
+$input-border-radius: 12px;
+
+.input {
+    background-color: $color-black;
+    caret-color: $color-primary;
+    color: $color-primary;
+    border: none;
+    border-radius: $input-border-radius;
+    padding: 16px 0 0 16px;
+    font-size: 20px;
+
+    &::placeholder {
+        color: $color-primary-dark;
+    }
+
+    &__border {
+        display: inline-block;
+        padding: 1px;
+        border: 2px solid $color-black;
+        border-radius: $input-border-radius;
+        position: relative;
+    }
+}

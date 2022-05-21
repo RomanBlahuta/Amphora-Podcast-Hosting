@@ -70,5 +70,4 @@ export class AmphoraInputFieldComponent implements OnInit, OnDestroy {
             this.model.optional.onInputListener(eventTarget.value, this.model);
         }
     }
-
 }

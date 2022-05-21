@@ -1,0 +1,44 @@
+@import "src/global";
+
+.img {
+    &__input {
+        display: none;
+    }
+
+    &__upload {
+        background-color: $color-black;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-primary;
+        position: relative;
+
+        &-img {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        &-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            &:hover {
+                cursor: pointer;
+                color: $color-white;
+            }
+
+            &-label {
+                text-align: center;
+                margin-top: 8px;
+            }
+        }
+    }
+}

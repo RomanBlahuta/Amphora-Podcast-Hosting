@@ -1,0 +1,56 @@
+@import "src/global";
+
+.show-create-edit {
+
+    &__content {
+        padding: 64px;
+
+        &-show {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &-btn {
+                margin-bottom: 16px;
+            }
+
+            &-img {
+                width: 400px;
+                height: 400px;
+                margin-bottom: 32px;
+
+                &-btns {
+                    display: inline-block;
+                    width: 400px;
+                }
+
+                &-container {
+                    display: inline-block;
+                }
+            }
+
+            &-data {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+                max-width: 50%;
+
+                &-series {
+                    &-container {
+                        display: inline-block;
+                        margin: 32px 16px 32px 0;
+                    }
+                }
+
+                &-streaming {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    margin-bottom: 32px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

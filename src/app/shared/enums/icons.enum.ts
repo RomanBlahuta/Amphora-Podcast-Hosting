@@ -25,4 +25,6 @@ export enum IconsEnum {
     SEARCH = 'search',
     PLAY = 'play',
     PAUSE = 'pause',
+    UPLOAD_PRIMARY = 'upload-primary',
+    UPLOAD_WHITE = 'upload-white',
 }
