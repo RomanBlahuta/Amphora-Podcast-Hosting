@@ -12,9 +12,14 @@ export namespace SignUpSelectors {
         (state) => state[SignUpFormEnum.EMAIL],
     );
 
-    export const selectUsername = createSelector(
+    export const selectFirstName = createSelector(
         selectSignUpState,
-        (state) => state[SignUpFormEnum.USERNAME],
+        (state) => state[SignUpFormEnum.FIRST_NAME],
+    );
+
+    export const selectLastName = createSelector(
+        selectSignUpState,
+        (state) => state[SignUpFormEnum.LAST_NAME],
     );
 
     export const selectPassword = createSelector(
@@ -30,10 +35,10 @@ export namespace SignUpSelectors {
     export const selectForm = createSelector(
         selectSignUpState,
         (state) => ({
-            [SignUpFormEnum.USERNAME]: state[SignUpFormEnum.USERNAME],
+            [SignUpFormEnum.FIRST_NAME]: state[SignUpFormEnum.FIRST_NAME],
+            [SignUpFormEnum.LAST_NAME]: state[SignUpFormEnum.LAST_NAME],
             [SignUpFormEnum.EMAIL]: state[SignUpFormEnum.EMAIL],
             [SignUpFormEnum.PASSWORD]: state[SignUpFormEnum.PASSWORD],
-            [SignUpFormEnum.REPEAT_PASSWORD]: state[SignUpFormEnum.PASSWORD],
         }),
     );
 }

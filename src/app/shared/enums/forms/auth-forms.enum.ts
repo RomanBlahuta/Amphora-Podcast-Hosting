@@ -4,7 +4,8 @@ export enum SignInFormEnum {
 }
 
 export enum SignUpFormEnum {
-    USERNAME = 'username',
+    FIRST_NAME = 'first_name',
+    LAST_NAME = 'last_name',
     EMAIL = 'email',
     PASSWORD = 'password',
     REPEAT_PASSWORD = 'repeatPassword',

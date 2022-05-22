@@ -2,7 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
-import {SignInRequestDTO, SignInRequestFormDataEnum, SignInResponseDTO} from './auth.dto';
+import {
+    SignInRequestDTO,
+    SignInRequestFormDataEnum,
+    SignInResponseDTO,
+    SignUpRequestDTO,
+    SignUpResponseDTO
+} from './auth.dto';
 import {setFormDataUtil} from '../../../shared/utils/utils';
 
 @Injectable({
@@ -16,5 +22,9 @@ export class AuthHttp {
         const formData = setFormDataUtil(SignInRequestFormDataEnum, creds);
 
         return this.http.post<SignInResponseDTO>(HTTP_ROUTING.auth.signIn, formData);
+    }
+
+    public signUp(creds: SignUpRequestDTO): Observable<SignUpResponseDTO> {
+        return this.http.post<SignUpResponseDTO>(HTTP_ROUTING.auth.signUp, creds);
     }
 }

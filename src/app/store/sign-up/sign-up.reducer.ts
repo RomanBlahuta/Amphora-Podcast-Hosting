@@ -7,13 +7,15 @@ export namespace fromSignUp {
 
     export interface IState {
         [SignUpFormEnum.EMAIL]: string;
-        [SignUpFormEnum.USERNAME]: string;
+        [SignUpFormEnum.FIRST_NAME]: string;
+        [SignUpFormEnum.LAST_NAME]: string;
         [SignUpFormEnum.PASSWORD]: string;
         [SignUpFormEnum.REPEAT_PASSWORD]: string;
     }
 
     export const initialState: IState = {
-        [SignUpFormEnum.USERNAME]: '',
+        [SignUpFormEnum.FIRST_NAME]: '',
+        [SignUpFormEnum.LAST_NAME]: '',
         [SignUpFormEnum.EMAIL]: '',
         [SignUpFormEnum.PASSWORD]: '',
         [SignUpFormEnum.REPEAT_PASSWORD]: '',

@@ -19,7 +19,8 @@ import {SignUpActions} from '../../../store/sign-up/sign-up.actions';
 })
 export class SignUpPage implements OnInit {
     public signUpForm = this.formBuilder.group({
-        [SignUpFormEnum.USERNAME]: ['', [Validators.required]],
+        [SignUpFormEnum.FIRST_NAME]: ['', [Validators.required]],
+        [SignUpFormEnum.LAST_NAME]: ['', [Validators.required]],
         [SignUpFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
         [SignUpFormEnum.PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
         [SignUpFormEnum.REPEAT_PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
@@ -31,7 +32,8 @@ export class SignUpPage implements OnInit {
     public submitSectionModel: AmphoraSectionModel;
     public submitButtonModel: AmphoraButtonModel;
     public emailInputModel: AmphoraInputFieldModel;
-    public usernameInputModel: AmphoraInputFieldModel;
+    public firstNameInputModel: AmphoraInputFieldModel;
+    public lastNameInputModel: AmphoraInputFieldModel;
     public passwordInputModel: AmphoraInputFieldModel;
     public repeatPasswordInputModel: AmphoraInputFieldModel;
 
@@ -52,10 +54,16 @@ export class SignUpPage implements OnInit {
         this.submitSectionModel = this.authService.createRegularSection();
         this.submitButtonModel = this.authService.createSubmitButton();
 
-        this.usernameInputModel = this.authService.createTextInputField(
-            this.store$.select(SignUpSelectors.selectUsername),
-            'User Name',
-            this.onInput(SignUpFormEnum.USERNAME).bind(this),
+        this.firstNameInputModel = this.authService.createTextInputField(
+            this.store$.select(SignUpSelectors.selectFirstName),
+            'First Name',
+            this.onInput(SignUpFormEnum.FIRST_NAME).bind(this),
+        );
+
+        this.lastNameInputModel = this.authService.createTextInputField(
+            this.store$.select(SignUpSelectors.selectLastName),
+            'Last Name',
+            this.onInput(SignUpFormEnum.LAST_NAME).bind(this),
         );
 
         this.emailInputModel = this.authService.createEmailInputField(

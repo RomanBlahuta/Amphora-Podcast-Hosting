@@ -10,8 +10,11 @@
         <amphora-section [model]="formSectionModel">
             <div class="sign-up__section">
                 <div class="sign-up__section-form">
-                    <amphora-input-field [model]="usernameInputModel"></amphora-input-field>
-                    <p class="sign-up__section-form-error font-input-error" *ngIf="!usernameInputModel.valid">Please enter a user name</p>
+                    <amphora-input-field [model]="firstNameInputModel"></amphora-input-field>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="!firstNameInputModel.valid">Please enter a first name</p>
+                    <div class="spacer-ver-32px"></div>
+                    <amphora-input-field [model]="lastNameInputModel"></amphora-input-field>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="!firstNameInputModel.valid">Please enter a last name</p>
                     <div class="spacer-ver-32px"></div>
                     <amphora-input-field [model]="emailInputModel"></amphora-input-field>
                     <p class="sign-up__section-form-error font-input-error" *ngIf="!emailInputModel.valid">Please enter a valid email</p>
