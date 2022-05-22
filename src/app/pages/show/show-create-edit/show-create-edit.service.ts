@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
 import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
+import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
 
 @Injectable({
     providedIn: 'root',
@@ -98,5 +99,9 @@ export class ShowCreateEditService {
                 },
             }),
         ];
+    }
+
+    public createUploadImage(): AmphoraUploadImageModel {
+        return AmphoraUploadImageModel.create(null, () => console.log('Upload Image'));
     }
 }

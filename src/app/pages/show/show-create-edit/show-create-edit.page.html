@@ -18,8 +18,9 @@
                 </div>
                 <div class="show-create-edit__content-show-img-btns">
                     <div class="show-create-edit__content-show-img-container">
-                        <amphora-upload-image></amphora-upload-image>
+                        <amphora-upload-image [model]="uploadImageModel"></amphora-upload-image>
                     </div>
+                    <div class="spacer-ver-32px"></div>
                     <div class="show-create-edit__content-show-btn" *ngFor="let btnModel of buttonModels">
                         <amphora-button [model]="btnModel"></amphora-button>
                     </div>

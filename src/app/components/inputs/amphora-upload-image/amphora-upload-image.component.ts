@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AmphoraIconModel} from '../../common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
+import {AmphoraUploadImageModel} from './amphora-upload-image.model';
 
 @Component({
   selector: 'amphora-upload-image',
@@ -8,8 +9,12 @@ import {IconsEnum} from '../../../shared/enums/icons.enum';
   styleUrls: ['./amphora-upload-image.component.scss'],
 })
 export class AmphoraUploadImageComponent implements OnInit {
+    @Input()
+    public model: AmphoraUploadImageModel;
+
     public uploadPrimaryIconModel: AmphoraIconModel;
     public uploadWhiteIconModel: AmphoraIconModel;
+
     public fileName = '';
     public hover = false;
     public fileReader = new FileReader();

@@ -5,7 +5,7 @@
     <div *ngIf="!imageUrl" class="img__upload-button" (click)="fileUpload.click()" (mouseenter)="changeHoverStatus(true)" (mouseleave)="changeHoverStatus(false)">
         <amphora-icon [model]="(hover) ? uploadWhiteIconModel : uploadPrimaryIconModel"></amphora-icon>
         <p class="img__upload-button-label font-button-label">
-            {{fileName || "Click to upload an image"}}
+            Click to upload an image
         </p>
     </div>
 </div>

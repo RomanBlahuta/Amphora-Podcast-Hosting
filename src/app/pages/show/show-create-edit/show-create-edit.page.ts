@@ -6,6 +6,7 @@ import {AmphoraButtonModel} from '../../../components/common/amphora-button/amph
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
+import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
 
 @Component({
     selector: 'amphora-show-create-edit',
@@ -19,6 +20,7 @@ export class ShowCreateEditPage implements OnInit {
     public descriptionTextAreaModel: AmphoraTextAreaModel;
     public createSeriesInputModel: AmphoraInputFieldModel;
     public streamingOptionsButtonModel: AmphoraButtonModel;
+    public uploadImageModel: AmphoraUploadImageModel;
     public addSeriesButtonModel: AmphoraButtonModel;
     public seriesModels: AmphoraSeriesTagModel[] = [];
 
@@ -39,6 +41,7 @@ export class ShowCreateEditPage implements OnInit {
         this.buttonModels = this.showCreateEditService.createButtons();
         this.seriesModels = this.showCreateEditService.createSeriesTags();
         this.addSeriesButtonModel = this.showCreateEditService.createAddSeriesButton();
+        this.uploadImageModel = this.showCreateEditService.createUploadImage();
         this.titleInputModel = this.showCreateEditService.createTextInputField(
             null,
             'Show Title',
