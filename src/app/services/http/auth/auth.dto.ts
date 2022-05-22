@@ -1,30 +1,30 @@
 // SIGN IN
 
-export interface SignInRequestDTO {
+export interface ISignInRequestDTO {
     username: string;
     password: string;
 }
 
-export enum SignInRequestFormDataEnum {
+export enum ISignInRequestFormDataEnum {
     USERNAME = 'username',
     PASSWORD = 'password',
 }
 
-export interface SignInResponseDTO {
+export interface ISignInResponseDTO {
     access_token: string;
     token_type: string;
 }
 
 // SIGN UP
 
-export interface SignUpRequestDTO {
+export interface ISignUpRequestDTO {
     email: string;
     first_name: string;
     last_name: string;
     password: string;
 }
 
-export interface SignUpResponseDTO {
+export interface ISignUpResponseDTO {
     id: string;
     email: string;
     is_active?: boolean;
@@ -36,35 +36,35 @@ export interface SignUpResponseDTO {
 
 // FORGOT PASSWORD
 
-export interface ForgotPasswordRequestDTO {
+export interface IForgotPasswordRequestDTO {
     email: string;
 }
 
-export interface ForgotPasswordResponseDTO {
+export interface IForgotPasswordResponseDTO {
 }
 
 // RESET PASSWORD
 
-export interface ResetPasswordRequestDTO {
+export interface IResetPasswordRequestDTO {
     token: string;
     password: string;
 }
 
-export interface ResetPasswordResponseDTO {
+export interface IResetPasswordResponseDTO {
 }
 
 // VERIFIACTION
 
-export interface RequestVerificationRequestDTO {
+export interface IRequestVerificationRequestDTO {
     email: string;
 }
 
-export interface RequestVerificationResponseDTO {
+export interface IRequestVerificationResponseDTO {
 }
 
-export interface VerificationRequestDTO {
+export interface IVerificationRequestDTO {
     token: string;
 }
 
-export interface VerificationResponseDTO {
+export interface IVerificationResponseDTO {
 }

@@ -11,6 +11,7 @@ import {fromPopUp} from './pop-up/pop-up.reducer';
 import {fromDashboard} from './dashboard/dashboard.reducer';
 import {fromShow} from './show/show.reducer';
 import {fromResetPassword} from './reset-password/reset-password.reducer';
+import {fromUser} from './user/user.reducer';
 
 export const routerFeatureKey = 'router';
 
@@ -25,6 +26,7 @@ export interface State {
     [fromPopUp.popUpFeatureKey]: fromPopUp.IState;
     [fromDashboard.dashboardFeatureKey]: fromDashboard.IState;
     [fromShow.showFeatureKey]: fromShow.IState;
+    [fromUser.userFeatureKey]: fromUser.IState;
 }
 
 export const appReducers: ActionReducerMap<State> = {
@@ -38,6 +40,7 @@ export const appReducers: ActionReducerMap<State> = {
     [fromPopUp.popUpFeatureKey]: fromPopUp.reducer,
     [fromDashboard.dashboardFeatureKey]: fromDashboard.reducer,
     [fromShow.showFeatureKey]: fromShow.reducer,
+    [fromUser.userFeatureKey]: fromUser.reducer,
 };
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions

@@ -24,15 +24,19 @@ import {ShowEffects} from './store/show/show.effects';
 import {AuthInterceptor} from './services/interceptors/auth.interceptor';
 import {ResetPasswordEffects} from './store/reset-password/reset-password.effects';
 import {AuthGuardService} from './services/guards/auth.guard';
+import {ShowCreateEditEffects} from './store/show-create-edit/show-create-edit.effects';
+import {UserEffects} from './store/user/user.effects';
 
 export const EFFECTS = [
     SignInEffects,
     SignUpEffects,
     ResetPasswordEffects,
     ForgotPasswordEffects,
+    UserEffects,
     VerificationEffects,
     DashboardEffects,
     ShowEffects,
+    ShowCreateEditEffects
 ];
 
 @NgModule({

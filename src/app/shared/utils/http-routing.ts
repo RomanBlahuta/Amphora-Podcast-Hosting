@@ -11,7 +11,7 @@ export const HTTP_ROUTING = {
         requestVerify: `${environment.apiBase}/auth/request-verify-token`
     },
     user: {
-        //
+        loadUser: `${environment.apiBase}/users/me`,
     },
     show: {
         //

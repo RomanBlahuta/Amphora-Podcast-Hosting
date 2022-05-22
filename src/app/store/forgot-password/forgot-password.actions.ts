@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {ForgotPasswordFormEnum} from '../../shared/enums/forms/auth-forms.enum';
-import {ForgotPasswordResponseDTO} from '../../services/http/auth/auth.dto';
+import {IForgotPasswordResponseDTO} from '../../services/http/auth/auth.dto';
 
 export namespace ForgotPasswordActions {
     export const input = createAction(
@@ -14,7 +14,7 @@ export namespace ForgotPasswordActions {
 
     export const submitSuccess = createAction(
         '[Forgot Password] Submit Success',
-        props<{response: ForgotPasswordResponseDTO}>(),
+        props<{response: IForgotPasswordResponseDTO}>(),
     );
 
     export const submitFailure = createAction(

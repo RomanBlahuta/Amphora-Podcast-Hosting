@@ -3,19 +3,19 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {
-    ForgotPasswordRequestDTO,
-    ForgotPasswordResponseDTO,
-    ResetPasswordRequestDTO,
-    ResetPasswordResponseDTO,
-    SignInRequestDTO,
-    SignInRequestFormDataEnum,
-    SignInResponseDTO,
-    SignUpRequestDTO,
-    SignUpResponseDTO,
-    RequestVerificationRequestDTO,
-    RequestVerificationResponseDTO,
-    VerificationRequestDTO,
-    VerificationResponseDTO
+    IForgotPasswordRequestDTO,
+    IForgotPasswordResponseDTO,
+    IResetPasswordRequestDTO,
+    IResetPasswordResponseDTO,
+    ISignInRequestDTO,
+    ISignInRequestFormDataEnum,
+    ISignInResponseDTO,
+    ISignUpRequestDTO,
+    ISignUpResponseDTO,
+    IRequestVerificationRequestDTO,
+    IRequestVerificationResponseDTO,
+    IVerificationRequestDTO,
+    IVerificationResponseDTO
 } from './auth.dto';
 import {setFormDataUtil} from '../../../shared/utils/utils';
 
@@ -26,29 +26,29 @@ export class AuthHttp {
     constructor(private http: HttpClient) {
     }
 
-    public signIn(request: SignInRequestDTO): Observable<SignInResponseDTO> {
-        const formData = setFormDataUtil(SignInRequestFormDataEnum, request);
+    public signIn(request: ISignInRequestDTO): Observable<ISignInResponseDTO> {
+        const formData = setFormDataUtil(ISignInRequestFormDataEnum, request);
 
-        return this.http.post<SignInResponseDTO>(HTTP_ROUTING.auth.signIn, formData);
+        return this.http.post<ISignInResponseDTO>(HTTP_ROUTING.auth.signIn, formData);
     }
 
-    public signUp(request: SignUpRequestDTO): Observable<SignUpResponseDTO> {
-        return this.http.post<SignUpResponseDTO>(HTTP_ROUTING.auth.signUp, request);
+    public signUp(request: ISignUpRequestDTO): Observable<ISignUpResponseDTO> {
+        return this.http.post<ISignUpResponseDTO>(HTTP_ROUTING.auth.signUp, request);
     }
 
-    public forgotPassword(request: ForgotPasswordRequestDTO): Observable<ForgotPasswordResponseDTO> {
+    public forgotPassword(request: IForgotPasswordRequestDTO): Observable<IForgotPasswordResponseDTO> {
         return this.http.post(HTTP_ROUTING.auth.forgotPassword, request);
     }
 
-    public resetPassword(request: ResetPasswordRequestDTO): Observable<ResetPasswordResponseDTO> {
+    public resetPassword(request: IResetPasswordRequestDTO): Observable<IResetPasswordResponseDTO> {
         return this.http.post(HTTP_ROUTING.auth.resetPassword, request);
     }
 
-    public requestVerificationToken(request: RequestVerificationRequestDTO): Observable<RequestVerificationResponseDTO> {
-        return this.http.post<RequestVerificationResponseDTO>(HTTP_ROUTING.auth.requestVerify, request);
+    public requestVerificationToken(request: IRequestVerificationRequestDTO): Observable<IRequestVerificationResponseDTO> {
+        return this.http.post<IRequestVerificationResponseDTO>(HTTP_ROUTING.auth.requestVerify, request);
     }
 
-    public verify(request: VerificationRequestDTO): Observable<VerificationResponseDTO> {
+    public verify(request: IVerificationRequestDTO): Observable<IVerificationResponseDTO> {
         return this.http.post(HTTP_ROUTING.auth.verify, request);
     }
 }

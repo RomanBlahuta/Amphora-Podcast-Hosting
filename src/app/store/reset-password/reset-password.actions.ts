@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {ResetPasswordFormEnum} from '../../shared/enums/forms/auth-forms.enum';
-import {ResetPasswordResponseDTO} from '../../services/http/auth/auth.dto';
+import {IResetPasswordResponseDTO} from '../../services/http/auth/auth.dto';
 
 export namespace ResetPasswordActions {
     export const input = createAction(
@@ -14,7 +14,7 @@ export namespace ResetPasswordActions {
 
     export const submitSuccess = createAction(
         '[Reset Password] Submit Success',
-        props<{response: ResetPasswordResponseDTO}>(),
+        props<{response: IResetPasswordResponseDTO}>(),
     );
 
     export const submitFailure = createAction(

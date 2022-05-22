@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {RequestVerificationResponseDTO} from '../../services/http/auth/auth.dto';
+import {IRequestVerificationResponseDTO} from '../../services/http/auth/auth.dto';
 
 export namespace VerificationActions {
     export const input = createAction(
@@ -13,7 +13,7 @@ export namespace VerificationActions {
 
     export const submitSuccess = createAction(
         '[Verification] Submit Success',
-        props<{response: RequestVerificationResponseDTO}>(),
+        props<{response: IRequestVerificationResponseDTO}>(),
     );
 
     export const submitFailure = createAction(

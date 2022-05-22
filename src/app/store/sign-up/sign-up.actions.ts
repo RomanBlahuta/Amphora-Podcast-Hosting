@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {SignUpFormEnum} from '../../shared/enums/forms/auth-forms.enum';
-import {SignUpResponseDTO, RequestVerificationResponseDTO} from '../../services/http/auth/auth.dto';
+import {ISignUpResponseDTO, IRequestVerificationResponseDTO} from '../../services/http/auth/auth.dto';
 
 export namespace SignUpActions {
     export const input = createAction(
@@ -14,7 +14,7 @@ export namespace SignUpActions {
 
     export const submitSuccess = createAction(
         '[Sign Up] Submit Success',
-        props<{response: SignUpResponseDTO}>(),
+        props<{response: ISignUpResponseDTO}>(),
     );
 
     export const submitFailure = createAction(
@@ -31,7 +31,7 @@ export namespace SignUpActions {
 
     export const requestVerificationTokenSuccess = createAction(
         '[Sign Up] Request Verification Token Success',
-        props<{response: RequestVerificationResponseDTO}>()
+        props<{response: IRequestVerificationResponseDTO}>()
     );
 
     export const requestVerificationTokenFailure = createAction(

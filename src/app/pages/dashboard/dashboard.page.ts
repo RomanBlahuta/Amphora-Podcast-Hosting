@@ -8,6 +8,10 @@ import {AmphoraShowPreviewCardModel} from '../../components/cards/amphora-show-p
 import {AmphoraPaginationModel} from '../../components/common/amphora-pagination/amphora-pagination.model';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
+import {Store} from '@ngrx/store';
+import {UserActions} from '../../store/user/user.actions';
+import {Observable} from 'rxjs';
+import {UserSelectors} from '../../store/user/user.selectors';
 
 @Component({
     selector: 'amphora-dashboard',
@@ -15,6 +19,8 @@ import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integratio
     styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+    public username: Observable<string>;
+    public email: Observable<string>;
 
     public headerModel: AmphoraHeaderModel;
     public profileSectionModel: AmphoraSectionModel;
@@ -26,9 +32,13 @@ export class DashboardPage implements OnInit {
     public showPreviewModels: AmphoraShowPreviewCardModel[];
     public paginationModel: AmphoraPaginationModel;
 
-    constructor(private dashBoardService: DashboardService) { }
+    constructor(private dashBoardService: DashboardService,
+                private store$: Store) { }
 
     public ngOnInit(): void {
+        this.store$.dispatch(UserActions.loadUser());
+        this.username = this.store$.select(UserSelectors.selectFullName);
+        this.email = this.store$.select(UserSelectors.selectEmail);
         this.createModels();
     }
 

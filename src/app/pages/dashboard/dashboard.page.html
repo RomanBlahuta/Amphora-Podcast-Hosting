@@ -7,8 +7,8 @@
                 <amphora-icon [model]="profilePictureModel"></amphora-icon>
 
                 <div class="dashboard__section-profile-data">
-                    <h2 class="dashboard__section-profile-data-username font-card-title">Leonidas of Sparta</h2>
-                    <h3 class="dashboard__section-profile-data-email font-profile-description">testing@test.com</h3>
+                    <h2 class="dashboard__section-profile-data-username font-card-title">{{ (username | async) || '' }}</h2>
+                    <h3 class="dashboard__section-profile-data-email font-profile-description">{{ (email | async) || '' }}</h3>
                     <amphora-button [model]="editButtonModel"></amphora-button>
                 </div>
             </div>
