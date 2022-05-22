@@ -85,6 +85,10 @@ export class AuthService {
             inputType: InputFieldTypesEnum.EMAIL,
             onInputListener: onInput,
             placeholder,
+            size: {
+                width: 488,
+                height: 64,
+            },
         });
     }
 
@@ -96,6 +100,10 @@ export class AuthService {
             inputType: InputFieldTypesEnum.TEXT,
             onInputListener: onInput,
             placeholder,
+            size: {
+                width: 488,
+                height: 64,
+            },
         });
     }
 
@@ -109,7 +117,7 @@ export class AuthService {
             size: {
                 width: 400,
                 height: 128,
-            }
+            },
         });
     }
 
@@ -121,6 +129,10 @@ export class AuthService {
             inputType: InputFieldTypesEnum.PASSWORD,
             onInputListener: onInput,
             placeholder,
+            size: {
+                width: 488,
+                height: 64,
+            },
         });
     }
 }

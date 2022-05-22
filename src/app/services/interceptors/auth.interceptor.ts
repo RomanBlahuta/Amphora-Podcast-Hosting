@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LocalStorageService} from '../utils/local-storage.service';
+import {LocalStorageStateEnum} from '../../shared/enums/local-storage-state.enum';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -10,17 +12,17 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // If request to backend that needs auth
-        // if (isNoAuthRequest(req)) {
-        //     return next.handle(req);
-        // }
+        if (!req.url.includes(environment.apiBase)) {
+            return next.handle(req);
+        }
 
-        // const accessToken = this.localStorage.get(TOKEN);
-        const accessToken = true;
+        const accessToken = this.localStorage.get(LocalStorageStateEnum.TOKEN);
+        console.log(accessToken);
         if (accessToken) {
             const authRequest = req.clone({
-                headers: req.headers.set('Authorization', `${accessToken}`),
+                headers: req.headers.set('Authorization', `Bearer ${accessToken}`),
             });
+            console.log('IF');
 
             return next.handle(authRequest);
         }

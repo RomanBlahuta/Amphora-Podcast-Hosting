@@ -5,4 +5,8 @@ export enum RoutesEnum {
     RESET_PASSWORD = 'reset-password',
     VERIFICATION = 'verification',
     NOT_FOUND = 'not-found',
+    DASHBOARD = 'dashboard',
+    SHOW = 'show',
+    SHOW_CREATE = 'show/create',
+    SHOW_EDIT = 'show/edit'
 }

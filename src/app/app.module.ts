@@ -11,7 +11,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {metaReducers, appReducers, routerFeatureKey} from './store/app.store';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignInEffects} from './store/sign-in/sign-in.effects';
 import {SignUpEffects} from './store/sign-up/sign-up.effects';
@@ -21,6 +21,7 @@ import {GlobalErrorHandler} from './services/error-handlers/global.error-handler
 import {AmphoraErrorPopUpModule} from './components/pop-ups/amphora-error-pop-up/amphora-error-pop-up.module';
 import {DashboardEffects} from './store/dashboard/dashboard.effects';
 import {ShowEffects} from './store/show/show.effects';
+import {AuthInterceptor} from './services/interceptors/auth.interceptor';
 
 export const EFFECTS = [
     SignInEffects,
@@ -49,7 +50,12 @@ export const EFFECTS = [
     providers: [
         {
             provide: RouteReuseStrategy,
-            useClass: IonicRouteStrategy
+            useClass: IonicRouteStrategy,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
         },
         {
             provide: ErrorHandler,

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -10,19 +11,11 @@ export class LocalStorageService {
     }
 
     public set(key: string, value: string): void {
-        try {
-            localStorage.setItem(key, this.encrypt(value));
-        } catch (e) {
-            localStorage.setItem(key, value);
-        }
+        localStorage.setItem(key, this.encrypt(value));
     }
 
     public get(key: string): string {
-        try {
-            return this.decrypt(localStorage.getItem(key));
-        } catch (e) {
-            return localStorage.getItem(key);
-        }
+        return this.decrypt(localStorage.getItem(key));
     }
 
     public remove(key: string): void {
@@ -34,15 +27,11 @@ export class LocalStorageService {
     }
 
     private encrypt(value: string): string {
-        return CryptoJS.AES.encrypt(JSON.stringify([{
-            value,
-        }])).toString();
+        return CryptoJS.AES.encrypt(value, environment.secret).toString();
     }
 
     private decrypt(msg: string): string {
-        const bytes = CryptoJS.AES.decrypt(msg);
-        const decryptedData = JSON.parse(bytes.toString());
-
-        return decryptedData[0].value;
+        const bytes = CryptoJS.AES.decrypt(msg, environment.secret);
+        return bytes.toString(CryptoJS.enc.Utf8);
     }
 }

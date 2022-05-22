@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {SignInFormEnum} from '../../shared/enums/forms/auth-forms.enum';
+import {SignInResponseDTO} from '../../services/http/auth/auth.dto';
 
 export namespace SignInActions {
     export const input = createAction(
@@ -9,6 +10,15 @@ export namespace SignInActions {
 
     export const submit = createAction(
         '[Sign In] Submit',
+    );
+
+    export const submitSuccess = createAction(
+        '[Sign In] Submit Success',
+        props<{response: SignInResponseDTO}>(),
+    );
+
+    export const submitFailure = createAction(
+        '[Sign In] Submit Failure',
     );
 
     export const clear = createAction(
