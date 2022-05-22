@@ -1,12 +1,12 @@
-<div class="input__border">
+<div class="input__border"
+     [ngStyle]="{
+               width: 'calc(' + model.optional.size.width + model.optional.size.widthUnit + ' - ' + model.optional.size.widthDiff + model.optional.size.widthDiffUnit + ')',
+               height: 'calc(' + model.optional.size.height + model.optional.size.heightUnit + ' - ' + model.optional.size.heightDiff + model.optional.size.heightDiffUnit + ')'
+           }">
     <input #input
            [type]="(visibility$ | async).fieldType"
            [class]="['input', 'input__' + model.optional.inputType]"
-           [placeholder]="model.optional.placeholder" (input)="onInput($event)"
-           [ngStyle]="{
-               width: model.optional.size.width + model.optional.size.widthUnit,
-               height: model.optional.size.height + model.optional.size.heightUnit
-           }">
+           [placeholder]="model.optional.placeholder" (input)="onInput($event)">
     <div class="input__icon" *ngIf="model.optional.inputType === InputFieldTypesEnum.PASSWORD">
         <button (click)="toggleVisibility()" class="input__icon-button" mat-icon-button>
             <amphora-icon [model]="(visibility$ | async).icon"></amphora-icon>

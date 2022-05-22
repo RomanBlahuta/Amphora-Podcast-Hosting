@@ -1,11 +1,11 @@
-<div class="input__border">
+<div class="input__border"
+     [ngStyle]="{
+               width: model.optional.size.width + model.optional.size.widthUnit,
+               height: model.optional.size.height + model.optional.size.heightUnit
+           }">
     <textarea #input
            [class]="['input']"
            [placeholder]="model.optional.placeholder" (input)="onInput($event)"
            [rows]="model.optional.rows"
-           [cols]="model.optional.cols"
-           [ngStyle]="{
-               width: model.optional.size.width + model.optional.size.widthUnit,
-               height: model.optional.size.height + model.optional.size.heightUnit
-           }"></textarea>
+           [cols]="model.optional.cols"></textarea>
 </div>

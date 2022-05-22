@@ -42,12 +42,13 @@ export class ShowCreateEditPage implements OnInit {
         this.seriesModels = this.showCreateEditService.createSeriesTags();
         this.addSeriesButtonModel = this.showCreateEditService.createAddSeriesButton();
         this.uploadImageModel = this.showCreateEditService.createUploadImage();
+        this.streamingOptionsButtonModel = this.showCreateEditService.createStreamingOptionsButton();
         this.titleInputModel = this.showCreateEditService.createTextInputField(
             null,
             'Show Title',
             (value: string, model: AmphoraInputFieldModel) => console.log(value),
         );
-        this.createSeriesInputModel = this.showCreateEditService.createTextInputField(
+        this.createSeriesInputModel = this.showCreateEditService.createSeriesTagTextInputField(
             null,
             'Add Series',
             (value: string, model: AmphoraInputFieldModel) => console.log(value),

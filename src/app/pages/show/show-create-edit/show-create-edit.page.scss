@@ -37,6 +37,7 @@
                 max-width: 50%;
 
                 &-series {
+                    margin-top: 32px;
                     &-container {
                         display: inline-block;
                         margin: 32px 16px 32px 0;
@@ -47,7 +48,7 @@
                     display: flex;
                     justify-content: start;
                     align-items: center;
-                    margin-bottom: 32px;
+                    margin: 16px 0;
                     width: 100%;
                 }
             }

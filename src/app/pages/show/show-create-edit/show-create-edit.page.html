@@ -1,13 +1,18 @@
 <ion-content class="show-create-edit">
     <amphora-page [headerModel]="headerModel">
         <div class="show-create-edit__content">
+            <h1 class="font-section-title">Create/Edit Show</h1>
+            <div class="spacer-ver-32px"></div>
             <div class="show-create-edit__content-show">
                 <div class="show-create-edit__content-show-data">
                     <amphora-input-field [model]="titleInputModel"></amphora-input-field>
-                    streaming btn
+                    <div class="show-create-edit__content-show-data-streaming">
+                        <amphora-button [model]="streamingOptionsButtonModel"></amphora-button>
+                    </div>
                     <amphora-text-area [model]="descriptionTextAreaModel"></amphora-text-area>
                     <div class="show-create-edit__content-show-data-series">
                         <amphora-input-field [model]="createSeriesInputModel"></amphora-input-field>
+                        <div class="spacer-hor-16px"></div>
                         <amphora-button [model]="addSeriesButtonModel"></amphora-button>
                         <div class="show-create-edit__content-show-data-series-list">
                             <div class="show-create-edit__content-show-data-series-container" *ngFor="let seriesModel of seriesModels">

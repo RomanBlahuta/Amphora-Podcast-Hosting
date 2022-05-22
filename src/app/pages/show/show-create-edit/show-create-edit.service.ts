@@ -10,6 +10,7 @@ import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-f
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
 import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
 import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
+import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -52,12 +53,41 @@ export class ShowCreateEditService {
             inputType: InputFieldTypesEnum.TEXT,
             onInputListener: onInput,
             placeholder,
+            size: {
+                width: 40,
+                widthUnit: UnitsOfMeasurementEnum.VW,
+            }
+        });
+    }
+
+    public createSeriesTagTextInputField(
+        valueController: Observable<string>,
+        placeholder: string,
+        onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
+        return AmphoraInputFieldModel.create(valueController, {
+            inputType: InputFieldTypesEnum.TEXT,
+            onInputListener: onInput,
+            placeholder,
+            size: {
+                width: 40,
+                widthUnit: UnitsOfMeasurementEnum.VW,
+                widthDiff: 104,
+            }
         });
     }
 
     public createAddSeriesButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Add', {
             onClick: () => 'Add Series',
+        });
+    }
+
+    public createStreamingOptionsButton(): AmphoraButtonModel {
+        return AmphoraButtonModel.create('Streaming Options', {
+            size: {
+                width: 40,
+                widthUnit: UnitsOfMeasurementEnum.VW,
+            }
         });
     }
 
@@ -72,7 +102,9 @@ export class ShowCreateEditService {
             cols: 100,
             size: {
                 height: 256,
-            }
+                width: 40,
+                widthUnit: UnitsOfMeasurementEnum.VW,
+            },
         });
     }
 

@@ -5,4 +5,8 @@ export interface ISize {
     height?: number;
     widthUnit?: UnitsOfMeasurementEnum;
     heightUnit?: UnitsOfMeasurementEnum;
+    widthDiff?: number;
+    heightDiff?: number;
+    widthDiffUnit?: UnitsOfMeasurementEnum;
+    heightDiffUnit?: UnitsOfMeasurementEnum;
 }

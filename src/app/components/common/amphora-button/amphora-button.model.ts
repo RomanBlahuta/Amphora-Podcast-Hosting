@@ -28,6 +28,10 @@ export class AmphoraButtonModel {
                 widthUnit: UnitsOfMeasurementEnum.PX,
                 height: 40,
                 heightUnit: UnitsOfMeasurementEnum.PX,
+                widthDiff: 0,
+                heightDiff: 0,
+                widthDiffUnit: UnitsOfMeasurementEnum.PX,
+                heightDiffUnit: UnitsOfMeasurementEnum.PX,
                 ...optional?.size
             },
             circle: optional?.circle || false,

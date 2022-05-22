@@ -106,6 +106,10 @@ export class AuthService {
             inputType: InputFieldTypesEnum.CODE,
             onInputListener: onInput,
             placeholder: 'Verification code',
+            size: {
+                width: 400,
+                height: 128,
+            }
         });
     }
 

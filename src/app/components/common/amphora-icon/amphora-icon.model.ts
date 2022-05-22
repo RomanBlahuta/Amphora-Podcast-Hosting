@@ -18,6 +18,10 @@ export class AmphoraIconModel {
                 height: optional?.size.height || undefined,
                 widthUnit: optional?.size.widthUnit || UnitsOfMeasurementEnum.PX,
                 heightUnit: optional?.size.heightUnit || UnitsOfMeasurementEnum.PX,
+                widthDiff: optional?.size.widthDiff || 0,
+                heightDiff: optional?.size.heightDiff || 0,
+                widthDiffUnit: optional?.size.widthDiffUnit || UnitsOfMeasurementEnum.PX,
+                heightDiffUnit: optional?.size.heightDiffUnit || UnitsOfMeasurementEnum.PX,
             },
         };
     }

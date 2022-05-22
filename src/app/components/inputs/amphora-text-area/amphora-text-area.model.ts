@@ -25,6 +25,10 @@ export class AmphoraTextAreaModel {
                 widthUnit: optional?.size?.widthUnit || UnitsOfMeasurementEnum.PX,
                 height: optional?.size?.height || 56,
                 heightUnit: optional?.size?.heightUnit || UnitsOfMeasurementEnum.PX,
+                widthDiff: optional?.size.widthDiff || 0,
+                heightDiff: optional?.size.heightDiff || 0,
+                widthDiffUnit: optional?.size.widthDiffUnit || UnitsOfMeasurementEnum.PX,
+                heightDiffUnit: optional?.size.heightDiffUnit || UnitsOfMeasurementEnum.PX,
             },
         };
     }
