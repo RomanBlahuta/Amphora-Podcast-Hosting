@@ -17,12 +17,10 @@ export class AuthInterceptor implements HttpInterceptor {
         }
 
         const accessToken = this.localStorage.get(LocalStorageStateEnum.TOKEN);
-        console.log(accessToken);
         if (accessToken) {
             const authRequest = req.clone({
                 headers: req.headers.set('Authorization', `Bearer ${accessToken}`),
             });
-            console.log('IF');
 
             return next.handle(authRequest);
         }

@@ -11,9 +11,13 @@ export enum SignUpFormEnum {
     REPEAT_PASSWORD = 'repeatPassword',
 }
 
-export enum ResetPasswordFormEnum {
+export enum ForgotPasswordFormEnum {
     EMAIL = 'email',
-    NEW_PASSWORD = 'newPassword',
+}
+
+export enum ResetPasswordFormEnum {
+    CODE = 'token',
+    NEW_PASSWORD = 'password',
 }
 
 export enum VerificationFormEnum {

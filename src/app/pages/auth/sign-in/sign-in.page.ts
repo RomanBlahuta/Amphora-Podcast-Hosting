@@ -12,8 +12,6 @@ import {take} from 'rxjs/operators';
 import {AuthService} from '../auth.service';
 import {AuthEnum} from '../../../shared/enums/auth.enum';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
-import {setFormDataUtil} from '../../../shared/utils/utils';
-import {SignInRequestFormDataEnum} from '../../../services/http/auth/auth.dto';
 
 @Component({
   selector: 'amphora-sign-in',
@@ -44,7 +42,6 @@ export class SignInPage implements OnInit {
         this.authService.setPageType(AuthEnum.SIGN_IN);
         this.createModels();
         this.initForm();
-        setFormDataUtil(SignInRequestFormDataEnum, {username: 'a@a.a', password: '1234567890'});
     }
 
     private createModels(): void {

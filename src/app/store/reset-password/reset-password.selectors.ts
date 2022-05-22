@@ -1,15 +1,15 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {fromResetPassword} from './reset-password.reducer';
 import {ResetPasswordFormEnum} from '../../shared/enums/forms/auth-forms.enum';
+import {fromResetPassword} from './reset-password.reducer';
 
 export const selectResetPasswordState = createFeatureSelector<fromResetPassword.IState>(
     fromResetPassword.resetPasswordFeatureKey,
 );
 
 export namespace ResetPasswordSelectors {
-    export const selectEmail = createSelector(
+    export const selectCode = createSelector(
         selectResetPasswordState,
-        (state) => state[ResetPasswordFormEnum.EMAIL],
+        (state) => state[ResetPasswordFormEnum.CODE],
     );
 
     export const selectNewPassword = createSelector(
@@ -20,7 +20,7 @@ export namespace ResetPasswordSelectors {
     export const selectForm = createSelector(
         selectResetPasswordState,
         (state) => ({
-            [ResetPasswordFormEnum.EMAIL]: state[ResetPasswordFormEnum.EMAIL],
+            [ResetPasswordFormEnum.CODE]: state[ResetPasswordFormEnum.CODE],
             [ResetPasswordFormEnum.NEW_PASSWORD]: state[ResetPasswordFormEnum.NEW_PASSWORD],
         }),
     );

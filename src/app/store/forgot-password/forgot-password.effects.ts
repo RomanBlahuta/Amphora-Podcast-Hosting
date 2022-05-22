@@ -1,29 +1,29 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
+import {ForgotPasswordActions} from './forgot-password.actions';
 import {map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {NavController} from '@ionic/angular';
 import {PopUpService} from '../../services/utils/pop-up.service';
 import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.enum';
+import {ForgotPasswordSelectors} from './forgot-password.selectors';
 import {LocalStorageService} from '../../services/utils/local-storage.service';
 import {AuthHttp} from '../../services/http/auth/auth.http';
-import {ResetPasswordActions} from './reset-password.actions';
-import {ResetPasswordSelectors} from './reset-password.selectors';
 
 @Injectable()
-export class ResetPasswordEffects {
+export class ForgotPasswordEffects {
     public submit$ = createEffect(() => this.actions$.pipe(
-        ofType(ResetPasswordActions.submit),
-        withLatestFrom(this.store$.select(ResetPasswordSelectors.selectForm)),
-        switchMap(([_, email]) => this.authHttp.resetPassword(email).pipe(
-            map(response => ResetPasswordActions.submitSuccess({response})),
+        ofType(ForgotPasswordActions.submit),
+        withLatestFrom(this.store$.select(ForgotPasswordSelectors.selectForm)),
+        switchMap(([_, email]) => this.authHttp.forgotPassword(email).pipe(
+            map(response => ForgotPasswordActions.submitSuccess({response})),
         ))
     ));
 
     public submitSuccess$ = createEffect(() => this.actions$.pipe(
-        ofType(ResetPasswordActions.submitSuccess),
+        ofType(ForgotPasswordActions.submitSuccess),
         tap((action) => {
-            this.store$.dispatch(ResetPasswordActions.clear());
+            this.store$.dispatch(ForgotPasswordActions.clear());
             this.popUpService.showPopUp(PopUpTypesEnum.CHECK_EMAIL);
         }),
     ), {dispatch: false});

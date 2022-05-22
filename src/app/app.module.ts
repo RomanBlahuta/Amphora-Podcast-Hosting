@@ -15,18 +15,20 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignInEffects} from './store/sign-in/sign-in.effects';
 import {SignUpEffects} from './store/sign-up/sign-up.effects';
-import {ResetPasswordEffects} from './store/reset-password/reset-password.effects';
+import {ForgotPasswordEffects} from './store/forgot-password/forgot-password.effects';
 import {VerificationEffects} from './store/verification/verification.effects';
 import {GlobalErrorHandler} from './services/error-handlers/global.error-handler';
 import {AmphoraErrorPopUpModule} from './components/pop-ups/amphora-error-pop-up/amphora-error-pop-up.module';
 import {DashboardEffects} from './store/dashboard/dashboard.effects';
 import {ShowEffects} from './store/show/show.effects';
 import {AuthInterceptor} from './services/interceptors/auth.interceptor';
+import {ResetPasswordEffects} from './store/reset-password/reset-password.effects';
 
 export const EFFECTS = [
     SignInEffects,
     SignUpEffects,
     ResetPasswordEffects,
+    ForgotPasswordEffects,
     VerificationEffects,
     DashboardEffects,
     ShowEffects,

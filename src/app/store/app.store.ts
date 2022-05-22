@@ -5,11 +5,12 @@ import {AppActions} from './app/app.actions';
 import {fromLanding} from './landing/landing.reducer';
 import {fromSignIn} from './sign-in/sign-in.reducer';
 import {fromSignUp} from './sign-up/sign-up.reducer';
-import {fromResetPassword} from './reset-password/reset-password.reducer';
+import {fromForgotPassword} from './forgot-password/forgot-password.reducer';
 import {fromVerification} from './verification/verification.reducer';
 import {fromPopUp} from './pop-up/pop-up.reducer';
 import {fromDashboard} from './dashboard/dashboard.reducer';
 import {fromShow} from './show/show.reducer';
+import {fromResetPassword} from './reset-password/reset-password.reducer';
 
 export const routerFeatureKey = 'router';
 
@@ -18,6 +19,7 @@ export interface State {
     [fromLanding.landingFeatureKey]: fromLanding.IState;
     [fromSignIn.signInFeatureKey]: fromSignIn.IState;
     [fromSignUp.signUpFeatureKey]: fromSignUp.IState;
+    [fromForgotPassword.forgotPasswordFeatureKey]: fromForgotPassword.IState;
     [fromResetPassword.resetPasswordFeatureKey]: fromResetPassword.IState;
     [fromVerification.verificationFeatureKey]: fromVerification.IState;
     [fromPopUp.popUpFeatureKey]: fromPopUp.IState;
@@ -30,6 +32,7 @@ export const appReducers: ActionReducerMap<State> = {
     [fromLanding.landingFeatureKey]: fromLanding.reducer,
     [fromSignIn.signInFeatureKey]: fromSignIn.reducer,
     [fromSignUp.signUpFeatureKey]: fromSignUp.reducer,
+    [fromForgotPassword.forgotPasswordFeatureKey]: fromForgotPassword.reducer,
     [fromResetPassword.resetPasswordFeatureKey]: fromResetPassword.reducer,
     [fromVerification.verificationFeatureKey]: fromVerification.reducer,
     [fromPopUp.popUpFeatureKey]: fromPopUp.reducer,

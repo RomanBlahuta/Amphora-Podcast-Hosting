@@ -33,3 +33,22 @@ export interface SignUpResponseDTO {
     first_name: string;
     last_name: string;
 }
+
+// FORGOT PASSWORD
+
+export interface ForgotPasswordRequestDTO {
+    email: string;
+}
+
+export interface ForgotPasswordResponseDTO {
+}
+
+// RESET PASSWORD
+
+export interface ResetPasswordRequestDTO {
+    token: string;
+    password: string;
+}
+
+export interface ResetPasswordResponseDTO {
+}

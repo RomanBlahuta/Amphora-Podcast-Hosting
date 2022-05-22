@@ -7,11 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { ResetPasswordPageRoutingModule } from './reset-password-routing.module';
 
 import { ResetPasswordPage } from './reset-password.page';
-import {AmphoraPageModule} from '../../../components/common/amphora-page/amphora-page.module';
-import {AmphoraSectionModule} from '../../../components/common/amphora-section/amphora-section.module';
-import {AmphoraInputFieldModule} from '../../../components/inputs/amphora-input-field/amphora-input-field.module';
 import {AmphoraButtonModule} from '../../../components/common/amphora-button/amphora-button.module';
 import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.module';
+import {AmphoraInputFieldModule} from '../../../components/inputs/amphora-input-field/amphora-input-field.module';
+import {AmphoraSectionModule} from '../../../components/common/amphora-section/amphora-section.module';
+import {AmphoraPageModule} from '../../../components/common/amphora-page/amphora-page.module';
 
 @NgModule({
     imports: [
@@ -20,11 +20,11 @@ import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-comm
         ReactiveFormsModule,
         IonicModule,
         ResetPasswordPageRoutingModule,
-        AmphoraPageModule,
-        AmphoraSectionModule,
-        AmphoraInputFieldModule,
         AmphoraButtonModule,
-        AmphoraCommonPopUpModule
+        AmphoraCommonPopUpModule,
+        AmphoraInputFieldModule,
+        AmphoraSectionModule,
+        AmphoraPageModule
     ],
   declarations: [ResetPasswordPage]
 })

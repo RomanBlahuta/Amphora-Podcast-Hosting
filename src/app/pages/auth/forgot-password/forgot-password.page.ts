@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {VerificationFormEnum} from '../../../shared/enums/forms/auth-forms.enum';
+import {ForgotPasswordFormEnum} from '../../../shared/enums/forms/auth-forms.enum';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {AmphoraSectionModel} from '../../../components/common/amphora-section/amphora-section.model';
@@ -9,21 +9,21 @@ import {AuthService} from '../auth.service';
 import {Store} from '@ngrx/store';
 import {AuthEnum} from '../../../shared/enums/auth.enum';
 import {take} from 'rxjs/operators';
-import {VerificationActions} from '../../../store/verification/verification.actions';
-import {VerificationSelectors} from '../../../store/verification/verification.selectors';
+import {ForgotPasswordSelectors} from '../../../store/forgot-password/forgot-password.selectors';
+import {ForgotPasswordActions} from '../../../store/forgot-password/forgot-password.actions';
 import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {PopUpService} from '../../../services/utils/pop-up.service';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
-  selector: 'amphora-verification',
-  templateUrl: './verification.page.html',
-  styleUrls: ['./verification.page.scss'],
+  selector: 'amphora-reset-password',
+  templateUrl: './forgot-password.page.html',
+  styleUrls: ['./forgot-password.page.scss'],
 })
-export class VerificationPage implements OnInit {
-    public verificationForm = this.formBuilder.group({
-        [VerificationFormEnum.VERIFICATION_CODE]: ['', [Validators.required]],
+export class ForgotPasswordPage implements OnInit {
+    public forgotPasswordForm = this.formBuilder.group({
+        [ForgotPasswordFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
     });
 
     public headerModel: AmphoraHeaderModel;
@@ -31,18 +31,17 @@ export class VerificationPage implements OnInit {
     public formSectionModel: AmphoraSectionModel;
     public submitSectionModel: AmphoraSectionModel;
     public submitButtonModel: AmphoraButtonModel;
-    public verificationCodeInputModel: AmphoraInputFieldModel;
-    // todo remove
-    public successPopUpModel: AmphoraCommonPopUpModel;
+    public emailInputModel: AmphoraInputFieldModel;
+    public checkYourEmailPopUpModel: AmphoraCommonPopUpModel;
 
     constructor(private authService: AuthService,
-                private popUpService: PopUpService,
                 private formBuilder: FormBuilder,
+                private popUpService: PopUpService,
                 private navController: NavController,
                 private store$: Store) { }
 
     public ngOnInit(): void {
-        this.authService.setPageType(AuthEnum.VERIFICATION);
+        this.authService.setPageType(AuthEnum.FORGOT_PASSWORD);
         this.createModels();
         this.initForm();
     }
@@ -53,35 +52,41 @@ export class VerificationPage implements OnInit {
         this.formSectionModel = this.authService.createOrnamentedSection();
         this.submitSectionModel = this.authService.createRegularSection();
         this.submitButtonModel = this.authService.createSubmitButton();
-        this.successPopUpModel = this.popUpService.createSuccessPopUp(this.onSuccessPopUpButtonClick.bind(this));
+        this.checkYourEmailPopUpModel = this.popUpService.createCheckYourEmailPopUp({
+            resendOnClick: this.onCheckYourEmailPopUpResendLetterClick.bind(this),
+            okOnClick: this.onCheckYourEmailPopUpOKClick.bind(this),
+        });
 
-        this.verificationCodeInputModel = this.authService.createVerificationCodeInputField(
-            this.store$.select(VerificationSelectors.selectVerificationCode),
-            this.onInput().bind(this)
+        this.emailInputModel = this.authService.createEmailInputField(
+            this.store$.select(ForgotPasswordSelectors.selectEmail),
+            'Email',
+            this.onInput(ForgotPasswordFormEnum.EMAIL).bind(this)
         );
     }
 
     private initForm(): void {
-        this.store$.select(VerificationSelectors.selectForm).pipe(
+        this.store$.select(ForgotPasswordSelectors.selectForm).pipe(
             take(1),
         ).subscribe((formValue) => {
-            this.verificationForm.patchValue(formValue);
+            this.forgotPasswordForm.patchValue(formValue);
         });
     }
 
-    private onInput(): (value: string, model: AmphoraInputFieldModel) => void {
+    private onInput(field: ForgotPasswordFormEnum): (value: string, model: AmphoraInputFieldModel) => void {
         return (value: string, model: AmphoraInputFieldModel) => {
-            this.verificationForm.controls[VerificationFormEnum.VERIFICATION_CODE].setValue(value);
-            model.valid = this.verificationForm.controls[VerificationFormEnum.VERIFICATION_CODE].valid;
+            this.forgotPasswordForm.controls[field].setValue(value);
+            model.valid = this.forgotPasswordForm.controls[field].valid;
 
-            this.store$.dispatch(VerificationActions.input({
-                value: this.verificationForm.controls[VerificationFormEnum.VERIFICATION_CODE].value
-            }));
+            this.store$.dispatch(ForgotPasswordActions.input({value: this.forgotPasswordForm.controls[field].value, field}));
         };
     }
 
-    private onSuccessPopUpButtonClick(): void {
+    private onCheckYourEmailPopUpResendLetterClick(): void {
+        console.log('Resending the email letter...');
+    }
+
+    private onCheckYourEmailPopUpOKClick(): void {
         this.popUpService.hidePopUp();
-        this.navController.navigateRoot(RoutesEnum.SIGN_IN);
+        this.navController.navigateRoot(RoutesEnum.RESET_PASSWORD);
     }
 }

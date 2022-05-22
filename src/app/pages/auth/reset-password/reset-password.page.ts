@@ -6,24 +6,24 @@ import {AmphoraSectionModel} from '../../../components/common/amphora-section/am
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {AuthService} from '../auth.service';
+import {NavController} from '@ionic/angular';
 import {Store} from '@ngrx/store';
 import {AuthEnum} from '../../../shared/enums/auth.enum';
 import {take} from 'rxjs/operators';
-import {ResetPasswordSelectors} from '../../../store/reset-password/reset-password.selectors';
-import {ResetPasswordActions} from '../../../store/reset-password/reset-password.actions';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {PopUpService} from '../../../services/utils/pop-up.service';
-import {NavController} from '@ionic/angular';
-import {RoutesEnum} from '../../../shared/enums/routes.enum';
+import {ResetPasswordSelectors} from '../../../store/reset-password/reset-password.selectors';
+import {ResetPasswordActions} from '../../../store/reset-password/reset-password.actions';
 
 @Component({
-  selector: 'amphora-reset-password',
-  templateUrl: './reset-password.page.html',
-  styleUrls: ['./reset-password.page.scss'],
+    selector: 'amphora-reset-password',
+    templateUrl: './reset-password.page.html',
+    styleUrls: ['./reset-password.page.scss'],
 })
 export class ResetPasswordPage implements OnInit {
     public resetPasswordForm = this.formBuilder.group({
-        [ResetPasswordFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
+        [ResetPasswordFormEnum.CODE]: ['', [Validators.required]],
         [ResetPasswordFormEnum.NEW_PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
     });
 
@@ -32,14 +32,14 @@ export class ResetPasswordPage implements OnInit {
     public formSectionModel: AmphoraSectionModel;
     public submitSectionModel: AmphoraSectionModel;
     public submitButtonModel: AmphoraButtonModel;
-    public emailInputModel: AmphoraInputFieldModel;
+    public codeInputModel: AmphoraInputFieldModel;
     public passwordInputModel: AmphoraInputFieldModel;
-    public checkYourEmailPopUpModel: AmphoraCommonPopUpModel;
+    public successPopUpModel: AmphoraCommonPopUpModel;
 
     constructor(private authService: AuthService,
                 private formBuilder: FormBuilder,
-                private popUpService: PopUpService,
                 private navController: NavController,
+                private popUpService: PopUpService,
                 private store$: Store) { }
 
     public ngOnInit(): void {
@@ -54,15 +54,12 @@ export class ResetPasswordPage implements OnInit {
         this.formSectionModel = this.authService.createOrnamentedSection();
         this.submitSectionModel = this.authService.createRegularSection();
         this.submitButtonModel = this.authService.createSubmitButton();
-        this.checkYourEmailPopUpModel = this.popUpService.createCheckYourEmailPopUp({
-            resendOnClick: this.onCheckYourEmailPopUpResendLetterClick.bind(this),
-            okOnClick: this.onCheckYourEmailPopUpOKClick.bind(this),
-        });
+        this.successPopUpModel = this.popUpService.createSuccessPopUp(this.onSuccessPopUpButtonClick.bind(this));
 
-        this.emailInputModel = this.authService.createEmailInputField(
-            this.store$.select(ResetPasswordSelectors.selectEmail),
-            'Email',
-            this.onInput(ResetPasswordFormEnum.EMAIL).bind(this)
+        this.codeInputModel = this.authService.createTextInputField(
+            this.store$.select(ResetPasswordSelectors.selectCode),
+            'Verification Code',
+            this.onInput(ResetPasswordFormEnum.CODE).bind(this)
         );
 
         this.passwordInputModel = this.authService.createPasswordInputField(
@@ -89,12 +86,8 @@ export class ResetPasswordPage implements OnInit {
         };
     }
 
-    private onCheckYourEmailPopUpResendLetterClick(): void {
-        console.log('Resending the email letter...');
-    }
-
-    private onCheckYourEmailPopUpOKClick(): void {
+    private onSuccessPopUpButtonClick(): void {
         this.popUpService.hidePopUp();
-        this.navController.navigateRoot(RoutesEnum.VERIFICATION);
+        this.navController.navigateRoot(RoutesEnum.SIGN_IN);
     }
 }

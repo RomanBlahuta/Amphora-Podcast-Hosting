@@ -1,17 +1,17 @@
 import {createReducer, on} from '@ngrx/store';
-import {ResetPasswordActions} from './reset-password.actions';
 import {ResetPasswordFormEnum} from '../../shared/enums/forms/auth-forms.enum';
+import {ResetPasswordActions} from './reset-password.actions';
 
 export namespace fromResetPassword {
     export const resetPasswordFeatureKey = 'resetPassword';
 
     export interface IState {
-        [ResetPasswordFormEnum.EMAIL]: string;
+        [ResetPasswordFormEnum.CODE]: string;
         [ResetPasswordFormEnum.NEW_PASSWORD]: string;
     }
 
     export const initialState: IState = {
-        [ResetPasswordFormEnum.EMAIL]: '',
+        [ResetPasswordFormEnum.CODE]: '',
         [ResetPasswordFormEnum.NEW_PASSWORD]: '',
     };
 

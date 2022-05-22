@@ -12,8 +12,9 @@ import {InputFieldTypesEnum} from '../../shared/enums/component-types/input-fiel
 import {AuthEnum} from '../../shared/enums/auth.enum';
 import {SignUpActions} from '../../store/sign-up/sign-up.actions';
 import {Observable} from 'rxjs';
-import {ResetPasswordActions} from '../../store/reset-password/reset-password.actions';
+import {ForgotPasswordActions} from '../../store/forgot-password/forgot-password.actions';
 import {VerificationActions} from '../../store/verification/verification.actions';
+import {ResetPasswordActions} from '../../store/reset-password/reset-password.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -34,6 +35,8 @@ export class AuthService {
                 return AmphoraHeaderModel.create(HeaderTypesEnum.SIGN_UP);
             case AuthEnum.SIGN_UP:
                 return AmphoraHeaderModel.create(HeaderTypesEnum.SIGN_IN);
+            case AuthEnum.FORGOT_PASSWORD:
+                return AmphoraHeaderModel.create(HeaderTypesEnum.AUTH);
             case AuthEnum.RESET_PASSWORD:
                 return AmphoraHeaderModel.create(HeaderTypesEnum.AUTH);
             case AuthEnum.VERIFICATION:
@@ -63,6 +66,11 @@ export class AuthService {
                 return AmphoraButtonModel.create('Sign Up', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
                     onClick: () => this.store$.dispatch(SignUpActions.submit()),
+                });
+            case AuthEnum.FORGOT_PASSWORD:
+                return AmphoraButtonModel.create('Submit', {
+                    buttonColor: ButtonColorsEnum.PRIMARY,
+                    onClick: () => this.store$.dispatch(ForgotPasswordActions.submit()),
                 });
             case AuthEnum.RESET_PASSWORD:
                 return AmphoraButtonModel.create('Submit', {
