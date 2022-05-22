@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {RoutesEnum} from './shared/enums/routes.enum';
+import {AuthGuardService} from './services/guards/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: RoutesEnum.LANDING,
+        redirectTo: 'landing',
         pathMatch: 'full',
     },
     {
-        path: RoutesEnum.LANDING,
+        path: 'landing',
         loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule),
     },
     {
@@ -38,14 +38,17 @@ const routes: Routes = [
     },
     {
         path: 'dashboard',
+        canActivate: [AuthGuardService],
         loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
     },
     {
         path: 'show/:id',
+        canActivate: [AuthGuardService],
         loadChildren: () => import('./pages/show/show/show.module').then(m => m.ShowPageModule)
     },
     {
         path: 'show/:mode/:id',
+        canActivate: [AuthGuardService],
         loadChildren: () => import('./pages/show/show-create-edit/show-create-edit.module').then( m => m.ShowCreateEditPageModule)
     },
     {

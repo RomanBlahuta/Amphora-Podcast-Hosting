@@ -82,10 +82,11 @@ export class ForgotPasswordPage implements OnInit {
     }
 
     private onCheckYourEmailPopUpResendLetterClick(): void {
-        console.log('Resending the email letter...');
+        this.store$.dispatch(ForgotPasswordActions.submit());
     }
 
     private onCheckYourEmailPopUpOKClick(): void {
+        this.store$.dispatch(ForgotPasswordActions.clear());
         this.popUpService.hidePopUp();
         this.navController.navigateRoot(RoutesEnum.RESET_PASSWORD);
     }

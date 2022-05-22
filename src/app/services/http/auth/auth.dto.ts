@@ -52,3 +52,19 @@ export interface ResetPasswordRequestDTO {
 
 export interface ResetPasswordResponseDTO {
 }
+
+// VERIFIACTION
+
+export interface RequestVerificationRequestDTO {
+    email: string;
+}
+
+export interface RequestVerificationResponseDTO {
+}
+
+export interface VerificationRequestDTO {
+    token: string;
+}
+
+export interface VerificationResponseDTO {
+}

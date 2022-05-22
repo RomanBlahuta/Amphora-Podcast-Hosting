@@ -23,7 +23,6 @@ export class ResetPasswordEffects {
     public submitSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(ResetPasswordActions.submitSuccess),
         tap((action) => {
-            this.store$.dispatch(ResetPasswordActions.clear());
             this.popUpService.showPopUp(PopUpTypesEnum.CHECK_EMAIL);
         }),
     ), {dispatch: false});

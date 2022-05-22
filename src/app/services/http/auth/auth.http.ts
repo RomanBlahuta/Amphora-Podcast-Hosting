@@ -3,12 +3,19 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {
-    ForgotPasswordRequestDTO, ForgotPasswordResponseDTO, ResetPasswordRequestDTO, ResetPasswordResponseDTO,
+    ForgotPasswordRequestDTO,
+    ForgotPasswordResponseDTO,
+    ResetPasswordRequestDTO,
+    ResetPasswordResponseDTO,
     SignInRequestDTO,
     SignInRequestFormDataEnum,
     SignInResponseDTO,
     SignUpRequestDTO,
-    SignUpResponseDTO
+    SignUpResponseDTO,
+    RequestVerificationRequestDTO,
+    RequestVerificationResponseDTO,
+    VerificationRequestDTO,
+    VerificationResponseDTO
 } from './auth.dto';
 import {setFormDataUtil} from '../../../shared/utils/utils';
 
@@ -35,5 +42,13 @@ export class AuthHttp {
 
     public resetPassword(request: ResetPasswordRequestDTO): Observable<ResetPasswordResponseDTO> {
         return this.http.post(HTTP_ROUTING.auth.resetPassword, request);
+    }
+
+    public requestVerificationToken(request: RequestVerificationRequestDTO): Observable<RequestVerificationResponseDTO> {
+        return this.http.post<RequestVerificationResponseDTO>(HTTP_ROUTING.auth.requestVerify, request);
+    }
+
+    public verify(request: VerificationRequestDTO): Observable<VerificationResponseDTO> {
+        return this.http.post(HTTP_ROUTING.auth.verify, request);
     }
 }

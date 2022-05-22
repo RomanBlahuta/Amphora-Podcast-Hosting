@@ -11,6 +11,7 @@ import {AmphoraInputFieldModule} from '../../../components/inputs/amphora-input-
 import {AmphoraSectionModule} from '../../../components/common/amphora-section/amphora-section.module';
 import {AmphoraPageModule} from '../../../components/common/amphora-page/amphora-page.module';
 import {AmphoraButtonModule} from '../../../components/common/amphora-button/amphora-button.module';
+import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.module';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import {AmphoraButtonModule} from '../../../components/common/amphora-button/amp
         AmphoraInputFieldModule,
         AmphoraSectionModule,
         AmphoraPageModule,
-        AmphoraButtonModule
+        AmphoraButtonModule,
+        AmphoraCommonPopUpModule
     ],
   declarations: [SignUpPage]
 })

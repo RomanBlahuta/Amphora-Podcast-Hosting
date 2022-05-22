@@ -115,19 +115,19 @@ export class AuthService {
         });
     }
 
-    public createVerificationCodeInputField(
-        valueController: Observable<string>,
-        onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
-        return AmphoraInputFieldModel.create(valueController, {
-            inputType: InputFieldTypesEnum.CODE,
-            onInputListener: onInput,
-            placeholder: 'Verification code',
-            size: {
-                width: 400,
-                height: 128,
-            },
-        });
-    }
+    // public createVerificationCodeInputField(
+    //     valueController: Observable<string>,
+    //     onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
+    //     return AmphoraInputFieldModel.create(valueController, {
+    //         inputType: InputFieldTypesEnum.CODE,
+    //         onInputListener: onInput,
+    //         placeholder: 'Verification code',
+    //         size: {
+    //             width: 400,
+    //             height: 128,
+    //         },
+    //     });
+    // }
 
     public createPasswordInputField(
         valueController: Observable<string>,

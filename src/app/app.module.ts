@@ -23,6 +23,7 @@ import {DashboardEffects} from './store/dashboard/dashboard.effects';
 import {ShowEffects} from './store/show/show.effects';
 import {AuthInterceptor} from './services/interceptors/auth.interceptor';
 import {ResetPasswordEffects} from './store/reset-password/reset-password.effects';
+import {AuthGuardService} from './services/guards/auth.guard';
 
 export const EFFECTS = [
     SignInEffects,
@@ -50,6 +51,7 @@ export const EFFECTS = [
         AmphoraErrorPopUpModule,
     ],
     providers: [
+        AuthGuardService,
         {
             provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy,

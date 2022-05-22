@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import {environment} from '../../../environments/environment';
+import {LocalStorageStateEnum} from '../../shared/enums/local-storage-state.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -14,8 +15,11 @@ export class LocalStorageService {
         localStorage.setItem(key, this.encrypt(value));
     }
 
-    public get(key: string): string {
-        return this.decrypt(localStorage.getItem(key));
+    public get(key: LocalStorageStateEnum): string {
+        if (localStorage.getItem(key)) {
+            return this.decrypt(localStorage.getItem(key));
+        }
+        return null;
     }
 
     public remove(key: string): void {

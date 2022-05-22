@@ -11,6 +11,10 @@ import {AuthService} from '../auth.service';
 import {AuthEnum} from '../../../shared/enums/auth.enum';
 import {SignUpSelectors} from '../../../store/sign-up/sign-up.selectors';
 import {SignUpActions} from '../../../store/sign-up/sign-up.actions';
+import {NavController} from '@ionic/angular';
+import {PopUpService} from '../../../services/utils/pop-up.service';
+import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
   selector: 'amphora-sign-up',
@@ -36,9 +40,12 @@ export class SignUpPage implements OnInit {
     public lastNameInputModel: AmphoraInputFieldModel;
     public passwordInputModel: AmphoraInputFieldModel;
     public repeatPasswordInputModel: AmphoraInputFieldModel;
+    public checkEmailPopUpModel: AmphoraCommonPopUpModel;
 
     constructor(private authService: AuthService,
                 private formBuilder: FormBuilder,
+                private navController: NavController,
+                private popUpService: PopUpService,
                 private store$: Store) { }
 
     public ngOnInit(): void {
@@ -51,6 +58,10 @@ export class SignUpPage implements OnInit {
         this.headerModel = this.authService.createHeader();
         this.titleSectionModel = this.authService.createRegularSection();
         this.formSectionModel = this.authService.createOrnamentedSection();
+        this.checkEmailPopUpModel = this.popUpService.createCheckYourEmailPopUp({
+            resendOnClick: this.onCheckYourEmailPopUpResendLetterClick.bind(this),
+            okOnClick: this.onCheckYourEmailPopUpOKClick.bind(this),
+        });
         this.submitSectionModel = this.authService.createRegularSection();
         this.submitButtonModel = this.authService.createSubmitButton();
 
@@ -102,4 +113,13 @@ export class SignUpPage implements OnInit {
         };
     }
 
+    private onCheckYourEmailPopUpResendLetterClick(): void {
+        this.store$.dispatch(SignUpActions.submit());
+    }
+
+    private onCheckYourEmailPopUpOKClick(): void {
+        this.store$.dispatch(SignUpActions.clear());
+        this.popUpService.hidePopUp();
+        this.navController.navigateRoot(RoutesEnum.VERIFICATION);
+    }
 }

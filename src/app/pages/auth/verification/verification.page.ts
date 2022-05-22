@@ -55,9 +55,10 @@ export class VerificationPage implements OnInit {
         this.submitButtonModel = this.authService.createSubmitButton();
         this.successPopUpModel = this.popUpService.createSuccessPopUp(this.onSuccessPopUpButtonClick.bind(this));
 
-        this.verificationCodeInputModel = this.authService.createVerificationCodeInputField(
+        this.verificationCodeInputModel = this.authService.createTextInputField(
             this.store$.select(VerificationSelectors.selectVerificationCode),
-            this.onInput().bind(this)
+            'Verification Code',
+            this.onInput().bind(this),
         );
     }
 
