@@ -4,41 +4,33 @@ import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amph
 import {HeaderTypesEnum} from '../../../shared/enums/component-types/header-types.enum';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../../shared/enums/component-types/button-types.enum';
-import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
 import {Observable} from 'rxjs';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
-import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
-import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
 import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
-import {PopUpService} from '../../../services/utils/pop-up.service';
-import {PopUpTypesEnum} from '../../../shared/enums/component-types/pop-up-types.enum';
-import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-icon.model';
-import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
+import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
+import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
+import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
+import {AmphoraUploadAudioModel} from '../../../components/inputs/amphora-upload-audio/amphora-upload-audio.model';
+import {AmphoraOptionsSelectModel} from '../../../components/inputs/amphora-options-select/amphora-options-select.model';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ShowCreateEditService {
-    constructor(private store$: Store,
-                private popUpService: PopUpService) {
+export class EpisodeCreateEditService {
+    constructor(private store$: Store) {
     }
 
     public createHeader(): AmphoraHeaderModel {
         return AmphoraHeaderModel.create(HeaderTypesEnum.USER);
     }
 
-    public createStreamingIcons(): AmphoraIconModel[] {
-        const result = [];
-        for (const field in StreamingIntegrationsEnum) {
-            result.push(StreamingIntegrationsEnum[field]);
-        }
-        return result.map(integration => AmphoraIconModel.create(integration, {
-            size: {
-                width: 64,
-                height: 64,
-            }
-        }));
+    public createSelectOptions(): AmphoraOptionsSelectModel {
+        return  null;
+    }
+
+    public createUploadAudio(): AmphoraUploadAudioModel {
+        return AmphoraUploadAudioModel.create(null, () => {console.log('Audio');});
     }
 
     public createButtons(): AmphoraButtonModel[] {
@@ -94,22 +86,6 @@ export class ShowCreateEditService {
         });
     }
 
-    public createAddSeriesButton(): AmphoraButtonModel {
-        return AmphoraButtonModel.create('Add', {
-            onClick: () => 'Add Series',
-        });
-    }
-
-    public createStreamingOptionsButton(): AmphoraButtonModel {
-        return AmphoraButtonModel.create('Streaming Options', {
-            size: {
-                width: 40,
-                widthUnit: UnitsOfMeasurementEnum.VW,
-            },
-            onClick: () => this.popUpService.showPopUp(PopUpTypesEnum.STREAMING_OPTIONS),
-        });
-    }
-
     public createTextArea(
         valueController: Observable<string>,
         placeholder: string,
@@ -124,6 +100,21 @@ export class ShowCreateEditService {
                 width: 40,
                 widthUnit: UnitsOfMeasurementEnum.VW,
             },
+        });
+    }
+
+    public createNumberInputField(
+        valueController: Observable<string>,
+        placeholder: string,
+        onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
+        return AmphoraInputFieldModel.create(valueController, {
+            inputType: InputFieldTypesEnum.TEXT,
+            onInputListener: onInput,
+            placeholder,
+            size: {
+                width: 19,
+                widthUnit: UnitsOfMeasurementEnum.VW,
+            }
         });
     }
 

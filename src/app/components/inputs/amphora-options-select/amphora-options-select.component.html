@@ -1,3 +1,11 @@
-<p>
-  amphora-options-select works!
-</p>
+<div class="options">
+    <div (click)="onOptionClick(EpisodeTypesEnum.FULL)" [class]="['options__full', 'options__full-' + (currentOption === EpisodeTypesEnum.FULL ? 'active' : 'inactive')]">
+        <span class="font-option-label">Full</span>
+    </div>
+    <div (click)="onOptionClick(EpisodeTypesEnum.TRAILER)" [class]="['options__trailer', 'options__trailer-' + ((currentOption === EpisodeTypesEnum.TRAILER) ? 'active' : 'inactive')]">
+        <span class="font-option-label">Trailer</span>
+    </div>
+    <div (click)="onOptionClick(EpisodeTypesEnum.BONUS)" [class]="['options__bonus', 'options__bonus-' + (currentOption === EpisodeTypesEnum.BONUS ? 'active' : 'inactive')]">
+        <span class="font-option-label">Bonus</span>
+    </div>
+</div>

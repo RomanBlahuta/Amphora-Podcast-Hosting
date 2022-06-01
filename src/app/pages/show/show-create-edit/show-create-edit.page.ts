@@ -7,6 +7,9 @@ import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-t
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
 import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
+import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
+import {PopUpService} from '../../../services/utils/pop-up.service';
+import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-icon.model';
 
 @Component({
     selector: 'amphora-show-create-edit',
@@ -23,9 +26,12 @@ export class ShowCreateEditPage implements OnInit {
     public uploadImageModel: AmphoraUploadImageModel;
     public addSeriesButtonModel: AmphoraButtonModel;
     public seriesModels: AmphoraSeriesTagModel[] = [];
+    public streamingPopUpModel: AmphoraCommonPopUpModel;
+    public streamingIconModels: AmphoraIconModel[];
 
     constructor(private route: ActivatedRoute,
-                private showCreateEditService: ShowCreateEditService) { }
+                private showCreateEditService: ShowCreateEditService,
+                private popUpService: PopUpService) { }
 
     public ngOnInit(): void {
         this.route.params.subscribe((params) => {
@@ -43,6 +49,7 @@ export class ShowCreateEditPage implements OnInit {
         this.addSeriesButtonModel = this.showCreateEditService.createAddSeriesButton();
         this.uploadImageModel = this.showCreateEditService.createUploadImage();
         this.streamingOptionsButtonModel = this.showCreateEditService.createStreamingOptionsButton();
+        this.streamingIconModels = this.showCreateEditService.createStreamingIcons();
         this.titleInputModel = this.showCreateEditService.createTextInputField(
             null,
             'Show Title',
@@ -58,5 +65,12 @@ export class ShowCreateEditPage implements OnInit {
             'Description',
             (value: string, model: AmphoraTextAreaModel) => console.log(value),
         );
+        this.streamingPopUpModel = this.popUpService.createStreamingOptionsPopUp({
+            applyOnClick: () => {
+                console.log('Applied!');
+                this.popUpService.hidePopUp();
+            },
+            cancelOnClick: () => this.popUpService.hidePopUp(),
+        });
     }
 }

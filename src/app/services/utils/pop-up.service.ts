@@ -60,4 +60,20 @@ export class PopUpService {
             popUpType: PopUpTypesEnum.CHECK_EMAIL,
         });
     }
+
+    public createStreamingOptionsPopUp(onButtonClicks: {applyOnClick: () => void; cancelOnClick: () => void}): AmphoraCommonPopUpModel {
+        return AmphoraCommonPopUpModel.create('Streaming Options', {
+            buttons: [
+                AmphoraButtonModel.create('Apply', {
+                    buttonColor: ButtonColorsEnum.PRIMARY,
+                    onClick: onButtonClicks.applyOnClick,
+                }),
+                AmphoraButtonModel.create('Cancel', {
+                    buttonColor: ButtonColorsEnum.WHITE,
+                    onClick: onButtonClicks.cancelOnClick,
+                }),
+            ],
+            popUpType: PopUpTypesEnum.STREAMING_OPTIONS,
+        });
+    }
 }

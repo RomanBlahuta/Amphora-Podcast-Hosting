@@ -1,21 +1,18 @@
 @import "src/global";
 
-.pop-up {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    &__icon {
-        margin: 0 24px;
-    }
-}
-
-.show-create-edit {
+.episode-create-edit {
 
     &__content {
         padding: 64px;
 
-        &-show {
+        &-audio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        &-episode {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -54,9 +51,9 @@
                     }
                 }
 
-                &-streaming {
+                &-numbers {
                     display: flex;
-                    justify-content: start;
+                    justify-content: space-between;
                     align-items: center;
                     margin: 16px 0;
                     width: 100%;

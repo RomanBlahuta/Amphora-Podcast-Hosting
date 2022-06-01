@@ -13,6 +13,8 @@ import {AmphoraButtonModule} from '../../../components/common/amphora-button/amp
 import {AmphoraInputFieldModule} from '../../../components/inputs/amphora-input-field/amphora-input-field.module';
 import {AmphoraTextAreaModule} from '../../../components/inputs/amphora-text-area/amphora-text-area.module';
 import {AmphoraUploadImageModule} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.module';
+import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.module';
+import {AmphoraIconModule} from '../../../components/common/amphora-icon/amphora-icon.module';
 
 @NgModule({
     imports: [
@@ -25,7 +27,9 @@ import {AmphoraUploadImageModule} from '../../../components/inputs/amphora-uploa
         AmphoraButtonModule,
         AmphoraInputFieldModule,
         AmphoraTextAreaModule,
-        AmphoraUploadImageModule
+        AmphoraUploadImageModule,
+        AmphoraCommonPopUpModule,
+        AmphoraIconModule
     ],
   declarations: [ShowCreateEditPage]
 })

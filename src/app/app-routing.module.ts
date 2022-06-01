@@ -52,6 +52,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/show/show-create-edit/show-create-edit.module').then( m => m.ShowCreateEditPageModule)
     },
     {
+        path: 'episode/:mode/:id',
+        loadChildren: () =>
+            import('./pages/episode/episode-create-edit/episode-create-edit.module').then( m => m.EpisodeCreateEditPageModule)
+    },
+    {
         path: '**',
         loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule),
     },

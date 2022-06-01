@@ -1,0 +1,38 @@
+<ion-content class="episode-create-edit">
+    <amphora-page [headerModel]="headerModel">
+        <div class="episode-create-edit__content">
+            <h1 class="font-section-title">Create/Edit Episode</h1>
+            <div class="spacer-ver-32px"></div>
+            <div class="episode-create-edit__content-episode">
+                <div class="episode-create-edit__content-episode-data">
+                    <amphora-input-field [model]="titleInputModel"></amphora-input-field>
+                    <div class="episode-create-edit__content-episode-data-numbers">
+                        <amphora-input-field [model]="seasonInputFieldModel"></amphora-input-field>
+                        <amphora-input-field [model]="episodeInputFIeldModel"></amphora-input-field>
+                    </div>
+                    <amphora-text-area [model]="descriptionTextAreaModel"></amphora-text-area>
+                    <div class="episode-create-edit__content-episode-data-series">
+                        <amphora-options-select></amphora-options-select>
+                        <div class="episode-create-edit__content-episode-data-series-list">
+                            <div class="episode-create-edit__content-episode-data-series-container" *ngFor="let seriesModel of seriesModels">
+                                <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="episode-create-edit__content-episode-img-btns">
+                    <div class="episode-create-edit__content-episode-img-container">
+                        <amphora-upload-image [model]="uploadImageModel"></amphora-upload-image>
+                    </div>
+                    <div class="spacer-ver-32px"></div>
+                    <div class="episode-create-edit__content-episode-btn" *ngFor="let btnModel of buttonModels">
+                        <amphora-button [model]="btnModel"></amphora-button>
+                    </div>
+                </div>
+            </div>
+            <div class="episode-create-edit__content-audio">
+                <amphora-upload-audio [model]=""></amphora-upload-audio>
+            </div>
+        </div>
+    </amphora-page>
+</ion-content>

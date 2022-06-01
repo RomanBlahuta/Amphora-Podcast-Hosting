@@ -1,3 +1,15 @@
-<p>
-  amphora-upload-audio works!
-</p>
+<input type="file" class="audio__input" (change)="onFileSelected($event)" #fileUpload accept=".mp3,.mp4,.ogg">
+
+<div class="audio__upload" *ngIf="!playerModel">
+    <div class="audio__upload-button" (click)="fileUpload.click()" (mouseenter)="changeHoverStatus(true)" (mouseleave)="changeHoverStatus(false)">
+        <amphora-icon [model]="(hover) ? uploadWhiteIconModel : uploadPrimaryIconModel"></amphora-icon>
+        <p class="audio__upload-button-label font-button-label">
+            Click to upload audio
+        </p>
+    </div>
+</div>
+
+<div class="audio__uploaded" *ngIf="playerModel">
+    <h1 class="font-card-title">{{ fileName }}</h1>
+    <amphora-audio-player [model]="playerModel"></amphora-audio-player>
+</div>

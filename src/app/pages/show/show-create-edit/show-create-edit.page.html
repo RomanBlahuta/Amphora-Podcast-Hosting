@@ -33,4 +33,12 @@
             </div>
         </div>
     </amphora-page>
+
+    <amphora-common-pop-up [model]="streamingPopUpModel">
+        <div class="pop-up">
+            <div *ngFor="let model of streamingIconModels" class="pop-up__icon">
+                <amphora-icon [model]="model"></amphora-icon>
+            </div>
+        </div>
+    </amphora-common-pop-up>
 </ion-content>
