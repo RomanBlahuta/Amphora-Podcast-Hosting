@@ -53,7 +53,7 @@ export class DashboardPage implements OnInit {
         this.profilePictureModel = this.dashBoardService.createProfilePicture();
         this.editButtonModel = this.dashBoardService.createEditButton();
         this.newShowButtonModel = this.dashBoardService.createNewShowButton();
-        this.searchFieldModel = this.dashBoardService.createSearchField();
+        this.searchFieldModel = this.dashBoardService.createSearchField(this.searchShowController);
         this.showPreviewModels = this.dashBoardService.createShowPreviewCards();
         this.paginationModel = this.dashBoardService.createPagination();
     }

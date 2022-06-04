@@ -6,6 +6,7 @@
     "scripts": {
         "ng": "ng",
         "web:start": "ionic serve",
+        "web:start-prod": "ionic serve --prod",
         "start": "ng serve",
         "build": "ng build",
         "test": "ng test",

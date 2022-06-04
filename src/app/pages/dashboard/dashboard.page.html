@@ -25,7 +25,7 @@
                     <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
                 </div>
 
-                <div class="dashboard__section-shows-list">
+                <div class="dashboard__section-shows-list" *ngIf="(showPreviewModels | async).length > 0">
                     <div class="dashboard__section-shows-list-item" *ngFor="let model of (showPreviewModels | async)">
                         <amphora-show-preview-card [model]="model"></amphora-show-preview-card>
                     </div>

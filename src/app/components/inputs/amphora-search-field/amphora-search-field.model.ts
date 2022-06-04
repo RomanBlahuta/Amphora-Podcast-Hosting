@@ -5,6 +5,7 @@ export interface IOptional {
     onInputListener?: (value: string, inputModel: AmphoraSearchFieldModel) => void;
     placeholder?: string;
     formControl?: FormControl;
+    onDebouncedSearch?: () => void;
 }
 
 export class AmphoraSearchFieldModel {
@@ -20,6 +21,7 @@ export class AmphoraSearchFieldModel {
             onInputListener: optional?.onInputListener || undefined,
             placeholder: optional?.placeholder || '',
             formControl: optional?.formControl || new FormControl(''),
+            onDebouncedSearch: optional?.onDebouncedSearch || undefined,
         };
     }
 

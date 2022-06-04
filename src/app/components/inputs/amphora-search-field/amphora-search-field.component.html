@@ -2,6 +2,7 @@
     <input #input
            type="text"
            [class]="['input']"
+           [formControl]="model.optional.formControl"
            [placeholder]="model.optional.placeholder" (input)="onInput($event)" />
     <div class="input__icon">
         <button class="input__icon-button" mat-icon-button>

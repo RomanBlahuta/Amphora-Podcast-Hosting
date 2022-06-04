@@ -3,7 +3,7 @@ import {AmphoraSearchFieldModel} from './amphora-search-field.model';
 import {AmphoraIconModel} from '../../common/amphora-icon/amphora-icon.model';
 import {Subject} from 'rxjs';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
-import {takeUntil} from 'rxjs/operators';
+import {debounceTime, takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'amphora-search-field',
@@ -37,6 +37,15 @@ export class AmphoraSearchFieldComponent implements OnInit, OnDestroy {
                 this.inputElementRef.nativeElement.value = value;
             });
         }
+
+        this.model.optional.formControl.valueChanges.pipe(
+            takeUntil(this.unsubscribe$),
+            debounceTime(1000),
+        ).subscribe(() => {
+            if (this.model.optional.onDebouncedSearch) {
+                this.model.optional.onDebouncedSearch();
+            }
+        });
     }
 
     public ngOnDestroy(): void {

@@ -16,6 +16,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
 import {DashboardActions} from '../../store/dashboard/dashboard.actions';
+import {FormControl} from '@angular/forms';
 
 @Injectable({
     providedIn: 'root',
@@ -62,10 +63,12 @@ export class DashboardService {
         });
     }
 
-    public createSearchField(): AmphoraSearchFieldModel {
-        return AmphoraSearchFieldModel.create(null, {
-            onInputListener: () => console.log('Search'),
+    public createSearchField(formControl: FormControl): AmphoraSearchFieldModel {
+        return AmphoraSearchFieldModel.create(this.store$.select(DashboardSelectors.selectSearchString), {
+            onInputListener: (value: string, inputModel: AmphoraSearchFieldModel) => this.store$.dispatch(DashboardActions.search({value})),
             placeholder: 'Search Shows',
+            formControl,
+            onDebouncedSearch: () => this.store$.dispatch(DashboardActions.loadShows()),
         });
     }
 
