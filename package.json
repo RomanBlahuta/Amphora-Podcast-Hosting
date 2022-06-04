@@ -7,6 +7,7 @@
         "ng": "ng",
         "web:start": "ionic serve",
         "web:start-prod": "ionic serve --prod",
+        "firebase:deploy": "ionic build --prod && rd /s /Q hosting\\www && mkdir hosting\\www && xcopy /s /i www\\* hosting\\www && cd hosting && firebase deploy",
         "start": "ng serve",
         "build": "ng build",
         "test": "ng test",
