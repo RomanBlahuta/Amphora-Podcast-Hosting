@@ -16,9 +16,9 @@ export namespace DashboardSelectors {
         (state) => state.pagination.totalPages,
     );
 
-    export const selectFilteredShowsForView = createSelector(
+    export const selectSearchString = createSelector(
         selectDashboardState,
-        (state) => state.shows,
+        (state) => state.searchValue,
     );
 
     export const selectCurrentPage = createSelector(

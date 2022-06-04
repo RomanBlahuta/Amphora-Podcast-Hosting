@@ -1,4 +1,5 @@
 import {createAction, props} from '@ngrx/store';
+import {ILoadPaginatedShowsResponseDTO} from '../../services/http/show/show.dto';
 
 export namespace DashboardActions {
     export const loadShows = createAction(
@@ -7,7 +8,7 @@ export namespace DashboardActions {
 
     export const loadShowsSuccess = createAction(
         '[Dashboard] Load Shows Success',
-        props<{shows: any[]}>(),
+        props<{shows: ILoadPaginatedShowsResponseDTO}>(),
     );
 
     export const loadShowsFailure = createAction(

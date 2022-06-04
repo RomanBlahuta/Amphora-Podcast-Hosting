@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="dashboard__section-shows-list">
-                    <div class="dashboard__section-shows-list-item" *ngFor="let model of showPreviewModels">
+                    <div class="dashboard__section-shows-list-item" *ngFor="let model of (showPreviewModels | async)">
                         <amphora-show-preview-card [model]="model"></amphora-show-preview-card>
                     </div>
                 </div>

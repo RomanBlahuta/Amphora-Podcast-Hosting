@@ -11,6 +11,11 @@ import {Store} from '@ngrx/store';
 import {AmphoraSearchFieldModel} from '../../components/inputs/amphora-search-field/amphora-search-field.model';
 import {AmphoraPaginationModel} from '../../components/common/amphora-pagination/amphora-pagination.model';
 import {DashboardSelectors} from '../../store/dashboard/dashboard.selectors';
+import {AmphoraShowPreviewCardModel} from '../../components/cards/amphora-show-preview-card/amphora-show-preview-card.model';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
+import {DashboardActions} from '../../store/dashboard/dashboard.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -64,10 +69,24 @@ export class DashboardService {
         });
     }
 
+    public createShowPreviewCards(): Observable<AmphoraShowPreviewCardModel[]> {
+        return this.store$.select(DashboardSelectors.selectAllShows).pipe(
+            map(shows => shows.map(show => AmphoraShowPreviewCardModel.create(show.title, {
+                image: show.media_link,
+                series: show.series.length,
+                streamingIntegrations: [StreamingIntegrationsEnum.SPOTIFY, StreamingIntegrationsEnum.YOUTUBE],
+            })))
+        );
+    }
+
     public createPagination(): AmphoraPaginationModel {
         return AmphoraPaginationModel.create(
             this.store$.select(DashboardSelectors.selectTotalPages),
             this.store$.select(DashboardSelectors.selectCurrentPage),
-            this.store$.select(DashboardSelectors.selectDisplayedIndexes));
+            this.store$.select(DashboardSelectors.selectDisplayedIndexes), {
+                onClickNumber: index => this.store$.dispatch(DashboardActions.changePage({index})),
+                onClickBack: index => this.store$.dispatch(DashboardActions.changePage({index: index - 1})),
+                onClickForward: index => this.store$.dispatch(DashboardActions.changePage({index: index + 1})),
+            });
     }
 }

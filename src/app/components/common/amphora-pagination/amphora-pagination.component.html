@@ -1,4 +1,4 @@
-<div class="pagination">
+<div class="pagination" *ngIf="(numberedButtonModels | async).length > 0">
     <div class="pagination__button-container">
         <amphora-button [model]="backButtonModel"></amphora-button>
     </div>

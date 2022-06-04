@@ -13,3 +13,7 @@ export const STREAMING_BANNER_ICONS: IconsEnum[] = [
     IconsEnum.CIRCLES,
     IconsEnum.SOUNDCLOUD,
 ];
+
+
+export const SHOW_PAGE_SIZE = 10;
+export const MAX_PAGINATION_PAGES_PER_VIEW = 5;

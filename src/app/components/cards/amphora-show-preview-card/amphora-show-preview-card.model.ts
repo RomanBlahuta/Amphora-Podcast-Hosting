@@ -6,6 +6,7 @@ export interface IOptional {
     series?: number;
     totalWatchTime?: string;
     onButtonClick?: () => void;
+    image?: string;
 }
 
 export class AmphoraShowPreviewCardModel {
@@ -21,6 +22,7 @@ export class AmphoraShowPreviewCardModel {
             series: optional?.series || 0,
             totalWatchTime: optional?.totalWatchTime || '0s',
             onButtonClick: optional?.onButtonClick || undefined,
+            image: optional?.image || '../../../../assets/img/podcast-mock-thumbnail.png',
         };
     }
 

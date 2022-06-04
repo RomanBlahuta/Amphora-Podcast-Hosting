@@ -7,11 +7,12 @@ import {AmphoraSearchFieldModel} from '../../components/inputs/amphora-search-fi
 import {AmphoraShowPreviewCardModel} from '../../components/cards/amphora-show-preview-card/amphora-show-preview-card.model';
 import {AmphoraPaginationModel} from '../../components/common/amphora-pagination/amphora-pagination.model';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
-import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
 import {Store} from '@ngrx/store';
 import {UserActions} from '../../store/user/user.actions';
 import {Observable} from 'rxjs';
 import {UserSelectors} from '../../store/user/user.selectors';
+import {DashboardActions} from '../../store/dashboard/dashboard.actions';
+import {FormControl} from '@angular/forms';
 
 @Component({
     selector: 'amphora-dashboard',
@@ -29,14 +30,17 @@ export class DashboardPage implements OnInit {
     public editButtonModel: AmphoraButtonModel;
     public newShowButtonModel: AmphoraButtonModel;
     public searchFieldModel: AmphoraSearchFieldModel;
-    public showPreviewModels: AmphoraShowPreviewCardModel[];
+    public showPreviewModels: Observable<AmphoraShowPreviewCardModel[]>;
     public paginationModel: AmphoraPaginationModel;
+    public searchShowController = new FormControl('');
 
     constructor(private dashBoardService: DashboardService,
                 private store$: Store) { }
 
     public ngOnInit(): void {
         this.store$.dispatch(UserActions.loadUser());
+        this.store$.dispatch(DashboardActions.loadShows());
+
         this.username = this.store$.select(UserSelectors.selectFullName);
         this.email = this.store$.select(UserSelectors.selectEmail);
         this.createModels();
@@ -50,60 +54,7 @@ export class DashboardPage implements OnInit {
         this.editButtonModel = this.dashBoardService.createEditButton();
         this.newShowButtonModel = this.dashBoardService.createNewShowButton();
         this.searchFieldModel = this.dashBoardService.createSearchField();
-        this.showPreviewModels = [
-            AmphoraShowPreviewCardModel.create('Lorem dolor ipsum sir amet', {
-                streamingIntegrations: [
-                    StreamingIntegrationsEnum.APPLE_PODCASTS,
-                    StreamingIntegrationsEnum.SPOTIFY,
-                    StreamingIntegrationsEnum.GOOGLE_PODCASTS
-                ],
-                episodes: 100,
-                series: 5,
-                totalWatchTime: '10h 11m 40s',
-                onButtonClick: () => {
-                    console.log('Click!');
-                }
-            }),
-            AmphoraShowPreviewCardModel.create('Lorem dolor ipsum sir amet', {
-                streamingIntegrations: [
-                    StreamingIntegrationsEnum.APPLE_PODCASTS,
-                    StreamingIntegrationsEnum.SPOTIFY,
-                    StreamingIntegrationsEnum.GOOGLE_PODCASTS
-                ],
-                episodes: 100,
-                series: 5,
-                totalWatchTime: '10h 11m 40s',
-                onButtonClick: () => {
-                    console.log('Click!');
-                }
-            }),
-            AmphoraShowPreviewCardModel.create('Lorem dolor ipsum sir amet', {
-                streamingIntegrations: [
-                    StreamingIntegrationsEnum.APPLE_PODCASTS,
-                    StreamingIntegrationsEnum.SPOTIFY,
-                    StreamingIntegrationsEnum.GOOGLE_PODCASTS
-                ],
-                episodes: 100,
-                series: 5,
-                totalWatchTime: '10h 11m 40s',
-                onButtonClick: () => {
-                    console.log('Click!');
-                }
-            }),
-            AmphoraShowPreviewCardModel.create('Lorem dolor ipsum sir amet', {
-                streamingIntegrations: [
-                    StreamingIntegrationsEnum.APPLE_PODCASTS,
-                    StreamingIntegrationsEnum.SPOTIFY,
-                    StreamingIntegrationsEnum.GOOGLE_PODCASTS
-                ],
-                episodes: 100,
-                series: 5,
-                totalWatchTime: '10h 11m 40s',
-                onButtonClick: () => {
-                    console.log('Click!');
-                }
-            }),
-        ];
+        this.showPreviewModels = this.dashBoardService.createShowPreviewCards();
         this.paginationModel = this.dashBoardService.createPagination();
     }
 

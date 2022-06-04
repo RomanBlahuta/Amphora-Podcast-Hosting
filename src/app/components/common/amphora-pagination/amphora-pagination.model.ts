@@ -1,9 +1,9 @@
 import {Observable} from 'rxjs';
 
 export interface IOptional {
-    onClickBack?: () => void;
+    onClickBack?: (index: number) => void;
     onClickNumber?: (index: number) => void;
-    onClickForward?: () => void;
+    onClickForward?: (index: number) => void;
 }
 
 export class AmphoraPaginationModel {

@@ -1,8 +1,10 @@
 import {Observable} from 'rxjs';
+import {FormControl} from '@angular/forms';
 
 export interface IOptional {
     onInputListener?: (value: string, inputModel: AmphoraSearchFieldModel) => void;
     placeholder?: string;
+    formControl?: FormControl;
 }
 
 export class AmphoraSearchFieldModel {
@@ -17,6 +19,7 @@ export class AmphoraSearchFieldModel {
         this.optional = {
             onInputListener: optional?.onInputListener || undefined,
             placeholder: optional?.placeholder || '',
+            formControl: optional?.formControl || new FormControl(''),
         };
     }
 

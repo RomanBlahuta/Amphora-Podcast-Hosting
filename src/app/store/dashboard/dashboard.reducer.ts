@@ -1,24 +1,25 @@
 import {createReducer, on} from '@ngrx/store';
 import {DashboardActions} from './dashboard.actions';
 import {IPaginationState} from '../../shared/interfaces/state/pagination-state.interface';
+import {ILoadPaginatedShowsResponseItemDTO} from '../../services/http/show/show.dto';
+import {MAX_PAGINATION_PAGES_PER_VIEW, SHOW_PAGE_SIZE} from '../../shared/utils/constants';
 
 export namespace fromDashboard {
     export const dashboardFeatureKey = 'dashboard';
 
     export interface IState {
         searchValue: string;
-        shows: any[];
+        shows: ILoadPaginatedShowsResponseItemDTO[];
         pagination: IPaginationState;
     }
 
-    // todo: empty and fill after request, move min to reducer
     export const initialState: IState = {
         shows: [],
         searchValue: '',
         pagination: {
-            currentPage: 2,
-            totalPages: 5,
-            displayedIndexes: [...Array(Math.min(5, 5)).keys()],
+            currentPage: 1,
+            totalPages: 1,
+            displayedIndexes: [],
         }
     };
 
@@ -28,7 +29,18 @@ export namespace fromDashboard {
         on(DashboardActions.loadShows, (state) => state),
         on(DashboardActions.loadShowsSuccess, (state, {shows}) => ({
             ...state,
-            shows,
+            shows: shows.items,
+            pagination: {
+                ...state.pagination,
+                totalPages: Math.ceil(shows.total/SHOW_PAGE_SIZE),
+                displayedIndexes: state.pagination.currentPage > 1 ?
+                    state.pagination.displayedIndexes
+                    :
+                    [...Array((Math.ceil(shows.total/SHOW_PAGE_SIZE) < 5) ?
+                        Math.ceil(shows.total/SHOW_PAGE_SIZE)
+                        :
+                        MAX_PAGINATION_PAGES_PER_VIEW).keys()].map(page => page + 1),
+            }
         })),
         on(DashboardActions.loadShowsFailure, (state) => state),
         on(DashboardActions.search, (state, {value}) => ({
@@ -40,6 +52,13 @@ export namespace fromDashboard {
             pagination: {
                 ...state.pagination,
                 currentPage: index,
+                displayedIndexes: (Math.max(...state.pagination.displayedIndexes) < index) ?
+                    state.pagination.displayedIndexes.map(idx => idx + 1)
+                    :
+                    (Math.min(...state.pagination.displayedIndexes) > index) ?
+                        state.pagination.displayedIndexes.map(idx => idx - 1)
+                        :
+                        state.pagination.displayedIndexes,
             },
         })),
     );
