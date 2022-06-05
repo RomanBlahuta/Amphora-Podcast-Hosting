@@ -3,23 +3,14 @@
         <div class="show__content">
             <div class="show__content-show">
                 <div class="show__content-show-data">
-                    <h1 class="show__content-show-data-heading font-section-title">Lorem dolor ipsum sir amet</h1>
+                    <h1 class="show__content-show-data-heading font-section-title">{{ (showData | async)?.title || '' }}</h1>
                     <div class="show__content-show-data-streaming">
                         <div class="show__content-show-data-streaming-item" *ngFor="let iconModel of streamingIconModels">
                             <amphora-icon [model]="iconModel"></amphora-icon>
                         </div>
                     </div>
                     <p class="show__content-show-data-description font-section-paragraph">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.
-                        <br/><br/>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur.
+                        {{ (showData | async)?.description || '' }}
                     </p>
                     <div class="show__content-show-data-series">
                         <div class="show__content-show-data-series-container" *ngFor="let seriesModel of seriesModels">
@@ -29,7 +20,7 @@
                 </div>
                 <div class="show__content-show-img-btns">
                     <div class="show__content-show-img-container">
-                        <img src="../../../../assets/img/podcast-mock-thumbnail.png" alt="Could not load image" class="show__content-show-img">
+                        <img [src]="(showData | async)?.media_link || ''" alt="Could not load image" class="show__content-show-img">
                     </div>
                     <div class="show__content-show-btn" *ngFor="let btnModel of buttonModels">
                         <amphora-button [model]="btnModel"></amphora-button>

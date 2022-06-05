@@ -11,6 +11,16 @@ export namespace ShowSelectors {
         (state) => state.pagination.currentPage,
     );
 
+    export const selectShowId = createSelector(
+        selectShowState,
+        (state) => state.id,
+    );
+
+    export const selectShowData = createSelector(
+        selectShowState,
+        (state) => state.show,
+    );
+
     export const selectDisplayedIndexes = createSelector(
         selectShowState,
         (state) => state.pagination.displayedIndexes,
@@ -23,6 +33,6 @@ export namespace ShowSelectors {
 
     export const selectIsSeriesActive = createSelector(
         selectShowState,
-        (state: fromShow.IState, id: number) => id === state.activeSeries,
+        (state: fromShow.IState, id: string) => id === state.activeSeries,
     );
 }

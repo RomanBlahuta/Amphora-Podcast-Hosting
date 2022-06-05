@@ -17,12 +17,15 @@ import {map} from 'rxjs/operators';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
 import {DashboardActions} from '../../store/dashboard/dashboard.actions';
 import {FormControl} from '@angular/forms';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../shared/enums/routes.enum';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DashboardService {
-    constructor(private store$: Store) {
+    constructor(private store$: Store,
+                private navController: NavController) {
     }
 
     public createHeader(): AmphoraHeaderModel {
@@ -77,6 +80,7 @@ export class DashboardService {
             map(shows => shows.map(show => AmphoraShowPreviewCardModel.create(show.title, {
                 image: show.media_link,
                 series: show.series.length,
+                onButtonClick: () => this.navController.navigateRoot(RoutesEnum.SHOW + '/' + show.id),
                 streamingIntegrations: [StreamingIntegrationsEnum.SPOTIFY, StreamingIntegrationsEnum.YOUTUBE],
             })))
         );

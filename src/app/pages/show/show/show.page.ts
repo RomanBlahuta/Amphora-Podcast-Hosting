@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {ShowService} from './show.service';
 import {AmphoraSearchFieldModel} from '../../../components/inputs/amphora-search-field/amphora-search-field.model';
@@ -8,13 +8,19 @@ import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-
 import {ActivatedRoute} from '@angular/router';
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
 import {AmphoraEpisodeCardModel} from '../../../components/cards/amphora-episode-card/amphora-episode-card.model';
+import {Store} from '@ngrx/store';
+import {ShowActions} from '../../../store/show/show.actions';
+import {Observable, Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
+import {ShowSelectors} from '../../../store/show/show.selectors';
+import {ILoadShowResponseDTO} from '../../../services/http/show/show.dto';
 
 @Component({
     selector: 'amphora-show',
     templateUrl: './show.page.html',
     styleUrls: ['./show.page.scss'],
 })
-export class ShowPage implements OnInit {
+export class ShowPage implements OnInit, OnDestroy {
     public headerModel: AmphoraHeaderModel;
     public searchFieldModel: AmphoraSearchFieldModel;
     public buttonModels: AmphoraButtonModel[];
@@ -22,16 +28,26 @@ export class ShowPage implements OnInit {
     public streamingIconModels: AmphoraIconModel[];
     public seriesModels: AmphoraSeriesTagModel[];
     public episodeCardModels: AmphoraEpisodeCardModel[];
+    public unsubscribe$ = new Subject();
+    public showData: Observable<ILoadShowResponseDTO>;
 
     constructor(private showService: ShowService,
-                private route: ActivatedRoute) { }
+                private route: ActivatedRoute,
+                private store$: Store) { }
 
     public ngOnInit(): void {
-        this.route.params.subscribe((params) => {
-            console.log('id: ', params.id);
+        this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe((params) => {
+            this.store$.dispatch(ShowActions.loadShow({id: params.id}));
         });
 
+        this.showData = this.store$.select(ShowSelectors.selectShowData);
+
         this.createModels();
+    }
+
+    public ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     private createModels(): void {

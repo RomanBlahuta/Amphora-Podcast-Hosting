@@ -121,21 +121,18 @@ export class EpisodeCreateEditService {
     public createSeriesTags(): AmphoraSeriesTagModel[] {
         return [
             AmphoraSeriesTagModel.create('Series #1', {
-                id: 1,
                 onClick: () => {
                     console.log('Series');
                 },
             }),
 
             AmphoraSeriesTagModel.create('Series #2', {
-                id: 2,
                 onClick: () => {
                     console.log('Series');
                 },
             }),
 
             AmphoraSeriesTagModel.create('Series #3', {
-                id: 3,
                 onClick: () => {
                     console.log('Series');
                 },

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
-import {ILoadPaginatedShowsResponseDTO} from './show.dto';
+import {ILoadPaginatedShowsResponseDTO, ILoadShowResponseDTO} from './show.dto';
 
 @Injectable({
     providedIn: 'root',
@@ -15,5 +15,9 @@ export class ShowHttp {
         return this.http.get<ILoadPaginatedShowsResponseDTO>(
             HTTP_ROUTING.show.loadShows + `?page=${page}&size=10` + ((title.length > 0) ? `&show_name=${title}` : ''),
         );
+    }
+
+    public getShow(id: string): Observable<ILoadShowResponseDTO> {
+        return this.http.get<ILoadShowResponseDTO>(HTTP_ROUTING.show.loadShow + '/' + id);
     }
 }

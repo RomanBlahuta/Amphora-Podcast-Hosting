@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 export interface IOptional {
     onClick?: () => void;
     active$?: Observable<boolean>;
-    id?: number;
+    // id?: number;
 }
 
 export class AmphoraSeriesTagModel {

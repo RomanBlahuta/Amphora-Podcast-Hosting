@@ -22,3 +22,24 @@ export interface ILoadPaginatedShowsResponseDTO {
     page: number;
     size: number;
 }
+
+
+export interface ILoadShowResponseDTO {
+    is_removed: boolean;
+    id: string;
+    title: string;
+    description: string;
+    language: string;
+    show_copyright: string;
+    category: string;
+    series: string[];
+    show_link: string;
+    media_link: string;
+    generator: string;
+    featured: boolean;
+    image: string;
+    is_locked: true;
+    owner: string;
+    last_build_date: string;
+    feed_file_link: string;
+}

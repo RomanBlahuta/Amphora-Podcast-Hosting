@@ -27,7 +27,7 @@ export class ShowService {
     public createSearchField(): AmphoraSearchFieldModel {
         return AmphoraSearchFieldModel.create(null, {
             onInputListener: () => console.log('Search'),
-            placeholder: 'Search Shows',
+            placeholder: 'Search Episodes',
         });
     }
 
@@ -73,30 +73,24 @@ export class ShowService {
     public createSeriesTags(): AmphoraSeriesTagModel[] {
         return [
             AmphoraSeriesTagModel.create('Series #1', {
-                id: 1,
                 onClick: () => {
-                    console.log('Series');
-                    this.store$.dispatch(ShowActions.setActiveSeries({id: 1}));
+                    this.store$.dispatch(ShowActions.setActiveSeries({id: 'Series #1'}));
                 },
-                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 1),
+                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 'Series #1'),
             }),
 
             AmphoraSeriesTagModel.create('Series #2', {
-                id: 2,
                 onClick: () => {
-                    console.log('Series');
-                    this.store$.dispatch(ShowActions.setActiveSeries({id: 2}));
+                    this.store$.dispatch(ShowActions.setActiveSeries({id: 'Series #2'}));
                 },
-                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 2),
+                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 'Series #2'),
             }),
 
             AmphoraSeriesTagModel.create('Series #3', {
-                id: 3,
                 onClick: () => {
-                    console.log('Series');
-                    this.store$.dispatch(ShowActions.setActiveSeries({id: 3}));
+                    this.store$.dispatch(ShowActions.setActiveSeries({id: 'Series #3'}));
                 },
-                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 3),
+                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 'Series #3'),
             }),
         ];
     }

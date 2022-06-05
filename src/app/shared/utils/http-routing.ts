@@ -14,7 +14,8 @@ export const HTTP_ROUTING = {
         loadUser: `${environment.apiBase}/users/me`,
     },
     show: {
-        loadShows: `${environment.apiBase}/shows/my`
+        loadShows: `${environment.apiBase}/shows/my`,
+        loadShow: `${environment.apiBase}/shows`,
     },
     episode: {
         //
