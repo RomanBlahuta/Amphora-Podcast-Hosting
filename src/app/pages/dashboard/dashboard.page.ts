@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
@@ -9,17 +9,19 @@ import {AmphoraPaginationModel} from '../../components/common/amphora-pagination
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {Store} from '@ngrx/store';
 import {UserActions} from '../../store/user/user.actions';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {UserSelectors} from '../../store/user/user.selectors';
 import {DashboardActions} from '../../store/dashboard/dashboard.actions';
 import {FormControl} from '@angular/forms';
+import {DashboardSelectors} from '../../store/dashboard/dashboard.selectors';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
     selector: 'amphora-dashboard',
     templateUrl: './dashboard.page.html',
     styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, OnDestroy {
     public username: Observable<string>;
     public email: Observable<string>;
 
@@ -32,7 +34,8 @@ export class DashboardPage implements OnInit {
     public searchFieldModel: AmphoraSearchFieldModel;
     public showPreviewModels: Observable<AmphoraShowPreviewCardModel[]>;
     public paginationModel: AmphoraPaginationModel;
-    public searchShowController = new FormControl('');
+    public searchShowController: FormControl;
+    public unsubscribe$ = new Subject();
 
     constructor(private dashBoardService: DashboardService,
                 private store$: Store) { }
@@ -43,7 +46,15 @@ export class DashboardPage implements OnInit {
 
         this.username = this.store$.select(UserSelectors.selectFullName);
         this.email = this.store$.select(UserSelectors.selectEmail);
+        this.store$.select(DashboardSelectors.selectSearchString).pipe(
+            takeUntil(this.unsubscribe$),
+        ).subscribe(search => this.searchShowController = new FormControl(search));
         this.createModels();
+    }
+
+    public ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     private createModels(): void {
@@ -57,5 +68,4 @@ export class DashboardPage implements OnInit {
         this.showPreviewModels = this.dashBoardService.createShowPreviewCards();
         this.paginationModel = this.dashBoardService.createPagination();
     }
-
 }

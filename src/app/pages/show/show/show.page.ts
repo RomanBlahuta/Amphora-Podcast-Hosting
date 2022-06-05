@@ -14,6 +14,7 @@ import {Observable, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {ShowSelectors} from '../../../store/show/show.selectors';
 import {ILoadShowResponseDTO} from '../../../services/http/show/show.dto';
+import {FormControl} from '@angular/forms';
 
 @Component({
     selector: 'amphora-show',
@@ -26,10 +27,12 @@ export class ShowPage implements OnInit, OnDestroy {
     public buttonModels: AmphoraButtonModel[];
     public paginationModel: AmphoraPaginationModel;
     public streamingIconModels: AmphoraIconModel[];
-    public seriesModels: AmphoraSeriesTagModel[];
-    public episodeCardModels: AmphoraEpisodeCardModel[];
+    public seriesModels: Observable<AmphoraSeriesTagModel[]>;
+    public episodeCardModels: Observable<AmphoraEpisodeCardModel[]>;
     public unsubscribe$ = new Subject();
     public showData: Observable<ILoadShowResponseDTO>;
+    public searchEpisodeController: FormControl;
+    public showId: string;
 
     constructor(private showService: ShowService,
                 private route: ActivatedRoute,
@@ -38,9 +41,14 @@ export class ShowPage implements OnInit, OnDestroy {
     public ngOnInit(): void {
         this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe((params) => {
             this.store$.dispatch(ShowActions.loadShow({id: params.id}));
+            this.showId = params.id;
         });
 
         this.showData = this.store$.select(ShowSelectors.selectShowData);
+
+        this.store$.select(ShowSelectors.selectSearchString).pipe(
+            takeUntil(this.unsubscribe$)
+        ).subscribe(search => this.searchEpisodeController = new FormControl(search));
 
         this.createModels();
     }
@@ -52,7 +60,7 @@ export class ShowPage implements OnInit, OnDestroy {
 
     private createModels(): void {
         this.headerModel = this.showService.createHeader();
-        this.searchFieldModel = this.showService.createSearchField();
+        this.searchFieldModel = this.showService.createSearchField(this.showId, this.searchEpisodeController);
         this.buttonModels = this.showService.createButtons();
         this.paginationModel = this.showService.createPagination();
         this.streamingIconModels = this.showService.createStreamingIcons();

@@ -18,7 +18,7 @@ export class AmphoraSeriesTagModel {
         };
     }
 
-    public static create(label: string, optional: IOptional): AmphoraSeriesTagModel {
+    public static create(label: string, optional?: IOptional): AmphoraSeriesTagModel {
         return new AmphoraSeriesTagModel(label, optional);
     }
 }

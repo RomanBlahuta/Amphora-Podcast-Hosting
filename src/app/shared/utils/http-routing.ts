@@ -18,6 +18,6 @@ export const HTTP_ROUTING = {
         loadShow: `${environment.apiBase}/shows`,
     },
     episode: {
-        //
+        loadEpisodes: `${environment.apiBase}/episodes`
     },
 };

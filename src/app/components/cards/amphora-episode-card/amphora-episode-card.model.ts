@@ -1,7 +1,7 @@
 
 
 export interface IOptional {
-    id?: number;
+    id?: string;
     img?: string;
     audio?: any;
     series?: any;

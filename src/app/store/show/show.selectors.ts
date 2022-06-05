@@ -31,8 +31,28 @@ export namespace ShowSelectors {
         (state) => state.pagination.totalPages,
     );
 
+    export const selectAllShowSeries = createSelector(
+        selectShowState,
+        (state) => state.show?.series?.length ? state.show.series : [],
+    );
+
     export const selectIsSeriesActive = createSelector(
         selectShowState,
         (state: fromShow.IState, id: string) => id === state.activeSeries,
+    );
+
+    export const selectShowEpisodes = createSelector(
+        selectShowState,
+        (state) => state.episodes,
+    );
+
+    export const selectActiveSeries = createSelector(
+        selectShowState,
+        (state) => state.activeSeries,
+    );
+
+    export const selectSearchString = createSelector(
+        selectShowState,
+        (state) => state.searchValue,
     );
 }

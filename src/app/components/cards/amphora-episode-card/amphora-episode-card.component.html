@@ -1,6 +1,6 @@
 <div class="episode-card" (mouseenter)="changeShowOverlay(true)" (mouseleave)="changeShowOverlay(false)">
     <div class="episode-card__img-container">
-        <img src="../../../../assets/img/podcast-mock-thumbnail.png" alt="Could not load image" class="episode-card__img">
+        <img [src]="model.optional.img" alt="Could not load image" class="episode-card__img">
         <div class="episode-card__img-overlay" *ngIf="showOverlay" [@fadeInOutAnimation]>
             <div class="episode-card__img-overlay-btn" *ngFor="let btnModel of overlayButtonModels">
                 <amphora-button [model]="btnModel"></amphora-button>

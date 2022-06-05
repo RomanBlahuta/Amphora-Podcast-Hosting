@@ -12,6 +12,9 @@ import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
 import {ShowActions} from '../../../store/show/show.actions';
 import {AmphoraEpisodeCardModel} from '../../../components/cards/amphora-episode-card/amphora-episode-card.model';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {FormControl} from '@angular/forms';
 
 @Injectable({
     providedIn: 'root',
@@ -24,10 +27,12 @@ export class ShowService {
         return AmphoraHeaderModel.create(HeaderTypesEnum.USER);
     }
 
-    public createSearchField(): AmphoraSearchFieldModel {
-        return AmphoraSearchFieldModel.create(null, {
-            onInputListener: () => console.log('Search'),
+    public createSearchField(showId: string, formControl: FormControl): AmphoraSearchFieldModel {
+        return AmphoraSearchFieldModel.create(this.store$.select(ShowSelectors.selectSearchString), {
+            onInputListener: (value: string, inputModel: AmphoraSearchFieldModel) => this.store$.dispatch(ShowActions.search({value})),
             placeholder: 'Search Episodes',
+            onDebouncedSearch: () => this.store$.dispatch(ShowActions.loadShowEpisodes({id: showId})),
+            formControl,
         });
     }
 
@@ -70,29 +75,13 @@ export class ShowService {
         );
     }
 
-    public createSeriesTags(): AmphoraSeriesTagModel[] {
-        return [
-            AmphoraSeriesTagModel.create('Series #1', {
-                onClick: () => {
-                    this.store$.dispatch(ShowActions.setActiveSeries({id: 'Series #1'}));
-                },
-                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 'Series #1'),
-            }),
-
-            AmphoraSeriesTagModel.create('Series #2', {
-                onClick: () => {
-                    this.store$.dispatch(ShowActions.setActiveSeries({id: 'Series #2'}));
-                },
-                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 'Series #2'),
-            }),
-
-            AmphoraSeriesTagModel.create('Series #3', {
-                onClick: () => {
-                    this.store$.dispatch(ShowActions.setActiveSeries({id: 'Series #3'}));
-                },
-                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, 'Series #3'),
-            }),
-        ];
+    public createSeriesTags(): Observable<AmphoraSeriesTagModel[]> {
+        return this.store$.select(ShowSelectors.selectAllShowSeries).pipe(
+            map(seriesList => seriesList.map(series => AmphoraSeriesTagModel.create(series, {
+                onClick: () => this.store$.dispatch(ShowActions.setActiveSeries({id: series})),
+                active$: this.store$.select(ShowSelectors.selectIsSeriesActive, series),
+            }))),
+        );
     }
 
     public createStreamingIcons(): AmphoraIconModel[] {
@@ -126,31 +115,18 @@ export class ShowService {
         ];
     }
 
-    public createEpisodeCards(): AmphoraEpisodeCardModel[] {
-        return [
-            AmphoraEpisodeCardModel.create('Lorem dolor ipsum sir amet', {
-                id: 0,
-                season: 10,
-                episode: 100,
-                watchTime: '1h 32m 50s',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ' +
-                    'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
-                    'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum ' +
-                    'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia ' +
-                    'deserunt mollit anim id est laborum...',
-            }),
-
-            AmphoraEpisodeCardModel.create('Lorem dolor ipsum sir', {
-                id: 1,
-                season: 1,
-                episode: 12,
-                watchTime: '1h 2m 15s',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ' +
-                    'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
-                    'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum ' +
-                    'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia ' +
-                    'deserunt mollit anim id est laborum...',
-            }),
-        ];
+    public createEpisodeCards(): Observable<AmphoraEpisodeCardModel[]> {
+        return this.store$.select(ShowSelectors.selectShowEpisodes).pipe(
+            map(episodes => episodes.map(episode => AmphoraEpisodeCardModel.create(
+                episode.title, {
+                    id: episode.id,
+                    season: episode.season_num,
+                    episode: episode.episode_num,
+                    watchTime: `${episode.duration}`,
+                    description: episode.description,
+                    series: episode.series,
+                },
+            ))),
+        );
     }
 }

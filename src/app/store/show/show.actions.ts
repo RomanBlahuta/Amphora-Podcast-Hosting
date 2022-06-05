@@ -1,5 +1,8 @@
 import {createAction, props} from '@ngrx/store';
 import {ILoadShowResponseDTO} from '../../services/http/show/show.dto';
+import {
+    ILoadEpisodesByShowIdResponseDto,
+} from '../../services/http/episode/episode.dto';
 
 export namespace ShowActions {
     export const changePage = createAction(
@@ -24,5 +27,24 @@ export namespace ShowActions {
 
     export const loadShowFailure = createAction(
         '[Show] Load Show Failure',
+    );
+
+    export const loadShowEpisodes = createAction(
+        '[Show] Load Show Episodes',
+        props<{id: string}>(),
+    );
+
+    export const loadShowEpisodesSuccess = createAction(
+        '[Show] Load Show Episodes Success',
+        props<{episodes: ILoadEpisodesByShowIdResponseDto}>(),
+    );
+
+    export const loadShowEpisodesFailure = createAction(
+        '[Show] Load Show Episodes Failure',
+    );
+
+    export const search = createAction(
+        '[Show] Search',
+        props<{value: string}>(),
     );
 }

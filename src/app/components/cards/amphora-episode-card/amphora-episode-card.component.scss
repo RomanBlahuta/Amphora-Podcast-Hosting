@@ -7,7 +7,7 @@ $card-height: 400px;
     border-radius: 16px;
     display: flex;
     min-height: $card-height;
-    width: 100%;
+    width: calc(100vw - 128px);
     background-color: $color-white;
     text-overflow: ellipsis;
 

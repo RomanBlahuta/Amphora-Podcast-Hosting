@@ -1,6 +1,7 @@
 export interface ILoadPaginatedShowsResponseItemDTO {
     id: string;
     title: string;
+    duration: number;
     show_link: string;
     media_link: string;
     description: string;

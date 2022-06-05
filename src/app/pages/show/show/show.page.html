@@ -13,7 +13,7 @@
                         {{ (showData | async)?.description || '' }}
                     </p>
                     <div class="show__content-show-data-series">
-                        <div class="show__content-show-data-series-container" *ngFor="let seriesModel of seriesModels">
+                        <div class="show__content-show-data-series-container" *ngFor="let seriesModel of (seriesModels | async)">
                             <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
                 </div>
                 <div class="show__content-episodes-list">
-                    <div class="show__content-episodes-list-item" *ngFor="let episodeModel of episodeCardModels">
+                    <div class="show__content-episodes-list-item" *ngFor="let episodeModel of (episodeCardModels | async)">
                         <amphora-episode-card [model]="episodeModel"></amphora-episode-card>
                     </div>
                 </div>

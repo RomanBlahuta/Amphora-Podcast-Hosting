@@ -47,7 +47,7 @@ export class AmphoraEpisodeCardComponent implements OnInit {
             }),
         ];
 
-        this.seriesModel = AmphoraSeriesTagModel.create('Series #1', {
+        this.seriesModel = AmphoraSeriesTagModel.create(this.model.optional.series, {
             onClick: () => console.log('Filter by series'),
         });
     }

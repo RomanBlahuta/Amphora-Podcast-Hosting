@@ -15,5 +15,6 @@ export const STREAMING_BANNER_ICONS: IconsEnum[] = [
 ];
 
 
-export const SHOW_PAGE_SIZE = 10;
+export const SHOW_PAGE_SIZE = 6;
+export const EPISODE_PAGE_SIZE = 2;
 export const MAX_PAGINATION_PAGES_PER_VIEW = 5;

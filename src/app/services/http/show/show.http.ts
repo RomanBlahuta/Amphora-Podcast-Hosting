@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {ILoadPaginatedShowsResponseDTO, ILoadShowResponseDTO} from './show.dto';
+import {SHOW_PAGE_SIZE} from '../../../shared/utils/constants';
 
 @Injectable({
     providedIn: 'root',
@@ -13,7 +14,7 @@ export class ShowHttp {
 
     public getPaginatedShows(page: number, title: string): Observable<ILoadPaginatedShowsResponseDTO> {
         return this.http.get<ILoadPaginatedShowsResponseDTO>(
-            HTTP_ROUTING.show.loadShows + `?page=${page}&size=10` + ((title.length > 0) ? `&show_name=${title}` : ''),
+            HTTP_ROUTING.show.loadShows + `?page=${page}&size=${SHOW_PAGE_SIZE}` + ((title.length > 0) ? `&show_name=${title}` : ''),
         );
     }
 
