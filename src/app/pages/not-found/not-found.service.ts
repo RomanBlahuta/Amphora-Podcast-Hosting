@@ -4,8 +4,6 @@ import {IconsEnum} from '../../shared/enums/icons.enum';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {NavController} from '@ionic/angular';
 import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.enum';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
-import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {RoutesEnum} from '../../shared/enums/routes.enum';
 
 @Injectable({
@@ -13,10 +11,6 @@ import {RoutesEnum} from '../../shared/enums/routes.enum';
 })
 export class NotFoundService {
     constructor(private navController: NavController) {
-    }
-
-    public createHeader(): AmphoraHeaderModel {
-        return AmphoraHeaderModel.create(HeaderTypesEnum.EMPTY);
     }
 
     public createMinotaurMazeIcon(): AmphoraIconModel {

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LandingService} from './landing.service';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {STREAMING_BANNER_ICONS} from '../../shared/utils/constants';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
@@ -12,8 +11,7 @@ import {IconsEnum} from '../../shared/enums/icons.enum';
   templateUrl: 'landing.page.html',
   styleUrls: ['landing.page.scss'],
 })
-export class LandingPage implements OnInit{
-    public headerModel: AmphoraHeaderModel;
+export class LandingPage implements OnInit {
     public aboutSectionModel: AmphoraSectionModel;
     public featuresSectionModel: AmphoraSectionModel;
     public streamingSectionModel: AmphoraSectionModel;
@@ -31,7 +29,6 @@ export class LandingPage implements OnInit{
     }
 
     private createModels(): void {
-        this.headerModel = this.landingService.createHeader();
         this.aboutSectionModel = this.landingService.createRegularSection();
         this.featuresSectionModel = this.landingService.createOrnamentedSection();
         this.streamingSectionModel = this.landingService.createRegularSection();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {VerificationFormEnum} from '../../../shared/enums/forms/auth-forms.enum';
 import {FormBuilder, Validators} from '@angular/forms';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {AmphoraSectionModel} from '../../../components/common/amphora-section/amphora-section.model';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
@@ -26,13 +25,11 @@ export class VerificationPage implements OnInit {
         [VerificationFormEnum.VERIFICATION_CODE]: ['', [Validators.required]],
     });
 
-    public headerModel: AmphoraHeaderModel;
     public titleSectionModel: AmphoraSectionModel;
     public formSectionModel: AmphoraSectionModel;
     public submitSectionModel: AmphoraSectionModel;
     public submitButtonModel: AmphoraButtonModel;
     public verificationCodeInputModel: AmphoraInputFieldModel;
-    // todo remove
     public successPopUpModel: AmphoraCommonPopUpModel;
 
     constructor(private authService: AuthService,
@@ -48,7 +45,6 @@ export class VerificationPage implements OnInit {
     }
 
     private createModels(): void {
-        this.headerModel = this.authService.createHeader();
         this.titleSectionModel = this.authService.createRegularSection();
         this.formSectionModel = this.authService.createOrnamentedSection();
         this.submitSectionModel = this.authService.createRegularSection();

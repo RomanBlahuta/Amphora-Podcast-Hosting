@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AmphoraHeaderModel} from '../amphora-header/amphora-header.model';
+import {Component, OnInit} from '@angular/core';
 import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
 
 @Component({
@@ -8,8 +7,6 @@ import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement
   styleUrls: ['./amphora-page.component.scss'],
 })
 export class AmphoraPageComponent implements OnInit {
-    @Input()
-    public headerModel: AmphoraHeaderModel;
     public UnitsOfMeasurementEnum = UnitsOfMeasurementEnum;
 
     constructor() { }

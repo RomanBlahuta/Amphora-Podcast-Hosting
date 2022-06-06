@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {ShowService} from './show.service';
 import {AmphoraSearchFieldModel} from '../../../components/inputs/amphora-search-field/amphora-search-field.model';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
@@ -22,7 +21,6 @@ import {FormControl} from '@angular/forms';
     styleUrls: ['./show.page.scss'],
 })
 export class ShowPage implements OnInit, OnDestroy {
-    public headerModel: AmphoraHeaderModel;
     public searchFieldModel: AmphoraSearchFieldModel;
     public buttonModels: AmphoraButtonModel[];
     public paginationModel: AmphoraPaginationModel;
@@ -59,7 +57,6 @@ export class ShowPage implements OnInit, OnDestroy {
     }
 
     private createModels(): void {
-        this.headerModel = this.showService.createHeader();
         this.searchFieldModel = this.showService.createSearchField(this.showId, this.searchEpisodeController);
         this.buttonModels = this.showService.createButtons();
         this.paginationModel = this.showService.createPagination();

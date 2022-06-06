@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
-import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
 import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
@@ -27,21 +25,6 @@ export class AuthService {
 
     public setPageType(pageType: AuthEnum): void {
         this.authPageType = pageType;
-    }
-
-    public createHeader(): AmphoraHeaderModel {
-        switch (this.authPageType) {
-            case AuthEnum.SIGN_IN:
-                return AmphoraHeaderModel.create(HeaderTypesEnum.SIGN_UP);
-            case AuthEnum.SIGN_UP:
-                return AmphoraHeaderModel.create(HeaderTypesEnum.SIGN_IN);
-            case AuthEnum.FORGOT_PASSWORD:
-                return AmphoraHeaderModel.create(HeaderTypesEnum.AUTH);
-            case AuthEnum.RESET_PASSWORD:
-                return AmphoraHeaderModel.create(HeaderTypesEnum.AUTH);
-            case AuthEnum.VERIFICATION:
-                return AmphoraHeaderModel.create(HeaderTypesEnum.AUTH);
-        }
     }
 
     public createRegularSection(): AmphoraSectionModel {
@@ -114,20 +97,6 @@ export class AuthService {
             },
         });
     }
-
-    // public createVerificationCodeInputField(
-    //     valueController: Observable<string>,
-    //     onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
-    //     return AmphoraInputFieldModel.create(valueController, {
-    //         inputType: InputFieldTypesEnum.CODE,
-    //         onInputListener: onInput,
-    //         placeholder: 'Verification code',
-    //         size: {
-    //             width: 400,
-    //             height: 128,
-    //         },
-    //     });
-    // }
 
     public createPasswordInputField(
         valueController: Observable<string>,

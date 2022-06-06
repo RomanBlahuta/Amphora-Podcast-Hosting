@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
@@ -15,7 +14,6 @@ import {EpisodeCreateEditService} from './episode-create-edit.service';
 })
 export class EpisodeCreateEditPage implements OnInit {
 
-    public headerModel: AmphoraHeaderModel;
     public buttonModels: AmphoraButtonModel[];
     public titleInputModel: AmphoraInputFieldModel;
     public descriptionTextAreaModel: AmphoraTextAreaModel;
@@ -37,7 +35,6 @@ export class EpisodeCreateEditPage implements OnInit {
     }
 
     public createModels(): void {
-        this.headerModel = this.episodeCreateEditService.createHeader();
         this.buttonModels = this.episodeCreateEditService.createButtons();
         this.seriesModels = this.episodeCreateEditService.createSeriesTags();
         this.uploadImageModel = this.episodeCreateEditService.createUploadImage();

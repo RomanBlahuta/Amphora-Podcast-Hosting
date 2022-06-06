@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
-import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
 import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
@@ -27,10 +25,6 @@ import {parseDurationTimeUtil} from '../../shared/utils/utils';
 export class DashboardService {
     constructor(private store$: Store,
                 private navController: NavController) {
-    }
-
-    public createHeader(): AmphoraHeaderModel {
-        return AmphoraHeaderModel.create(HeaderTypesEnum.USER);
     }
 
     public createProfileSection(): AmphoraSectionModel {

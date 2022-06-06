@@ -1,12 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AmphoraIconModel} from '../amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraButtonModel} from '../amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../../shared/enums/component-types/button-types.enum';
-import {AmphoraHeaderModel} from './amphora-header.model';
 import {HeaderTypesEnum} from '../../../shared/enums/component-types/header-types.enum';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
+import {LocalStorageService} from '../../../services/utils/local-storage.service';
+import {LocalStorageStateEnum} from '../../../shared/enums/local-storage-state.enum';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'amphora-header',
@@ -14,8 +16,7 @@ import {RoutesEnum} from '../../../shared/enums/routes.enum';
   styleUrls: ['./amphora-header.component.scss'],
 })
 export class AmphoraHeaderComponent implements OnInit {
-    @Input()
-    public model: AmphoraHeaderModel;
+    public headerType: HeaderTypesEnum;
 
     public HeaderTypesEnum = HeaderTypesEnum;
 
@@ -23,11 +24,30 @@ export class AmphoraHeaderComponent implements OnInit {
     public signInBtnModel: AmphoraButtonModel;
     public signUpBtnModel: AmphoraButtonModel;
     public logOutBtnModel: AmphoraButtonModel;
+    public dashboardBtnModel: AmphoraButtonModel;
 
-    constructor( private navCtrl: NavController) { }
+    constructor( private navCtrl: NavController,
+                 private localStorageService: LocalStorageService,
+                 private router: Router) { }
 
     public ngOnInit(): void {
         this.createModels();
+        if (this.localStorageService.get(LocalStorageStateEnum.TOKEN)) {
+            this.headerType = (this.router.url === `/${RoutesEnum.DASHBOARD}`) ?
+                HeaderTypesEnum.AUTHORIZED_DASHBOARD : HeaderTypesEnum.AUTHORIZED;
+        } else {
+            switch (this.router.url) {
+                case `/${RoutesEnum.LANDING}`:
+                    this.headerType = HeaderTypesEnum.AUTH;
+                    break;
+                case `/${RoutesEnum.SIGN_IN}`:
+                    this.headerType = HeaderTypesEnum.SIGN_UP;
+                    break;
+                case `/${RoutesEnum.SIGN_UP}`:
+                    this.headerType = HeaderTypesEnum.SIGN_IN;
+                    break;
+            }
+        }
     }
 
     private createModels(): void {
@@ -35,6 +55,7 @@ export class AmphoraHeaderComponent implements OnInit {
         this.signUpBtnModel = this.createSignUpButton();
         this.signInBtnModel = this.createSignInButton();
         this.logOutBtnModel = this.createLogOutButton();
+        this.dashboardBtnModel = this.createDashboardButton();
     }
 
     private createLogo(): AmphoraIconModel {
@@ -58,6 +79,13 @@ export class AmphoraHeaderComponent implements OnInit {
     private createSignUpButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Sign Up', {
             onClick: () => this.navCtrl.navigateRoot(RoutesEnum.SIGN_UP),
+            buttonColor: ButtonColorsEnum.PRIMARY,
+        });
+    }
+
+    private createDashboardButton(): AmphoraButtonModel {
+        return AmphoraButtonModel.create('Dashboard', {
+            onClick: () => this.navCtrl.navigateRoot(RoutesEnum.DASHBOARD),
             buttonColor: ButtonColorsEnum.PRIMARY,
         });
     }

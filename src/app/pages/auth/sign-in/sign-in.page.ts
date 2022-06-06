@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {AmphoraSectionModel} from '../../../components/common/amphora-section/amphora-section.model';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {FormBuilder, Validators} from '@angular/forms';
@@ -24,7 +23,6 @@ export class SignInPage implements OnInit {
         [SignInFormEnum.PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
     });
 
-    public headerModel: AmphoraHeaderModel;
     public titleSectionModel: AmphoraSectionModel;
     public formSectionModel: AmphoraSectionModel;
     public submitSectionModel: AmphoraSectionModel;
@@ -45,7 +43,6 @@ export class SignInPage implements OnInit {
     }
 
     private createModels(): void {
-        this.headerModel = this.authService.createHeader();
         this.titleSectionModel = this.authService.createRegularSection();
         this.formSectionModel = this.authService.createOrnamentedSection();
         this.submitSectionModel = this.authService.createRegularSection();

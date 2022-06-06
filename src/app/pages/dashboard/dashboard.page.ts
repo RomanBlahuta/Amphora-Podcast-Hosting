@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {DashboardService} from './dashboard.service';
@@ -25,7 +24,6 @@ export class DashboardPage implements OnInit, OnDestroy {
     public username: Observable<string>;
     public email: Observable<string>;
 
-    public headerModel: AmphoraHeaderModel;
     public profileSectionModel: AmphoraSectionModel;
     public profilePictureModel: AmphoraIconModel;
     public listSectionModel: AmphoraSectionModel;
@@ -58,7 +56,6 @@ export class DashboardPage implements OnInit, OnDestroy {
     }
 
     private createModels(): void {
-        this.headerModel = this.dashBoardService.createHeader();
         this.profileSectionModel = this.dashBoardService.createProfileSection();
         this.listSectionModel = this.dashBoardService.createRegularSection();
         this.profilePictureModel = this.dashBoardService.createProfilePicture();

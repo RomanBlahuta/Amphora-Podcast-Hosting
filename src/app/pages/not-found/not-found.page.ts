@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {NotFoundService} from './not-found.service';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 
@@ -10,7 +9,6 @@ import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-ico
     styleUrls: ['./not-found.page.scss'],
 })
 export class NotFoundPage implements OnInit {
-    public headerModel: AmphoraHeaderModel;
     public goBackButtonModel: AmphoraButtonModel;
     public minotaurMazeIconModel: AmphoraIconModel;
 
@@ -21,7 +19,6 @@ export class NotFoundPage implements OnInit {
     }
 
     private createModels(): void {
-        this.headerModel = this.notFoundService.createHeader();
         this.minotaurMazeIconModel = this.notFoundService.createMinotaurMazeIcon();
         this.goBackButtonModel = this.notFoundService.createBackButton();
     }

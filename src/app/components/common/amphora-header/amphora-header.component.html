@@ -4,11 +4,14 @@
         <amphora-icon class="header__logo" routerLink="/landing" [model]="logoModel"></amphora-icon>
 
         <div class="header__buttons-container">
-            <amphora-button [model]="signInBtnModel" *ngIf="model.headerType === HeaderTypesEnum.AUTH || model.headerType === HeaderTypesEnum.SIGN_IN"></amphora-button>
-            <div class="spacer-hor-32px" *ngIf="model.headerType === HeaderTypesEnum.AUTH"></div>
-            <amphora-button [model]="signUpBtnModel" *ngIf="model.headerType === HeaderTypesEnum.AUTH || model.headerType === HeaderTypesEnum.SIGN_UP"></amphora-button>
+            <amphora-button [model]="signInBtnModel" *ngIf="headerType === HeaderTypesEnum.AUTH || headerType === HeaderTypesEnum.SIGN_IN"></amphora-button>
+            <div class="spacer-hor-32px" *ngIf="headerType === HeaderTypesEnum.AUTH"></div>
+            <amphora-button [model]="signUpBtnModel" *ngIf="headerType === HeaderTypesEnum.AUTH || headerType === HeaderTypesEnum.SIGN_UP"></amphora-button>
 
-            <amphora-button [model]="logOutBtnModel" *ngIf="model.headerType === HeaderTypesEnum.USER"></amphora-button>
+
+            <amphora-button [model]="dashboardBtnModel" *ngIf="headerType === HeaderTypesEnum.AUTHORIZED"></amphora-button>
+            <div class="spacer-hor-32px" *ngIf="headerType === HeaderTypesEnum.AUTHORIZED"></div>
+            <amphora-button [model]="logOutBtnModel" *ngIf="headerType === HeaderTypesEnum.AUTHORIZED || headerType === HeaderTypesEnum.AUTHORIZED_DASHBOARD"></amphora-button>
         </div>
     </div>
 

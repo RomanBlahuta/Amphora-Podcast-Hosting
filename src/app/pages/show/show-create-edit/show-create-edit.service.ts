@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
-import {HeaderTypesEnum} from '../../../shared/enums/component-types/header-types.enum';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../../shared/enums/component-types/button-types.enum';
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
@@ -22,10 +20,6 @@ import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integra
 export class ShowCreateEditService {
     constructor(private store$: Store,
                 private popUpService: PopUpService) {
-    }
-
-    public createHeader(): AmphoraHeaderModel {
-        return AmphoraHeaderModel.create(HeaderTypesEnum.USER);
     }
 
     public createStreamingIcons(): AmphoraIconModel[] {

@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
-import {HeaderTypesEnum} from '../../../shared/enums/component-types/header-types.enum';
 import {AmphoraSearchFieldModel} from '../../../components/inputs/amphora-search-field/amphora-search-field.model';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../../shared/enums/component-types/button-types.enum';
@@ -21,10 +19,6 @@ import {FormControl} from '@angular/forms';
 })
 export class ShowService {
     constructor(private store$: Store) {
-    }
-
-    public createHeader(): AmphoraHeaderModel {
-        return AmphoraHeaderModel.create(HeaderTypesEnum.USER);
     }
 
     public createSearchField(showId: string, formControl: FormControl): AmphoraSearchFieldModel {

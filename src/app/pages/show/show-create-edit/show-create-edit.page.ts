@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AmphoraHeaderModel} from '../../../components/common/amphora-header/amphora-header.model';
 import {ShowCreateEditService} from './show-create-edit.service';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
@@ -17,7 +16,6 @@ import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-
     styleUrls: ['./show-create-edit.page.scss'],
 })
 export class ShowCreateEditPage implements OnInit {
-    public headerModel: AmphoraHeaderModel;
     public buttonModels: AmphoraButtonModel[];
     public titleInputModel: AmphoraInputFieldModel;
     public descriptionTextAreaModel: AmphoraTextAreaModel;
@@ -43,7 +41,6 @@ export class ShowCreateEditPage implements OnInit {
     }
 
     public createModels(): void {
-        this.headerModel = this.showCreateEditService.createHeader();
         this.buttonModels = this.showCreateEditService.createButtons();
         this.seriesModels = this.showCreateEditService.createSeriesTags();
         this.addSeriesButtonModel = this.showCreateEditService.createAddSeriesButton();

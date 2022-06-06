@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {AmphoraHeaderModel} from '../../components/common/amphora-header/amphora-header.model';
-import {HeaderTypesEnum} from '../../shared/enums/component-types/header-types.enum';
 import {AmphoraSectionModel} from '../../components/common/amphora-section/amphora-section.model';
 import {SectionOrnamentTypesEnum, SectionTypesEnum} from '../../shared/enums/component-types/section-types.enum';
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
@@ -9,17 +7,11 @@ import {ISize} from '../../shared/interfaces/size.interface';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
 import {Store} from '@ngrx/store';
 
-// import {LandingSelectors} from '../../store/landing/landing.selectors';
-
 @Injectable({
     providedIn: 'root',
 })
 export class LandingService {
     constructor(private store$: Store) {
-    }
-
-    public createHeader() {
-        return AmphoraHeaderModel.create(HeaderTypesEnum.AUTH);
     }
 
     public createRegularSection() {
