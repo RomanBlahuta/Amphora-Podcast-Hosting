@@ -15,6 +15,10 @@ export interface ISignInResponseDTO {
     token_type: string;
 }
 
+// SIGN OUT
+export interface ISignOutResponseDTO {
+}
+
 // SIGN UP
 
 export interface ISignUpRequestDTO {

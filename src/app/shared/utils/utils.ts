@@ -1,3 +1,6 @@
+import {RoutesEnum} from '../enums/routes.enum';
+import {LocalStorageService} from '../../services/utils/local-storage.service';
+
 export function setFormDataUtil(formDataEnum: any, formDataProps: any): FormData {
     const formData = new FormData();
 
@@ -19,4 +22,8 @@ export function parseDurationTimeUtil(numberOfSeconds: number): string {
     seconds -= minutes * 60;
 
     return `${(hours >= 1) ? `${hours}h ` : ''}${(minutes >= 1) ? `${minutes}m ` : ''}${(seconds >= 1) ? `${seconds}s` : ''}`;
+}
+
+export function getRootRouteRedirect(): string {
+    return LocalStorageService.isTokenSet() ? RoutesEnum.DASHBOARD : RoutesEnum.LANDING;
 }

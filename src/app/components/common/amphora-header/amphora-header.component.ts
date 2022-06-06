@@ -9,6 +9,8 @@ import {RoutesEnum} from '../../../shared/enums/routes.enum';
 import {LocalStorageService} from '../../../services/utils/local-storage.service';
 import {LocalStorageStateEnum} from '../../../shared/enums/local-storage-state.enum';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {UserActions} from '../../../store/user/user.actions';
 
 @Component({
   selector: 'amphora-header',
@@ -28,7 +30,8 @@ export class AmphoraHeaderComponent implements OnInit {
 
     constructor( private navCtrl: NavController,
                  private localStorageService: LocalStorageService,
-                 private router: Router) { }
+                 private router: Router,
+                 private store$: Store) { }
 
     public ngOnInit(): void {
         this.createModels();
@@ -71,7 +74,9 @@ export class AmphoraHeaderComponent implements OnInit {
 
     private createLogOutButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Log Out', {
-            onClick: () => this.navCtrl.navigateRoot(RoutesEnum.LANDING),
+            onClick: () => {
+                this.store$.dispatch(UserActions.signOut());
+            },
             buttonColor: ButtonColorsEnum.WHITE,
         });
     }

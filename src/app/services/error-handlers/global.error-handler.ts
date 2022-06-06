@@ -16,15 +16,17 @@ export class GlobalErrorHandler implements ErrorHandler {
         const popUpService = this.injector.get(PopUpService);
         const localStorageService = this.injector.get(LocalStorageService);
         const navController = this.injector.get(NavController);
+        let errorMessage = error.message;
 
         if (error instanceof HttpErrorResponse && error.status === 401) {
             localStorageService.clear();
             navController.navigateRoot(RoutesEnum.SIGN_IN);
+            errorMessage = 'Unauthorized: Pleade Sign In before proceeding.';
         }
 
         this.zone.run(() =>
             popUpService.showErrorPopUp(
-                error?.message || 'Undefined client error',
+                errorMessage || 'Undefined client error',
             )
         );
 

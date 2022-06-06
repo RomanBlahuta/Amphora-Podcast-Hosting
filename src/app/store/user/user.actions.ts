@@ -3,15 +3,27 @@ import {ILoadUserResponseDto} from '../../services/http/user/user.dto';
 
 export namespace UserActions {
     export const loadUser = createAction(
-        '[Verification] Load User',
+        '[User] Load User',
     );
 
     export const loadUserSuccess = createAction(
-        '[Verification] Load User Success',
+        '[User] Load User Success',
         props<{response: ILoadUserResponseDto}>(),
     );
 
     export const loadUserFailure = createAction(
-        '[Verification] Load User Failure',
+        '[User] Load User Failure',
+    );
+
+    export const signOut = createAction(
+        '[User] Sign Out',
+    );
+
+    export const signOutSuccess = createAction(
+        '[User] Sign Out Success',
+    );
+
+    export const signOutFailure = createAction(
+        '[User] Sign Out Failure',
     );
 }

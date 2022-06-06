@@ -15,7 +15,7 @@ import {
     IRequestVerificationRequestDTO,
     IRequestVerificationResponseDTO,
     IVerificationRequestDTO,
-    IVerificationResponseDTO
+    IVerificationResponseDTO, ISignOutResponseDTO
 } from './auth.dto';
 import {setFormDataUtil} from '../../../shared/utils/utils';
 
@@ -30,6 +30,10 @@ export class AuthHttp {
         const formData = setFormDataUtil(ISignInRequestFormDataEnum, request);
 
         return this.http.post<ISignInResponseDTO>(HTTP_ROUTING.auth.signIn, formData);
+    }
+
+    public signOut(): Observable<ISignOutResponseDTO> {
+        return this.http.post<ISignOutResponseDTO>(HTTP_ROUTING.auth.signOut, {});
     }
 
     public signUp(request: ISignUpRequestDTO): Observable<ISignUpResponseDTO> {

@@ -1,4 +1,5 @@
 export enum RoutesEnum {
+    ROOT = '',
     LANDING = 'landing',
     SIGN_IN = 'sign-in',
     SIGN_UP = 'sign-up',
@@ -9,5 +10,8 @@ export enum RoutesEnum {
     DASHBOARD = 'dashboard',
     SHOW = 'show',
     SHOW_CREATE = 'show/create',
-    SHOW_EDIT = 'show/edit'
+    SHOW_EDIT = 'show/edit',
+    EPISODE = 'episode',
+    EPISODE_CREATE = 'episode/create',
+    EPISODE_EDIT = 'episode/edit',
 }

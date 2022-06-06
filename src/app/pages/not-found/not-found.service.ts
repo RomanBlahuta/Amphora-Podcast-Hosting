@@ -26,7 +26,7 @@ export class NotFoundService {
         return AmphoraButtonModel.create('Go back', {
             buttonColor: ButtonColorsEnum.PRIMARY,
             // todo: navigate to sign-in or dashboard depending on auth value
-            onClick: () => this.navController.navigateRoot(RoutesEnum.LANDING),
+            onClick: () => this.navController.navigateRoot(RoutesEnum.ROOT),
             size: {
                 width: 138,
                 height: 40,

@@ -1,58 +1,60 @@
 import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {AuthGuardService} from './services/guards/auth.guard';
+import {getRootRouteRedirect} from './shared/utils/utils';
+import {RoutesEnum} from './shared/enums/routes.enum';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'landing',
+        redirectTo: getRootRouteRedirect(),
         pathMatch: 'full',
     },
     {
-        path: 'landing',
+        path: RoutesEnum.LANDING,
         loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule),
     },
     {
-        path: 'sign-in',
+        path: RoutesEnum.SIGN_IN,
         loadChildren: () => import('./pages/auth/sign-in/sign-in.module').then(m => m.SignInPageModule),
     },
     {
-        path: 'sign-up',
+        path: RoutesEnum.SIGN_UP,
         loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpPageModule),
     },
     {
-        path: 'not-found',
+        path: RoutesEnum.NOT_FOUND,
         loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule),
     },
     {
-        path: 'reset-password',
+        path: RoutesEnum.RESET_PASSWORD,
         loadChildren: () => import('./pages/auth/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
     },
     {
-        path: 'forgot-password',
+        path: RoutesEnum.FORGOT_PASSWORD,
         loadChildren: () => import('./pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule),
     },
     {
-        path: 'verification',
+        path: RoutesEnum.VERIFICATION,
         loadChildren: () => import('./pages/auth/verification/verification.module').then(m => m.VerificationPageModule),
     },
     {
-        path: 'dashboard',
+        path: RoutesEnum.DASHBOARD,
         canActivate: [AuthGuardService],
         loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
     },
     {
-        path: 'show/:id',
+        path: `${RoutesEnum.SHOW}/:id`,
         canActivate: [AuthGuardService],
         loadChildren: () => import('./pages/show/show/show.module').then(m => m.ShowPageModule)
     },
     {
-        path: 'show/:mode/:id',
+        path: `${RoutesEnum.SHOW}/:mode/:id`,
         canActivate: [AuthGuardService],
         loadChildren: () => import('./pages/show/show-create-edit/show-create-edit.module').then( m => m.ShowCreateEditPageModule)
     },
     {
-        path: 'episode/:mode/:id',
+        path: `${RoutesEnum.EPISODE}/:mode/:id`,
         loadChildren: () =>
             import('./pages/episode/episode-create-edit/episode-create-edit.module').then( m => m.EpisodeCreateEditPageModule)
     },

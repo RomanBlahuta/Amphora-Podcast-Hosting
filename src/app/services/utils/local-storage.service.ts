@@ -11,6 +11,10 @@ export class LocalStorageService {
     constructor() {
     }
 
+    public static isTokenSet(): boolean {
+        return !!localStorage.getItem(LocalStorageStateEnum.TOKEN);
+    }
+
     public set(key: string, value: string): void {
         localStorage.setItem(key, this.encrypt(value));
     }

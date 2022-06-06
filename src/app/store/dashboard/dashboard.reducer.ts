@@ -29,7 +29,10 @@ export namespace fromDashboard {
         on(DashboardActions.loadShows, (state) => state),
         on(DashboardActions.loadShowsSuccess, (state, {shows}) => ({
             ...state,
-            shows: shows.items,
+            shows: shows.items.map(show => ({
+                ...show,
+                series: (show.series?.length) ? show.series : [],
+            })),
             pagination: {
                 ...state.pagination,
                 totalPages: Math.ceil(shows.total/SHOW_PAGE_SIZE),
