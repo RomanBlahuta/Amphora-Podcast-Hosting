@@ -81,6 +81,7 @@ export class DashboardService {
             map(shows => shows.map(show => AmphoraShowPreviewCardModel.create(show.title, {
                 image: show.media_link,
                 series: show.series.length,
+                episodes: show.episodes_number,
                 totalWatchTime: parseDurationTimeUtil(show.duration),
                 onButtonClick: () => this.navController.navigateRoot(RoutesEnum.SHOW + '/' + show.id),
                 streamingIntegrations: [StreamingIntegrationsEnum.SPOTIFY, StreamingIntegrationsEnum.YOUTUBE],

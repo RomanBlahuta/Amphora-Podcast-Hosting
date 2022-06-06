@@ -1,3 +1,4 @@
+import {Observable} from 'rxjs';
 
 
 export interface IOptional {
@@ -5,6 +6,8 @@ export interface IOptional {
     img?: string;
     audio?: any;
     series?: any;
+    onSeriesTagClick?: () => void;
+    isSeriesActive$?: Observable<boolean>;
     season?: number;
     episode?: number;
     watchTime?: string;
@@ -22,6 +25,8 @@ export class AmphoraEpisodeCardModel {
             img: optional?.img || '../../../../assets/img/podcast-mock-thumbnail.png',
             audio: optional?.audio || undefined,
             series: optional?.series || undefined,
+            onSeriesTagClick: optional?.onSeriesTagClick || undefined,
+            isSeriesActive$: optional?.isSeriesActive$ || undefined,
             episode: optional?.episode || 1,
             season: optional?.season || 1,
             watchTime: optional?.watchTime || '0s',

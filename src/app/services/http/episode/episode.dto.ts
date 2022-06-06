@@ -15,6 +15,7 @@ export interface ILoadEpisodesByShowIdResponseItemDto {
     episode_guid: string;
     pub_date: string;
     duration: number;
+    cover_link: string;
 }
 
 export interface ILoadEpisodesByShowIdResponseDto {

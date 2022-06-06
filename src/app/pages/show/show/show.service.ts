@@ -72,6 +72,11 @@ export class ShowService {
             this.store$.select(ShowSelectors.selectTotalPages),
             this.store$.select(ShowSelectors.selectCurrentPage),
             this.store$.select(ShowSelectors.selectDisplayedIndexes),
+            {
+                onClickBack: index =>  this.store$.dispatch(ShowActions.changePage({index: index - 1})),
+                onClickNumber: index =>  this.store$.dispatch(ShowActions.changePage({index})),
+                onClickForward: index =>  this.store$.dispatch(ShowActions.changePage({index: index + 1})),
+            }
         );
     }
 
@@ -124,7 +129,10 @@ export class ShowService {
                     episode: episode.episode_num,
                     watchTime: `${episode.duration}`,
                     description: episode.description,
+                    onSeriesTagClick: () => this.store$.dispatch(ShowActions.setActiveSeries({id: episode.series})),
+                    isSeriesActive$: this.store$.select(ShowSelectors.selectIsSeriesActive, episode.series),
                     series: episode.series,
+                    img: episode.cover_link,
                 },
             ))),
         );

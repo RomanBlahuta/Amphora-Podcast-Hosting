@@ -36,6 +36,12 @@ export class ShowEffects {
         ))
     ));
 
+    public reloadShows = createEffect(() => this.actions$.pipe(
+        ofType(ShowActions.changePage, ShowActions.setActiveSeries),
+        withLatestFrom(this.store$.select(ShowSelectors.selectShowId)),
+        tap(([_, id]) => this.store$.dispatch(ShowActions.loadShowEpisodes({id}))),
+    ), {dispatch: false});
+
     constructor(private actions$: Actions,
                 private store$: Store,
                 private showHttp: ShowHttp,
