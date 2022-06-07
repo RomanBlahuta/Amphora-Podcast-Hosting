@@ -31,7 +31,7 @@ export class UserEffects {
             this.navCtrl.navigateRoot(RoutesEnum.SIGN_IN);
             this.localStorageService.clear();
         }),
-    ));
+    ), {dispatch: false});
 
     constructor(private actions$: Actions,
                 private store$: Store,
