@@ -32,7 +32,6 @@ export class AmphoraEpisodeCardModel {
             watchTime: optional?.watchTime || '0s',
             description: optional?.description || 'No description provided.',
         };
-        console.log(this.optional);
     }
 
     public static create(title: string, optional?: IOptional): AmphoraEpisodeCardModel {
