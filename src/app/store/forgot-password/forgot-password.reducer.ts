@@ -7,10 +7,12 @@ export namespace fromForgotPassword {
 
     export interface IState {
         [ForgotPasswordFormEnum.EMAIL]: string;
+        valid: boolean;
     }
 
     export const initialState: IState = {
         [ForgotPasswordFormEnum.EMAIL]: '',
+        valid: false,
     };
 
     export const reducer = createReducer(
@@ -19,6 +21,11 @@ export namespace fromForgotPassword {
         on(ForgotPasswordActions.input, (state, {value, field}) => ({
             ...state,
             [field]: value,
+        })),
+
+        on(ForgotPasswordActions.setValidity, (state, {valid}) => ({
+            ...state,
+            valid,
         })),
 
         on(ForgotPasswordActions.submit, (state) => state),

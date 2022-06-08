@@ -8,6 +8,11 @@ export namespace ResetPasswordActions {
         props<{value: string; field: ResetPasswordFormEnum}>(),
     );
 
+    export const setValidity = createAction(
+        '[Reset Password] Set Validity',
+        props<{valid: boolean}>(),
+    );
+
     export const submit = createAction(
         '[Reset Password] Submit',
     );

@@ -13,14 +13,14 @@ import {AuthEnum} from '../../../shared/enums/auth.enum';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
-  selector: 'amphora-sign-in',
-  templateUrl: './sign-in.page.html',
-  styleUrls: ['./sign-in.page.scss'],
+    selector: 'amphora-sign-in',
+    templateUrl: './sign-in.page.html',
+    styleUrls: ['./sign-in.page.scss'],
 })
 export class SignInPage implements OnInit {
     public signInForm = this.formBuilder.group({
         [SignInFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
-        [SignInFormEnum.PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
+        [SignInFormEnum.PASSWORD]: ['', [Validators.required]],
     });
 
     public titleSectionModel: AmphoraSectionModel;
@@ -72,6 +72,7 @@ export class SignInPage implements OnInit {
             this.signInForm.controls[field].setValue(value);
             model.valid = this.signInForm.controls[field].valid;
 
+            this.store$.dispatch(SignInActions.setValidity({valid: this.signInForm.valid}));
             this.store$.dispatch(SignInActions.input({value: this.signInForm.controls[field].value, field}));
         };
     }

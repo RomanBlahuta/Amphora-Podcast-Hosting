@@ -12,6 +12,11 @@ export namespace ForgotPasswordSelectors {
         (state) => state[ForgotPasswordFormEnum.EMAIL],
     );
 
+    export const selectIsButtonDisabled = createSelector(
+        selectForgotPasswordState,
+        (state) => !state.valid,
+    );
+
     export const selectForm = createSelector(
         selectForgotPasswordState,
         (state) => ({

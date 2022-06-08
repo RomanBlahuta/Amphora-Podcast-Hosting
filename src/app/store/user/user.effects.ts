@@ -8,6 +8,7 @@ import {RoutesEnum} from '../../shared/enums/routes.enum';
 import {NavController} from '@ionic/angular';
 import {LocalStorageService} from '../../services/utils/local-storage.service';
 import {AuthHttp} from '../../services/http/auth/auth.http';
+import {AppActions} from '../app/app.actions';
 
 @Injectable()
 export class UserEffects {
@@ -29,6 +30,7 @@ export class UserEffects {
         ofType(UserActions.signOutSuccess),
         tap(() => {
             this.navCtrl.navigateRoot(RoutesEnum.SIGN_IN);
+            this.store$.dispatch(AppActions.clearState());
             this.localStorageService.clear();
         }),
     ), {dispatch: false});

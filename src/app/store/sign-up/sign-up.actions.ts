@@ -8,6 +8,11 @@ export namespace SignUpActions {
         props<{value: string; field: SignUpFormEnum}>(),
     );
 
+    export const setValidity = createAction(
+        '[Sign Up] Set Validity',
+        props<{valid: boolean}>(),
+    );
+
     export const submit = createAction(
         '[Sign Up] Submit',
     );

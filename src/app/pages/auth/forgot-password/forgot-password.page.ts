@@ -74,6 +74,7 @@ export class ForgotPasswordPage implements OnInit {
             this.forgotPasswordForm.controls[field].setValue(value);
             model.valid = this.forgotPasswordForm.controls[field].valid;
 
+            this.store$.dispatch(ForgotPasswordActions.setValidity({valid: this.forgotPasswordForm.valid}));
             this.store$.dispatch(ForgotPasswordActions.input({value: this.forgotPasswordForm.controls[field].value, field}));
         };
     }

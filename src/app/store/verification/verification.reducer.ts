@@ -7,10 +7,12 @@ export namespace fromVerification {
 
     export interface IState {
         [VerificationFormEnum.VERIFICATION_CODE]: string;
+        valid: boolean;
     }
 
     export const initialState: IState = {
         [VerificationFormEnum.VERIFICATION_CODE]: '',
+        valid: false,
     };
 
     export const reducer = createReducer(
@@ -19,6 +21,11 @@ export namespace fromVerification {
         on(VerificationActions.input, (state, {value}) => ({
             ...state,
             [VerificationFormEnum.VERIFICATION_CODE]: value,
+        })),
+
+        on(VerificationActions.setValidity, (state, {valid}) => ({
+            ...state,
+            valid,
         })),
 
         on(VerificationActions.submit, (state) => state),

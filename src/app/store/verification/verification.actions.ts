@@ -7,6 +7,11 @@ export namespace VerificationActions {
         props<{value: string}>(),
     );
 
+    export const setValidity = createAction(
+        '[Verification] Set Validity',
+        props<{valid: boolean}>(),
+    );
+
     export const submit = createAction(
         '[Verification] Submit',
     );

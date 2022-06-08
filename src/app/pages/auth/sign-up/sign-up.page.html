@@ -23,7 +23,7 @@
                     <p class="sign-up__section-form-error font-input-error" *ngIf="!passwordInputModel.valid">Password is too short</p>
                     <div class="spacer-ver-32px"></div>
                     <amphora-input-field [model]="repeatPasswordInputModel"></amphora-input-field>
-                    <p class="sign-up__section-form-error font-input-error" *ngIf="!repeatPasswordInputModel.valid">Password is too short</p>
+                    <p class="sign-up__section-form-error font-input-error" *ngIf="signUpForm.getError('repeatPassword')">Passwords should match</p>
                 </div>
             </div>
         </amphora-section>

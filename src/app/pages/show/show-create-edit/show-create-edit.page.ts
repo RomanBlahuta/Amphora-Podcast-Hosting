@@ -16,6 +16,7 @@ import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-
     styleUrls: ['./show-create-edit.page.scss'],
 })
 export class ShowCreateEditPage implements OnInit {
+    public pageMode: string;
     public buttonModels: AmphoraButtonModel[];
     public titleInputModel: AmphoraInputFieldModel;
     public descriptionTextAreaModel: AmphoraTextAreaModel;
@@ -33,6 +34,7 @@ export class ShowCreateEditPage implements OnInit {
 
     public ngOnInit(): void {
         this.route.params.subscribe((params) => {
+            this.pageMode = params.mode.charAt(0).toUpperCase() + params.mode.slice(1);
             console.log('mode: ', params.mode);
             console.log('id: ', params.id);
         });

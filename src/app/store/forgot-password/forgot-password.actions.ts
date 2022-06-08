@@ -8,6 +8,11 @@ export namespace ForgotPasswordActions {
         props<{value: string; field: ForgotPasswordFormEnum}>(),
     );
 
+    export const setValidity = createAction(
+        '[Forgot Password] Set Validity',
+        props<{valid: boolean}>(),
+    );
+
     export const submit = createAction(
         '[Forgot Password] Submit',
     );

@@ -8,11 +8,13 @@ export namespace fromSignIn {
     export interface IState {
         [SignInFormEnum.EMAIL]: string;
         [SignInFormEnum.PASSWORD]: string;
+        valid: boolean;
     }
 
     export const initialState: IState = {
         [SignInFormEnum.EMAIL]: '',
         [SignInFormEnum.PASSWORD]: '',
+        valid: false,
     };
 
     export const reducer = createReducer(
@@ -21,6 +23,11 @@ export namespace fromSignIn {
         on(SignInActions.input, (state, {value, field}) => ({
             ...state,
             [field]: value,
+        })),
+
+        on(SignInActions.setValidity, (state, {valid}) => ({
+            ...state,
+            valid,
         })),
 
         on(SignInActions.submit, (state) => state),

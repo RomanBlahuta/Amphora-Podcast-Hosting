@@ -9,9 +9,9 @@ export enum RoutesEnum {
     NOT_FOUND = 'not-found',
     DASHBOARD = 'dashboard',
     SHOW = 'show',
-    SHOW_CREATE = 'show/create',
+    SHOW_CREATE = 'show/create/new',
     SHOW_EDIT = 'show/edit',
     EPISODE = 'episode',
-    EPISODE_CREATE = 'episode/create',
+    EPISODE_CREATE = 'episode/create/new',
     EPISODE_EDIT = 'episode/edit',
 }

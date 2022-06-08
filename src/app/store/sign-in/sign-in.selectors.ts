@@ -17,6 +17,11 @@ export namespace SignInSelectors {
         (state) => state[SignInFormEnum.PASSWORD],
     );
 
+    export const selectIsButtonDisabled = createSelector(
+        selectSignInState,
+        (state) => !state.valid,
+    );
+
     export const selectForm = createSelector(
         selectSignInState,
         (state) => ({

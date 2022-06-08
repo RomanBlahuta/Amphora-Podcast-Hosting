@@ -17,6 +17,11 @@ export namespace ResetPasswordSelectors {
         (state) => state[ResetPasswordFormEnum.NEW_PASSWORD],
     );
 
+    export const selectIsButtonDisabled = createSelector(
+        selectResetPasswordState,
+        (state) => !state.valid,
+    );
+
     export const selectForm = createSelector(
         selectResetPasswordState,
         (state) => ({

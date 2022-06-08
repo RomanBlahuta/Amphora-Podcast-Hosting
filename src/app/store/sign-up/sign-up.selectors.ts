@@ -32,6 +32,11 @@ export namespace SignUpSelectors {
         (state) => state[SignUpFormEnum.REPEAT_PASSWORD],
     );
 
+    export const selectIsButtonDisabled = createSelector(
+        selectSignUpState,
+        (state) => !state.valid,
+    );
+
     export const selectForm = createSelector(
         selectSignUpState,
         (state) => ({

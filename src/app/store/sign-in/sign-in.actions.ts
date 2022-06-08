@@ -7,6 +7,10 @@ export namespace SignInActions {
         '[Sign In] Input',
         props<{value: string; field: SignInFormEnum}>(),
     );
+    export const setValidity = createAction(
+        '[Sign In] Set Validity',
+        props<{valid: boolean}>(),
+    );
 
     export const submit = createAction(
         '[Sign In] Submit',

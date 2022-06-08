@@ -71,6 +71,7 @@ export class VerificationPage implements OnInit {
             this.verificationForm.controls[VerificationFormEnum.VERIFICATION_CODE].setValue(value);
             model.valid = this.verificationForm.controls[VerificationFormEnum.VERIFICATION_CODE].valid;
 
+            this.store$.dispatch(VerificationActions.setValidity({valid: this.verificationForm.valid}));
             this.store$.dispatch(VerificationActions.input({
                 value: this.verificationForm.controls[VerificationFormEnum.VERIFICATION_CODE].value
             }));

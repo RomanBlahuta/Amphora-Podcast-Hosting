@@ -11,6 +11,7 @@ export namespace fromSignUp {
         [SignUpFormEnum.LAST_NAME]: string;
         [SignUpFormEnum.PASSWORD]: string;
         [SignUpFormEnum.REPEAT_PASSWORD]: string;
+        valid: boolean;
     }
 
     export const initialState: IState = {
@@ -19,6 +20,7 @@ export namespace fromSignUp {
         [SignUpFormEnum.EMAIL]: '',
         [SignUpFormEnum.PASSWORD]: '',
         [SignUpFormEnum.REPEAT_PASSWORD]: '',
+        valid: false,
     };
 
     export const reducer = createReducer(
@@ -27,6 +29,11 @@ export namespace fromSignUp {
         on(SignUpActions.input, (state, {value, field}) => ({
             ...state,
             [field]: value,
+        })),
+
+        on(SignUpActions.setValidity, (state, {valid}) => ({
+            ...state,
+            valid,
         })),
 
         on(SignUpActions.submit, (state) => state),

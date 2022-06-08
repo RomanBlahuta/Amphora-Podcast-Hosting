@@ -13,6 +13,11 @@ import {Observable} from 'rxjs';
 import {ForgotPasswordActions} from '../../store/forgot-password/forgot-password.actions';
 import {VerificationActions} from '../../store/verification/verification.actions';
 import {ResetPasswordActions} from '../../store/reset-password/reset-password.actions';
+import {SignInSelectors} from '../../store/sign-in/sign-in.selectors';
+import {SignUpSelectors} from '../../store/sign-up/sign-up.selectors';
+import {ForgotPasswordSelectors} from '../../store/forgot-password/forgot-password.selectors';
+import {ResetPasswordSelectors} from '../../store/reset-password/reset-password.selectors';
+import {VerificationSelectors} from '../../store/verification/verification.selectors';
 
 @Injectable({
     providedIn: 'root',
@@ -43,26 +48,31 @@ export class AuthService {
             case AuthEnum.SIGN_IN:
                 return AmphoraButtonModel.create('Sign In', {
                     buttonColor: ButtonColorsEnum.WHITE,
+                    disabled$: this.store$.select(SignInSelectors.selectIsButtonDisabled),
                     onClick: () => this.store$.dispatch(SignInActions.submit()),
                 });
             case AuthEnum.SIGN_UP:
                 return AmphoraButtonModel.create('Sign Up', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
+                    disabled$: this.store$.select(SignUpSelectors.selectIsButtonDisabled),
                     onClick: () => this.store$.dispatch(SignUpActions.submit()),
                 });
             case AuthEnum.FORGOT_PASSWORD:
                 return AmphoraButtonModel.create('Submit', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
+                    disabled$: this.store$.select(ForgotPasswordSelectors.selectIsButtonDisabled),
                     onClick: () => this.store$.dispatch(ForgotPasswordActions.submit()),
                 });
             case AuthEnum.RESET_PASSWORD:
                 return AmphoraButtonModel.create('Submit', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
+                    disabled$: this.store$.select(ResetPasswordSelectors.selectIsButtonDisabled),
                     onClick: () => this.store$.dispatch(ResetPasswordActions.submit()),
                 });
             case AuthEnum.VERIFICATION:
                 return AmphoraButtonModel.create('Submit', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
+                    disabled$: this.store$.select(VerificationSelectors.selectIsButtonDisabled),
                     onClick: () => this.store$.dispatch(VerificationActions.submit()),
                 });
         }

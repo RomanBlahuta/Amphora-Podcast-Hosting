@@ -52,7 +52,7 @@ export function restoreState(reducer: ActionReducer<State>): ActionReducer<State
     ];
 
     if (actionsNeedRestoreState.find(item => item.type === currentActionType)) {
-      return reducer(null, {type: INIT});
+      return reducer(undefined, {type: INIT});
     }
     return reducer(state, action);
   };

@@ -12,6 +12,11 @@ export namespace VerificationSelectors {
         (state) => state[VerificationFormEnum.VERIFICATION_CODE],
     );
 
+    export const selectIsButtonDisabled = createSelector(
+        selectVerificationState,
+        (state) => !state.valid,
+    );
+
     export const selectForm = createSelector(
         selectVerificationState,
         (state) => ({

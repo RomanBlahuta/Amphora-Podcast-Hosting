@@ -56,7 +56,7 @@ export class DashboardService {
     public createNewShowButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('New', {
             buttonColor: ButtonColorsEnum.DARK,
-            onClick: () => console.log('Create New Show'),
+            onClick: () => this.navController.navigateRoot(RoutesEnum.SHOW_CREATE),
         });
     }
 

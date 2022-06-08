@@ -14,6 +14,7 @@ import {NavController} from '@ionic/angular';
 import {PopUpService} from '../../../services/utils/pop-up.service';
 import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
+import {checkRepeatPasswordMatch} from '../../../shared/utils/form-validators';
 
 @Component({
   selector: 'amphora-sign-up',
@@ -27,7 +28,7 @@ export class SignUpPage implements OnInit {
         [SignUpFormEnum.EMAIL]: ['', [Validators.required, Validators.email]],
         [SignUpFormEnum.PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
         [SignUpFormEnum.REPEAT_PASSWORD]: ['', [Validators.required, Validators.minLength(8)]],
-    });
+    }, {validators: [checkRepeatPasswordMatch]});
 
     public titleSectionModel: AmphoraSectionModel;
     public formSectionModel: AmphoraSectionModel;
@@ -105,7 +106,7 @@ export class SignUpPage implements OnInit {
         return (value: string, model: AmphoraInputFieldModel) => {
             this.signUpForm.controls[field].setValue(value);
             model.valid = this.signUpForm.controls[field].valid;
-
+            this.store$.dispatch(SignUpActions.setValidity({valid: this.signUpForm.valid}));
             this.store$.dispatch(SignUpActions.input({value: this.signUpForm.controls[field].value, field}));
         };
     }
