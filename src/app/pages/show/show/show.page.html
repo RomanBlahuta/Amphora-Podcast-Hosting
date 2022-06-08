@@ -5,7 +5,7 @@
                 <div class="show__content-show-data">
                     <h1 class="show__content-show-data-heading font-section-title">{{ (showData | async)?.title || '' }}</h1>
                     <div class="show__content-show-data-streaming">
-                        <div class="show__content-show-data-streaming-item" *ngFor="let iconModel of streamingIconModels">
+                        <div class="show__content-show-data-streaming-item" *ngFor="let iconModel of (streamingIconModels | async)">
                             <amphora-icon [model]="iconModel"></amphora-icon>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="show__content-show-img-btns">
                     <div class="show__content-show-img-container">
-                        <img [src]="(showData | async)?.media_link || ''" alt="Could not load image" class="show__content-show-img">
+                        <img [src]="(showData | async)?.media_link || '../../../../assets/img/show-img-placeholder.png'" alt="Could not load image" class="show__content-show-img">
                     </div>
                     <div class="show__content-show-btn" *ngFor="let btnModel of buttonModels">
                         <amphora-button [model]="btnModel"></amphora-button>

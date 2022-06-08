@@ -13,6 +13,7 @@ import {AmphoraEpisodeCardModel} from '../../../components/cards/amphora-episode
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
+import {episodeComparator, parseDurationTimeUtil} from '../../../shared/utils/utils';
 
 @Injectable({
     providedIn: 'root',
@@ -83,52 +84,35 @@ export class ShowService {
         );
     }
 
-    public createStreamingIcons(): AmphoraIconModel[] {
-        return [
-            AmphoraIconModel.create(IconsEnum.SPOTIFY, {
+    public createStreamingIcons(): Observable<AmphoraIconModel[]> {
+        return this.store$.select(ShowSelectors.selectStreamingOptions).pipe(
+            map(streamingOptions => streamingOptions.map(option => AmphoraIconModel.create(
+                option as unknown as IconsEnum, {
                 size: {
                     width: 64,
                     height: 64,
                 }
-            }),
-
-            AmphoraIconModel.create(IconsEnum.YOUTUBE, {
-                size: {
-                    width: 64,
-                    height: 64,
-                }
-            }),
-            AmphoraIconModel.create(IconsEnum.GOOGLE_PODCASTS, {
-                size: {
-                    width: 64,
-                    height: 64,
-                }
-            }),
-
-            AmphoraIconModel.create(IconsEnum.POCKET_CASTS, {
-                size: {
-                    width: 64,
-                    height: 64,
-                }
-            }),
-        ];
+            }),))
+        );
     }
 
     public createEpisodeCards(): Observable<AmphoraEpisodeCardModel[]> {
         return this.store$.select(ShowSelectors.selectShowEpisodes).pipe(
-            map(episodes => episodes.map(episode => AmphoraEpisodeCardModel.create(
-                episode.title, {
-                    id: episode.id,
-                    season: episode.season_num,
-                    episode: episode.episode_num,
-                    watchTime: `${episode.duration}`,
-                    description: episode.description,
-                    onSeriesTagClick: () => this.store$.dispatch(ShowActions.setActiveSeries({id: episode.series})),
-                    isSeriesActive$: this.store$.select(ShowSelectors.selectIsSeriesActive, episode.series),
-                    series: episode.series,
-                    img: episode.cover_link,
-                },
-            ))),
+            map(episodes => [...episodes].sort(episodeComparator).map(episode => AmphoraEpisodeCardModel.create(
+                    episode.title,
+                    {
+                        id: episode.id,
+                        season: episode.season_num,
+                        episode: episode.episode_num,
+                        watchTime: parseDurationTimeUtil(episode.duration),
+                        description: episode.description,
+                        onSeriesTagClick: () => this.store$.dispatch(ShowActions.setActiveSeries({id: episode.series})),
+                        isSeriesActive$: this.store$.select(ShowSelectors.selectIsSeriesActive, episode.series),
+                        series: episode.series,
+                        img: episode.cover_link,
+                    },
+                ),
+            )),
         );
     }
 }

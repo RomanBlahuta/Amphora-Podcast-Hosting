@@ -1,3 +1,5 @@
+import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
+
 export interface ILoadPaginatedShowsResponseItemDTO {
     id: string;
     title: string;
@@ -9,6 +11,7 @@ export interface ILoadPaginatedShowsResponseItemDTO {
     generator: string;
     language: string;
     show_copyright: string;
+    selected_streamings: StreamingIntegrationsEnum[];
     last_build_date: string;
     image: string;
     podcast_owner: string;
@@ -34,6 +37,7 @@ export interface ILoadShowResponseDTO {
     language: string;
     show_copyright: string;
     category: string;
+    selected_streamings: StreamingIntegrationsEnum[];
     series: string[];
     show_link: string;
     media_link: string;

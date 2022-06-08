@@ -16,6 +16,11 @@ export namespace ShowSelectors {
         (state) => state.id,
     );
 
+    export const selectStreamingOptions = createSelector(
+        selectShowState,
+        (state) => state.show?.selected_streamings || [],
+    );
+
     export const selectShowData = createSelector(
         selectShowState,
         (state) => state.show,

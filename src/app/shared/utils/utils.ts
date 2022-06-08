@@ -1,5 +1,6 @@
 import {RoutesEnum} from '../enums/routes.enum';
 import {LocalStorageService} from '../../services/utils/local-storage.service';
+import {ILoadEpisodesByShowIdResponseItemDto} from '../../services/http/episode/episode.dto';
 
 export function setFormDataUtil(formDataEnum: any, formDataProps: any): FormData {
     const formData = new FormData();
@@ -26,4 +27,15 @@ export function parseDurationTimeUtil(numberOfSeconds: number): string {
 
 export function getRootRouteRedirect(): string {
     return LocalStorageService.isTokenSet() ? RoutesEnum.DASHBOARD : RoutesEnum.LANDING;
+}
+
+export function episodeComparator(a: ILoadEpisodesByShowIdResponseItemDto, b: ILoadEpisodesByShowIdResponseItemDto): number {
+   if (a.season_num === b.season_num) {
+       if (a.episode_num === b.episode_num) {
+           return 0;
+       }
+       return (a.episode_num > b.episode_num) ? 1 : -1;
+   } else {
+       return (a.season_num > b.season_num) ? 1 : -1;
+   }
 }

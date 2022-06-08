@@ -24,7 +24,7 @@ export class ShowPage implements OnInit, OnDestroy {
     public searchFieldModel: AmphoraSearchFieldModel;
     public buttonModels: AmphoraButtonModel[];
     public paginationModel: AmphoraPaginationModel;
-    public streamingIconModels: AmphoraIconModel[];
+    public streamingIconModels: Observable<AmphoraIconModel[]>;
     public seriesModels: Observable<AmphoraSeriesTagModel[]>;
     public episodeCardModels: Observable<AmphoraEpisodeCardModel[]>;
     public unsubscribe$ = new Subject();

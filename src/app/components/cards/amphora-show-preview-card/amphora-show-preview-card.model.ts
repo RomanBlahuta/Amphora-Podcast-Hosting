@@ -22,7 +22,7 @@ export class AmphoraShowPreviewCardModel {
             series: optional?.series || 0,
             totalWatchTime: optional?.totalWatchTime || '0s',
             onButtonClick: optional?.onButtonClick || undefined,
-            image: optional?.image || '../../../../assets/img/podcast-mock-thumbnail.png',
+            image: optional?.image || '../../../../assets/img/show-img-placeholder.png',
         };
     }
 

@@ -12,7 +12,6 @@ import {DashboardSelectors} from '../../store/dashboard/dashboard.selectors';
 import {AmphoraShowPreviewCardModel} from '../../components/cards/amphora-show-preview-card/amphora-show-preview-card.model';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
 import {DashboardActions} from '../../store/dashboard/dashboard.actions';
 import {FormControl} from '@angular/forms';
 import {NavController} from '@ionic/angular';
@@ -78,7 +77,7 @@ export class DashboardService {
                 episodes: show.episodes_number,
                 totalWatchTime: parseDurationTimeUtil(show.duration),
                 onButtonClick: () => this.navController.navigateRoot(RoutesEnum.SHOW + '/' + show.id),
-                streamingIntegrations: [StreamingIntegrationsEnum.SPOTIFY, StreamingIntegrationsEnum.YOUTUBE],
+                streamingIntegrations: show.selected_streamings,
             })))
         );
     }
