@@ -39,3 +39,11 @@ export function episodeComparator(a: ILoadEpisodesByShowIdResponseItemDto, b: IL
        return (a.season_num > b.season_num) ? 1 : -1;
    }
 }
+
+export function removeItemFromArray(arr, value) {
+    var index = arr.indexOf(value);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+}

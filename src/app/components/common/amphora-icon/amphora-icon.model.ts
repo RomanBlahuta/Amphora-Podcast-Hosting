@@ -1,9 +1,11 @@
 import {ISize} from '../../../shared/interfaces/size.interface';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 export interface IOptional {
     size?: ISize;
+    disabled$?: Observable<boolean>;
 }
 
 export class AmphoraIconModel {
@@ -23,6 +25,7 @@ export class AmphoraIconModel {
                 widthDiffUnit: optional?.size.widthDiffUnit || UnitsOfMeasurementEnum.PX,
                 heightDiffUnit: optional?.size.heightDiffUnit || UnitsOfMeasurementEnum.PX,
             },
+            disabled$: optional?.disabled$ || new BehaviorSubject(false),
         };
     }
 

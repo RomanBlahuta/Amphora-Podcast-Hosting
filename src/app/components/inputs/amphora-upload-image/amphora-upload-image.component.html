@@ -1,8 +1,9 @@
 <input type="file" class="img__input" (change)="onFileSelected($event)" #fileUpload accept=".svg,.png,.jpg,.jpeg,.webp">
 
 <div class="img__upload">
-    <img class="img__upload-img" *ngIf="imageUrl" [src]="imageUrl" alt="Could not load image"/>
-    <div *ngIf="!imageUrl" class="img__upload-button" (click)="fileUpload.click()" (mouseenter)="changeHoverStatus(true)" (mouseleave)="changeHoverStatus(false)">
+    <img class="img__upload-img" *ngIf="isUrlLoaded" [src]="imageUrl | sanitize" alt="Could not load image"/>
+    <div class="img__upload-blur" *ngIf="isUrlLoaded"></div>
+    <div class="img__upload-button" (click)="fileUpload.click()" (mouseenter)="changeHoverStatus(true)" (mouseleave)="changeHoverStatus(false)">
         <amphora-icon [model]="(hover) ? uploadWhiteIconModel : uploadPrimaryIconModel"></amphora-icon>
         <p class="img__upload-button-label font-button-label">
             Click to upload an image

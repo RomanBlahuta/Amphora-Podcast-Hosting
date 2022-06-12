@@ -1,5 +1,25 @@
 import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
 
+export interface ICreateShowRequestDTO {
+    title: string;
+    description: string;
+    language: string;
+    show_copyright: string;
+    category: string;
+    series: string[];
+    selected_streamings: StreamingIntegrationsEnum[];
+}
+
+export interface ICreateShowRequestFormDTO {
+    show_create_param: ICreateShowRequestDTO;
+    image_file: string;
+}
+
+export enum ICreateShowRequestFormDataEnum {
+    DATA = 'show_create_param',
+    IMAGE = 'image_file',
+}
+
 export interface ILoadPaginatedShowsResponseItemDTO {
     id: string;
     title: string;

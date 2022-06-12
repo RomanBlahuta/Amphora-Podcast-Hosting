@@ -1,5 +1,6 @@
 <mat-icon [svgIcon]="this.model.icon" [ngStyle]="{
         width: model.optional.size ? (model.optional.size.width + model.optional.size.widthUnit) : '',
-        height: model.optional.size ? (model.optional.size.height + model.optional.size.heightUnit) : ''
+        height: model.optional.size ? (model.optional.size.height + model.optional.size.heightUnit) : '',
+        opacity: (model.optional.disabled$ | async) ? 0.25 : 1
     }">
 </mat-icon>

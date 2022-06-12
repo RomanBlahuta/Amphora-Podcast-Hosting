@@ -23,12 +23,24 @@
             left: 0;
         }
 
+        &-blur {
+            position: absolute;
+            background-color: $color-upload-overlay;
+            backdrop-filter: blur(8px);
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            top: 0;
+            left: 0;
+        }
+
         &-button {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+            z-index: 3;
 
             &:hover {
                 cursor: pointer;

@@ -12,6 +12,7 @@ import {fromDashboard} from './dashboard/dashboard.reducer';
 import {fromShow} from './show/show.reducer';
 import {fromResetPassword} from './reset-password/reset-password.reducer';
 import {fromUser} from './user/user.reducer';
+import {fromShowCreateEdit} from './show-create-edit/show-create-edit.reducer';
 
 export const routerFeatureKey = 'router';
 
@@ -26,6 +27,7 @@ export interface State {
     [fromPopUp.popUpFeatureKey]: fromPopUp.IState;
     [fromDashboard.dashboardFeatureKey]: fromDashboard.IState;
     [fromShow.showFeatureKey]: fromShow.IState;
+    [fromShowCreateEdit.showCreateEditFeatureKey]: fromShowCreateEdit.IState;
     [fromUser.userFeatureKey]: fromUser.IState;
 }
 
@@ -40,6 +42,7 @@ export const appReducers: ActionReducerMap<State> = {
     [fromPopUp.popUpFeatureKey]: fromPopUp.reducer,
     [fromDashboard.dashboardFeatureKey]: fromDashboard.reducer,
     [fromShow.showFeatureKey]: fromShow.reducer,
+    [fromShowCreateEdit.showCreateEditFeatureKey]: fromShowCreateEdit.reducer,
     [fromUser.userFeatureKey]: fromUser.reducer,
 };
 

@@ -13,12 +13,19 @@ import {PopUpService} from '../../../services/utils/pop-up.service';
 import {PopUpTypesEnum} from '../../../shared/enums/component-types/pop-up-types.enum';
 import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-icon.model';
 import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
+import {ShowCreateEditSelectors} from '../../../store/show-create-edit/show-create-edit.selectors';
+import {ShowCreateEditActions} from '../../../store/show-create-edit/show-create-edit.actions';
+import {map} from 'rxjs/operators';
+import {ShowCreateFormEnum} from '../../../shared/enums/forms/show-create-form.enum';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ShowCreateEditService {
     constructor(private store$: Store,
+                private navController: NavController,
                 private popUpService: PopUpService) {
     }
 
@@ -31,7 +38,8 @@ export class ShowCreateEditService {
             size: {
                 width: 64,
                 height: 64,
-            }
+            },
+            disabled$: this.store$.select(ShowCreateEditSelectors.selectIsStreamingOptionSelected, integration),
         }));
     }
 
@@ -39,7 +47,8 @@ export class ShowCreateEditService {
         return [
             AmphoraButtonModel.create('Submit', {
                 buttonColor: ButtonColorsEnum.PRIMARY,
-                onClick: () => console.log('Submit'),
+                disabled$: this.store$.select(ShowCreateEditSelectors.selectIsButtonDisabled),
+                onClick: () => this.store$.dispatch(ShowCreateEditActions.submit()),
                 size: {
                     width: 400,
                     height: 40,
@@ -48,7 +57,10 @@ export class ShowCreateEditService {
 
             AmphoraButtonModel.create('Cancel', {
                 buttonColor: ButtonColorsEnum.WHITE,
-                onClick: () => console.log('Cancel'),
+                onClick: () => {
+                    this.navController.navigateRoot(RoutesEnum.DASHBOARD);
+                    this.store$.dispatch(ShowCreateEditActions.clear());
+                },
                 size: {
                     width: 400,
                     height: 40,
@@ -90,7 +102,7 @@ export class ShowCreateEditService {
 
     public createAddSeriesButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Add', {
-            onClick: () => 'Add Series',
+            onClick: () => this.store$.dispatch(ShowCreateEditActions.addSeries()),
         });
     }
 
@@ -121,29 +133,20 @@ export class ShowCreateEditService {
         });
     }
 
-    public createSeriesTags(): AmphoraSeriesTagModel[] {
-        return [
-            AmphoraSeriesTagModel.create('Series #1', {
+    public createSeriesTags(): Observable<AmphoraSeriesTagModel[]> {
+        return this.store$.select(ShowCreateEditSelectors.selectAllSeries).pipe(
+            map(seriesList => seriesList.map(series => AmphoraSeriesTagModel.create(series, {
                 onClick: () => {
-                    console.log('Series');
+                    this.store$.dispatch(ShowCreateEditActions.removeSeries({series}));
                 },
-            }),
-
-            AmphoraSeriesTagModel.create('Series #2', {
-                onClick: () => {
-                    console.log('Series');
-                },
-            }),
-
-            AmphoraSeriesTagModel.create('Series #3', {
-                onClick: () => {
-                    console.log('Series');
-                },
-            }),
-        ];
+            }),)),
+        );
     }
 
     public createUploadImage(): AmphoraUploadImageModel {
-        return AmphoraUploadImageModel.create(null, () => console.log('Upload Image'));
+        return AmphoraUploadImageModel.create(this.store$.select(ShowCreateEditSelectors.selectImageUrl),
+            (url: string, fileName: string) => this.store$.dispatch(ShowCreateEditActions.addImgUrl({url, fileName})),
+            (file: string) => this.store$.dispatch(ShowCreateEditActions.input({value: file, field: ShowCreateFormEnum.IMAGE})),
+        );
     }
 }

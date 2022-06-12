@@ -1,24 +1,28 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AmphoraIconModel} from '../../common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraUploadImageModel} from './amphora-upload-image.model';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'amphora-upload-image',
   templateUrl: './amphora-upload-image.component.html',
   styleUrls: ['./amphora-upload-image.component.scss'],
 })
-export class AmphoraUploadImageComponent implements OnInit {
+export class AmphoraUploadImageComponent implements OnInit, OnDestroy {
     @Input()
     public model: AmphoraUploadImageModel;
 
     public uploadPrimaryIconModel: AmphoraIconModel;
     public uploadWhiteIconModel: AmphoraIconModel;
-
-    public fileName = '';
     public hover = false;
-    public fileReader = new FileReader();
-    public imageUrl: string | ArrayBuffer;
+    public fileUrlReader = new FileReader();
+    public fileBinaryReader = new FileReader();
+    public imageUrl: string;
+    public isUrlLoaded: boolean;
+    public unsubscribe$ = new Subject();
+    public fileName: string;
 
     constructor() {}
 
@@ -26,10 +30,8 @@ export class AmphoraUploadImageComponent implements OnInit {
         const file: File = event.target.files[0];
         if (file) {
             this.fileName = file.name;
-            this.fileReader.readAsDataURL(file);
-
-            const formData = new FormData();
-            formData.append('thumbnail', file);
+            this.fileUrlReader.readAsDataURL(file);
+            this.fileBinaryReader.readAsBinaryString(file);
         }
     }
 
@@ -46,10 +48,29 @@ export class AmphoraUploadImageComponent implements OnInit {
                 height: 128,
             }
         });
-        this.fileReader.onload = (event) => this.imageUrl = event.target.result;
+
+        this.model.imgSrcController$.pipe(
+            takeUntil(this.unsubscribe$),
+        ).subscribe(url => {
+            this.imageUrl = url;
+            this.isUrlLoaded = (url && url.length > 0);
+        });
+
+        this.fileUrlReader.onload = (event) => {
+            this.model.loadUrl(event.target.result as string, this.fileName);
+        };
+
+        this.fileBinaryReader.onload = (event) => {
+            this.model.loadFile(event.target.result as string);
+        };
     }
 
     public changeHoverStatus(value: boolean): void {
         this.hover = value;
+    }
+
+    public ngOnDestroy(): void {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }

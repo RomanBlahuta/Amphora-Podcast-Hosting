@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ShowCreateEditService} from './show-create-edit.service';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
@@ -9,6 +9,12 @@ import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload
 import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {PopUpService} from '../../../services/utils/pop-up.service';
 import {AmphoraIconModel} from '../../../components/common/amphora-icon/amphora-icon.model';
+import {ShowCreateEditSelectors} from '../../../store/show-create-edit/show-create-edit.selectors';
+import {Store} from '@ngrx/store';
+import {ShowCreateEditActions} from '../../../store/show-create-edit/show-create-edit.actions';
+import {ShowCreateFormEnum} from '../../../shared/enums/forms/show-create-form.enum';
+import {Observable} from 'rxjs';
+import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
 
 @Component({
     selector: 'amphora-show-create-edit',
@@ -24,11 +30,12 @@ export class ShowCreateEditPage implements OnInit {
     public streamingOptionsButtonModel: AmphoraButtonModel;
     public uploadImageModel: AmphoraUploadImageModel;
     public addSeriesButtonModel: AmphoraButtonModel;
-    public seriesModels: AmphoraSeriesTagModel[] = [];
+    public seriesModels: Observable<AmphoraSeriesTagModel[]>;
     public streamingPopUpModel: AmphoraCommonPopUpModel;
     public streamingIconModels: AmphoraIconModel[];
 
     constructor(private route: ActivatedRoute,
+                public store$: Store,
                 private showCreateEditService: ShowCreateEditService,
                 private popUpService: PopUpService) { }
 
@@ -50,26 +57,32 @@ export class ShowCreateEditPage implements OnInit {
         this.streamingOptionsButtonModel = this.showCreateEditService.createStreamingOptionsButton();
         this.streamingIconModels = this.showCreateEditService.createStreamingIcons();
         this.titleInputModel = this.showCreateEditService.createTextInputField(
-            null,
+            this.store$.select(ShowCreateEditSelectors.selectTitle),
             'Show Title',
-            (value: string, model: AmphoraInputFieldModel) => console.log(value),
+            this.onInput(ShowCreateFormEnum.TITLE).bind(this),
         );
         this.createSeriesInputModel = this.showCreateEditService.createSeriesTagTextInputField(
-            null,
+            this.store$.select(ShowCreateEditSelectors.selectSeriesTitle),
             'Add Series',
-            (value: string, model: AmphoraInputFieldModel) => console.log(value),
+            this.onInput(ShowCreateFormEnum.SERIES_TITLE).bind(this),
         );
         this.descriptionTextAreaModel = this.showCreateEditService.createTextArea(
             null,
             'Description',
-            (value: string, model: AmphoraTextAreaModel) => console.log(value),
+            this.onInput(ShowCreateFormEnum.DESCRIPTION).bind(this),
         );
-        this.streamingPopUpModel = this.popUpService.createStreamingOptionsPopUp({
-            applyOnClick: () => {
-                console.log('Applied!');
-                this.popUpService.hidePopUp();
-            },
-            cancelOnClick: () => this.popUpService.hidePopUp(),
-        });
+        this.streamingPopUpModel = this.popUpService.createStreamingOptionsPopUp(() => this.popUpService.hidePopUp());
+    }
+
+    private onInput(field: ShowCreateFormEnum): (value: string, model: AmphoraInputFieldModel | AmphoraTextAreaModel) => void {
+        return (value: string, model: AmphoraInputFieldModel | AmphoraTextAreaModel) => this.store$.dispatch(
+            ShowCreateEditActions.input({
+                value,
+                field,
+        }));
+    }
+
+    public onSelectStreamingOption(option: StreamingIntegrationsEnum): void {
+        this.store$.dispatch(ShowCreateEditActions.selectStreamingOption({option}));
     }
 }

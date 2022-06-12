@@ -135,6 +135,6 @@ export class EpisodeCreateEditService {
     }
 
     public createUploadImage(): AmphoraUploadImageModel {
-        return AmphoraUploadImageModel.create(null, () => console.log('Upload Image'));
+        return AmphoraUploadImageModel.create(null, () => console.log('Upload Image'), () => console.log('Upload Image'));
     }
 }
