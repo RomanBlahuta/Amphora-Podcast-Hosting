@@ -15,6 +15,7 @@ import {ShowCreateEditActions} from '../../../store/show-create-edit/show-create
 import {ShowCreateFormEnum} from '../../../shared/enums/forms/show-create-form.enum';
 import {Observable} from 'rxjs';
 import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
+import {IconsEnum} from '../../../shared/enums/icons.enum';
 
 @Component({
     selector: 'amphora-show-create-edit',
@@ -49,6 +50,10 @@ export class ShowCreateEditPage implements OnInit {
         this.createModels();
     }
 
+    public onSelectStreamingOption(option: IconsEnum): void {
+        this.store$.dispatch(ShowCreateEditActions.selectStreamingOption({option: option as unknown as StreamingIntegrationsEnum}));
+    }
+
     public createModels(): void {
         this.buttonModels = this.showCreateEditService.createButtons();
         this.seriesModels = this.showCreateEditService.createSeriesTags();
@@ -80,9 +85,5 @@ export class ShowCreateEditPage implements OnInit {
                 value,
                 field,
         }));
-    }
-
-    public onSelectStreamingOption(option: StreamingIntegrationsEnum): void {
-        this.store$.dispatch(ShowCreateEditActions.selectStreamingOption({option}));
     }
 }
