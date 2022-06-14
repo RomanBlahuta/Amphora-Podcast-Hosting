@@ -30,9 +30,6 @@ export class AmphoraUploadAudioComponent implements OnInit {
         if (file) {
             this.fileName = file.name;
             this.fileReader.readAsDataURL(file);
-
-            const formData = new FormData();
-            formData.append('thumbnail', file);
         }
     }
 

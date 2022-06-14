@@ -6,6 +6,8 @@ import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload
 import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-tag/amphora-series-tag.model';
 import {ActivatedRoute} from '@angular/router';
 import {EpisodeCreateEditService} from './episode-create-edit.service';
+import {AmphoraUploadAudioModel} from '../../../components/inputs/amphora-upload-audio/amphora-upload-audio.model';
+import {AmphoraRecordAudioModel} from '../../../components/inputs/amphora-record-audio/amphora-record-audio.model';
 
 @Component({
   selector: 'amphora-episode-create-edit',
@@ -21,6 +23,8 @@ export class EpisodeCreateEditPage implements OnInit {
     public seasonInputFieldModel: AmphoraInputFieldModel;
     public episodeInputFIeldModel: AmphoraInputFieldModel;
     public seriesModels: AmphoraSeriesTagModel[] = [];
+    public uploadAudioModel: AmphoraUploadAudioModel;
+    public recordAudioModel: AmphoraRecordAudioModel;
 
     constructor(private route: ActivatedRoute,
                 private episodeCreateEditService: EpisodeCreateEditService) { }

@@ -18,20 +18,21 @@ export class AmphoraUploadImageComponent implements OnInit, OnDestroy {
     public uploadWhiteIconModel: AmphoraIconModel;
     public hover = false;
     public fileUrlReader = new FileReader();
-    public fileBinaryReader = new FileReader();
     public imageUrl: string;
     public isUrlLoaded: boolean;
     public unsubscribe$ = new Subject();
     public fileName: string;
+    public file: File;
 
     constructor() {}
 
     public onFileSelected(event) {
         const file: File = event.target.files[0];
+
         if (file) {
+            this.file = file;
             this.fileName = file.name;
             this.fileUrlReader.readAsDataURL(file);
-            this.fileBinaryReader.readAsBinaryString(file);
         }
     }
 
@@ -57,11 +58,7 @@ export class AmphoraUploadImageComponent implements OnInit, OnDestroy {
         });
 
         this.fileUrlReader.onload = (event) => {
-            this.model.loadUrl(event.target.result as string, this.fileName);
-        };
-
-        this.fileBinaryReader.onload = (event) => {
-            this.model.loadFile(event.target.result as string);
+            this.model.onInput(this.file, event.target.result as string, this.fileName);
         };
     }
 

@@ -21,4 +21,7 @@ export const HTTP_ROUTING = {
     episode: {
         loadEpisodes: `${environment.apiBase}/episodes`
     },
+    image: {
+        create: `${environment.apiBase}/images/create`,
+    }
 };

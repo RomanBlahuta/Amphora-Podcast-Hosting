@@ -14,8 +14,9 @@ export namespace fromShowCreateEdit {
         [ShowCreateFormEnum.STREAMING_OPTIONS]: StreamingIntegrationsEnum[];
         [ShowCreateFormEnum.DESCRIPTION]: string;
         [ShowCreateFormEnum.SERIES_TITLE]: string;
-        [ShowCreateFormEnum.IMAGE]: string;
+        [ShowCreateFormEnum.IMAGE]: File;
         series: string[];
+        imageId: string;
         imageUrl: string;
         imageFileName: string;
     }
@@ -29,6 +30,7 @@ export namespace fromShowCreateEdit {
         [ShowCreateFormEnum.SERIES_TITLE]: '',
         [ShowCreateFormEnum.IMAGE]: null,
         series: [],
+        imageId: null,
         imageUrl: null,
         imageFileName: null,
     };
@@ -41,10 +43,16 @@ export namespace fromShowCreateEdit {
             [field]: value,
         })),
 
-        on(ShowCreateEditActions.addImgUrl, (state, {url, fileName}) => ({
+        on(ShowCreateEditActions.createImage, (state, {file, url, fileName}) => ({
             ...state,
+            [ShowCreateFormEnum.IMAGE]: file,
             imageUrl: url,
             imageFileName: fileName,
+        })),
+
+        on(ShowCreateEditActions.createImageSuccess, (state, {response}) => ({
+            ...state,
+            imageId: response.id,
         })),
 
         on(ShowCreateEditActions.addSeries, (state) => ({

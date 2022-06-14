@@ -2,18 +2,15 @@ import {Observable} from 'rxjs';
 
 export class AmphoraUploadImageModel {
     public imgSrcController$: Observable<string>;
-    public loadUrl: (url: string, fileName: string) => void;
-    public loadFile: (file: string) => void;
+    public onInput: (file: File, url: string, fileName: string) => void;
 
-    constructor(imgSrcController$: Observable<string>, loadUrl: (url: string, fileName: string) => void, loadFile: (file: string) => void) {
+    constructor(imgSrcController$: Observable<string>, onInput: (file: File, url: string, fileName: string) => void) {
         this.imgSrcController$ = imgSrcController$;
-        this.loadUrl = loadUrl;
-        this.loadFile = loadFile;
+        this.onInput = onInput;
     }
 
     public static create(
-        imgSrcController$: Observable<string>, loadUrl: (url: string, fileName: string) => void, loadFile: (file: string) => void
-    ): AmphoraUploadImageModel {
-        return new AmphoraUploadImageModel(imgSrcController$, loadUrl, loadFile);
+        imgSrcController$: Observable<string>, onInput: (file: File, url: string, fileName: string) => void): AmphoraUploadImageModel {
+        return new AmphoraUploadImageModel(imgSrcController$, onInput);
     }
 }

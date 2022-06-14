@@ -1,6 +1,7 @@
 import {createAction, props} from '@ngrx/store';
 import {ShowCreateFormEnum} from '../../shared/enums/forms/show-create-form.enum';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
+import {ICreateImageResponseDto} from '../../services/http/image/image.dto';
 
 export namespace ShowCreateEditActions {
     export const input = createAction(
@@ -20,9 +21,14 @@ export namespace ShowCreateEditActions {
         '[Show Create Edit] Add Series',
     );
 
-    export const addImgUrl = createAction(
-        '[Show Create Edit] Add Image URL',
-        props<{url: string; fileName: string}>(),
+    export const createImage = createAction(
+        '[Show Create Edit] Create Image',
+        props<{file: File; url: string; fileName: string}>(),
+    );
+
+    export const createImageSuccess = createAction(
+        '[Show Create Edit] Create Image Success',
+        props<{response: ICreateImageResponseDto}>()
     );
 
     export const removeSeries = createAction(

@@ -16,7 +16,6 @@ import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integra
 import {ShowCreateEditSelectors} from '../../../store/show-create-edit/show-create-edit.selectors';
 import {ShowCreateEditActions} from '../../../store/show-create-edit/show-create-edit.actions';
 import {map} from 'rxjs/operators';
-import {ShowCreateFormEnum} from '../../../shared/enums/forms/show-create-form.enum';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
@@ -144,9 +143,11 @@ export class ShowCreateEditService {
     }
 
     public createUploadImage(): AmphoraUploadImageModel {
-        return AmphoraUploadImageModel.create(this.store$.select(ShowCreateEditSelectors.selectImageUrl),
-            (url: string, fileName: string) => this.store$.dispatch(ShowCreateEditActions.addImgUrl({url, fileName})),
-            (file: string) => this.store$.dispatch(ShowCreateEditActions.input({value: file, field: ShowCreateFormEnum.IMAGE})),
+        return AmphoraUploadImageModel.create(
+            this.store$.select(ShowCreateEditSelectors.selectImageUrl),
+            (file: File, url: string, fileName: string) => this.store$.dispatch(
+                ShowCreateEditActions.createImage({file, url, fileName})
+            ),
         );
     }
 }

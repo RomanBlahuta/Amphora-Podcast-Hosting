@@ -33,7 +33,7 @@ export class ShowEffects {
             action.id, currentPage, title, series,
         ).pipe(
             map(response => ShowActions.loadShowEpisodesSuccess({episodes: response})),
-        ))
+        )),
     ));
 
     public reloadShows = createEffect(() => this.actions$.pipe(

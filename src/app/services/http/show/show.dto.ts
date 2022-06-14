@@ -6,18 +6,9 @@ export interface ICreateShowRequestDTO {
     language: string;
     show_copyright: string;
     category: string;
+    image_id: string;
     series: string[];
     selected_streamings: StreamingIntegrationsEnum[];
-}
-
-export interface ICreateShowRequestFormDTO {
-    show_create_param: ICreateShowRequestDTO;
-    image_file: string;
-}
-
-export enum ICreateShowRequestFormDataEnum {
-    DATA = 'show_create_param',
-    IMAGE = 'image_file',
 }
 
 export interface ILoadPaginatedShowsResponseItemDTO {

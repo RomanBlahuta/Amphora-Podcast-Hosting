@@ -56,16 +56,14 @@ export namespace ShowCreateEditSelectors {
     export const selectForm = createSelector(
         selectShowCreateEditState,
         (state) => ({
-            show_create_param: {
-                title: state[ShowCreateFormEnum.TITLE],
-                description: state[ShowCreateFormEnum.DESCRIPTION],
-                language: 'en',
-                show_copyright: '',
-                category: '',
-                series: state.series,
-                selected_streamings: state[ShowCreateFormEnum.STREAMING_OPTIONS],
-            },
-            image_file: state[ShowCreateFormEnum.IMAGE],
-        })
+            title: state[ShowCreateFormEnum.TITLE],
+            description: state[ShowCreateFormEnum.DESCRIPTION],
+            language: 'en',
+            show_copyright: '',
+            image_id: state.imageId,
+            category: 'Arts/Books',
+            series: state.series,
+            selected_streamings: state[ShowCreateFormEnum.STREAMING_OPTIONS],
+        }),
     );
 }

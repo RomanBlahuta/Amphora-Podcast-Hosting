@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../../shared/enums/component-types/button-types.enum';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
 import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
@@ -135,6 +135,9 @@ export class EpisodeCreateEditService {
     }
 
     public createUploadImage(): AmphoraUploadImageModel {
-        return AmphoraUploadImageModel.create(null, () => console.log('Upload Image'), () => console.log('Upload Image'));
+        return AmphoraUploadImageModel.create(
+            new BehaviorSubject(null),
+            () => console.log('Upload Url'),
+        );
     }
 }
