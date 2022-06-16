@@ -7,6 +7,8 @@ import {ShowHttp} from '../../services/http/show/show.http';
 import {EpisodeHttp} from '../../services/http/episode/episode.http';
 import loadShowSuccess = ShowActions.loadShowSuccess;
 import {ShowSelectors} from './show.selectors';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../shared/enums/routes.enum';
 
 @Injectable()
 export class ShowEffects {
@@ -36,7 +38,22 @@ export class ShowEffects {
         )),
     ));
 
-    public reloadShows = createEffect(() => this.actions$.pipe(
+    public deleteShow$ = createEffect(() => this.actions$.pipe(
+        ofType(ShowActions.deleteShow),
+        withLatestFrom(this.store$.select(ShowSelectors.selectShowId)),
+        switchMap(([_, id]) => this.showHttp.deleteShow(id).pipe(
+            map(() => ShowActions.deleteShowSuccess())
+        ))
+    ));
+
+    public deleteShowSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType(ShowActions.deleteShowSuccess),
+        tap(() => {
+            this.navController.navigateRoot(RoutesEnum.DASHBOARD);
+        }),
+    ), {dispatch: false});
+
+    public reloadShows$ = createEffect(() => this.actions$.pipe(
         ofType(ShowActions.changePage, ShowActions.setActiveSeries),
         withLatestFrom(this.store$.select(ShowSelectors.selectShowId)),
         tap(([_, id]) => this.store$.dispatch(ShowActions.loadShowEpisodes({id}))),
@@ -44,6 +61,7 @@ export class ShowEffects {
 
     constructor(private actions$: Actions,
                 private store$: Store,
+                private navController: NavController,
                 private showHttp: ShowHttp,
                 private episodeHttp: EpisodeHttp) { }
 }

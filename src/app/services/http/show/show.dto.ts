@@ -60,3 +60,6 @@ export interface ILoadShowResponseDTO {
     last_build_date: string;
     feed_file_link: string;
 }
+
+export interface IDeleteShowResponseDTO {
+}

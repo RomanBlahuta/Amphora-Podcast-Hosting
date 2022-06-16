@@ -5,6 +5,7 @@ import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.en
 import {AmphoraCommonPopUpModel} from '../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.enum';
+import {ContentTypesEnum} from '../../shared/enums/content-types.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -27,6 +28,14 @@ export class PopUpService {
 
     public hideErrorPopUp(): void {
         this.store$.dispatch(PopUpActions.hideErrorPopUp());
+    }
+
+    public showConfirmDeletionPopUp(item: string, contentType: ContentTypesEnum): void {
+        this.store$.dispatch(PopUpActions.showConfirmDeletionPopUp({item, contentType}));
+    }
+
+    public hideConfirmDeletionPopUp(): void {
+        this.store$.dispatch(PopUpActions.hideConfirmDeletionPopUp());
     }
 
     public createSuccessPopUp(onButtonClick: () => void): AmphoraCommonPopUpModel {

@@ -12,6 +12,11 @@ export class EpisodeHttp {
     constructor(private http: HttpClient) {
     }
 
+    // todo
+    public createEpisode(data: any): Observable<any> {
+        return this.http.post<any>('', {});
+    }
+
     public getEpisodesByShowId(id: string, page: number, title: string, series: string): Observable<ILoadEpisodesByShowIdResponseDto> {
         return this.http.get<ILoadEpisodesByShowIdResponseDto>(
             HTTP_ROUTING.episode.loadEpisodes +

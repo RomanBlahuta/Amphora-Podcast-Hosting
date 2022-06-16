@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.enum';
+import {ContentTypesEnum} from '../../shared/enums/content-types.enum';
 
 export namespace PopUpActions {
     export const showErrorPopUp = createAction(
@@ -18,5 +19,14 @@ export namespace PopUpActions {
 
     export const hidePopUp = createAction(
         '[Pop Up] Hide Pop Up',
+    );
+
+    export const showConfirmDeletionPopUp = createAction(
+        '[Pop Up] Show Confirm Deletion Pop Up',
+        props<{item: string; contentType: ContentTypesEnum}>(),
+    );
+
+    export const hideConfirmDeletionPopUp = createAction(
+        '[Pop Up] Hide Confirm Deletion Pop Up',
     );
 }

@@ -20,5 +20,13 @@ export namespace PopUpSelectors {
         selectPopUpState,
         (state) => state.errorMessage,
     );
+
+    export const selectConfirmDeletionPopUp = createSelector(
+        selectPopUpState,
+        (state) => ({
+            confirmDeletion: state.confirmDeletion,
+            confirmDeletionType: state.confirmDeletionType,
+        })
+    );
 }
 

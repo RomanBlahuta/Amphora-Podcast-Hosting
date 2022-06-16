@@ -10,9 +10,9 @@ import {AmphoraUploadAudioModel} from '../../../components/inputs/amphora-upload
 import {AmphoraRecordAudioModel} from '../../../components/inputs/amphora-record-audio/amphora-record-audio.model';
 
 @Component({
-  selector: 'amphora-episode-create-edit',
-  templateUrl: './episode-create-edit.page.html',
-  styleUrls: ['./episode-create-edit.page.scss'],
+    selector: 'amphora-episode-create-edit',
+    templateUrl: './episode-create-edit.page.html',
+    styleUrls: ['./episode-create-edit.page.scss'],
 })
 export class EpisodeCreateEditPage implements OnInit {
 

@@ -47,4 +47,12 @@ export namespace ShowActions {
         '[Show] Search',
         props<{value: string}>(),
     );
+
+    export const deleteShow = createAction(
+        '[Show] Delete Show',
+    );
+
+    export const deleteShowSuccess = createAction(
+        '[Show] Delete Show Success',
+    );
 }

@@ -22,7 +22,7 @@
                     <div class="show__content-show-img-container">
                         <img [src]="(showData | async)?.media_link || '../../../../assets/img/show-img-placeholder.png'" alt="Could not load image" class="show__content-show-img">
                     </div>
-                    <div class="show__content-show-btn" *ngFor="let btnModel of buttonModels">
+                    <div class="show__content-show-btn" *ngFor="let btnModel of (buttonModels | async)">
                         <amphora-button [model]="btnModel"></amphora-button>
                     </div>
                 </div>
@@ -44,4 +44,6 @@
             </div>
         </div>
     </amphora-page>
+
+    <amphora-confirm-deletion-pop-up [model$]="confirmDeletionPopUpModel$"></amphora-confirm-deletion-pop-up>
 </ion-content>

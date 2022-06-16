@@ -36,7 +36,7 @@ export const EFFECTS = [
     VerificationEffects,
     DashboardEffects,
     ShowEffects,
-    ShowCreateEditEffects
+    ShowCreateEditEffects,
 ];
 
 @NgModule({

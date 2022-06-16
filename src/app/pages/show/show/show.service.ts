@@ -14,12 +14,17 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {episodeComparator, parseDurationTimeUtil} from '../../../shared/utils/utils';
+import {AmphoraConfirmDeletionPopUpModel} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
+import {ContentTypesEnum} from '../../../shared/enums/content-types.enum';
+import {PopUpSelectors} from '../../../store/pop-up/pop-up.selectors';
+import {PopUpService} from '../../../services/utils/pop-up.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ShowService {
-    constructor(private store$: Store) {
+    constructor(private store$: Store,
+                private popUpService: PopUpService) {
     }
 
     public createSearchField(showId: string, formControl: FormControl): AmphoraSearchFieldModel {
@@ -31,35 +36,51 @@ export class ShowService {
         });
     }
 
-    public createButtons(): AmphoraButtonModel[] {
-        return [
-            AmphoraButtonModel.create('Edit', {
-                buttonColor: ButtonColorsEnum.PRIMARY,
-                onClick: () => console.log('Edit'),
-                size: {
-                    width: 400,
-                    height: 40,
-                }
-            }),
+    public createButtons(): Observable<AmphoraButtonModel[]> {
+        return this.store$.select(ShowSelectors.selectShowData).pipe(
+            map(data => [
+                AmphoraButtonModel.create('Edit', {
+                    buttonColor: ButtonColorsEnum.PRIMARY,
+                    onClick: () => console.log('Edit'),
+                    size: {
+                        width: 400,
+                        height: 40,
+                    }
+                }),
 
-            AmphoraButtonModel.create('Add Episode', {
-                buttonColor: ButtonColorsEnum.WHITE,
-                onClick: () => console.log('Add Episode'),
-                size: {
-                    width: 400,
-                    height: 40,
-                }
-            }),
+                AmphoraButtonModel.create('Add Episode', {
+                    buttonColor: ButtonColorsEnum.WHITE,
+                    onClick: () => console.log('Add Episode'),
+                    size: {
+                        width: 400,
+                        height: 40,
+                    }
+                }),
 
-            AmphoraButtonModel.create('Delete', {
-                buttonColor: ButtonColorsEnum.DARK,
-                onClick: () => console.log('Delete'),
-                size: {
-                    width: 400,
-                    height: 40,
-                }
-            }),
-        ];
+                AmphoraButtonModel.create('Delete', {
+                    buttonColor: ButtonColorsEnum.DARK,
+                    onClick: () => this.popUpService.showConfirmDeletionPopUp(data.title, ContentTypesEnum.SHOW),
+                    size: {
+                        width: 400,
+                        height: 40,
+                    }
+                }),
+            ])
+        );
+    }
+
+    public createConfirmDeletionPopUp(): Observable<AmphoraConfirmDeletionPopUpModel> {
+        return this.store$.select(PopUpSelectors.selectConfirmDeletionPopUp).pipe(
+            map(data => AmphoraConfirmDeletionPopUpModel.create(
+                data.confirmDeletion,
+                data.confirmDeletionType,
+                (data.confirmDeletionType === ContentTypesEnum.SHOW) ?
+                    () => this.store$.dispatch(ShowActions.deleteShow())
+                    :
+                    () => {console.log('oops');},
+            )),
+        );
+
     }
 
     public createPagination(): AmphoraPaginationModel {

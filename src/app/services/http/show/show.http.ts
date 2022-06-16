@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {
-    ICreateShowRequestDTO,
+    ICreateShowRequestDTO, IDeleteShowResponseDTO,
     ILoadPaginatedShowsResponseDTO,
     ILoadShowResponseDTO
 } from './show.dto';
@@ -28,5 +28,9 @@ export class ShowHttp {
 
     public createShow(data: ICreateShowRequestDTO): Observable<any> {
         return this.http.post<ICreateShowRequestDTO>(HTTP_ROUTING.show.create, data);
+    }
+
+    public deleteShow(id: string): Observable<IDeleteShowResponseDTO> {
+        return this.http.delete<IDeleteShowResponseDTO>(`${HTTP_ROUTING.show.deleteShow}/${id}`);
     }
 }

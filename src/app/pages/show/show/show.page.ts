@@ -14,6 +14,9 @@ import {takeUntil} from 'rxjs/operators';
 import {ShowSelectors} from '../../../store/show/show.selectors';
 import {ILoadShowResponseDTO} from '../../../services/http/show/show.dto';
 import {FormControl} from '@angular/forms';
+import {
+    AmphoraConfirmDeletionPopUpModel
+} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
 
 @Component({
     selector: 'amphora-show',
@@ -22,7 +25,7 @@ import {FormControl} from '@angular/forms';
 })
 export class ShowPage implements OnInit, OnDestroy {
     public searchFieldModel: AmphoraSearchFieldModel;
-    public buttonModels: AmphoraButtonModel[];
+    public buttonModels: Observable<AmphoraButtonModel[]>;
     public paginationModel: AmphoraPaginationModel;
     public streamingIconModels: Observable<AmphoraIconModel[]>;
     public seriesModels: Observable<AmphoraSeriesTagModel[]>;
@@ -31,6 +34,7 @@ export class ShowPage implements OnInit, OnDestroy {
     public showData: Observable<ILoadShowResponseDTO>;
     public searchEpisodeController: FormControl;
     public showId: string;
+    public confirmDeletionPopUpModel$: Observable<AmphoraConfirmDeletionPopUpModel>;
 
     constructor(private showService: ShowService,
                 private route: ActivatedRoute,
@@ -63,5 +67,6 @@ export class ShowPage implements OnInit, OnDestroy {
         this.streamingIconModels = this.showService.createStreamingIcons();
         this.seriesModels = this.showService.createSeriesTags();
         this.episodeCardModels = this.showService.createEpisodeCards();
+        this.confirmDeletionPopUpModel$ = this.showService.createConfirmDeletionPopUp();
     }
 }

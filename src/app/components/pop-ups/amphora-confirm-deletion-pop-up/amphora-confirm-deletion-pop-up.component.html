@@ -1,3 +1,7 @@
-<p>
-  amphora-confirm-deletion-pop-up works!
-</p>
+<amphora-common-pop-up [model]="(commonModel$ | async)">
+    <p class="font-section-paragraph">
+        Are you sure you want to delete {{ (model$ | async)?.item}}?
+        <br><br>
+        This operation cannot be reversed.
+    </p>
+</amphora-common-pop-up>
