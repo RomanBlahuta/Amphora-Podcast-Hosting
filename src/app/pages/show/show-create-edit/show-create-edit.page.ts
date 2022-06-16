@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ShowCreateEditService} from './show-create-edit.service';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
@@ -16,13 +16,14 @@ import {ShowCreateFormEnum} from '../../../shared/enums/forms/show-create-form.e
 import {Observable} from 'rxjs';
 import {StreamingIntegrationsEnum} from '../../../shared/enums/streaming-integrations.enum';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
+import {FormModeEnum} from '../../../shared/enums/forms/form-mode.enum';
 
 @Component({
     selector: 'amphora-show-create-edit',
     templateUrl: './show-create-edit.page.html',
     styleUrls: ['./show-create-edit.page.scss'],
 })
-export class ShowCreateEditPage implements OnInit {
+export class ShowCreateEditPage implements OnInit, OnDestroy {
     public pageMode: string;
     public buttonModels: AmphoraButtonModel[];
     public titleInputModel: AmphoraInputFieldModel;
@@ -43,11 +44,14 @@ export class ShowCreateEditPage implements OnInit {
     public ngOnInit(): void {
         this.route.params.subscribe((params) => {
             this.pageMode = params.mode.charAt(0).toUpperCase() + params.mode.slice(1);
-            console.log('mode: ', params.mode);
-            console.log('id: ', params.id);
+            this.store$.dispatch(ShowCreateEditActions.setFormMode({mode: params.mode as FormModeEnum, id: params.id}));
         });
 
         this.createModels();
+    }
+
+    public ngOnDestroy(): void {
+        this.store$.dispatch(ShowCreateEditActions.clear());
     }
 
     public onSelectStreamingOption(option: IconsEnum): void {

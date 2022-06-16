@@ -53,6 +53,16 @@ export namespace ShowCreateEditSelectors {
         (state) => state.imageFileName,
     );
 
+    export const selectShowId = createSelector(
+        selectShowCreateEditState,
+        (state) => state.id,
+    );
+
+    export const selectFormMode = createSelector(
+        selectShowCreateEditState,
+        (state) => state.mode,
+    );
+
     export const selectForm = createSelector(
         selectShowCreateEditState,
         (state) => ({
@@ -60,7 +70,7 @@ export namespace ShowCreateEditSelectors {
             description: state[ShowCreateFormEnum.DESCRIPTION],
             language: 'en',
             show_copyright: '',
-            image_id: state.imageId,
+            image: state.imageId,
             category: 'Arts/Books',
             series: state.series,
             selected_streamings: state[ShowCreateFormEnum.STREAMING_OPTIONS],

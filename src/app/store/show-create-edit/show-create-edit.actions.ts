@@ -2,11 +2,27 @@ import {createAction, props} from '@ngrx/store';
 import {ShowCreateFormEnum} from '../../shared/enums/forms/show-create-form.enum';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
 import {ICreateImageResponseDto} from '../../services/http/image/image.dto';
+import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
+import {ILoadShowResponseDTO} from '../../services/http/show/show.dto';
 
 export namespace ShowCreateEditActions {
     export const input = createAction(
         '[Show Create Edit] Input',
         props<{value: string | File; field: ShowCreateFormEnum}>(),
+    );
+
+    export const setFormMode = createAction(
+        '[Show Create Edit] Set Form Mode',
+        props<{mode: FormModeEnum; id: string}>(),
+    );
+
+    export const loadShowForEdit = createAction(
+        '[Show Create Edit] Load Show For Edit',
+    );
+
+    export const loadShowForEditSuccess = createAction(
+        '[Show Create Edit] Load Show For Edit Success',
+        props<{response: ILoadShowResponseDTO}>(),
     );
 
     export const submit = createAction(

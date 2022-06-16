@@ -14,16 +14,21 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {episodeComparator, parseDurationTimeUtil} from '../../../shared/utils/utils';
-import {AmphoraConfirmDeletionPopUpModel} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
+import {
+    AmphoraConfirmDeletionPopUpModel
+} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
 import {ContentTypesEnum} from '../../../shared/enums/content-types.enum';
 import {PopUpSelectors} from '../../../store/pop-up/pop-up.selectors';
 import {PopUpService} from '../../../services/utils/pop-up.service';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ShowService {
     constructor(private store$: Store,
+                private navController: NavController,
                 private popUpService: PopUpService) {
     }
 
@@ -41,7 +46,7 @@ export class ShowService {
             map(data => [
                 AmphoraButtonModel.create('Edit', {
                     buttonColor: ButtonColorsEnum.PRIMARY,
-                    onClick: () => console.log('Edit'),
+                    onClick: () => this.navController.navigateRoot(`${RoutesEnum.SHOW_EDIT}/${data.id}`),
                     size: {
                         width: 400,
                         height: 40,
@@ -77,6 +82,7 @@ export class ShowService {
                 (data.confirmDeletionType === ContentTypesEnum.SHOW) ?
                     () => this.store$.dispatch(ShowActions.deleteShow())
                     :
+                    // todo
                     () => {console.log('oops');},
             )),
         );

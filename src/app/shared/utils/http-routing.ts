@@ -17,6 +17,7 @@ export const HTTP_ROUTING = {
         loadShows: `${environment.apiBase}/shows/my`,
         create: `${environment.apiBase}/shows/create`,
         loadShow: `${environment.apiBase}/shows`,
+        edit: `${environment.apiBase}/shows`,
         deleteShow: `${environment.apiBase}/shows`,
     },
     episode: {

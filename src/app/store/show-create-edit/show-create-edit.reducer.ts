@@ -3,12 +3,13 @@ import {ShowCreateEditActions} from './show-create-edit.actions';
 import {ShowCreateFormEnum} from '../../shared/enums/forms/show-create-form.enum';
 import {removeItemFromArray} from '../../shared/utils/utils';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
+import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
 
 export namespace fromShowCreateEdit {
     export const showCreateEditFeatureKey = 'showCreateEdit';
 
     export interface IState {
-        mode: string;
+        mode: FormModeEnum;
         id: string;
         [ShowCreateFormEnum.TITLE]: string;
         [ShowCreateFormEnum.STREAMING_OPTIONS]: StreamingIntegrationsEnum[];
@@ -37,6 +38,24 @@ export namespace fromShowCreateEdit {
 
     export const reducer = createReducer(
         initialState,
+
+        on(ShowCreateEditActions.setFormMode, (state, {mode, id}) => ({
+            ...state,
+            mode,
+            id,
+        })),
+
+        on(ShowCreateEditActions.loadShowForEdit, (state) => state),
+
+        on(ShowCreateEditActions.loadShowForEditSuccess, (state, {response}) => ({
+            ...state,
+            id: response.id,
+            [ShowCreateFormEnum.TITLE]: response.title,
+            [ShowCreateFormEnum.DESCRIPTION]: response.description,
+            [ShowCreateFormEnum.STREAMING_OPTIONS]: response.selected_streamings,
+            series: response.series,
+            imageUrl: response.media_link,
+        })),
 
         on(ShowCreateEditActions.input, (state, {value, field}) => ({
             ...state,

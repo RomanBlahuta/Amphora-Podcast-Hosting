@@ -6,9 +6,12 @@ export interface ICreateShowRequestDTO {
     language: string;
     show_copyright: string;
     category: string;
-    image_id: string;
+    image: string;
     series: string[];
     selected_streamings: StreamingIntegrationsEnum[];
+}
+
+export interface ICreateShowResponseDTO {
 }
 
 export interface ILoadPaginatedShowsResponseItemDTO {
