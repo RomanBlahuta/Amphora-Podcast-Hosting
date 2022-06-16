@@ -76,7 +76,7 @@ export class ShowCreateEditPage implements OnInit, OnDestroy {
             this.onInput(ShowCreateFormEnum.SERIES_TITLE).bind(this),
         );
         this.descriptionTextAreaModel = this.showCreateEditService.createTextArea(
-            null,
+            this.store$.select(ShowCreateEditSelectors.selectDescription),
             'Description',
             this.onInput(ShowCreateFormEnum.DESCRIPTION).bind(this),
         );

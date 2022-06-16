@@ -8,6 +8,10 @@ import {ActivatedRoute} from '@angular/router';
 import {EpisodeCreateEditService} from './episode-create-edit.service';
 import {AmphoraUploadAudioModel} from '../../../components/inputs/amphora-upload-audio/amphora-upload-audio.model';
 import {AmphoraRecordAudioModel} from '../../../components/inputs/amphora-record-audio/amphora-record-audio.model';
+import {ShowCreateEditActions} from '../../../store/show-create-edit/show-create-edit.actions';
+import {FormModeEnum} from '../../../shared/enums/forms/form-mode.enum';
+import {Store} from '@ngrx/store';
+import {PopUpService} from '../../../services/utils/pop-up.service';
 
 @Component({
     selector: 'amphora-episode-create-edit',
@@ -15,7 +19,7 @@ import {AmphoraRecordAudioModel} from '../../../components/inputs/amphora-record
     styleUrls: ['./episode-create-edit.page.scss'],
 })
 export class EpisodeCreateEditPage implements OnInit {
-
+    public pageMode: string;
     public buttonModels: AmphoraButtonModel[];
     public titleInputModel: AmphoraInputFieldModel;
     public descriptionTextAreaModel: AmphoraTextAreaModel;
@@ -27,12 +31,14 @@ export class EpisodeCreateEditPage implements OnInit {
     public recordAudioModel: AmphoraRecordAudioModel;
 
     constructor(private route: ActivatedRoute,
+                private store$: Store,
+                private popUpService: PopUpService,
                 private episodeCreateEditService: EpisodeCreateEditService) { }
 
     public ngOnInit(): void {
         this.route.params.subscribe((params) => {
-            console.log('mode: ', params.mode);
-            console.log('id: ', params.id);
+            this.pageMode = params.mode.charAt(0).toUpperCase() + params.mode.slice(1);
+            this.store$.dispatch(ShowCreateEditActions.setFormMode({mode: params.mode as FormModeEnum, id: params.id}));
         });
 
         this.createModels();

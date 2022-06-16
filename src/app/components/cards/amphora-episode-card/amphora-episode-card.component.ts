@@ -23,7 +23,7 @@ export class AmphoraEpisodeCardComponent implements OnInit {
     constructor() { }
 
     public ngOnInit(): void {
-        this.audioPlayerModel = AmphoraAudioPlayerModel.create('https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg');
+        this.audioPlayerModel = AmphoraAudioPlayerModel.create(this.model.optional.audio);
 
         this.overlayButtonModels = [
             AmphoraButtonModel.create('Edit', {

@@ -130,6 +130,7 @@ export class ShowService {
                     {
                         id: episode.id,
                         season: episode.season_num,
+                        audio: episode.episode_link,
                         episode: episode.episode_num,
                         watchTime: parseDurationTimeUtil(episode.duration),
                         description: episode.description,
