@@ -1,0 +1,8 @@
+<amphora-common-pop-up [model]="recordingCommonPopUpModel">
+    Recording...
+    <div class="pop-up__buttons">
+        <amphora-button *ngIf="playing" [model]="pauseButtonModel"></amphora-button>
+        <amphora-button *ngIf="!playing" [model]="playButtonModel"></amphora-button>
+        <amphora-button [model]="stopButtonModel"></amphora-button>
+    </div>
+</amphora-common-pop-up>

@@ -1,3 +1,8 @@
-<p>
-  amphora-record-audio works!
-</p>
+<div class="audio__record" *ngIf="!(model.audioSrcController$ | async)">
+    <div class="audio__record-button" (click)="onRecordClick()" (mouseenter)="changeHoverStatus(true)" (mouseleave)="changeHoverStatus(false)">
+        <amphora-icon [model]="(hover) ? recordWhiteIconModel : recordPrimaryIconModel"></amphora-icon>
+        <p class="audio__record-button-label font-button-label">
+            Click to record audio
+        </p>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+@import "src/global";
+
+.audio {
+    &__input {
+        display: none;
+    }
+
+    &__record {
+        background-color: $color-black;
+        height: 300px;
+        width: calc(50vw - 128px - 16px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-primary;
+        position: relative;
+        border-radius: 16px;
+
+        &-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            &:hover {
+                cursor: pointer;
+                color: $color-white;
+            }
+
+            &-label {
+                text-align: center;
+                margin-top: 8px;
+            }
+        }
+    }
+}

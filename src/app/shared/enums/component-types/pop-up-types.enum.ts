@@ -4,4 +4,5 @@ export enum PopUpTypesEnum {
     STREAMING_OPTIONS = 'streaming-options',
     MISCELLANEOUS = 'miscellaneous',
     CONFIRM_DELETION = 'confirm-deletion',
+    RECORDING = 'recording',
 }

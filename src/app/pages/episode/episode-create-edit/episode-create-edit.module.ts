@@ -15,6 +15,9 @@ import {AmphoraSeriesTagModule} from '../../../components/common/amphora-series-
 import {AmphoraUploadImageModule} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.module';
 import {AmphoraOptionsSelectModule} from '../../../components/inputs/amphora-options-select/amphora-options-select.module';
 import {AmphoraUploadAudioModule} from '../../../components/inputs/amphora-upload-audio/amphora-upload-audio.module';
+import {AmphoraRecordAudioModule} from '../../../components/inputs/amphora-record-audio/amphora-record-audio.module';
+import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.module';
+import {AmphoraRecordAudioPopUpModule} from '../../../components/pop-ups/amphora-record-audio-pop-up/amphora-record-audio-pop-up.module';
 
 @NgModule({
     imports: [
@@ -29,7 +32,10 @@ import {AmphoraUploadAudioModule} from '../../../components/inputs/amphora-uploa
         AmphoraSeriesTagModule,
         AmphoraUploadImageModule,
         AmphoraOptionsSelectModule,
-        AmphoraUploadAudioModule
+        AmphoraUploadAudioModule,
+        AmphoraRecordAudioModule,
+        AmphoraCommonPopUpModule,
+        AmphoraRecordAudioPopUpModule
     ],
   declarations: [EpisodeCreateEditPage]
 })

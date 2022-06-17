@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../../shared/enums/component-types/button-types.enum';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {InputFieldTypesEnum} from '../../../shared/enums/component-types/input-field-types.enum';
 import {UnitsOfMeasurementEnum} from '../../../shared/enums/units-of-measurement.enum';
@@ -11,6 +11,10 @@ import {AmphoraSeriesTagModel} from '../../../components/common/amphora-series-t
 import {AmphoraUploadImageModel} from '../../../components/inputs/amphora-upload-image/amphora-upload-image.model';
 import {AmphoraUploadAudioModel} from '../../../components/inputs/amphora-upload-audio/amphora-upload-audio.model';
 import {AmphoraOptionsSelectModel} from '../../../components/inputs/amphora-options-select/amphora-options-select.model';
+import {EpisodeCreateEditSelectors} from '../../../store/episode-create-edit/episode-create-edit.selectors';
+import {EpisodeCreateEditActions} from '../../../store/episode-create-edit/episode-create-edit.actions';
+import {EpisodeCreateFormEnum} from '../../../shared/enums/forms/episode-create-form.enum';
+import {AmphoraRecordAudioModel} from '../../../components/inputs/amphora-record-audio/amphora-record-audio.model';
 
 @Injectable({
     providedIn: 'root',
@@ -20,11 +24,27 @@ export class EpisodeCreateEditService {
     }
 
     public createSelectOptions(): AmphoraOptionsSelectModel {
-        return  null;
+        return  AmphoraOptionsSelectModel.create(this.store$.select(EpisodeCreateEditSelectors.selectEpisodeType), {
+            onOptionClick: option => this.store$.dispatch(EpisodeCreateEditActions.input({
+                value: option, field: EpisodeCreateFormEnum.EPISODE_TYPE
+            })),
+        });
     }
 
     public createUploadAudio(): AmphoraUploadAudioModel {
-        return AmphoraUploadAudioModel.create(null, () => {console.log('Audio');});
+        return AmphoraUploadAudioModel.create(
+            this.store$.select(EpisodeCreateEditSelectors.selectAudioUrl),
+            (file: File, url: string, fileName: string) => this.store$.dispatch(EpisodeCreateEditActions.createAudio({
+                file, url, fileName,
+            })));
+    }
+
+    public createRecordAudio(): AmphoraRecordAudioModel {
+        return AmphoraRecordAudioModel.create(
+            this.store$.select(EpisodeCreateEditSelectors.selectAudioUrl),
+            (file: File, url: string, fileName: string) => this.store$.dispatch(EpisodeCreateEditActions.createAudio({
+                file, url, fileName,
+            })));
     }
 
     public createButtons(): AmphoraButtonModel[] {
@@ -136,8 +156,47 @@ export class EpisodeCreateEditService {
 
     public createUploadImage(): AmphoraUploadImageModel {
         return AmphoraUploadImageModel.create(
-            new BehaviorSubject(null),
-            () => console.log('Upload Url'),
+            this.store$.select(EpisodeCreateEditSelectors.selectImageUrl),
+            (file: File, url: string, fileName: string) => this.store$.dispatch(
+                EpisodeCreateEditActions.createImage({file, url, fileName})
+            ),
         );
     }
 }
+
+// let chunks = [];
+//
+// let onSuccess = function(stream) {
+//     const mediaRecorder = new MediaRecorder(stream);
+//
+//     record.onclick = function() {
+//         mediaRecorder.start();
+//         stop.disabled = false;
+//         record.disabled = true;
+//     }
+//
+//     stop.onclick = function() {
+//         mediaRecorder.stop();
+//         stop.disabled = true;
+//         record.disabled = false;
+//     }
+//
+//     mediaRecorder.onstop = function(e) {
+//         audio.controls = true;
+//         const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+//         chunks = [];
+//         const audioURL = window.URL.createObjectURL(blob);
+//         audio.src = audioURL;
+//
+//         deleteButton.onclick = function(e) {
+//             let evtTgt = e.target;
+//             evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+//         }
+//     }
+//
+//     mediaRecorder.ondataavailable = function(e) {
+//         chunks.push(e.data);
+//     }
+// }
+//
+// navigator.mediaDevices.getUserMedia(constraints).then(onSuccess);

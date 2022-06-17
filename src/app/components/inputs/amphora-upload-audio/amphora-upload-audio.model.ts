@@ -1,15 +1,16 @@
 import {Observable} from 'rxjs';
 
 export class AmphoraUploadAudioModel {
-    public audioSrcController$: Observable<File>;
-    public onInput: () => void;
+    public audioSrcController$: Observable<string>;
+    public onInput: (file: File, url: string, fileName: string) => void;
 
-    constructor(imgSrcController$: Observable<File>, onInput: () => void) {
-        this.audioSrcController$ = imgSrcController$;
+    constructor(audioSrcController$: Observable<string>, onInput: (file: File, url: string, fileName: string) => void) {
+        this.audioSrcController$ = audioSrcController$;
         this.onInput = onInput;
     }
 
-    public static create(audioSrcController$: Observable<File>, onInput: () => void): AmphoraUploadAudioModel {
+    public static create(audioSrcController$: Observable<string>,
+                         onInput: (file: File, url: string, fileName: string) => void): AmphoraUploadAudioModel {
         return new AmphoraUploadAudioModel(audioSrcController$, onInput);
     }
 }

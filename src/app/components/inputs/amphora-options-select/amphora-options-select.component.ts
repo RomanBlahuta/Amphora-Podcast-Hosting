@@ -10,12 +10,18 @@ import {AmphoraOptionsSelectModel} from './amphora-options-select.model';
 export class AmphoraOptionsSelectComponent implements OnInit {
     @Input()
     public model: AmphoraOptionsSelectModel;
-    public currentOption: EpisodeTypesEnum = EpisodeTypesEnum.FULL;
+    public currentOption: EpisodeTypesEnum;
     public EpisodeTypesEnum = EpisodeTypesEnum;
 
     constructor() { }
 
-    public ngOnInit(): void {}
+    public ngOnInit(): void {
+        if (this.model.valueController) {
+            this.model.valueController.subscribe(value => this.currentOption = value);
+        } else {
+            this.currentOption = EpisodeTypesEnum.FULL;
+        }
+    }
 
     public onOptionClick(option: EpisodeTypesEnum): void {
         if (this.model.optional.onOptionClick) {

@@ -13,6 +13,7 @@ import {fromShow} from './show/show.reducer';
 import {fromResetPassword} from './reset-password/reset-password.reducer';
 import {fromUser} from './user/user.reducer';
 import {fromShowCreateEdit} from './show-create-edit/show-create-edit.reducer';
+import {fromEpisodeCreateEdit} from './episode-create-edit/episode-create-edit.reducer';
 
 export const routerFeatureKey = 'router';
 
@@ -29,6 +30,7 @@ export interface State {
     [fromShow.showFeatureKey]: fromShow.IState;
     [fromShowCreateEdit.showCreateEditFeatureKey]: fromShowCreateEdit.IState;
     [fromUser.userFeatureKey]: fromUser.IState;
+    [fromEpisodeCreateEdit.episodeCreateEditFeatureKey]: fromEpisodeCreateEdit.IState;
 }
 
 export const appReducers: ActionReducerMap<State> = {
@@ -44,6 +46,7 @@ export const appReducers: ActionReducerMap<State> = {
     [fromShow.showFeatureKey]: fromShow.reducer,
     [fromShowCreateEdit.showCreateEditFeatureKey]: fromShowCreateEdit.reducer,
     [fromUser.userFeatureKey]: fromUser.reducer,
+    [fromEpisodeCreateEdit.episodeCreateEditFeatureKey]: fromEpisodeCreateEdit.reducer,
 };
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions

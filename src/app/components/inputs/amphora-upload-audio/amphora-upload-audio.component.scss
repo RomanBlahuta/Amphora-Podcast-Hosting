@@ -8,7 +8,7 @@
     &__upload {
         background-color: $color-black;
         height: 300px;
-        width: calc(100vw - 128px);
+        width: calc(50vw - 128px - 16px);
         display: flex;
         justify-content: center;
         align-items: center;

@@ -1,5 +1,11 @@
 import {EpisodeTypesEnum} from '../../../shared/enums/episode-types.enum';
 
+export interface ICreateEpisodeAudioResponseDto {
+    episode_link: string;
+    file_extension: string;
+    episode_duration: string;
+}
+
 export interface ILoadEpisodesByShowIdResponseItemDto {
     id: string;
     title: string;

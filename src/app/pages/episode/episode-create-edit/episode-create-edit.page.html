@@ -12,7 +12,7 @@
                     </div>
                     <amphora-text-area [model]="descriptionTextAreaModel"></amphora-text-area>
                     <div class="episode-create-edit__content-episode-data-series">
-                        <amphora-options-select></amphora-options-select>
+                        <amphora-options-select [model]="optionSelectModel"></amphora-options-select>
                         <div class="episode-create-edit__content-episode-data-series-list">
                             <div class="episode-create-edit__content-episode-data-series-container" *ngFor="let seriesModel of seriesModels">
                                 <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
@@ -31,8 +31,10 @@
                 </div>
             </div>
             <div class="episode-create-edit__content-audio">
-                <amphora-upload-audio [model]=""></amphora-upload-audio>
+                <amphora-upload-audio [model]="uploadAudioModel"></amphora-upload-audio>
+                <amphora-record-audio [model]="recordAudioModel"></amphora-record-audio>
             </div>
         </div>
     </amphora-page>
+    <amphora-record-audio-pop-up [model]="recordAudioPopUpModel"></amphora-record-audio-pop-up>
 </ion-content>

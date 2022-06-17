@@ -6,6 +6,8 @@ import {AmphoraCommonPopUpModel} from '../../components/pop-ups/amphora-common-p
 import {AmphoraButtonModel} from '../../components/common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum} from '../../shared/enums/component-types/button-types.enum';
 import {ContentTypesEnum} from '../../shared/enums/content-types.enum';
+import {AmphoraRecordAudioPopUpModel} from '../../components/pop-ups/amphora-record-audio-pop-up/amphora-record-audio-pop-up.model';
+import {EpisodeCreateEditActions} from '../../store/episode-create-edit/episode-create-edit.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -79,6 +81,21 @@ export class PopUpService {
                 }),
             ],
             popUpType: PopUpTypesEnum.STREAMING_OPTIONS,
+        });
+    }
+
+    public createRecordingPopUp(): AmphoraRecordAudioPopUpModel {
+        return AmphoraRecordAudioPopUpModel.create(
+            (file: File, url: string, fileName: string) => this.store$.dispatch(EpisodeCreateEditActions.createAudio(
+                {file, url, fileName}
+            )),
+        );
+    }
+
+    public createRecordingCommonPopUp(): AmphoraCommonPopUpModel {
+        return AmphoraCommonPopUpModel.create('Recording Audio', {
+            popUpType: PopUpTypesEnum.RECORDING,
+            buttons: [],
         });
     }
 }
