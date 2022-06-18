@@ -32,8 +32,8 @@ export class PopUpService {
         this.store$.dispatch(PopUpActions.hideErrorPopUp());
     }
 
-    public showConfirmDeletionPopUp(item: string, contentType: ContentTypesEnum): void {
-        this.store$.dispatch(PopUpActions.showConfirmDeletionPopUp({item, contentType}));
+    public showConfirmDeletionPopUp(item: string, contentType: ContentTypesEnum, id: string): void {
+        this.store$.dispatch(PopUpActions.showConfirmDeletionPopUp({item, contentType, id}));
     }
 
     public hideConfirmDeletionPopUp(): void {

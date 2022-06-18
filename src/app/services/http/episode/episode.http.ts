@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {
     ICreateEpisodeAudioResponseDto,
-    ICreateEpisodeRequestDTO, ICreateEpisodeResponseDTO,
+    ICreateEpisodeRequestDTO, ICreateEpisodeResponseDTO, IDeleteEpisodeResponseDTO,
     ILoadEpisodesByShowIdResponseDto
 } from './episode.dto';
 import {EPISODE_PAGE_SIZE} from '../../../shared/utils/constants';
@@ -18,6 +18,10 @@ export class EpisodeHttp {
 
     public createEpisode(data: ICreateEpisodeRequestDTO): Observable<ICreateEpisodeResponseDTO> {
         return this.http.post<ICreateEpisodeResponseDTO>(HTTP_ROUTING.episode.create, data);
+    }
+
+    public deleteEpisode(id: string): Observable<IDeleteEpisodeResponseDTO> {
+        return this.http.delete<IDeleteEpisodeResponseDTO>(`${HTTP_ROUTING.episode.deleteEpisode}/${id}`);
     }
 
     public createAudio(file: File, fileName: string): Observable<ICreateEpisodeAudioResponseDto> {

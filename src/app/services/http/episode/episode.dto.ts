@@ -64,3 +64,6 @@ export interface ICreateEpisodeResponseDTO {
     episode_guid: string;
     pub_date: string;
 }
+
+export interface IDeleteEpisodeResponseDTO {
+}

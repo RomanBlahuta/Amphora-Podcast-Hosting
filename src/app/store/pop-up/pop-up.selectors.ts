@@ -26,6 +26,7 @@ export namespace PopUpSelectors {
         (state) => ({
             confirmDeletion: state.confirmDeletion,
             confirmDeletionType: state.confirmDeletionType,
+            confirmDeletionId: state.confirmDeletionId,
         })
     );
 }

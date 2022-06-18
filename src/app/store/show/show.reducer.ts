@@ -50,10 +50,25 @@ export namespace fromShow {
         on(ShowActions.setActiveSeries, (state, {id}) => ({
             ...state,
             activeSeries: (state.activeSeries === id) ? null : id,
+            pagination: {
+                ...state.pagination,
+                currentPage: 1,
+            }
         })),
         on(ShowActions.search, (state, {value}) => ({
             ...state,
             searchValue: value,
+            pagination: {
+                ...state.pagination,
+                currentPage: 1,
+            }
+        })),
+        on(ShowActions.deleteEpisodeSuccess, (state) => ({
+            ...state,
+            pagination: {
+                ...state.pagination,
+                currentPage: 1,
+            }
         })),
         on(ShowActions.loadShow, (state, {id}) => ({
             ...state,

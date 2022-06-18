@@ -64,7 +64,7 @@ export class ShowService {
 
                 AmphoraButtonModel.create('Delete', {
                     buttonColor: ButtonColorsEnum.DARK,
-                    onClick: () => this.popUpService.showConfirmDeletionPopUp(data.title, ContentTypesEnum.SHOW),
+                    onClick: () => this.popUpService.showConfirmDeletionPopUp(data.title, ContentTypesEnum.SHOW, data.id),
                     size: {
                         width: 400,
                         height: 40,
@@ -82,8 +82,7 @@ export class ShowService {
                 (data.confirmDeletionType === ContentTypesEnum.SHOW) ?
                     () => this.store$.dispatch(ShowActions.deleteShow())
                     :
-                    // todo
-                    () => {console.log('oops');},
+                    () => this.store$.dispatch(ShowActions.deleteEpisode({id: data.confirmDeletionId})),
             )),
         );
 
@@ -130,10 +129,12 @@ export class ShowService {
                     {
                         id: episode.id,
                         season: episode.season_num,
-                        audio: episode.episode_link,
+                        audio: episode.file_link,
                         episode: episode.episode_num,
                         watchTime: parseDurationTimeUtil(episode.duration),
                         description: episode.description,
+                        onEdit: () => this.navController.navigateRoot(`${RoutesEnum.EPISODE}/${episode.show_id}/edit/${episode.id}`),
+                        onDelete: () => this.popUpService.showConfirmDeletionPopUp(episode.title, ContentTypesEnum.EPISODE, episode.id),
                         onSeriesTagClick: () => this.store$.dispatch(ShowActions.setActiveSeries({id: episode.series})),
                         isSeriesActive$: this.store$.select(ShowSelectors.selectIsSeriesActive, episode.series),
                         series: episode.series,

@@ -33,7 +33,7 @@ export class AmphoraEpisodeCardComponent implements OnInit {
                     width: 144,
                     height: 40,
                 },
-                onClick: () => 'Edit Episode',
+                onClick: this.onEdit.bind(this),
             }),
 
             AmphoraButtonModel.create('Delete', {
@@ -43,7 +43,7 @@ export class AmphoraEpisodeCardComponent implements OnInit {
                     width: 144,
                     height: 40,
                 },
-                onClick: () => 'Delete Episode',
+                onClick: this.onDelete.bind(this),
             }),
         ];
 
@@ -55,5 +55,17 @@ export class AmphoraEpisodeCardComponent implements OnInit {
 
     public changeShowOverlay(value: boolean) {
         this.showOverlay = value;
+    }
+
+    private onEdit(): void {
+        if (this.model.optional.onEdit) {
+            this.model.optional.onEdit();
+        }
+    }
+
+    private onDelete(): void {
+        if (this.model.optional.onDelete) {
+            this.model.optional.onDelete();
+        }
     }
 }

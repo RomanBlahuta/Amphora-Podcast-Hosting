@@ -23,7 +23,7 @@ export namespace PopUpActions {
 
     export const showConfirmDeletionPopUp = createAction(
         '[Pop Up] Show Confirm Deletion Pop Up',
-        props<{item: string; contentType: ContentTypesEnum}>(),
+        props<{item: string; contentType: ContentTypesEnum; id: string}>(),
     );
 
     export const hideConfirmDeletionPopUp = createAction(

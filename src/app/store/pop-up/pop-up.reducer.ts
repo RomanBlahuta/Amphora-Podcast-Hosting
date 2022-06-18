@@ -12,6 +12,7 @@ export namespace fromPopUp {
         common: PopUpTypesEnum;
         confirmDeletion: string;
         confirmDeletionType: ContentTypesEnum;
+        confirmDeletionId: string;
     }
 
     export const initialState: IState = {
@@ -20,6 +21,7 @@ export namespace fromPopUp {
         common: null,
         confirmDeletion: null,
         confirmDeletionType: null,
+        confirmDeletionId: null,
     };
 
     export const reducer = createReducer(
@@ -35,16 +37,18 @@ export namespace fromPopUp {
             error: false,
             errorMessage: null,
         })),
-        on(PopUpActions.showConfirmDeletionPopUp, (state, {item, contentType}) => ({
+        on(PopUpActions.showConfirmDeletionPopUp, (state, {item, contentType, id}) => ({
             ...state,
             confirmDeletionType: contentType,
             confirmDeletion: item,
+            confirmDeletionId: id,
             common: PopUpTypesEnum.CONFIRM_DELETION,
         })),
         on(PopUpActions.hideConfirmDeletionPopUp, (state) => ({
             ...state,
             confirmDeletion: null,
             confirmDeletionType: null,
+            confirmDeletionId: null,
             common: null,
         })),
         on(PopUpActions.showPopUp, (state, {popUpType}) => ({

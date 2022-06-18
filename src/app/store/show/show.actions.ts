@@ -55,4 +55,13 @@ export namespace ShowActions {
     export const deleteShowSuccess = createAction(
         '[Show] Delete Show Success',
     );
+
+    export const deleteEpisode = createAction(
+        '[Show] Delete Episode',
+        props<{id: string}>(),
+    );
+
+    export const deleteEpisodeSuccess = createAction(
+        '[Show] Delete Episode Success',
+    );
 }

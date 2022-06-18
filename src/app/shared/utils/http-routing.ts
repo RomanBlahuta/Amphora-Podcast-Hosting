@@ -25,6 +25,7 @@ export const HTTP_ROUTING = {
     },
     episode: {
         create: `${environment.apiBase}/episodes/create`,
+        deleteEpisode: `${environment.apiBase}/episodes`,
         loadEpisodes: `${environment.apiBase}/episodes`,
         createAudio: `${environment.apiBase}/episodes/file/upload`,
     },

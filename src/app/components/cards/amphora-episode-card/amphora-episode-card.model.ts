@@ -12,6 +12,8 @@ export interface IOptional {
     episode?: number;
     watchTime?: string;
     description?: string;
+    onEdit?: () => void;
+    onDelete?: () => void;
 }
 
 export class AmphoraEpisodeCardModel {
@@ -27,6 +29,8 @@ export class AmphoraEpisodeCardModel {
             series: optional?.series || undefined,
             onSeriesTagClick: optional?.onSeriesTagClick || undefined,
             isSeriesActive$: optional?.isSeriesActive$ || undefined,
+            onEdit: optional?.onEdit || undefined,
+            onDelete: optional?.onDelete || undefined,
             episode: optional?.episode || 1,
             season: optional?.season || 1,
             watchTime: optional?.watchTime || '0s',

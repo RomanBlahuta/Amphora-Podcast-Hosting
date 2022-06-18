@@ -9,6 +9,7 @@ import loadShowSuccess = ShowActions.loadShowSuccess;
 import {ShowSelectors} from './show.selectors';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../shared/enums/routes.enum';
+import {PopUpService} from '../../services/utils/pop-up.service';
 
 @Injectable()
 export class ShowEffects {
@@ -49,18 +50,34 @@ export class ShowEffects {
     public deleteShowSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(ShowActions.deleteShowSuccess),
         tap(() => {
+            this.popUpService.hideConfirmDeletionPopUp();
             this.navController.navigateRoot(RoutesEnum.DASHBOARD);
         }),
     ), {dispatch: false});
 
+    public deleteEpisode$ = createEffect(() => this.actions$.pipe(
+        ofType(ShowActions.deleteEpisode),
+        switchMap(action => this.episodeHttp.deleteEpisode(action.id).pipe(
+            map(response => ShowActions.deleteEpisodeSuccess()),
+        ))
+    ));
+
+    public deleteEpisodeSuccess$ = createEffect(() => this.actions$.pipe(
+        ofType(ShowActions.deleteEpisodeSuccess),
+        tap(() => {
+            this.popUpService.hideConfirmDeletionPopUp();
+        })
+    ), {dispatch: false});
+
     public reloadShows$ = createEffect(() => this.actions$.pipe(
-        ofType(ShowActions.changePage, ShowActions.setActiveSeries),
+        ofType(ShowActions.changePage, ShowActions.setActiveSeries, ShowActions.deleteEpisodeSuccess),
         withLatestFrom(this.store$.select(ShowSelectors.selectShowId)),
         tap(([_, id]) => this.store$.dispatch(ShowActions.loadShowEpisodes({id}))),
     ), {dispatch: false});
 
     constructor(private actions$: Actions,
                 private store$: Store,
+                private popUpService: PopUpService,
                 private navController: NavController,
                 private showHttp: ShowHttp,
                 private episodeHttp: EpisodeHttp) { }
