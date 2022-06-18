@@ -26,6 +26,7 @@ import {ResetPasswordEffects} from './store/reset-password/reset-password.effect
 import {AuthGuardService} from './services/guards/auth.guard';
 import {ShowCreateEditEffects} from './store/show-create-edit/show-create-edit.effects';
 import {UserEffects} from './store/user/user.effects';
+import {EpisodeCreateEditEffects} from './store/episode-create-edit/episode-create-edit.effects';
 
 export const EFFECTS = [
     SignInEffects,
@@ -35,6 +36,7 @@ export const EFFECTS = [
     UserEffects,
     VerificationEffects,
     DashboardEffects,
+    EpisodeCreateEditEffects,
     ShowEffects,
     ShowCreateEditEffects,
 ];

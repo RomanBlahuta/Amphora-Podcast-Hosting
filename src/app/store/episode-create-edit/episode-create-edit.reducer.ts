@@ -24,6 +24,9 @@ export namespace fromEpisodeCreateEdit {
         audioFileName: string;
         imageUrl: string;
         imageFileName: string;
+        imageFileLink: string;
+        audioFileLink: string;
+        audioDuration: string;
     }
 
     export const initialState: IState = {
@@ -44,6 +47,9 @@ export namespace fromEpisodeCreateEdit {
         audioFileName: null,
         imageUrl: null,
         imageFileName: null,
+        imageFileLink: null,
+        audioFileLink: null,
+        audioDuration: null,
     };
 
     export const reducer = createReducer(
@@ -75,9 +81,28 @@ export namespace fromEpisodeCreateEdit {
             audioFileName: fileName,
         })),
 
+        on(EpisodeCreateEditActions.createAudioSuccess, (state, {response}) => ({
+            ...state,
+            audioDuration: response.episode_duration,
+            audioFileLink: response.episode_link,
+        })),
+
+        on(EpisodeCreateEditActions.selectSeries, (state, {series}) => ({
+            ...state,
+            [EpisodeCreateFormEnum.SERIES]: series,
+        })),
+
+        on(EpisodeCreateEditActions.loadShowSeries, (state) => state),
+
+        on(EpisodeCreateEditActions.loadShowSeriesSuccess, (state, {response}) => ({
+            ...state,
+            seriesOptions: response.map(seriesObj => seriesObj.name),
+        })),
+
         on(EpisodeCreateEditActions.createImageSuccess, (state, {response}) => ({
             ...state,
             imageId: response.id,
+            imageFileLink: response.file_url,
         })),
 
         on(EpisodeCreateEditActions.addSeries, (state) => ({

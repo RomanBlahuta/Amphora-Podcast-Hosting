@@ -15,12 +15,16 @@ import {EpisodeCreateEditSelectors} from '../../../store/episode-create-edit/epi
 import {EpisodeCreateEditActions} from '../../../store/episode-create-edit/episode-create-edit.actions';
 import {EpisodeCreateFormEnum} from '../../../shared/enums/forms/episode-create-form.enum';
 import {AmphoraRecordAudioModel} from '../../../components/inputs/amphora-record-audio/amphora-record-audio.model';
+import {map} from 'rxjs/operators';
+import {NavController} from '@ionic/angular';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Injectable({
     providedIn: 'root',
 })
 export class EpisodeCreateEditService {
-    constructor(private store$: Store) {
+    constructor(private store$: Store,
+                private navController: NavController) {
     }
 
     public createSelectOptions(): AmphoraOptionsSelectModel {
@@ -51,7 +55,8 @@ export class EpisodeCreateEditService {
         return [
             AmphoraButtonModel.create('Submit', {
                 buttonColor: ButtonColorsEnum.PRIMARY,
-                onClick: () => console.log('Submit'),
+                onClick: () => this.store$.dispatch(EpisodeCreateEditActions.submit()),
+                disabled$: this.store$.select(EpisodeCreateEditSelectors.selectIsButtonDisabled),
                 size: {
                     width: 400,
                     height: 40,
@@ -60,7 +65,10 @@ export class EpisodeCreateEditService {
 
             AmphoraButtonModel.create('Cancel', {
                 buttonColor: ButtonColorsEnum.WHITE,
-                onClick: () => console.log('Cancel'),
+                onClick: () => {
+                    this.store$.dispatch(EpisodeCreateEditActions.clear());
+                    this.navController.navigateRoot(RoutesEnum.DASHBOARD);
+                },
                 size: {
                     width: 400,
                     height: 40,
@@ -122,7 +130,7 @@ export class EpisodeCreateEditService {
         placeholder: string,
         onInput: (value: string, model: AmphoraInputFieldModel) => void): AmphoraInputFieldModel {
         return AmphoraInputFieldModel.create(valueController, {
-            inputType: InputFieldTypesEnum.TEXT,
+            inputType: InputFieldTypesEnum.NUMBER,
             onInputListener: onInput,
             placeholder,
             size: {
@@ -132,26 +140,13 @@ export class EpisodeCreateEditService {
         });
     }
 
-    public createSeriesTags(): AmphoraSeriesTagModel[] {
-        return [
-            AmphoraSeriesTagModel.create('Series #1', {
-                onClick: () => {
-                    console.log('Series');
-                },
-            }),
-
-            AmphoraSeriesTagModel.create('Series #2', {
-                onClick: () => {
-                    console.log('Series');
-                },
-            }),
-
-            AmphoraSeriesTagModel.create('Series #3', {
-                onClick: () => {
-                    console.log('Series');
-                },
-            }),
-        ];
+    public createSeriesTags(): Observable<AmphoraSeriesTagModel[]> {
+        return this.store$.select(EpisodeCreateEditSelectors.selectAllSeries).pipe(
+            map(seriesList => seriesList.map(series => AmphoraSeriesTagModel.create(series, {
+                onClick: () => this.store$.dispatch(EpisodeCreateEditActions.selectSeries({series})),
+                active$: this.store$.select(EpisodeCreateEditSelectors.selectIsSeriesActive, series),
+            })))
+        );
     }
 
     public createUploadImage(): AmphoraUploadImageModel {

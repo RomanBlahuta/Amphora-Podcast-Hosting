@@ -4,6 +4,7 @@ import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integratio
 import {ICreateImageResponseDto} from '../../services/http/image/image.dto';
 import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
 import {ICreateEpisodeAudioResponseDto} from '../../services/http/episode/episode.dto';
+import {ILoadSeriesByShowIdResponseDTO} from '../../services/http/show/show.dto';
 
 export namespace EpisodeCreateEditActions {
     export const input = createAction(
@@ -13,6 +14,16 @@ export namespace EpisodeCreateEditActions {
 
     export const loadShowSeries = createAction(
         '[Episode Create Edit] Load Show Series'
+    );
+
+    export const loadShowSeriesSuccess = createAction(
+        '[Episode Create Edit] Load Show Series Success',
+        props<{response: ILoadSeriesByShowIdResponseDTO[]}>()
+    );
+
+    export const selectSeries = createAction(
+        '[Episode Create Edit] Select Series',
+        props<{series: string}>(),
     );
 
     export const submit = createAction(

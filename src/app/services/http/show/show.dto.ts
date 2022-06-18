@@ -42,6 +42,10 @@ export interface ILoadPaginatedShowsResponseDTO {
     size: number;
 }
 
+export interface ILoadSeriesByShowIdResponseDTO {
+    name: string;
+}
+
 
 export interface ILoadShowResponseDTO {
     is_removed: boolean;

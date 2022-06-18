@@ -30,3 +30,37 @@ export interface ILoadEpisodesByShowIdResponseDto {
     page: number;
     size: number;
 }
+
+export interface ICreateEpisodeRequestDTO {
+    title: string;
+    description: string;
+    episode_num: number;
+    season_num: number;
+    explicit: boolean;
+    episode_type: EpisodeTypesEnum;
+    show_id: string;
+    series: string;
+    file_link: string;
+    duration: number;
+    cover_image: string;
+    cover_link: string;
+}
+
+export interface ICreateEpisodeResponseDTO {
+    id: string;
+    title: string;
+    description: string;
+    episode_num: number;
+    season_num: number;
+    explicit: boolean;
+    episode_type: EpisodeTypesEnum;
+    show_id: string;
+    series: string;
+    file_link: string;
+    duration: number;
+    cover_image: string;
+    cover_link: string;
+    episode_link: string;
+    episode_guid: string;
+    pub_date: string;
+}

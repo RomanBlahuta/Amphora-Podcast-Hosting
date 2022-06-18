@@ -29,6 +29,7 @@ export class AmphoraUploadAudioComponent implements OnInit {
 
     public onFileSelected(event) {
         const file: File = event.target.files[0];
+        console.log(file);
 
         if (file) {
             this.file = file;

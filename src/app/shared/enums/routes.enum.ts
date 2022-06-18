@@ -12,6 +12,4 @@ export enum RoutesEnum {
     SHOW_CREATE = 'show/create/new',
     SHOW_EDIT = 'show/edit',
     EPISODE = 'episode',
-    EPISODE_CREATE = 'episode/create/new',
-    EPISODE_EDIT = 'episode/edit',
 }

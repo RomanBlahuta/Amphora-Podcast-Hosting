@@ -17,6 +17,7 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
     public model: AmphoraRecordAudioPopUpModel;
 
     public playing = false;
+    public done = false;
     public recordingCommonPopUpModel: AmphoraCommonPopUpModel;
     public playButtonModel: AmphoraButtonModel;
     public pauseButtonModel: AmphoraButtonModel;
@@ -30,7 +31,9 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
 
     public ngOnInit(): void {
         this.fileReader.onload = (event) => {
-            this.model.onInput(this.file, event.target.result as string, this.file.name);
+            if (this.done) {
+                this.model.onInput(this.file, event.target.result as string, this.file.name);
+            }
         };
 
         navigator.mediaDevices.getUserMedia({
@@ -42,7 +45,6 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
                 this.mediaRecorder.onstop = () => {
                     const blob = new Blob(this.chunks, { type : 'audio/ogg' });
                     this.file = new File([blob], 'recorded-audio.ogg', { type : 'audio/ogg' });
-                    console.log(this.file);
                     this.fileReader.readAsDataURL(this.file);
                 };
                 this.mediaRecorder.ondataavailable = (data) => {
@@ -57,14 +59,13 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
         this.playButtonModel = this.createRecordingButton(IconsEnum.PLAY, () => {
             this.mediaRecorder.start();
             this.playing = true;
-            //
         });
         this.pauseButtonModel = this.createRecordingButton(IconsEnum.PAUSE, () => {
             this.mediaRecorder.stop();
             this.playing = false;
-            //
         });
         this.stopButtonModel = this.createRecordingButton(IconsEnum.STOP, () => {
+            this.done = true;
             this.mediaRecorder.stop();
             this.popUpService.hidePopUp();
         });

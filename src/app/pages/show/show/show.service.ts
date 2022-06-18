@@ -55,7 +55,7 @@ export class ShowService {
 
                 AmphoraButtonModel.create('Add Episode', {
                     buttonColor: ButtonColorsEnum.WHITE,
-                    onClick: () => console.log('Add Episode'),
+                    onClick: () => this.navController.navigateRoot(RoutesEnum.EPISODE + '/' + data.id + '/create/new'),
                     size: {
                         width: 400,
                         height: 40,

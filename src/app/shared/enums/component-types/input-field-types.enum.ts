@@ -3,4 +3,5 @@ export enum InputFieldTypesEnum {
     EMAIL = 'email',
     PASSWORD = 'password',
     CODE = 'code',
+    NUMBER = 'number',
 }

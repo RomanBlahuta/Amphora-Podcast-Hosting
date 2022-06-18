@@ -2,7 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
-import {ILoadEpisodesByShowIdResponseDto} from './episode.dto';
+import {
+    ICreateEpisodeAudioResponseDto,
+    ICreateEpisodeRequestDTO, ICreateEpisodeResponseDTO,
+    ILoadEpisodesByShowIdResponseDto
+} from './episode.dto';
 import {EPISODE_PAGE_SIZE} from '../../../shared/utils/constants';
 
 @Injectable({
@@ -12,9 +16,14 @@ export class EpisodeHttp {
     constructor(private http: HttpClient) {
     }
 
-    // todo
-    public createEpisode(data: any): Observable<any> {
-        return this.http.post<any>('', {});
+    public createEpisode(data: ICreateEpisodeRequestDTO): Observable<ICreateEpisodeResponseDTO> {
+        return this.http.post<ICreateEpisodeResponseDTO>(HTTP_ROUTING.episode.create, data);
+    }
+
+    public createAudio(file: File, fileName: string): Observable<ICreateEpisodeAudioResponseDto> {
+        const formData = new FormData();
+        formData.append('episode_file', file);
+        return this.http.post<ICreateEpisodeAudioResponseDto>(HTTP_ROUTING.episode.createAudio + `?episode_title=${fileName}`, formData);
     }
 
     public getEpisodesByShowId(id: string, page: number, title: string, series: string): Observable<ILoadEpisodesByShowIdResponseDto> {

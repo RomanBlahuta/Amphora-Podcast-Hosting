@@ -14,6 +14,21 @@ export namespace EpisodeCreateEditSelectors {
 
     export const selectAllSeries = createSelector(
         selectEpisodeCreateEditState,
+        (state) => state.seriesOptions,
+    );
+
+    export const selectIsSeriesActive = createSelector(
+        selectEpisodeCreateEditState,
+        (state, series: string) => state[EpisodeCreateFormEnum.SERIES] === series,
+    );
+
+    export const selectShowId = createSelector(
+        selectEpisodeCreateEditState,
+        (state) => state.showId,
+    );
+
+    export const selectSeries = createSelector(
+        selectEpisodeCreateEditState,
         (state) => state.series,
     );
 
@@ -45,7 +60,10 @@ export namespace EpisodeCreateEditSelectors {
     export const selectIsButtonDisabled = createSelector(
         selectEpisodeCreateEditState,
         // todo
-        (state) => state[EpisodeCreateFormEnum.TITLE] === '' || state[EpisodeCreateFormEnum.DESCRIPTION] === '',
+        (state) =>
+            state[EpisodeCreateFormEnum.TITLE] === '' || state[EpisodeCreateFormEnum.DESCRIPTION] === '' ||
+            !state.imageId || !state.audioFileLink || state[EpisodeCreateFormEnum.EPISODE_NUMBER] === '' ||
+            state[EpisodeCreateFormEnum.SEASON_NUMBER] === '',
     );
 
     export const selectImage = createSelector(
@@ -63,19 +81,31 @@ export namespace EpisodeCreateEditSelectors {
         (state) => state.imageFileName,
     );
 
+    export const selectAudioFileName = createSelector(
+        selectEpisodeCreateEditState,
+        (state) => state.audioFileName,
+    );
+
+    export const selectAudioFile = createSelector(
+        selectEpisodeCreateEditState,
+        (state) => state[EpisodeCreateFormEnum.AUDIO],
+    );
+
     export const selectForm = createSelector(
         selectEpisodeCreateEditState,
         (state) => ({
-            //todo
-
-            // title: state[EpisodeCreateFormEnum.TITLE],
-            // description: state[EpisodeCreateFormEnum.DESCRIPTION],
-            // language: 'en',
-            // show_copyright: '',
-            // image_id: state.imageId,
-            // category: 'Arts/Books',
-            // series: state.series,
-            // selected_streamings: state[EpisodeCreateFormEnum.STREAMING_OPTIONS],
+            title: state[EpisodeCreateFormEnum.TITLE],
+            description: state[EpisodeCreateFormEnum.DESCRIPTION],
+            episode_num: +state[EpisodeCreateFormEnum.EPISODE_NUMBER],
+            season_num: +state[EpisodeCreateFormEnum.SEASON_NUMBER],
+            explicit: false,
+            episode_type: state[EpisodeCreateFormEnum.EPISODE_TYPE],
+            show_id: state.showId,
+            series: state[EpisodeCreateFormEnum.SERIES],
+            file_link: state.audioFileLink,
+            duration: +state.audioDuration,
+            cover_image: state.imageId,
+            cover_link: state.imageFileLink,
         }),
     );
 }

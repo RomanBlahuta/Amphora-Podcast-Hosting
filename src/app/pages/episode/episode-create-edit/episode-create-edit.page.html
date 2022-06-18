@@ -14,7 +14,7 @@
                     <div class="episode-create-edit__content-episode-data-series">
                         <amphora-options-select [model]="optionSelectModel"></amphora-options-select>
                         <div class="episode-create-edit__content-episode-data-series-list">
-                            <div class="episode-create-edit__content-episode-data-series-container" *ngFor="let seriesModel of seriesModels">
+                            <div class="episode-create-edit__content-episode-data-series-container" *ngFor="let seriesModel of (seriesModels | async)">
                                 <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
                             </div>
                         </div>

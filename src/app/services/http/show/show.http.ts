@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {
     ICreateShowRequestDTO, ICreateShowResponseDTO, IDeleteShowResponseDTO,
-    ILoadPaginatedShowsResponseDTO,
+    ILoadPaginatedShowsResponseDTO, ILoadSeriesByShowIdResponseDTO,
     ILoadShowResponseDTO
 } from './show.dto';
 import {SHOW_PAGE_SIZE} from '../../../shared/utils/constants';
@@ -20,6 +20,10 @@ export class ShowHttp {
         return this.http.get<ILoadPaginatedShowsResponseDTO>(
             HTTP_ROUTING.show.loadShows + `?page=${page}&size=${SHOW_PAGE_SIZE}` + ((title.length > 0) ? `&show_name=${title}` : ''),
         );
+    }
+
+    public getSeriesByShowId(id: string): Observable<ILoadSeriesByShowIdResponseDTO[]> {
+        return this.http.get<ILoadSeriesByShowIdResponseDTO[]>(HTTP_ROUTING.series.getByShowId + `/${id}`);
     }
 
     public getShow(id: string): Observable<ILoadShowResponseDTO> {

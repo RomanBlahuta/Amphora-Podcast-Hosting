@@ -13,6 +13,9 @@ export const HTTP_ROUTING = {
     user: {
         loadUser: `${environment.apiBase}/users/me`,
     },
+    series: {
+        getByShowId: `${environment.apiBase}/series`
+    },
     show: {
         loadShows: `${environment.apiBase}/shows/my`,
         create: `${environment.apiBase}/shows/create`,
@@ -21,7 +24,9 @@ export const HTTP_ROUTING = {
         deleteShow: `${environment.apiBase}/shows`,
     },
     episode: {
-        loadEpisodes: `${environment.apiBase}/episodes`
+        create: `${environment.apiBase}/episodes/create`,
+        loadEpisodes: `${environment.apiBase}/episodes`,
+        createAudio: `${environment.apiBase}/episodes/file/upload`,
     },
     image: {
         create: `${environment.apiBase}/images/create`,

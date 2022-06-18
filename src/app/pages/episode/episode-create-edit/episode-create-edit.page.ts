@@ -17,6 +17,7 @@ import {EpisodeCreateEditSelectors} from '../../../store/episode-create-edit/epi
 import {EpisodeCreateFormEnum} from '../../../shared/enums/forms/episode-create-form.enum';
 
 import {AmphoraRecordAudioPopUpModel} from '../../../components/pop-ups/amphora-record-audio-pop-up/amphora-record-audio-pop-up.model';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'amphora-episode-create-edit',
@@ -32,7 +33,7 @@ export class EpisodeCreateEditPage implements OnInit {
     public uploadImageModel: AmphoraUploadImageModel;
     public seasonInputFieldModel: AmphoraInputFieldModel;
     public episodeInputFIeldModel: AmphoraInputFieldModel;
-    public seriesModels: AmphoraSeriesTagModel[] = [];
+    public seriesModels: Observable<AmphoraSeriesTagModel[]>;
     public optionSelectModel: AmphoraOptionsSelectModel;
     public uploadAudioModel: AmphoraUploadAudioModel;
     public recordAudioModel: AmphoraRecordAudioModel;
@@ -72,7 +73,7 @@ export class EpisodeCreateEditPage implements OnInit {
         );
         this.seasonInputFieldModel = this.episodeCreateEditService.createNumberInputField(
             this.store$.select(EpisodeCreateEditSelectors.selectSeasonNumber),
-            'Season',
+            'Season №',
             (value: string, model: AmphoraInputFieldModel) => this.store$.dispatch(EpisodeCreateEditActions.input({
                 value,
                 field: EpisodeCreateFormEnum.SEASON_NUMBER,
@@ -80,7 +81,7 @@ export class EpisodeCreateEditPage implements OnInit {
         );
         this.episodeInputFIeldModel = this.episodeCreateEditService.createNumberInputField(
             this.store$.select(EpisodeCreateEditSelectors.selectEpisodeNumber),
-            'Episode',
+            'Episode №',
             (value: string, model: AmphoraInputFieldModel) => this.store$.dispatch(EpisodeCreateEditActions.input({
                 value,
                 field: EpisodeCreateFormEnum.EPISODE_NUMBER,
