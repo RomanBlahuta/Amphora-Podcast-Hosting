@@ -7,4 +7,5 @@ export enum ButtonColorsEnum {
     PRIMARY = 'button__primary',
     WHITE = 'button__white',
     DARK = 'button__dark',
+    ACCENT = 'button__accent',
 }

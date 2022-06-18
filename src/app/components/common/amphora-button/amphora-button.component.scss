@@ -34,6 +34,27 @@
         }
     }
 
+    &__accent {
+        &-outlined {
+            background-color: transparent;
+            border: solid 3px $color-accent;
+            border-radius: 8px;
+
+            &-label {
+                color: $color-accent;
+            }
+        }
+
+        &-filled {
+            box-shadow: 0 2px 4px 1px $color-drop-shadow;
+            background-color: $color-accent;
+
+            &-label {
+                color: $color-white;
+            }
+        }
+    }
+
     &__primary {
         &-outlined {
             background-color: transparent;

@@ -62,6 +62,15 @@ export class ShowService {
                     }
                 }),
 
+                AmphoraButtonModel.create('Get RSS-Feed Link', {
+                    buttonColor: ButtonColorsEnum.ACCENT,
+                    onClick: () => navigator.clipboard.writeText(data.feed_file_link),
+                    size: {
+                        width: 400,
+                        height: 40,
+                    }
+                }),
+
                 AmphoraButtonModel.create('Delete', {
                     buttonColor: ButtonColorsEnum.DARK,
                     onClick: () => this.popUpService.showConfirmDeletionPopUp(data.title, ContentTypesEnum.SHOW, data.id),
