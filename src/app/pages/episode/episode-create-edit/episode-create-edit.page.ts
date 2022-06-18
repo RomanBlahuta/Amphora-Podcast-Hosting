@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AmphoraButtonModel} from '../../../components/common/amphora-button/amphora-button.model';
 import {AmphoraInputFieldModel} from '../../../components/inputs/amphora-input-field/amphora-input-field.model';
 import {AmphoraTextAreaModel} from '../../../components/inputs/amphora-text-area/amphora-text-area.model';
@@ -24,7 +24,7 @@ import {Observable} from 'rxjs';
     templateUrl: './episode-create-edit.page.html',
     styleUrls: ['./episode-create-edit.page.scss'],
 })
-export class EpisodeCreateEditPage implements OnInit {
+export class EpisodeCreateEditPage implements OnInit, OnDestroy {
     public pageMode: string;
 
     public buttonModels: AmphoraButtonModel[];
@@ -38,6 +38,8 @@ export class EpisodeCreateEditPage implements OnInit {
     public uploadAudioModel: AmphoraUploadAudioModel;
     public recordAudioModel: AmphoraRecordAudioModel;
     public recordAudioPopUpModel: AmphoraRecordAudioPopUpModel;
+    public clearAudioButton: AmphoraButtonModel;
+    public canClearAudio: Observable<boolean>;
 
     constructor(private route: ActivatedRoute,
                 private store$: Store,
@@ -45,6 +47,7 @@ export class EpisodeCreateEditPage implements OnInit {
                 private episodeCreateEditService: EpisodeCreateEditService) { }
 
     public ngOnInit(): void {
+        this.canClearAudio = this.store$.select(EpisodeCreateEditSelectors.selectCanClearAudio);
         this.route.params.subscribe((params) => {
             this.pageMode = params.mode.charAt(0).toUpperCase() + params.mode.slice(1);
             this.store$.dispatch(EpisodeCreateEditActions.setFormMode({
@@ -55,9 +58,14 @@ export class EpisodeCreateEditPage implements OnInit {
         this.createModels();
     }
 
+    public ngOnDestroy(): void {
+        this.store$.dispatch(EpisodeCreateEditActions.clear());
+    }
+
     public createModels(): void {
         this.recordAudioPopUpModel = this.popUpService.createRecordingPopUp();
         this.buttonModels = this.episodeCreateEditService.createButtons();
+        this.clearAudioButton = this.episodeCreateEditService.createClearAudioButton();
         this.optionSelectModel = this.episodeCreateEditService.createSelectOptions();
         this.seriesModels = this.episodeCreateEditService.createSeriesTags();
         this.uploadAudioModel = this.episodeCreateEditService.createUploadAudio();

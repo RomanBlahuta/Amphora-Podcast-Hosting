@@ -9,14 +9,27 @@ import {EpisodeHttp} from '../../services/http/episode/episode.http';
 import {RoutesEnum} from '../../shared/enums/routes.enum';
 import {ImageHttp} from '../../services/http/image/image.http';
 import {ShowHttp} from '../../services/http/show/show.http';
+import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
 
 @Injectable()
 export class EpisodeCreateEditEffects {
 
     public loadSeriesInit$ = createEffect(() => this.actions$.pipe(
         ofType(EpisodeCreateEditActions.setFormMode),
-        tap(() => this.store$.dispatch(EpisodeCreateEditActions.loadShowSeries())),
+        tap((action) => {
+            this.store$.dispatch(EpisodeCreateEditActions.loadShowSeries());
+            if (action.mode === FormModeEnum.EDIT) {
+                this.store$.dispatch(EpisodeCreateEditActions.loadEpisodeForEdit({id: action.episodeId}));
+            }
+        }),
     ), {dispatch: false});
+
+    public loadEpisodeForEdit$ = createEffect(() => this.actions$.pipe(
+        ofType(EpisodeCreateEditActions.loadEpisodeForEdit),
+        switchMap(action => this.episodeHttp.getEpisodeById(action.id).pipe(
+            map(response => EpisodeCreateEditActions.loadEpisodeForEditSuccess({response}))
+        )),
+    ));
 
     public createImage$ = createEffect(() => this.actions$.pipe(
         ofType(EpisodeCreateEditActions.createImage),

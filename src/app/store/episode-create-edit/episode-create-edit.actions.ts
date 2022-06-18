@@ -1,9 +1,8 @@
 import {createAction, props} from '@ngrx/store';
 import {EpisodeCreateFormEnum} from '../../shared/enums/forms/episode-create-form.enum';
-import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
 import {ICreateImageResponseDto} from '../../services/http/image/image.dto';
 import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
-import {ICreateEpisodeAudioResponseDto} from '../../services/http/episode/episode.dto';
+import {ICreateEpisodeAudioResponseDto, ILoadEpisodeByIDResponseDTO} from '../../services/http/episode/episode.dto';
 import {ILoadSeriesByShowIdResponseDTO} from '../../services/http/show/show.dto';
 
 export namespace EpisodeCreateEditActions {
@@ -72,8 +71,17 @@ export namespace EpisodeCreateEditActions {
         '[Episode Create Edit] Clear',
     );
 
-    export const selectStreamingOption = createAction(
-        '[Episode Create Edit] Select Streaming Option',
-        props<{option: StreamingIntegrationsEnum}>(),
+    export const loadEpisodeForEdit = createAction(
+        '[Episode Create Edit] Load Episode For Edit',
+        props<{id: string}>(),
+    );
+
+    export const loadEpisodeForEditSuccess = createAction(
+        '[Episode Create Edit] Load Episode For Edit Success',
+        props<{response: ILoadEpisodeByIDResponseDTO}>(),
+    );
+
+    export const clearAudio = createAction(
+        '[Episode Create Edit] Clear Audio',
     );
 }

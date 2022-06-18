@@ -1,6 +1,7 @@
 import {fromEpisodeCreateEdit} from './episode-create-edit.reducer';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {EpisodeCreateFormEnum} from '../../shared/enums/forms/episode-create-form.enum';
+import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
 
 export const selectEpisodeCreateEditState = createFeatureSelector<fromEpisodeCreateEdit.IState>(
     fromEpisodeCreateEdit.episodeCreateEditFeatureKey,
@@ -57,13 +58,18 @@ export namespace EpisodeCreateEditSelectors {
         (state) => state[EpisodeCreateFormEnum.DESCRIPTION],
     );
 
+    export const selectCanClearAudio = createSelector(
+        selectEpisodeCreateEditState,
+        (state) => state.audioUrl && state.mode === FormModeEnum.CREATE,
+    );
+
     export const selectIsButtonDisabled = createSelector(
         selectEpisodeCreateEditState,
-        // todo
         (state) =>
-            state[EpisodeCreateFormEnum.TITLE] === '' || state[EpisodeCreateFormEnum.DESCRIPTION] === '' ||
+            state.mode !== FormModeEnum.EDIT && (state[EpisodeCreateFormEnum.TITLE] === '' ||
+            state[EpisodeCreateFormEnum.DESCRIPTION] === '' ||
             !state.imageId || !state.audioFileLink || state[EpisodeCreateFormEnum.EPISODE_NUMBER] === '' ||
-            state[EpisodeCreateFormEnum.SEASON_NUMBER] === '',
+            state[EpisodeCreateFormEnum.SEASON_NUMBER] === ''),
     );
 
     export const selectImage = createSelector(

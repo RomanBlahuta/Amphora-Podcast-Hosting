@@ -1,6 +1,6 @@
 <amphora-common-pop-up [model]="(commonModel$ | async)">
     <p class="font-section-paragraph">
-        Are you sure you want to delete {{ (model$ | async)?.item}}?
+        Are you sure you want to delete <strong>{{ (model$ | async)?.item}}</strong>?
         <br><br>
         This operation cannot be reversed.
     </p>

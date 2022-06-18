@@ -38,9 +38,19 @@ export class EpisodeCreateEditService {
     public createUploadAudio(): AmphoraUploadAudioModel {
         return AmphoraUploadAudioModel.create(
             this.store$.select(EpisodeCreateEditSelectors.selectAudioUrl),
+            this.store$.select(EpisodeCreateEditSelectors.selectAudioFileName),
             (file: File, url: string, fileName: string) => this.store$.dispatch(EpisodeCreateEditActions.createAudio({
                 file, url, fileName,
             })));
+    }
+
+    public createClearAudioButton(): AmphoraButtonModel {
+        return AmphoraButtonModel.create('Clear Audio', {
+            size: {
+                width: 400,
+            },
+            onClick: () => this.store$.dispatch(EpisodeCreateEditActions.clearAudio()),
+        });
     }
 
     public createRecordAudio(): AmphoraRecordAudioModel {

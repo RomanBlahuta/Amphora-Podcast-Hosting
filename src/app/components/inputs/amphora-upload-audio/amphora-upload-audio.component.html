@@ -1,4 +1,4 @@
-<input type="file" class="audio__input" (change)="onFileSelected($event)" #fileUpload accept=".mp3,.mp4,.ogg">
+<input type="file" class="audio__input" (input)="onFileSelected($event)" #fileUpload accept=".mp3,.mp4,.ogg .wav">
 
 <div class="audio__upload" *ngIf="!(playerModel$ | async)">
     <div class="audio__upload-button" (click)="fileUpload.click()" (mouseenter)="changeHoverStatus(true)" (mouseleave)="changeHoverStatus(false)">
@@ -10,6 +10,6 @@
 </div>
 
 <div class="audio__uploaded" *ngIf="(playerModel$ | async)">
-    <h1 class="font-card-title">{{ fileName }}</h1>
+    <h1 class="font-card-title">{{ model.audioFileNameController$ | async }}</h1>
     <amphora-audio-player [model]="(playerModel$ | async)"></amphora-audio-player>
 </div>

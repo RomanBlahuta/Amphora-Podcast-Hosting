@@ -6,6 +6,25 @@ export interface ICreateEpisodeAudioResponseDto {
     episode_duration: string;
 }
 
+export interface ILoadEpisodeByIDResponseDTO {
+    id: string;
+    title: string;
+    description: string;
+    episode_num: number;
+    season_num: number;
+    explicit: true;
+    episode_type: EpisodeTypesEnum;
+    show_id: string;
+    series: string;
+    file_link: string;
+    duration: number;
+    cover_image: string;
+    cover_link: string;
+    episode_link: string;
+    episode_guid: string;
+    pub_date: string;
+}
+
 export interface ILoadEpisodesByShowIdResponseItemDto {
     id: string;
     title: string;

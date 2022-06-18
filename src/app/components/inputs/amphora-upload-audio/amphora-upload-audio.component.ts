@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {AmphoraIconModel} from '../../common/amphora-icon/amphora-icon.model';
 import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraUploadAudioModel} from './amphora-upload-audio.model';
@@ -16,6 +16,9 @@ export class AmphoraUploadAudioComponent implements OnInit {
     @Input()
     public model: AmphoraUploadAudioModel;
 
+    @ViewChild('fileUpload')
+    public fileUpload: ElementRef;
+
     public uploadPrimaryIconModel: AmphoraIconModel;
     public uploadWhiteIconModel: AmphoraIconModel;
 
@@ -29,9 +32,9 @@ export class AmphoraUploadAudioComponent implements OnInit {
 
     public onFileSelected(event) {
         const file: File = event.target.files[0];
-        console.log(file);
 
         if (file) {
+            this.fileUpload.nativeElement.value = '';
             this.file = file;
             this.fileName = file.name;
             this.fileReader.readAsDataURL(file);
@@ -39,6 +42,7 @@ export class AmphoraUploadAudioComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        console.log('init');
         this.uploadPrimaryIconModel = AmphoraIconModel.create(IconsEnum.UPLOAD_PRIMARY, {
             size: {
                 width: 128,

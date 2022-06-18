@@ -87,6 +87,29 @@ export namespace fromEpisodeCreateEdit {
             audioFileLink: response.episode_link,
         })),
 
+        on(EpisodeCreateEditActions.clearAudio, (state) => ({
+            ...state,
+            audioUrl: null,
+            [EpisodeCreateFormEnum.AUDIO]: null,
+            audioFileName: null,
+            audioFileLink: null,
+            audioDuration: null,
+        })),
+
+        on(EpisodeCreateEditActions.loadEpisodeForEditSuccess, (state, {response}) => ({
+            ...state,
+            [EpisodeCreateFormEnum.TITLE]: response.title,
+            [EpisodeCreateFormEnum.DESCRIPTION]: response.description,
+            [EpisodeCreateFormEnum.EPISODE_NUMBER]: `${response.episode_num}`,
+            [EpisodeCreateFormEnum.SEASON_NUMBER]: `${response.season_num}`,
+            [EpisodeCreateFormEnum.SERIES]: response.series,
+            [EpisodeCreateFormEnum.EPISODE_TYPE]: response.episode_type,
+            imageId: response.cover_image,
+            imageUrl: response.cover_link,
+            audioUrl: response.file_link,
+            audioFileName: `S${response.season_num}E${response.episode_num}: ${response.title}`,
+        })),
+
         on(EpisodeCreateEditActions.selectSeries, (state, {series}) => ({
             ...state,
             [EpisodeCreateFormEnum.SERIES]: series,
@@ -110,10 +133,6 @@ export namespace fromEpisodeCreateEdit {
         })),
 
         on(EpisodeCreateEditActions.removeSeries, (state, {series}) => ({
-            ...state,
-        })),
-
-        on(EpisodeCreateEditActions.selectStreamingOption, (state, {option}) => ({
             ...state,
         })),
 

@@ -43,8 +43,8 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
                 this.mediaRecorder = new MediaRecorder(stream);
 
                 this.mediaRecorder.onstop = () => {
-                    const blob = new Blob(this.chunks, { type : 'audio/ogg' });
-                    this.file = new File([blob], 'recorded-audio.ogg', { type : 'audio/ogg' });
+                    const blob = new Blob(this.chunks, { type : 'audio/ogg; codecs=opus' });
+                    this.file = new File([blob], 'recorded-audio.ogg', { type : 'audio/ogg; codecs=opus' });
                     this.fileReader.readAsDataURL(this.file);
                 };
                 this.mediaRecorder.ondataavailable = (data) => {
@@ -59,6 +59,7 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
         this.playButtonModel = this.createRecordingButton(IconsEnum.PLAY, () => {
             this.mediaRecorder.start();
             this.playing = true;
+            this.done = false;
         });
         this.pauseButtonModel = this.createRecordingButton(IconsEnum.PAUSE, () => {
             this.mediaRecorder.stop();
@@ -66,6 +67,7 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
         });
         this.stopButtonModel = this.createRecordingButton(IconsEnum.STOP, () => {
             this.done = true;
+            this.playing = false;
             this.mediaRecorder.stop();
             this.popUpService.hidePopUp();
         });
