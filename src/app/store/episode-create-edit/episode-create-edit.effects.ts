@@ -69,10 +69,23 @@ export class EpisodeCreateEditEffects {
         ofType(EpisodeCreateEditActions.submit),
         withLatestFrom(
             this.store$.select(EpisodeCreateEditSelectors.selectForm),
+            this.store$.select(EpisodeCreateEditSelectors.selectFormMode),
+            this.store$.select(EpisodeCreateEditSelectors.selectEpisodeId),
         ),
-        switchMap(([_, data]) => this.episodeHttp.createEpisode(data).pipe(
+        switchMap(([_, data, mode, id]) => (mode === FormModeEnum.CREATE) ? this.episodeHttp.createEpisode(data).pipe(
             map(() => EpisodeCreateEditActions.submitSuccess()),
-        )),
+        ) : this.episodeHttp.editEpisode(id, {
+                title: data.title,
+                description: data.description,
+                series: data.series,
+                season_num: data.season_num,
+                episode_num: data.episode_num,
+                cover_image: data.cover_image,
+                episode_type: data.episode_type,
+                explicit: false,
+            }).pipe(
+            map(() => EpisodeCreateEditActions.submitSuccess())),
+        ),
     ));
 
     public submitEpisodeSuccess$ = createEffect(() => this.actions$.pipe(

@@ -2,12 +2,13 @@ import {createReducer, on} from '@ngrx/store';
 import {EpisodeCreateEditActions} from './episode-create-edit.actions';
 import {EpisodeCreateFormEnum} from '../../shared/enums/forms/episode-create-form.enum';
 import {EpisodeTypesEnum} from '../../shared/enums/episode-types.enum';
+import {FormModeEnum} from '../../shared/enums/forms/form-mode.enum';
 
 export namespace fromEpisodeCreateEdit {
     export const episodeCreateEditFeatureKey = 'episodeCreateEdit';
 
     export interface IState {
-        mode: string;
+        mode: FormModeEnum;
         id: string;
         showId: string;
         [EpisodeCreateFormEnum.TITLE]: string;

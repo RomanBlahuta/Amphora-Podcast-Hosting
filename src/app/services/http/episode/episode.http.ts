@@ -4,7 +4,11 @@ import {Observable} from 'rxjs';
 import {HTTP_ROUTING} from '../../../shared/utils/http-routing';
 import {
     ICreateEpisodeAudioResponseDto,
-    ICreateEpisodeRequestDTO, ICreateEpisodeResponseDTO, IDeleteEpisodeResponseDTO, ILoadEpisodeByIDResponseDTO,
+    ICreateEpisodeRequestDTO,
+    ICreateEpisodeResponseDTO,
+    IDeleteEpisodeResponseDTO,
+    IEditEpisodeRequestDTO, IEditEpisodeResponseDTO,
+    ILoadEpisodeByIDResponseDTO,
     ILoadEpisodesByShowIdResponseDto
 } from './episode.dto';
 import {EPISODE_PAGE_SIZE} from '../../../shared/utils/constants';
@@ -18,6 +22,10 @@ export class EpisodeHttp {
 
     public createEpisode(data: ICreateEpisodeRequestDTO): Observable<ICreateEpisodeResponseDTO> {
         return this.http.post<ICreateEpisodeResponseDTO>(HTTP_ROUTING.episode.create, data);
+    }
+
+    public editEpisode(id: string, data: IEditEpisodeRequestDTO): Observable<IEditEpisodeResponseDTO> {
+        return this.http.put<IEditEpisodeResponseDTO>(`${HTTP_ROUTING.episode.loadEpisodes}/${id}`, data);
     }
 
     public getEpisodeById(id: string): Observable<ILoadEpisodeByIDResponseDTO> {

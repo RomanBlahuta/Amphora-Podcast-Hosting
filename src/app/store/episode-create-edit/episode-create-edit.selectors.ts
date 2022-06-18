@@ -13,6 +13,16 @@ export namespace EpisodeCreateEditSelectors {
         (state) => state[EpisodeCreateFormEnum.TITLE],
     );
 
+    export const selectEpisodeId = createSelector(
+        selectEpisodeCreateEditState,
+        (state) => state.id,
+    );
+
+    export const selectFormMode = createSelector(
+        selectEpisodeCreateEditState,
+        (state) => state.mode,
+    );
+
     export const selectAllSeries = createSelector(
         selectEpisodeCreateEditState,
         (state) => state.seriesOptions,

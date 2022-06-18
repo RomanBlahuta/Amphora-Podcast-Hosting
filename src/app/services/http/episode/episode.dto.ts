@@ -86,3 +86,17 @@ export interface ICreateEpisodeResponseDTO {
 
 export interface IDeleteEpisodeResponseDTO {
 }
+
+export interface IEditEpisodeRequestDTO {
+    title: string;
+    description: string;
+    episode_num: number;
+    season_num: number;
+    explicit: boolean;
+    episode_type: EpisodeTypesEnum;
+    series: string;
+    cover_image: string;
+}
+
+export interface IEditEpisodeResponseDTO {
+}
