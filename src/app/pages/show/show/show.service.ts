@@ -64,7 +64,7 @@ export class ShowService {
 
                 AmphoraButtonModel.create('Get RSS-Feed Link', {
                     buttonColor: ButtonColorsEnum.ACCENT,
-                    onClick: () => navigator.clipboard.writeText(data.feed_file_link),
+                    onClick: () => navigator.clipboard.writeText(data.feed_link),
                     size: {
                         width: 400,
                         height: 40,

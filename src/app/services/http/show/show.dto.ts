@@ -65,7 +65,7 @@ export interface ILoadShowResponseDTO {
     is_locked: true;
     owner: string;
     last_build_date: string;
-    feed_file_link: string;
+    feed_link: string;
 }
 
 export interface IDeleteShowResponseDTO {
