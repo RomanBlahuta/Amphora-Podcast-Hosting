@@ -8,12 +8,14 @@ export namespace fromDashboard {
     export const dashboardFeatureKey = 'dashboard';
 
     export interface IState {
+        isLoading: boolean;
         searchValue: string;
         shows: ILoadPaginatedShowsResponseItemDTO[];
         pagination: IPaginationState;
     }
 
     export const initialState: IState = {
+        isLoading: false,
         shows: [],
         searchValue: '',
         pagination: {
@@ -26,9 +28,13 @@ export namespace fromDashboard {
     export const reducer = createReducer(
         initialState,
 
-        on(DashboardActions.loadShows, (state) => state),
+        on(DashboardActions.loadShows, (state) => ({
+            ...state,
+            isLoading: true,
+        })),
         on(DashboardActions.loadShowsSuccess, (state, {shows}) => ({
             ...state,
+            isLoading: false,
             shows: shows.items.map(show => ({
                 ...show,
                 series: (show.series?.length) ? show.series : [],
@@ -49,6 +55,10 @@ export namespace fromDashboard {
         on(DashboardActions.search, (state, {value}) => ({
             ...state,
             searchValue: value,
+            pagination: {
+                ...state.pagination,
+                currentPage: 1,
+            }
         })),
         on(DashboardActions.changePage, (state, {index}) => ({
             ...state,

@@ -23,7 +23,6 @@ export class ForgotPasswordEffects {
     public submitSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(ForgotPasswordActions.submitSuccess),
         tap((action) => {
-            this.store$.dispatch(ForgotPasswordActions.clear());
             this.popUpService.showPopUp(PopUpTypesEnum.CHECK_EMAIL);
         }),
     ), {dispatch: false});

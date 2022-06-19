@@ -9,6 +9,8 @@ export namespace fromShow {
     export const showFeatureKey = 'show';
 
     export interface IState {
+        isLoading: boolean;
+        areEpisodesLoading: boolean;
         id: string;
         show: ILoadShowResponseDTO;
         searchValue: string;
@@ -18,6 +20,8 @@ export namespace fromShow {
     }
 
     export const initialState: IState = {
+        isLoading: false,
+        areEpisodesLoading: false,
         id: null,
         show: null,
         episodes: [],
@@ -61,26 +65,32 @@ export namespace fromShow {
             pagination: {
                 ...state.pagination,
                 currentPage: 1,
-            }
+            },
         })),
         on(ShowActions.deleteEpisodeSuccess, (state) => ({
             ...state,
             pagination: {
                 ...state.pagination,
                 currentPage: 1,
-            }
+            },
         })),
         on(ShowActions.loadShow, (state, {id}) => ({
             ...state,
+            isLoading: true,
             id,
         })),
         on(ShowActions.loadShowSuccess, (state, {show}) => ({
             ...state,
+            isLoading: false,
             show,
         })),
-        on(ShowActions.loadShowEpisodes, (state) => state),
+        on(ShowActions.loadShowEpisodes, (state) => ({
+            ...state,
+            areEpisodesLoading: true,
+        })),
         on(ShowActions.loadShowEpisodesSuccess, (state, {episodes}) => ({
             ...state,
+            areEpisodesLoading: false,
             episodes: episodes.items,
             pagination: {
                 ...state.pagination,

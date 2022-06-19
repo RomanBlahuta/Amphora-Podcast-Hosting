@@ -1,0 +1,4 @@
+<div class="clipboard-pop-up"  *ngIf="(currentPopUp$ | async) === PopUpTypesEnum.CLIPBOARD" [@fadeInOutAnimation]>
+    <span class="clipboard-pop-up__text">Copied to clipboard!</span>
+    <amphora-button [model]="buttonModel"></amphora-button>
+</div>

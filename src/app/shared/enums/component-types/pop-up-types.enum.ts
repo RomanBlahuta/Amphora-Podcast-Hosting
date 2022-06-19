@@ -5,4 +5,5 @@ export enum PopUpTypesEnum {
     MISCELLANEOUS = 'miscellaneous',
     CONFIRM_DELETION = 'confirm-deletion',
     RECORDING = 'recording',
+    CLIPBOARD = 'clipboard',
 }

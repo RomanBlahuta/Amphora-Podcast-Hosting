@@ -1,7 +1,36 @@
+@import "src/global";
+
 .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     &__spinner {
+        animation-name: spin;
+        animation-duration: 2500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
     }
 
     &__label {
+        @extend .font-section-paragraph;
+        font-weight: bold;
+        margin-top: 24px;
+    }
+}
+
+mat-icon {
+    width: 88px;
+    height: 88px;
+    font-size: 88px;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
     }
 }

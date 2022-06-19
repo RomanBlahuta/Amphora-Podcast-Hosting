@@ -14,6 +14,7 @@ import {AmphoraButtonModule} from '../../components/common/amphora-button/amphor
 import {AmphoraSearchFieldModule} from '../../components/inputs/amphora-search-field/amphora-search-field.module';
 import {AmphoraPaginationModule} from '../../components/common/amphora-pagination/amphora-pagination.module';
 import {AmphoraShowPreviewCardModule} from '../../components/cards/amphora-show-preview-card/amphora-show-preview-card.module';
+import {AmphoraLoaderModule} from '../../components/common/amphora-loader/amphora-loader.module';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {AmphoraShowPreviewCardModule} from '../../components/cards/amphora-show-
         AmphoraButtonModule,
         AmphoraSearchFieldModule,
         AmphoraPaginationModule,
-        AmphoraShowPreviewCardModule
+        AmphoraShowPreviewCardModule,
+        AmphoraLoaderModule
     ],
   declarations: [DashboardPage]
 })

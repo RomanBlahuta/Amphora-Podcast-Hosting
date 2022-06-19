@@ -15,6 +15,8 @@ import {AmphoraButtonModule} from '../../../components/common/amphora-button/amp
 import {AmphoraIconModule} from '../../../components/common/amphora-icon/amphora-icon.module';
 import {AmphoraSeriesTagModule} from '../../../components/common/amphora-series-tag/amphora-series-tag.module';
 import {AmphoraConfirmDeletionPopUpModule} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.module';
+import {AmphoraClipboardPopUpModule} from '../../../components/pop-ups/amphora-clipboard-pop-up/amphora-clipboard-pop-up.module';
+import {AmphoraLoaderModule} from '../../../components/common/amphora-loader/amphora-loader.module';
 
 @NgModule({
     imports: [
@@ -29,7 +31,9 @@ import {AmphoraConfirmDeletionPopUpModule} from '../../../components/pop-ups/amp
         AmphoraButtonModule,
         AmphoraIconModule,
         AmphoraSeriesTagModule,
-        AmphoraConfirmDeletionPopUpModule
+        AmphoraConfirmDeletionPopUpModule,
+        AmphoraClipboardPopUpModule,
+        AmphoraLoaderModule
     ],
   declarations: [ShowPage]
 })

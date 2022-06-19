@@ -18,10 +18,36 @@ export class GlobalErrorHandler implements ErrorHandler {
         const navController = this.injector.get(NavController);
         let errorMessage = error.message;
 
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-            localStorageService.clear();
-            navController.navigateRoot(RoutesEnum.SIGN_IN);
-            errorMessage = 'Unauthorized: Pleade Sign In before proceeding.';
+        if (error instanceof HttpErrorResponse) {
+            if (error.status === 401) {
+                localStorageService.clear();
+                navController.navigateRoot(RoutesEnum.SIGN_IN);
+                errorMessage = 'Unauthorized: Pleade Sign In before proceeding.';
+            } else {
+                switch (error.status) {
+                    case 400: {
+                        errorMessage = 'Bad Request: Invalid or unprocessable data was entered.';
+                        break;
+                    }
+                    case 422: {
+                        errorMessage = 'Bad Request: Invalid or unprocessable data was entered.';
+                        break;
+                    }
+                    case 500: {
+                        errorMessage = 'Server Error: our server has experienced some difficulties while processing your request.';
+                        break;
+                    }
+                    case 0: {
+                        errorMessage = 'Server Error: our server has experienced some difficulties while processing your request.';
+                        break;
+                    }
+                    case 503: {
+                        errorMessage = 'Service Unavailable: our application\'s server is currently ' +
+                            'not available. Please accept our apologies for these inconveniences';
+                        break;
+                    }
+                }
+            }
         }
 
         this.zone.run(() =>

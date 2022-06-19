@@ -24,6 +24,8 @@ import {
     styleUrls: ['./show.page.scss'],
 })
 export class ShowPage implements OnInit, OnDestroy {
+    public isLoading: Observable<boolean>;
+    public areEpisodesLoading: Observable<boolean>;
     public searchFieldModel: AmphoraSearchFieldModel;
     public buttonModels: Observable<AmphoraButtonModel[]>;
     public paginationModel: AmphoraPaginationModel;
@@ -45,6 +47,9 @@ export class ShowPage implements OnInit, OnDestroy {
             this.store$.dispatch(ShowActions.loadShow({id: params.id}));
             this.showId = params.id;
         });
+
+        this.isLoading = this.store$.select(ShowSelectors.selectIsLoading);
+        this.areEpisodesLoading = this.store$.select(ShowSelectors.selectAreEpisodesLoading);
 
         this.showData = this.store$.select(ShowSelectors.selectShowData);
 

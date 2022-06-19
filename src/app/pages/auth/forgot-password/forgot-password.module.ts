@@ -12,6 +12,7 @@ import {AmphoraSectionModule} from '../../../components/common/amphora-section/a
 import {AmphoraInputFieldModule} from '../../../components/inputs/amphora-input-field/amphora-input-field.module';
 import {AmphoraButtonModule} from '../../../components/common/amphora-button/amphora-button.module';
 import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.module';
+import {AmphoraLoaderModule} from '../../../components/common/amphora-loader/amphora-loader.module';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import {AmphoraCommonPopUpModule} from '../../../components/pop-ups/amphora-comm
         AmphoraSectionModule,
         AmphoraInputFieldModule,
         AmphoraButtonModule,
-        AmphoraCommonPopUpModule
+        AmphoraCommonPopUpModule,
+        AmphoraLoaderModule
     ],
   declarations: [ForgotPasswordPage]
 })

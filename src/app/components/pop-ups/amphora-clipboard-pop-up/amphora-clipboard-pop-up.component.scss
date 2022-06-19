@@ -1,0 +1,20 @@
+@import "src/global";
+
+.clipboard-pop-up {
+    background-color: $color-accent;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 24px 32px;
+    position: fixed;
+    bottom: 72px;
+    right: 72px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px 2px $color-drop-shadow;
+
+    &__text {
+        @extend .font-section-paragraph;
+        color: $color-white;
+        margin-right: 32px;
+    }
+}

@@ -14,14 +14,13 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {episodeComparator, parseDurationTimeUtil} from '../../../shared/utils/utils';
-import {
-    AmphoraConfirmDeletionPopUpModel
-} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
+import {AmphoraConfirmDeletionPopUpModel} from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
 import {ContentTypesEnum} from '../../../shared/enums/content-types.enum';
 import {PopUpSelectors} from '../../../store/pop-up/pop-up.selectors';
 import {PopUpService} from '../../../services/utils/pop-up.service';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
+import {PopUpTypesEnum} from '../../../shared/enums/component-types/pop-up-types.enum';
 
 @Injectable({
     providedIn: 'root',
@@ -64,7 +63,10 @@ export class ShowService {
 
                 AmphoraButtonModel.create('Get RSS-Feed Link', {
                     buttonColor: ButtonColorsEnum.ACCENT,
-                    onClick: () => navigator.clipboard.writeText(data.feed_link),
+                    onClick: () => {
+                        navigator.clipboard.writeText(data.feed_link);
+                        this.popUpService.showPopUp(PopUpTypesEnum.CLIPBOARD);
+                    },
                     size: {
                         width: 400,
                         height: 40,

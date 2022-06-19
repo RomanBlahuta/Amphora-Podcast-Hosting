@@ -11,6 +11,11 @@ export namespace DashboardSelectors {
         (state) => state.shows,
     );
 
+    export const selectIsLoading = createSelector(
+        selectDashboardState,
+        (state) => state.isLoading,
+    );
+
     export const selectTotalPages = createSelector(
         selectDashboardState,
         (state) => state.pagination.totalPages,

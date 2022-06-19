@@ -6,11 +6,13 @@ export namespace fromForgotPassword {
     export const forgotPasswordFeatureKey = 'forgotPassword';
 
     export interface IState {
+        isLoading: boolean;
         [ForgotPasswordFormEnum.EMAIL]: string;
         valid: boolean;
     }
 
     export const initialState: IState = {
+        isLoading: false,
         [ForgotPasswordFormEnum.EMAIL]: '',
         valid: false,
     };
@@ -28,7 +30,15 @@ export namespace fromForgotPassword {
             valid,
         })),
 
-        on(ForgotPasswordActions.submit, (state) => state),
+        on(ForgotPasswordActions.submit, (state) => ({
+            ...state,
+            isLoading: true,
+        })),
+
+        on(ForgotPasswordActions.submitSuccess, (state) => ({
+            ...state,
+            isLoading: false,
+        })),
 
         on(ForgotPasswordActions.clear, (state) => initialState),
     );

@@ -1,7 +1,10 @@
 <ion-content class="show">
     <amphora-page>
         <div class="show__content">
-            <div class="show__content-show">
+            <div class="show__content-show-loader" *ngIf="(isLoading | async)">
+                <amphora-loader></amphora-loader>
+            </div>
+            <div class="show__content-show" *ngIf="!(isLoading | async)">
                 <div class="show__content-show-data">
                     <h1 class="show__content-show-data-heading font-section-title">{{ (showData | async)?.title || '' }}</h1>
                     <div class="show__content-show-data-streaming">
@@ -33,17 +36,23 @@
 
                     <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
                 </div>
-                <div class="show__content-episodes-list">
-                    <div class="show__content-episodes-list-item" *ngFor="let episodeModel of (episodeCardModels | async)">
-                        <amphora-episode-card [model]="episodeModel"></amphora-episode-card>
+                <div class="show__content-show-loader" *ngIf="(isLoading | async)">
+                    <amphora-loader></amphora-loader>
+                </div>
+                <ng-container *ngIf="!(areEpisodesLoading | async)">
+                    <div class="show__content-episodes-list">
+                        <div class="show__content-episodes-list-item" *ngFor="let episodeModel of (episodeCardModels | async)">
+                            <amphora-episode-card [model]="episodeModel"></amphora-episode-card>
+                        </div>
                     </div>
-                </div>
-                <div class="show__content-episodes-pagination">
-                    <amphora-pagination [model]="paginationModel"></amphora-pagination>
-                </div>
+                    <div class="show__content-episodes-pagination">
+                        <amphora-pagination [model]="paginationModel"></amphora-pagination>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </amphora-page>
 
     <amphora-confirm-deletion-pop-up [model$]="confirmDeletionPopUpModel$"></amphora-confirm-deletion-pop-up>
+    <amphora-clipboard-pop-up></amphora-clipboard-pop-up>
 </ion-content>

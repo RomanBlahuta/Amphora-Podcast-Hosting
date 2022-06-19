@@ -25,15 +25,20 @@
                     <amphora-search-field [model]="searchFieldModel"></amphora-search-field>
                 </div>
 
-                <div class="dashboard__section-shows-list" *ngIf="(showPreviewModels | async).length > 0">
-                    <div class="dashboard__section-shows-list-item" *ngFor="let model of (showPreviewModels | async)">
-                        <amphora-show-preview-card [model]="model"></amphora-show-preview-card>
+                <ng-container *ngIf="!(isLoading | async)">
+                    <div class="dashboard__section-shows-list" *ngIf="(showPreviewModels | async).length > 0">
+                        <div class="dashboard__section-shows-list-item" *ngFor="let model of (showPreviewModels | async)">
+                            <amphora-show-preview-card [model]="model"></amphora-show-preview-card>
+                        </div>
                     </div>
-                </div>
 
-                <div class="dashboard__section-shows-pagination">
-                    <amphora-pagination [model]="paginationModel"></amphora-pagination>
-                </div>
+                    <div class="dashboard__section-shows-pagination">
+                        <amphora-pagination [model]="paginationModel"></amphora-pagination>
+                    </div>
+                </ng-container>
+            </div>
+            <div *ngIf="(isLoading | async)" class="dashboard__section-shows-loader">
+                <amphora-loader></amphora-loader>
             </div>
         </amphora-section>
     </amphora-page>

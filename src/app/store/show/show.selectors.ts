@@ -11,6 +11,16 @@ export namespace ShowSelectors {
         (state) => state.pagination.currentPage,
     );
 
+    export const selectIsLoading = createSelector(
+        selectShowState,
+        (state) => state.isLoading,
+    );
+
+    export const selectAreEpisodesLoading = createSelector(
+        selectShowState,
+        (state) => state.areEpisodesLoading,
+    );
+
     export const selectShowId = createSelector(
         selectShowState,
         (state) => state.id,

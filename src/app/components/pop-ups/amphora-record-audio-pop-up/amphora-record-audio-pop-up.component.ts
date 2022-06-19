@@ -41,11 +41,11 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
         }).then(
             (stream) => {
                 // TODO CORRECT FILE TYPE WEBM TO OGG OR WAV
-                this.mediaRecorder = new MediaRecorder(stream);
+                this.mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/webm'});
 
                 this.mediaRecorder.onstop = () => {
-                    const blob = new Blob(this.chunks, { type : 'audio/ogg' });
-                    this.file = new File([blob], 'recorded-audio.ogg', { type : 'audio/ogg' });
+                    const blob = new Blob(this.chunks, { type : 'audio/webm' });
+                    this.file = new File([blob], 'recorded-audio.webm', { type : 'audio/webm' });
                     this.fileReader.readAsDataURL(this.file);
                 };
                 this.mediaRecorder.ondataavailable = (data) => {

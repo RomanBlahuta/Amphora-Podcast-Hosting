@@ -14,6 +14,7 @@ import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-commo
 import {PopUpService} from '../../../services/utils/pop-up.service';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'amphora-reset-password',
@@ -31,6 +32,7 @@ export class ForgotPasswordPage implements OnInit {
     public submitButtonModel: AmphoraButtonModel;
     public emailInputModel: AmphoraInputFieldModel;
     public checkYourEmailPopUpModel: AmphoraCommonPopUpModel;
+    public isLoading: Observable<boolean>;
 
     constructor(private authService: AuthService,
                 private formBuilder: FormBuilder,
@@ -40,6 +42,7 @@ export class ForgotPasswordPage implements OnInit {
 
     public ngOnInit(): void {
         this.authService.setPageType(AuthEnum.FORGOT_PASSWORD);
+        this.isLoading = this.store$.select(ForgotPasswordSelectors.selectIsLoading);
         this.createModels();
         this.initForm();
     }
