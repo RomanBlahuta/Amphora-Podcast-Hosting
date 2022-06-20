@@ -26,28 +26,86 @@
         <amphora-section [model]="featuresSectionModel">
             <div class="landing__section-features">
                 <amphora-slider [model]="featuresSliderModel">
-                    <ion-slide *ngFor="let i of [1, 2, 3, 4]">
+                    <ion-slide>
                         <div class="landing__section-features-slide">
                             <div class="landing__section-features-slide-icon">
-                                <amphora-icon [model]="sliderIconModel"></amphora-icon>
+                                <amphora-icon [model]="sliderIconModels[0]"></amphora-icon>
                             </div>
                             <div class="landing__section-features-slide-data">
-                                <h1 class="landing__section-features-slide-data-title">Lorem ipsum dolor sir<br/>amet!</h1>
+                                <h1 class="landing__section-features-slide-data-title">Simple and intuitive data <br/> management</h1>
                                 <div class="landing__section-features-slide-data-columns">
                                     <div class="landing__section-features-slide-data-column landing__section-features-slide-data-column-initial">
                                         <p class="landing__section-features-slide-data-paragraph">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            If you are tired of your data being stored like the horrors inside the Pandora's box, then this application is a great choice for you!
                                         </p>
                                         <p class="landing__section-features-slide-data-paragraph">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Each episode can be additionally filtered by adding it to a series inside your show. This feature ensures you can manage your content even if your podcast's topic is very broad and compex!
                                         </p>
                                     </div>
                                     <div class="landing__section-features-slide-data-column">
                                         <p class="landing__section-features-slide-data-paragraph">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Your content is automatically stored and sorted in an innovative way. Each podcast represents a show and stores your episodes and media.
                                         </p>
                                         <p class="landing__section-features-slide-data-paragraph">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            All data is easily accessibly through the search feature and additional filters, such as series tags. No matter the amount of content, this service will handle it flawlessly.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-slide>
+
+                    <ion-slide>
+                        <div class="landing__section-features-slide">
+                            <div class="landing__section-features-slide-icon">
+                                <amphora-icon [model]="sliderIconModels[1]"></amphora-icon>
+                            </div>
+                            <div class="landing__section-features-slide-data">
+                                <h1 class="landing__section-features-slide-data-title">Security and accessibility</h1>
+                                <div class="landing__section-features-slide-data-columns">
+                                    <div class="landing__section-features-slide-data-column landing__section-features-slide-data-column-initial">
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Protection of our users' data is one of our top priorities. All of your data remains private and is stored securely using the newest technologies.
+                                        </p>
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            The application features a reliable authrization process with additional verification to make sure only real and valid credentials can be entered.
+                                        </p>
+                                    </div>
+                                    <div class="landing__section-features-slide-data-column">
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            All the safety precautions will not complicate your access to the application, your credentials can always be altered in a safe and reliable way.
+                                        </p>
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            The application follows newest web safety protocols and uses complex encryption to further protect all user data while also providing great performance.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-slide>
+
+                    <ion-slide>
+                        <div class="landing__section-features-slide">
+                            <div class="landing__section-features-slide-icon">
+                                <amphora-icon [model]="sliderIconModels[2]"></amphora-icon>
+                            </div>
+                            <div class="landing__section-features-slide-data">
+                                <h1 class="landing__section-features-slide-data-title">Performance speed and<br/>productivity</h1>
+                                <div class="landing__section-features-slide-data-columns">
+                                    <div class="landing__section-features-slide-data-column landing__section-features-slide-data-column-initial">
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Our team strives to provide the best possible user experience without performance issues that can disrupt your flow inside the application.
+                                        </p>
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            When Hermes the messenger god himself witnessed the speed at which Amphora delivers data, he decided to join our cause and notify you of important events via email!
+                                        </p>
+                                    </div>
+                                    <div class="landing__section-features-slide-data-column">
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            Careful choice of technologies and architectural approaches ensures the most effective and responsive user experience inside the application.
+                                        </p>
+                                        <p class="landing__section-features-slide-data-paragraph">
+                                            No more page reloads, no more lengthy navigation! All data is delivered as soon as the change is made in minimal time!
                                         </p>
                                     </div>
                                 </div>
@@ -66,6 +124,7 @@
                 </div>
 
             <div class="landing__section-streaming">
+                <div class="spacer-ver-32px"></div>
                 <amphora-slider [model]="podcastsSliderModel">
                     <ion-slide *ngFor="let i of [1, 2, 3, 4]">
                         <amphora-show-card></amphora-show-card>

@@ -55,6 +55,14 @@ export class LandingService {
         });
     }
 
+    public createSliderIcons(): AmphoraIconModel[] {
+        return [
+            AmphoraIconModel.create(IconsEnum.PANDORAS_BOX, {size: {width: 256, height: 256}}),
+            AmphoraIconModel.create(IconsEnum.SHIELD, {size: {width: 256, height: 256}}),
+            AmphoraIconModel.create(IconsEnum.HERMES, {size: {width: 256, height: 256}})
+        ];
+    }
+
     private getIconSize(icon: IconsEnum): ISize {
         switch (icon) {
             case IconsEnum.CIRCLES:

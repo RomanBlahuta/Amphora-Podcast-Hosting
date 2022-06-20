@@ -30,4 +30,6 @@ export enum IconsEnum {
     PAUSE = 'pause',
     UPLOAD_PRIMARY = 'upload-primary',
     UPLOAD_WHITE = 'upload-white',
+    HERMES = 'hermes',
+    SHIELD = 'shield',
 }
