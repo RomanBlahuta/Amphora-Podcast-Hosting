@@ -2,21 +2,33 @@
 
 .footer {
     background-color: $color-black;
-    padding: 16px;
+    padding: 24px;
     color: $color-white;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
+    align-items: start;
 
     &__section {
         &-title {
             @extend .font-footer-title;
+            margin-bottom: 8px;
         }
 
         &-column {
-            margin-right: 8px;
+            margin-right: 16px;
             &-item {
                 @extend .font-footer-text;
+                margin-bottom: 4px;
+                text-decoration: none;
+                display: block;
+
+                &-nav {
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $color-primary-dark;
+                    }
+                }
             }
             &s-container {
                 display: flex;
