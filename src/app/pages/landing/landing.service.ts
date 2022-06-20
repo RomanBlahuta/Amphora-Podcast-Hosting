@@ -34,7 +34,6 @@ export class LandingService {
     }
 
     public createFeaturesSlider(): AmphoraSliderModel {
-        // this.store$.select(LandingSelectors.selectFeaturesSlide)
         return AmphoraSliderModel.create(null, {
             options: {
                 allowTouchMove: false,
