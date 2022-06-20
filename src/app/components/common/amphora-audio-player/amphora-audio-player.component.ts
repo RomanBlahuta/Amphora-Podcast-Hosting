@@ -22,6 +22,8 @@ export class AmphoraAudioPlayerComponent implements OnInit {
 
     public isPlaying = false;
     public audio: HTMLAudioElement;
+    public roundedDuration: number;
+
     constructor() { }
 
     public async ngOnInit(): Promise<void> {
@@ -78,10 +80,14 @@ export class AmphoraAudioPlayerComponent implements OnInit {
     private async initAudio(): Promise<void> {
         this.audio = new Audio(this.model.src);
         this.audio.ontimeupdate = (_: Event) => {
-            this.reRenderTrack(this.audio.currentTime, this.audio.duration);
+            this.roundedDuration = Math.ceil(this.audio.duration);
+            this.reRenderTrack(this.audio.currentTime, this.roundedDuration);
         };
         // this.audio.onloadeddata = _ => this.isLoading = false;
-        this.audio.onended = _ => this.isPlaying = false;
+        this.audio.onended = _ => {
+            this.reRenderTrack(this.roundedDuration, this.roundedDuration);
+            this.isPlaying = false;
+        };
         this.audio.onerror = async _ => {
             if (this.audio) {
                 this.audio.pause();
@@ -93,8 +99,14 @@ export class AmphoraAudioPlayerComponent implements OnInit {
     }
 
     private reRenderTrack(timeValue: number, maxTime: number): void {
+        timeValue = Math.ceil(timeValue);
+        maxTime = Math.ceil(maxTime);
         if (this.playerRef) {
             this.playerRef.nativeElement.style.setProperty('--seek-before-width', `${(timeValue / maxTime) * 100}%`);
         }
+    }
+
+    public roundTime(time: number): number {
+        return Math.ceil(time);
     }
 }

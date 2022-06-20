@@ -5,8 +5,7 @@
     <input #player
            class="audio-player__range"
            (input)="setTime(+player.value, +player.max)"
-           max="100"
-           [max]="audio.duration"
-           [value]="audio.currentTime"
+           [max]="roundedDuration"
+           [value]="roundTime(audio.currentTime)"
            type="range">
 </div>

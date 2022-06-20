@@ -20,8 +20,8 @@ export const STREAMING_LINKS = {
     [StreamingIntegrationsEnum.YOUTUBE]: '',
     [StreamingIntegrationsEnum.SPOTIFY]: 'https://podcasters.spotify.com/submit',
     [StreamingIntegrationsEnum.GOOGLE_PODCASTS]: 'https://podcastsmanager.google.com/',
-    [StreamingIntegrationsEnum.POCKET_CASTS]: '',
-    [StreamingIntegrationsEnum.SOUNDCLOUD]: '',
+    [StreamingIntegrationsEnum.POCKET_CASTS]: 'https://pocketcasts.com/submit/',
+    [StreamingIntegrationsEnum.SOUNDCLOUD]: 'https://soundcloud.com',
 };
 
 

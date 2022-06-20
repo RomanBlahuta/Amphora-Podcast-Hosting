@@ -42,7 +42,6 @@ export class AmphoraUploadAudioComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        console.log('init');
         this.uploadPrimaryIconModel = AmphoraIconModel.create(IconsEnum.UPLOAD_PRIMARY, {
             size: {
                 width: 128,
