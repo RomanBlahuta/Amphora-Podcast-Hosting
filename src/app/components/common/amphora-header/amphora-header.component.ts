@@ -40,14 +40,14 @@ export class AmphoraHeaderComponent implements OnInit {
                 HeaderTypesEnum.AUTHORIZED_DASHBOARD : HeaderTypesEnum.AUTHORIZED;
         } else {
             switch (this.router.url) {
-                case `/${RoutesEnum.LANDING}`:
-                    this.headerType = HeaderTypesEnum.AUTH;
-                    break;
                 case `/${RoutesEnum.SIGN_IN}`:
                     this.headerType = HeaderTypesEnum.SIGN_UP;
                     break;
                 case `/${RoutesEnum.SIGN_UP}`:
                     this.headerType = HeaderTypesEnum.SIGN_IN;
+                    break;
+                default:
+                    this.headerType = HeaderTypesEnum.AUTH;
                     break;
             }
         }

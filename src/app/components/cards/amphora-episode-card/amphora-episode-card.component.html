@@ -10,6 +10,7 @@
     <div class="episode-card__data">
         <div class="episode-card__data-heading">
             <amphora-series-tag [model]="seriesModel"></amphora-series-tag>
+            <div class="spacer-hor-16px" *ngIf="seriesModel.label"></div>
             <h1 class="episode-card__data-title">{{ model.title }}</h1>
         </div>
 

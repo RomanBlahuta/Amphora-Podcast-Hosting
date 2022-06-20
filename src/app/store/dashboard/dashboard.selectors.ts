@@ -11,6 +11,11 @@ export namespace DashboardSelectors {
         (state) => state.shows,
     );
 
+    export const areShowsEmpty = createSelector(
+        selectDashboardState,
+        (state) => state.shows.length === 0,
+    );
+
     export const selectIsLoading = createSelector(
         selectDashboardState,
         (state) => state.isLoading,

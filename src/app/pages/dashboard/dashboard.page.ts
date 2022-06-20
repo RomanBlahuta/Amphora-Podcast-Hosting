@@ -24,6 +24,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     public username: Observable<string>;
     public email: Observable<string>;
     public isLoading: Observable<boolean>;
+    public showsEmpty: Observable<boolean>;
 
     public profileSectionModel: AmphoraSectionModel;
     public profilePictureModel: AmphoraIconModel;
@@ -46,6 +47,7 @@ export class DashboardPage implements OnInit, OnDestroy {
         this.username = this.store$.select(UserSelectors.selectFullName);
         this.isLoading = this.store$.select(DashboardSelectors.selectIsLoading);
         this.email = this.store$.select(UserSelectors.selectEmail);
+        this.showsEmpty = this.store$.select(DashboardSelectors.areShowsEmpty);
         this.store$.select(DashboardSelectors.selectSearchString).pipe(
             takeUntil(this.unsubscribe$),
         ).subscribe(search => this.searchShowController = new FormControl(search));

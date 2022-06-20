@@ -47,6 +47,11 @@
                 align-items: center;
             }
 
+            &-empty {
+                padding: 128px 0;
+                text-align: center;
+            }
+
             &-list {
                 display: flex;
                 justify-content: space-between;
