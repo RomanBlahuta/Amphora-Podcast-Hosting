@@ -1,8 +1,8 @@
 <div class="show-card">
-    <img src="../../../../assets/img/show-img-placeholder.png" alt="Could not load image" class="show-card__img">
+    <img [src]="model.optional.image" alt="Could not load image" class="show-card__img">
     <div class="show-card__data">
-        <h1 class="show-card__data-title">Lorem ipsum dolor sir amet</h1>
-        <p class="show-card__data-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-        <a class="show-card__data-more" href="/">Read more ></a>
+        <h1 class="show-card__data-title">{{ model.title }}</h1>
+        <p class="show-card__data-description">{{ model.optional.description }}</p>
+        <a class="show-card__data-more" [routerLink]="['/', RoutesEnum.SHOW, 'create', 'new']">Create a podcast ></a>
     </div>
 </div>

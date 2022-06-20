@@ -16,6 +16,7 @@ import {AmphoraPaginationModule} from '../../components/common/amphora-paginatio
 import {AmphoraShowPreviewCardModule} from '../../components/cards/amphora-show-preview-card/amphora-show-preview-card.module';
 import {AmphoraLoaderModule} from '../../components/common/amphora-loader/amphora-loader.module';
 import {AmphoraNotificationPopUpModule} from '../../components/pop-ups/amphora-notification-pop-up/amphora-notification-pop-up.module';
+import {AmphoraCommonPopUpModule} from '../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.module';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import {AmphoraNotificationPopUpModule} from '../../components/pop-ups/amphora-n
         AmphoraPaginationModule,
         AmphoraShowPreviewCardModule,
         AmphoraLoaderModule,
-        AmphoraNotificationPopUpModule
+        AmphoraNotificationPopUpModule,
+        AmphoraCommonPopUpModule
     ],
   declarations: [DashboardPage]
 })

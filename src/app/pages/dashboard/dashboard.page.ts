@@ -15,6 +15,11 @@ import {FormControl} from '@angular/forms';
 import {DashboardSelectors} from '../../store/dashboard/dashboard.selectors';
 import {takeUntil} from 'rxjs/operators';
 import {AmphoraNotificationPopUpModel} from '../../components/pop-ups/amphora-notification-pop-up/amphora-notification-pop-up.model';
+import {SignUpActions} from '../../store/sign-up/sign-up.actions';
+import {RoutesEnum} from '../../shared/enums/routes.enum';
+import {NavController} from '@ionic/angular';
+import {PopUpService} from '../../services/utils/pop-up.service';
+import {AmphoraCommonPopUpModel} from '../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 
 @Component({
     selector: 'amphora-dashboard',
@@ -38,8 +43,11 @@ export class DashboardPage implements OnInit, OnDestroy {
     public paginationModel: AmphoraPaginationModel;
     public searchShowController: FormControl;
     public unsubscribe$ = new Subject();
+    public checkEmailPopUpModel: AmphoraCommonPopUpModel;
 
     constructor(private dashBoardService: DashboardService,
+                private navController: NavController,
+                private popUpService: PopUpService,
                 private store$: Store) { }
 
     public ngOnInit(): void {
@@ -71,5 +79,19 @@ export class DashboardPage implements OnInit, OnDestroy {
         this.searchFieldModel = this.dashBoardService.createSearchField(this.searchShowController);
         this.showPreviewModels = this.dashBoardService.createShowPreviewCards();
         this.paginationModel = this.dashBoardService.createPagination();
+        this.checkEmailPopUpModel = this.popUpService.createCheckYourEmailPopUp({
+            resendOnClick: this.onCheckYourEmailPopUpResendLetterClick.bind(this),
+            okOnClick: this.onCheckYourEmailPopUpOKClick.bind(this),
+        });
+    }
+
+    private onCheckYourEmailPopUpResendLetterClick(): void {
+        this.store$.dispatch(SignUpActions.requestVerificationToken());
+    }
+
+    private onCheckYourEmailPopUpOKClick(): void {
+        this.store$.dispatch(SignUpActions.clear());
+        this.popUpService.hidePopUp();
+        this.navController.navigateRoot(RoutesEnum.VERIFICATION);
     }
 }

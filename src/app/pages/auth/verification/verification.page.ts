@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VerificationFormEnum} from '../../../shared/enums/forms/auth-forms.enum';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AmphoraSectionModel} from '../../../components/common/amphora-section/amphora-section.model';
@@ -13,6 +13,8 @@ import {VerificationSelectors} from '../../../store/verification/verification.se
 import {AmphoraCommonPopUpModel} from '../../../components/pop-ups/amphora-common-pop-up/amphora-common-pop-up.model';
 import {PopUpService} from '../../../services/utils/pop-up.service';
 import {NavController} from '@ionic/angular';
+import {LocalStorageService} from '../../../services/utils/local-storage.service';
+import {LocalStorageStateEnum} from '../../../shared/enums/local-storage-state.enum';
 import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
@@ -34,6 +36,7 @@ export class VerificationPage implements OnInit {
 
     constructor(private authService: AuthService,
                 private popUpService: PopUpService,
+                private localStorageService: LocalStorageService,
                 private formBuilder: FormBuilder,
                 private navController: NavController,
                 private store$: Store) { }
@@ -80,6 +83,10 @@ export class VerificationPage implements OnInit {
 
     private onSuccessPopUpButtonClick(): void {
         this.popUpService.hidePopUp();
-        this.navController.navigateRoot(RoutesEnum.SIGN_IN);
+        if (this.localStorageService.get(LocalStorageStateEnum.TOKEN)) {
+            this.navController.navigateRoot(RoutesEnum.DASHBOARD);
+        } else {
+            this.navController.navigateRoot(RoutesEnum.SIGN_IN);
+        }
     }
 }

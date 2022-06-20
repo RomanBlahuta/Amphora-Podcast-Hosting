@@ -27,8 +27,11 @@ import {AuthGuardService} from './services/guards/auth.guard';
 import {ShowCreateEditEffects} from './store/show-create-edit/show-create-edit.effects';
 import {UserEffects} from './store/user/user.effects';
 import {EpisodeCreateEditEffects} from './store/episode-create-edit/episode-create-edit.effects';
+import {LandingEffects} from './store/landing/landing.effects';
+import {VerificationGuardService} from './services/guards/verification.guard';
 
 export const EFFECTS = [
+    LandingEffects,
     SignInEffects,
     SignUpEffects,
     ResetPasswordEffects,
@@ -58,6 +61,7 @@ export const EFFECTS = [
     ],
     providers: [
         AuthGuardService,
+        VerificationGuardService,
         {
             provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy,

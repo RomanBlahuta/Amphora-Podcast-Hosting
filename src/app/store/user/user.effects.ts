@@ -9,13 +9,17 @@ import {NavController} from '@ionic/angular';
 import {LocalStorageService} from '../../services/utils/local-storage.service';
 import {AuthHttp} from '../../services/http/auth/auth.http';
 import {AppActions} from '../app/app.actions';
+import {LocalStorageStateEnum} from '../../shared/enums/local-storage-state.enum';
 
 @Injectable()
 export class UserEffects {
     public loadUser$ = createEffect(() => this.actions$.pipe(
         ofType(UserActions.loadUser),
         switchMap(() => this.userHttp.loadUserInfo().pipe(
-            map(response => UserActions.loadUserSuccess({response})),
+            map(response => {
+                this.localStorageService.set(LocalStorageStateEnum.VERIFIED, `${response.is_verified}`);
+                return UserActions.loadUserSuccess({response});
+            }),
         )),
     ));
 

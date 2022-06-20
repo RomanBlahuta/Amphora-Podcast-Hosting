@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AmphoraShowCardModel} from './amphora-show-card.model';
+import {RoutesEnum} from '../../../shared/enums/routes.enum';
 
 @Component({
   selector: 'amphora-show-card',
@@ -6,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./amphora-show-card.component.scss'],
 })
 export class AmphoraShowCardComponent implements OnInit {
+    @Input()
+    public model: AmphoraShowCardModel;
+    public RoutesEnum = RoutesEnum;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {}
+    public ngOnInit(): void {}
 
 }

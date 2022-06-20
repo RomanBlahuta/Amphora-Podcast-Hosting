@@ -15,7 +15,7 @@ export class LocalStorageService {
         return !!localStorage.getItem(LocalStorageStateEnum.TOKEN);
     }
 
-    public set(key: string, value: string): void {
+    public set(key: LocalStorageStateEnum, value: string): void {
         localStorage.setItem(key, this.encrypt(value));
     }
 

@@ -22,6 +22,10 @@ export class ShowHttp {
         );
     }
 
+    public getFeaturedShows(): Observable<ILoadPaginatedShowsResponseDTO> {
+        return this.http.get<ILoadPaginatedShowsResponseDTO>(`${HTTP_ROUTING.show.loadShow}?featured=true`);
+    }
+
     public getSeriesByShowId(id: string): Observable<ILoadSeriesByShowIdResponseDTO[]> {
         return this.http.get<ILoadSeriesByShowIdResponseDTO[]>(HTTP_ROUTING.series.getByShowId + `/${id}`);
     }

@@ -20,12 +20,15 @@ import {parseDurationTimeUtil} from '../../shared/utils/utils';
 import {UserSelectors} from '../../store/user/user.selectors';
 import {AmphoraNotificationPopUpModel} from '../../components/pop-ups/amphora-notification-pop-up/amphora-notification-pop-up.model';
 import {SignUpActions} from '../../store/sign-up/sign-up.actions';
+import {PopUpTypesEnum} from '../../shared/enums/component-types/pop-up-types.enum';
+import {PopUpService} from '../../services/utils/pop-up.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DashboardService {
     constructor(private store$: Store,
+                private popUpService: PopUpService,
                 private navController: NavController) {
     }
 
@@ -62,6 +65,7 @@ export class DashboardService {
             buttonLabel: 'Verify',
             onClick: () => {
                 this.store$.dispatch(SignUpActions.requestVerificationToken());
+                this.popUpService.showPopUp(PopUpTypesEnum.CHECK_EMAIL);
             }
         });
     }

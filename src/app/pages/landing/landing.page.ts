@@ -4,6 +4,10 @@ import {AmphoraSectionModel} from '../../components/common/amphora-section/ampho
 import {AmphoraIconModel} from '../../components/common/amphora-icon/amphora-icon.model';
 import {STREAMING_BANNER_ICONS} from '../../shared/utils/constants';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
+import {Store} from '@ngrx/store';
+import {LandingActions} from '../../store/landing/landing.actions';
+import {Observable} from 'rxjs';
+import {AmphoraShowCardModel} from '../../components/cards/amphora-show-card/amphora-show-card.model';
 
 @Component({
   selector: 'amphora-landing',
@@ -18,16 +22,20 @@ export class LandingPage implements OnInit {
     public streamingBannerIconModels: AmphoraIconModel[];
     public featuresSliderModel: AmphoraSliderModel;
     public podcastsSliderModel: AmphoraSliderModel;
+    public showCardModels$: Observable<AmphoraShowCardModel[]>;
 
     public sliderIconModels: AmphoraIconModel[];
 
-    constructor(private landingService: LandingService) {}
+    constructor(private landingService: LandingService,
+                private store$: Store) {}
 
     public ngOnInit(): void {
+        this.store$.dispatch(LandingActions.loadPodcasts());
         this.createModels();
     }
 
     private createModels(): void {
+        this.showCardModels$ = this.landingService.createShowCards();
         this.aboutSectionModel = this.landingService.createRegularSection();
         this.featuresSectionModel = this.landingService.createOrnamentedSection();
         this.streamingSectionModel = this.landingService.createRegularSection();

@@ -3,6 +3,7 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {AuthGuardService} from './services/guards/auth.guard';
 import {getRootRouteRedirect} from './shared/utils/utils';
 import {RoutesEnum} from './shared/enums/routes.enum';
+import {VerificationGuardService} from './services/guards/verification.guard';
 
 const routes: Routes = [
     {
@@ -45,16 +46,17 @@ const routes: Routes = [
     },
     {
         path: `${RoutesEnum.SHOW}/:id`,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, VerificationGuardService],
         loadChildren: () => import('./pages/show/show/show.module').then(m => m.ShowPageModule)
     },
     {
         path: `${RoutesEnum.SHOW}/:mode/:id`,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, VerificationGuardService],
         loadChildren: () => import('./pages/show/show-create-edit/show-create-edit.module').then( m => m.ShowCreateEditPageModule)
     },
     {
         path: `${RoutesEnum.EPISODE}/:showId/:mode/:episodeId`,
+        canActivate: [AuthGuardService, VerificationGuardService],
         loadChildren: () =>
             import('./pages/episode/episode-create-edit/episode-create-edit.module').then( m => m.EpisodeCreateEditPageModule)
     },

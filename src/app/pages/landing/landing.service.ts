@@ -6,6 +6,10 @@ import {IconsEnum} from '../../shared/enums/icons.enum';
 import {ISize} from '../../shared/interfaces/size.interface';
 import {AmphoraSliderModel} from '../../components/common/amphora-slider/amphora-slider.model';
 import {Store} from '@ngrx/store';
+import {AmphoraShowCardModel} from '../../components/cards/amphora-show-card/amphora-show-card.model';
+import {Observable} from 'rxjs';
+import {LandingSelectors} from '../../store/landing/landing.selectors';
+import {map} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -14,15 +18,24 @@ export class LandingService {
     constructor(private store$: Store) {
     }
 
-    public createRegularSection() {
+    public createRegularSection(): AmphoraSectionModel {
         return AmphoraSectionModel.create();
     }
 
-    public createOrnamentedSection() {
+    public createOrnamentedSection(): AmphoraSectionModel {
         return AmphoraSectionModel.create({
             ornaments: SectionOrnamentTypesEnum.ORNAMENTED,
             sectionType: SectionTypesEnum.PRIMARY,
         });
+    }
+
+    public createShowCards(): Observable<AmphoraShowCardModel[]> {
+        return this.store$.select(LandingSelectors.selectPodcasts).pipe(
+            map(items => items.map(item => AmphoraShowCardModel.create(item.title, {
+                description: item.description,
+                image: item.media_link,
+            })))
+        );
     }
 
     public createDiscussionImage(): AmphoraIconModel {

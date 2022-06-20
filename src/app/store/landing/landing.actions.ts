@@ -1,4 +1,5 @@
 import {createAction, props} from '@ngrx/store';
+import {ILoadPaginatedShowsResponseDTO} from '../../services/http/show/show.dto';
 
 export namespace LandingActions {
     export const loadPodcasts = createAction(
@@ -7,7 +8,7 @@ export namespace LandingActions {
 
     export const loadPodcastsSuccess = createAction(
         '[Landing] Load Podcasts Success',
-          props<{ podcasts: any }>(),
+          props<{ response: ILoadPaginatedShowsResponseDTO }>(),
     );
 
     export const loadPodcastsFailure = createAction(
