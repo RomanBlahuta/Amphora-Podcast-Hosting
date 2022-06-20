@@ -26,13 +26,17 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
     public fileReader = new FileReader();
     public chunks: Blob[] = [];
     public file: File;
+    public start: number;
+    public end: number;
+    public duration: number;
+    public initialStart = true;
 
     constructor(private popUpService: PopUpService) { }
 
     public ngOnInit(): void {
         this.fileReader.onload = (event) => {
             if (this.done) {
-                this.model.onInput(this.file, event.target.result as string, this.file.name);
+                this.model.onInput(this.file, event.target.result as string, this.file.name, this.duration);
             }
         };
 
@@ -61,14 +65,22 @@ export class AmphoraRecordAudioPopUpComponent implements OnInit {
             this.mediaRecorder.start();
             this.playing = true;
             this.done = false;
+            if (this.initialStart) {
+                this.start = Date.now();
+            }
         });
         this.pauseButtonModel = this.createRecordingButton(IconsEnum.PAUSE, () => {
+            this.initialStart = false;
             this.mediaRecorder.stop();
             this.playing = false;
         });
         this.stopButtonModel = this.createRecordingButton(IconsEnum.STOP, () => {
             this.done = true;
             this.playing = false;
+            this.initialStart = true;
+            this.end = Date.now();
+            this.duration = Math.round((this.end - this.start) / 1000);
+
             this.mediaRecorder.stop();
             this.popUpService.hidePopUp();
         });

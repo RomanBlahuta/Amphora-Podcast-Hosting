@@ -88,6 +88,19 @@ export namespace fromEpisodeCreateEdit {
             audioFileLink: response.episode_link,
         })),
 
+        on(EpisodeCreateEditActions.createRecordedAudio, (state, {file, url, fileName}) => ({
+            ...state,
+            [EpisodeCreateFormEnum.AUDIO]: file,
+            audioUrl: url,
+            audioFileName: fileName,
+        })),
+
+        on(EpisodeCreateEditActions.createRecordedAudioSuccess, (state, {response}) => ({
+            ...state,
+            audioDuration: response.episode_duration,
+            audioFileLink: response.episode_link,
+        })),
+
         on(EpisodeCreateEditActions.clearAudio, (state) => ({
             ...state,
             audioUrl: null,

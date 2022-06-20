@@ -42,6 +42,14 @@ export class EpisodeHttp {
         return this.http.post<ICreateEpisodeAudioResponseDto>(HTTP_ROUTING.episode.createAudio + `?episode_title=${fileName}`, formData);
     }
 
+    public createRecordedAudio(file: File, fileName: string, duration: number): Observable<ICreateEpisodeAudioResponseDto> {
+        const formData = new FormData();
+        formData.append('episode_file', file);
+        return this.http.post<ICreateEpisodeAudioResponseDto>(
+            HTTP_ROUTING.episode.createRecordedAudio + `?episode_title=${fileName}&duration=${duration}`, formData
+        );
+    }
+
     public getEpisodesByShowId(id: string, page: number, title: string, series: string): Observable<ILoadEpisodesByShowIdResponseDto> {
         return this.http.get<ILoadEpisodesByShowIdResponseDto>(
             HTTP_ROUTING.episode.loadEpisodes +

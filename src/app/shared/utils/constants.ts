@@ -1,4 +1,5 @@
 import {IconsEnum} from '../enums/icons.enum';
+import {StreamingIntegrationsEnum} from '../enums/streaming-integrations.enum';
 
 export const STREAMING_BANNER_ICONS: IconsEnum[] = [
     IconsEnum.APPLE_PODCASTS,
@@ -13,6 +14,15 @@ export const STREAMING_BANNER_ICONS: IconsEnum[] = [
     IconsEnum.CIRCLES,
     IconsEnum.SOUNDCLOUD,
 ];
+
+export const STREAMING_LINKS = {
+    [StreamingIntegrationsEnum.APPLE_PODCASTS]: 'https://podcastsconnect.apple.com/login',
+    [StreamingIntegrationsEnum.YOUTUBE]: '',
+    [StreamingIntegrationsEnum.SPOTIFY]: 'https://podcasters.spotify.com/submit',
+    [StreamingIntegrationsEnum.GOOGLE_PODCASTS]: 'https://podcastsmanager.google.com/',
+    [StreamingIntegrationsEnum.POCKET_CASTS]: '',
+    [StreamingIntegrationsEnum.SOUNDCLOUD]: '',
+};
 
 
 export const SHOW_PAGE_SIZE = 6;

@@ -17,6 +17,9 @@ import {FormControl} from '@angular/forms';
 import {NavController} from '@ionic/angular';
 import {RoutesEnum} from '../../shared/enums/routes.enum';
 import {parseDurationTimeUtil} from '../../shared/utils/utils';
+import {UserSelectors} from '../../store/user/user.selectors';
+import {AmphoraNotificationPopUpModel} from '../../components/pop-ups/amphora-notification-pop-up/amphora-notification-pop-up.model';
+import {SignUpActions} from '../../store/sign-up/sign-up.actions';
 
 @Injectable({
     providedIn: 'root',
@@ -53,9 +56,20 @@ export class DashboardService {
         });
     }
 
+    public createNotification(): AmphoraNotificationPopUpModel {
+        return AmphoraNotificationPopUpModel.create(this.store$.select(UserSelectors.selectIsUserUnverified), {
+            label: 'Unverified users cannot upload and manage content.',
+            buttonLabel: 'Verify',
+            onClick: () => {
+                this.store$.dispatch(SignUpActions.requestVerificationToken());
+            }
+        });
+    }
+
     public createNewShowButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('New', {
             buttonColor: ButtonColorsEnum.DARK,
+            disabled$: this.store$.select(UserSelectors.selectIsUserUnverified),
             onClick: () => this.navController.navigateRoot(RoutesEnum.SHOW_CREATE),
         });
     }

@@ -55,6 +55,18 @@ export class EpisodeCreateEditEffects {
         ),
     ));
 
+    public createRecordedAudio$ = createEffect(() => this.actions$.pipe(
+        ofType(EpisodeCreateEditActions.createRecordedAudio),
+        withLatestFrom(
+            this.store$.select(EpisodeCreateEditSelectors.selectAudioFileName),
+            this.store$.select(EpisodeCreateEditSelectors.selectAudioFile),
+        ),
+        switchMap(([action, fileName, file]) => this.episodeHttp.createRecordedAudio(file, fileName, action.duration).pipe(
+                map(response => EpisodeCreateEditActions.createRecordedAudioSuccess({response})),
+            ),
+        ),
+    ));
+
     public loadAllSeries$ = createEffect(() => this.actions$.pipe(
         ofType(EpisodeCreateEditActions.loadShowSeries),
         withLatestFrom(

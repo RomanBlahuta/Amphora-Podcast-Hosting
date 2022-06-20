@@ -86,8 +86,9 @@ export class PopUpService {
 
     public createRecordingPopUp(): AmphoraRecordAudioPopUpModel {
         return AmphoraRecordAudioPopUpModel.create(
-            (file: File, url: string, fileName: string) => this.store$.dispatch(EpisodeCreateEditActions.createAudio(
-                {file, url, fileName}
+            (file: File, url: string, fileName: string, duration: number) => this.store$.dispatch(
+                EpisodeCreateEditActions.createRecordedAudio(
+                {file, url, fileName, duration}
             )),
         );
     }

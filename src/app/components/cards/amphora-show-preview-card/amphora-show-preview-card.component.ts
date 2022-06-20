@@ -5,6 +5,7 @@ import {IconsEnum} from '../../../shared/enums/icons.enum';
 import {AmphoraButtonModel} from '../../common/amphora-button/amphora-button.model';
 import {ButtonColorsEnum, ButtonTypesEnum} from '../../../shared/enums/component-types/button-types.enum';
 import {fadeInOutAnimation} from '../../../shared/animations/fade-in-out.animation';
+import {STREAMING_LINKS} from '../../../shared/utils/constants';
 
 @Component({
     selector: 'amphora-show-preview-card',
@@ -20,6 +21,7 @@ export class AmphoraShowPreviewCardComponent implements OnInit {
     public streamingIntegrationIconModels: AmphoraIconModel[];
     public seeMoreButtonModel: AmphoraButtonModel;
     public showOverlay = false;
+    public streamingLinks = STREAMING_LINKS;
 
     constructor() { }
 

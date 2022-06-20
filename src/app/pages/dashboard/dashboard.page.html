@@ -9,13 +9,14 @@
                 <div class="dashboard__section-profile-data">
                     <h2 class="dashboard__section-profile-data-username font-card-title">{{ (username | async) || '' }}</h2>
                     <h3 class="dashboard__section-profile-data-email font-profile-description">{{ (email | async) || '' }}</h3>
-                    <amphora-button [model]="editButtonModel"></amphora-button>
+<!--                    <amphora-button [model]="editButtonModel"></amphora-button>-->
                 </div>
             </div>
         </amphora-section>
 
         <amphora-section [model]="listSectionModel">
             <div class="dashboard__section-shows">
+                <amphora-notification-pop-up [model]="notificationModel"></amphora-notification-pop-up>
                 <div class="dashboard__section-shows-heading">
                     <div class="dashboard__section-shows-title-button">
                         <h1 class="dashboard__section-shows-title font-section-subtitle">My Shows</h1>

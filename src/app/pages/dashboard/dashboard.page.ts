@@ -14,6 +14,7 @@ import {DashboardActions} from '../../store/dashboard/dashboard.actions';
 import {FormControl} from '@angular/forms';
 import {DashboardSelectors} from '../../store/dashboard/dashboard.selectors';
 import {takeUntil} from 'rxjs/operators';
+import {AmphoraNotificationPopUpModel} from '../../components/pop-ups/amphora-notification-pop-up/amphora-notification-pop-up.model';
 
 @Component({
     selector: 'amphora-dashboard',
@@ -27,6 +28,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     public showsEmpty: Observable<boolean>;
 
     public profileSectionModel: AmphoraSectionModel;
+    public notificationModel: AmphoraNotificationPopUpModel;
     public profilePictureModel: AmphoraIconModel;
     public listSectionModel: AmphoraSectionModel;
     public editButtonModel: AmphoraButtonModel;
@@ -62,6 +64,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     private createModels(): void {
         this.profileSectionModel = this.dashBoardService.createProfileSection();
         this.listSectionModel = this.dashBoardService.createRegularSection();
+        this.notificationModel = this.dashBoardService.createNotification();
         this.profilePictureModel = this.dashBoardService.createProfilePicture();
         this.editButtonModel = this.dashBoardService.createEditButton();
         this.newShowButtonModel = this.dashBoardService.createNewShowButton();

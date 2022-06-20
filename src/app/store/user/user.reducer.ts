@@ -8,12 +8,14 @@ export namespace fromUser {
         email: string;
         first_name: string;
         last_name: string;
+        verified: boolean;
     }
 
     export const initialState: IState = {
         email: null,
         first_name: null,
         last_name: null,
+        verified: null,
     };
 
     export const reducer = createReducer(
@@ -26,6 +28,7 @@ export namespace fromUser {
             email: response.email,
             first_name: response.first_name,
             last_name: response.last_name,
+            verified: response.is_verified,
         })),
     );
 }

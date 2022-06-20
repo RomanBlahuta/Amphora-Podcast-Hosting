@@ -1,0 +1,19 @@
+@import "src/global";
+
+.notification {
+    border: 4px solid $color-primary;
+    border-radius: 16px;
+    padding: 12px 32px;
+    margin-bottom: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    &__text {
+        @extend .font-section-paragraph;
+        font-weight: bold;
+        color: $color-primary;
+    }
+}

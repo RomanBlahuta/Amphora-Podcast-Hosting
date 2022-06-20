@@ -8,7 +8,12 @@ export const selectUserState = createFeatureSelector<fromUser.IState>(
 export namespace UserSelectors {
     export const selectEmail = createSelector(
         selectUserState,
-        (state) => state.email,
+        (state) => (state.email) ? state.email : 'Loading...',
+    );
+
+    export const selectIsUserUnverified = createSelector(
+        selectUserState,
+        (state) => !state.verified,
     );
 
     export const selectFirstName = createSelector(
@@ -23,6 +28,6 @@ export namespace UserSelectors {
 
     export const selectFullName = createSelector(
         selectUserState,
-        (state) => `${state.first_name} ${state.last_name}`,
+        (state) => (state.first_name && state.last_name) ? `${state.first_name} ${state.last_name}` : 'Loading...',
     );
 }

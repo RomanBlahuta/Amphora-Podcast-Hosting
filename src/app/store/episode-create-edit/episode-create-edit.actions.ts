@@ -62,6 +62,16 @@ export namespace EpisodeCreateEditActions {
         props<{response: ICreateEpisodeAudioResponseDto}>()
     );
 
+    export const createRecordedAudio = createAction(
+        '[Episode Create Edit] Create Recorded Audio',
+        props<{file: File; url: string; fileName: string; duration: number}>()
+    );
+
+    export const createRecordedAudioSuccess = createAction(
+        '[Episode Create Edit] Create Recorded Audio Success',
+        props<{response: ICreateEpisodeAudioResponseDto}>()
+    );
+
     export const removeSeries = createAction(
         '[Episode Create Edit] Remove Series',
         props<{series: string}>(),

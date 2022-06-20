@@ -17,6 +17,7 @@ import {FormControl} from '@angular/forms';
 import {
     AmphoraConfirmDeletionPopUpModel
 } from '../../../components/pop-ups/amphora-confirm-deletion-pop-up/amphora-confirm-deletion-pop-up.model';
+import {STREAMING_LINKS} from '../../../shared/utils/constants';
 
 @Component({
     selector: 'amphora-show',
@@ -37,6 +38,7 @@ export class ShowPage implements OnInit, OnDestroy {
     public searchEpisodeController: FormControl;
     public showId: string;
     public confirmDeletionPopUpModel$: Observable<AmphoraConfirmDeletionPopUpModel>;
+    public streamingLinks = STREAMING_LINKS;
 
     constructor(private showService: ShowService,
                 private route: ActivatedRoute,
