@@ -3,10 +3,20 @@
         <amphora-section [model]="aboutSectionModel">
             <div class="landing__section-about">
                 <div class="landing__section-about-text">
-                    <h1 class="font-section-title landing__section-about-title">Lorem ipsum dolor <br/> sir amet!</h1>
-                    <p class="font-section-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <h1 class="font-section-title landing__section-about-title">Greetings and welcome to <br/> am<span class="font-logo-span">pho</span>ra!</h1>
+                    <p class="font-section-paragraph">
+                        <strong>Am<span class="font-logo-span">pho</span>ra</strong> introduces a new generation of podcast hosting services to the world of web applications.
+                        This application is definitely going to be your new best friend that will accompany you on your podcast-creating journey all the way.
+                        <strong>Am<span class="font-logo-span">pho</span>ra</strong> offers a great and simple user interface, with intuitively organized data. There is no
+                        need for extra configurations of directories or any alternative structures for managing your shows. Our philosophy is that you should put most of your effort
+                        Into creative work and not mundane management!
                         <br/><br/>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                        No more lengthy loading times and constant page reloads! This application's approach to data display and management ensures the most responsive and productive experience possible.
+                        <strong>Am<span class="font-logo-span">pho</span>ra</strong> provides a wide range of diverse features without unreasonable pricing plans or restrictions of any kind. This hosting service
+                        features streaming integrations with many popular streaming services, so you can reach your audience no matter what their listening service of choice is. So what are you waiting for? Navigate to
+                        authorization and begin creating amazing content! <br/><br/>
+                        Stay creative and good luck!
+                    </p>
                 </div>
                 <div class="landing__section-about-image">
                     <amphora-icon [model]="discussionImgModel"></amphora-icon>
@@ -49,7 +59,7 @@
         </amphora-section>
         <amphora-section [model]="streamingSectionModel">
             <div class="landing__section-streaming">
-                <h1 class="font-section-title">Lorem ipsum dolor</h1>
+                <h1 class="font-section-title">Featured shows and streaming integrations</h1>
             </div>
                 <div class="landing__section-streaming-banner">
                     <amphora-icon *ngFor="let model of streamingBannerIconModels" [model]="model"></amphora-icon>

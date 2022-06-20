@@ -2,6 +2,7 @@ import {fromShowCreateEdit} from './show-create-edit.reducer';
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {ShowCreateFormEnum} from '../../shared/enums/forms/show-create-form.enum';
 import {StreamingIntegrationsEnum} from '../../shared/enums/streaming-integrations.enum';
+import {SERIES_COUNT_LIMIT} from '../../shared/utils/constants';
 
 export const selectShowCreateEditState = createFeatureSelector<fromShowCreateEdit.IState>(
     fromShowCreateEdit.showCreateEditFeatureKey,
@@ -61,6 +62,11 @@ export namespace ShowCreateEditSelectors {
     export const selectFormMode = createSelector(
         selectShowCreateEditState,
         (state) => state.mode,
+    );
+
+    export const selectIsSeriesButtonDisabled = createSelector(
+        selectShowCreateEditState,
+        (state) => state[ShowCreateFormEnum.SERIES_TITLE] === '' || state.series.length > SERIES_COUNT_LIMIT,
     );
 
     export const selectForm = createSelector(

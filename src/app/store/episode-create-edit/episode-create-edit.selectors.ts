@@ -75,20 +75,11 @@ export namespace EpisodeCreateEditSelectors {
 
     export const selectIsButtonDisabled = createSelector(
         selectEpisodeCreateEditState,
-        (state) => {
-            // todo remove comments
-            // console.log((state[EpisodeCreateFormEnum.TITLE] === '' ||
-            //     state[EpisodeCreateFormEnum.DESCRIPTION] === '' ||
-            //     !state.imageId || (!state.audioFileLink || (state.mode === FormModeEnum.EDIT)) ||
-            //     state[EpisodeCreateFormEnum.EPISODE_NUMBER] === '' ||
-            //     state[EpisodeCreateFormEnum.SEASON_NUMBER] === ''));
-
-            return (state[EpisodeCreateFormEnum.TITLE] === '' ||
+        (state) => (state[EpisodeCreateFormEnum.TITLE] === '' ||
                 state[EpisodeCreateFormEnum.DESCRIPTION] === '' ||
                 !state.imageId || (!state.audioFileLink && (state.mode !== FormModeEnum.EDIT)) ||
                 state[EpisodeCreateFormEnum.EPISODE_NUMBER] === '' ||
-                state[EpisodeCreateFormEnum.SEASON_NUMBER] === '');
-        },
+                state[EpisodeCreateFormEnum.SEASON_NUMBER] === ''),
     );
 
     export const selectImage = createSelector(

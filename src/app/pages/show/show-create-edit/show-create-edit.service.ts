@@ -102,6 +102,7 @@ export class ShowCreateEditService {
     public createAddSeriesButton(): AmphoraButtonModel {
         return AmphoraButtonModel.create('Add', {
             onClick: () => this.store$.dispatch(ShowCreateEditActions.addSeries()),
+            disabled$: this.store$.select(ShowCreateEditSelectors.selectIsSeriesButtonDisabled),
         });
     }
 

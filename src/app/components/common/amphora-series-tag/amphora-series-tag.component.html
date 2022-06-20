@@ -1,4 +1,4 @@
-<div [class]="['series', (active$ | async) ? 'series__active' : 'series__inactive']"
+<div *ngIf="model?.label" [class]="['series', (active$ | async) ? 'series__active' : 'series__inactive']"
      (click)="onClick()">
     <span class="series__label">{{ model.label }}</span>
 </div>

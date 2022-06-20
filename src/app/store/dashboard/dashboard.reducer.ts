@@ -65,10 +65,10 @@ export namespace fromDashboard {
             pagination: {
                 ...state.pagination,
                 currentPage: index,
-                displayedIndexes: (Math.max(...state.pagination.displayedIndexes) < index) ?
+                displayedIndexes: (Math.max(...state.pagination.displayedIndexes) <= index && index !== state.pagination.totalPages) ?
                     state.pagination.displayedIndexes.map(idx => idx + 1)
                     :
-                    (Math.min(...state.pagination.displayedIndexes) > index) ?
+                    (Math.min(...state.pagination.displayedIndexes) >= index) ?
                         state.pagination.displayedIndexes.map(idx => idx - 1)
                         :
                         state.pagination.displayedIndexes,
