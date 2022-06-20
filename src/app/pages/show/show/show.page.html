@@ -9,7 +9,7 @@
                     <h1 class="show__content-show-data-heading font-section-title">{{ (showData | async)?.title || '' }}</h1>
                     <div class="show__content-show-data-streaming">
                         <div class="show__content-show-data-streaming-item" *ngFor="let iconModel of (streamingIconModels | async)">
-                            <a [href]="streamingLinks[iconModel.icon]">
+                            <a [href]="streamingLinks[iconModel.icon]" target="_blank">
                                 <amphora-icon [model]="iconModel"></amphora-icon>
                             </a>
                         </div>

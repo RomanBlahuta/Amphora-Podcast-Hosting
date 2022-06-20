@@ -9,7 +9,7 @@
         <h1 class="show-preview-card__data-title">{{ model.title }}</h1>
         <div class="show-preview-card__data-streaming">
             <div class="show-preview-card__data-streaming-icon-container" *ngFor="let iconModel of streamingIntegrationIconModels">
-                <a [href]="streamingLinks[iconModel.icon]">
+                <a [href]="streamingLinks[iconModel.icon]" target="_blank">
                     <amphora-icon [model]="iconModel"></amphora-icon>
                 </a>
             </div>
